@@ -53,6 +53,8 @@ async function loadRanking(csvUrl, tableId){
 
       const tr = document.createElement('tr');
 
+      // 色装飾を完全削除 → classList.add はなし
+
       const tdRank = document.createElement('td');
       tdRank.textContent = cells[0];
       tr.appendChild(tdRank);
