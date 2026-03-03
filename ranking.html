@@ -51,21 +51,20 @@ tr:first-child{
   animation:none;
 }
 
-/* トップ3光ライン演出 */
-.rank-top td{
+/* トップ3 プレイヤー名に光る下線 */
+.player-name{
   position: relative;
-  overflow: hidden;
 }
-.rank-top td::after{
+.player-name::after{
   content:'';
   position:absolute;
-  top:0; left:-100%;
+  bottom:0; left:-100%;
   width:100%;
-  height:100%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1), rgba(255,255,255,0.3));
-  animation: shine 1.5s linear infinite;
+  height:2px;
+  background: linear-gradient(90deg, #ffdd00,#00ffff,#ffdd00);
+  animation: shineUnderline 1.5s linear infinite;
 }
-@keyframes shine{
+@keyframes shineUnderline{
   0%{ left:-100%; }
   100%{ left:100%; }
 }
@@ -155,11 +154,14 @@ async function loadRanking(csvUrl, tableId){
       tr.classList.add('fade-row');
       tr.style.animationDelay = `${i*0.05}s`;
 
-      // トップ3は光ラインクラス追加
-      if(i>=1 && i<=3) tr.classList.add('rank-top');
-
       const tdRank=document.createElement('td'); tdRank.textContent=cells[0]; tr.appendChild(tdRank);
-      const tdName=document.createElement('td'); tdName.textContent=cells[1]; tr.appendChild(tdName);
+
+      const tdName=document.createElement('td');
+      tdName.textContent=cells[1];
+      // トップ3はプレイヤー名に光る下線クラス追加
+      if(i>=1 && i<=3) tdName.classList.add('player-name');
+      tr.appendChild(tdName);
+
       const tdValue=document.createElement('td'); tr.appendChild(tdValue);
 
       const num=parseInt(cells[2]);
