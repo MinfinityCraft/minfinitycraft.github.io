@@ -100,41 +100,46 @@
 </div>
 
 <script>
+
 async function loadRanking(csvUrl, tableId) {
   try {
     const response = await fetch(csvUrl);
     const data = await response.text();
-    const rows = data.trim().split('\n');
+
+    const rows = data.trim().split(/\r?\n/);
     const table = document.getElementById(tableId);
 
     for (let i = 1; i < rows.length; i++) {
-      const cells = rows[i].split(',');
+
+      // カンマ区切りを安全に処理
+      const cells = rows[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+      if (!cells || cells.length < 3) continue;
+
       const tr = document.createElement('tr');
 
-      // 上位3人にクラス付与
       if (i === 1) tr.classList.add('gold');
       else if (i === 2) tr.classList.add('silver');
       else if (i === 3) tr.classList.add('bronze');
 
       // 順位
       const tdRank = document.createElement('td');
-      tdRank.textContent = cells[0];
+      tdRank.textContent = cells[0].replace(/"/g, "");
       tdRank.classList.add('block');
       tr.appendChild(tdRank);
 
-      // プレイヤー名 + 仮アイコン
+      // プレイヤー名
       const tdName = document.createElement('td');
       const img = document.createElement('img');
-      img.src = 'https://i.imgur.com/8Jv9RZS.png'; // 仮スキンアイコン
+      img.src = 'https://mc-heads.net/avatar/' + cells[1].replace(/"/g, "");
       img.className = 'player-icon';
       tdName.appendChild(img);
-      tdName.appendChild(document.createTextNode(cells[1]));
+      tdName.appendChild(document.createTextNode(cells[1].replace(/"/g, "")));
       tdName.classList.add('block');
       tr.appendChild(tdName);
 
       // 数値
       const tdValue = document.createElement('td');
-      tdValue.textContent = cells[2];
+      tdValue.textContent = cells[2].replace(/"/g, "");
       tdValue.classList.add('block');
       tr.appendChild(tdValue);
 
@@ -152,11 +157,15 @@ loadRanking(miningCSV, 'miningTable');
 loadRanking(moneyCSV, 'moneyTable');
 
 setInterval(() => {
-  document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
-  document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+  document.getElementById('miningTable').innerHTML =
+    '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
+
+  document.getElementById('moneyTable').innerHTML =
+    '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+
   loadRanking(miningCSV, 'miningTable');
   loadRanking(moneyCSV, 'moneyTable');
-}, 5*60*1000); // 5分ごと
+}, 5*60*1000);
 </script>
 
 </body>
