@@ -10,18 +10,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-/* フォント */
-body{font-family:'Roboto', Arial, sans-serif;color:white;background:#0f2027;text-align:center;}
+body{
+  font-family:'Roboto', Arial, sans-serif;
+  color:white;
+  background:#0f2027;
+  text-align:center;
+}
 h1,h2,h3{font-family:'Press Start 2P', monospace;}
 table{width:80%;margin:20px auto;border-collapse:collapse;}
 th,td{padding:10px;border-bottom:1px solid #333;}
 th{color:#00ffcc;}
 
-/* 左フェードインアニメーション用クラス */
+/* 左フェードイン用 */
 .fade-row{
   opacity:0;
   transform:translateX(-50px);
-  animation:fadeInRow 0.5s forwards;
+  animation:fadeInRow 0.4s forwards; /* アニメーション時間を短く */
 }
 
 @keyframes fadeInRow{
@@ -39,20 +43,24 @@ tr:first-child{
 }
 
 /* ナビバー */
-header{text-align:center;background:#111;padding:10px;margin-bottom:20px;}
+header{
+  text-align:center;
+  background:#111;
+  padding:10px;
+  margin-bottom:20px;
+}
 header a{
-  display:inline-block;       /* transform を効かせるため */
+  display:inline-block;
   color:#00ffcc;
   text-decoration:none;
   margin:0 15px;
   font-weight:bold;
-  transition: transform 0.3s; /* 滑らかに拡大 */
+  transition: transform 0.3s;
 }
 header a:hover{
-  transform:scale(1.3);       /* 1.3倍に拡大 */
+  transform:scale(1.3);
 }
 
-/* ページ全体リンク色 */
 a{color:#00ffcc;}
 </style>
 </head>
@@ -99,26 +107,31 @@ async function loadRanking(csvUrl, tableId){
     for(let i=1;i<rows.length;i++){
       const cells=rows[i].split(',');
       if(cells.length<3) continue;
-      const tr=document.createElement('tr');
 
-      // 左フェードイン用クラス追加
+      const tr=document.createElement('tr');
       tr.classList.add('fade-row');
-      tr.style.animationDelay = `${i*0.1}s`; // 行ごとに少し遅らせる
+      tr.style.animationDelay = `${i*0.05}s`; // 前より短い間隔で順番にフェードイン
 
       const tdRank=document.createElement('td'); tdRank.textContent=cells[0]; tr.appendChild(tdRank);
       const tdName=document.createElement('td'); tdName.textContent=cells[1]; tr.appendChild(tdName);
       const tdValue=document.createElement('td'); tr.appendChild(tdValue);
 
       const num=parseInt(cells[2]);
-      if(!isNaN(num)) animateNumber(tdValue,num);
-      else tdValue.textContent=cells[2];
+      if(!isNaN(num)){
+        // アニメ終了後にカウントアップ
+        tr.addEventListener('animationend',()=>{
+          animateNumber(tdValue,num);
+        });
+      }else{
+        tdValue.textContent=cells[2];
+      }
 
       table.appendChild(tr);
     }
   }catch(err){console.error("ランキング読み込みエラー:",err);}
 }
 
-// 公開済みCSVリンク
+// 公開CSVリンク
 const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
 const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
 
