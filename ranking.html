@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <title>ランキング - Minfinity Craft</title>
 
+<!-- スマホ対応 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- Google Fonts: Bangers -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +18,10 @@ body{
   color:white;
   background:#0f2027;
   text-align:center;
+  margin:0;
+  padding:0;
 }
-h1,h2,h3{font-family:'Bangers', cursive;}
+h1,h2,h3{font-family:'Bangers', cursive; margin:20px 0;}
 
 /* タイトル光るグラデーション（控えめ） */
 h1{
@@ -49,17 +54,21 @@ tr:first-child{
   animation:none;
 }
 
-/* 中央揃え追加 */
+/* 中央揃え＋レスポンシブテーブル */
 table{
-  width: 80%;
+  width: 90%;
+  max-width: 500px;
   margin: 20px auto;
   border-collapse: collapse;
   text-align: center;
+  display: block;
+  overflow-x: auto;
 }
 th, td{
   padding: 10px;
   border-bottom: 1px solid #333;
-  text-align: center; /* セルも中央揃え */
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* ナビバー */
@@ -95,6 +104,15 @@ header a:hover::after{
   width:100%;
 }
 a{color:#00ffcc;}
+
+/* スマホ用調整 */
+@media (max-width: 600px){
+  h1{ font-size:2em; }
+  th, td{ padding:6px; font-size:0.9em; }
+}
+@media (max-width: 400px){
+  header a{ display:block; margin:5px 0; }
+}
 </style>
 </head>
 
@@ -184,3 +202,4 @@ setInterval(refresh,5*60*1000);
 
 </body>
 </html>
+
