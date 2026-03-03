@@ -8,10 +8,8 @@ body{font-family:Arial,sans-serif;color:white;background:#0f2027;text-align:cent
 table{width:80%;margin:20px auto;border-collapse:collapse;}
 th,td{padding:10px;border-bottom:1px solid #333;}
 th{color:#00ffcc;}
-tr:hover{background:#111;}
-.gold{background:#ffd700;color:black;font-weight:bold;}
-.silver{background:#c0c0c0;color:black;font-weight:bold;}
-.bronze{background:#cd7f32;color:black;font-weight:bold;}
+/* hover効果を削除して押せそうに見えないようにする */
+/* tr:hover{background:#111;} */
 </style>
 </head>
 <body>
@@ -54,10 +52,6 @@ async function loadRanking(csvUrl, tableId){
       if(cells.length<3) continue;
 
       const tr = document.createElement('tr');
-
-      if(i===1) tr.classList.add('gold');
-      else if(i===2) tr.classList.add('silver');
-      else if(i===3) tr.classList.add('bronze');
 
       const tdRank = document.createElement('td');
       tdRank.textContent = cells[0];
