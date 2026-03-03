@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>ランキング - Minfinity Craft</title>
 <style>
-body{font-family:Arial;color:white;background:#0f2027;text-align:center;}
+body{font-family:Arial,sans-serif;color:white;background:#0f2027;text-align:center;}
 table{width:80%;margin:20px auto;border-collapse:collapse;}
 th,td{padding:10px;border-bottom:1px solid #333;}
 th{color:#00ffcc;}
@@ -35,18 +35,18 @@ async function loadRanking(csvUrl, tableId){
       const cells = rows[i].split(',');
       if(cells.length<3) continue;
 
-      const tr=document.createElement('tr');
+      const tr = document.createElement('tr');
 
-      const tdRank=document.createElement('td');
-      tdRank.textContent=cells[0];
+      const tdRank = document.createElement('td');
+      tdRank.textContent = cells[0];
       tr.appendChild(tdRank);
 
-      const tdName=document.createElement('td');
-      tdName.textContent=cells[1];
+      const tdName = document.createElement('td');
+      tdName.textContent = cells[1];
       tr.appendChild(tdName);
 
-      const tdValue=document.createElement('td');
-      tdValue.textContent=cells[2];
+      const tdValue = document.createElement('td');
+      tdValue.textContent = cells[2];
       tr.appendChild(tdValue);
 
       table.appendChild(tr);
@@ -56,17 +56,20 @@ async function loadRanking(csvUrl, tableId){
   }
 }
 
-const miningCSV='https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
-const moneyCSV='https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
+// GoogleスプレッドシートのCSV用URL
+const miningCSV = 'https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
+const moneyCSV = 'https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
 
 function refresh(){
-  document.getElementById('miningTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
-  document.getElementById('moneyTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+  document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
+  document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
   loadRanking(miningCSV,'miningTable');
   loadRanking(moneyCSV,'moneyTable');
 }
 
+// 初回読み込み
 refresh();
+// 5分ごとに更新
 setInterval(refresh,5*60*1000);
 </script>
 </body>
