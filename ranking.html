@@ -31,7 +31,7 @@ th{color:#00ffcc;}
   }
 }
 
-/* タイトル行はアニメーションなし */
+/* タイトル行はアニメなし */
 tr:first-child{
   opacity:1;
   transform:translateX(0);
@@ -40,10 +40,19 @@ tr:first-child{
 
 /* ナビバー */
 header{text-align:center;background:#111;padding:10px;margin-bottom:20px;}
-header a{color:#00ffcc;text-decoration:none;margin:0 15px;font-weight:bold;}
-header a:hover{transform:scale(1.3); transition:transform 0.2s;} /* 拡大率1.3倍 */
+header a{
+  display:inline-block;       /* transform を効かせるため */
+  color:#00ffcc;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
+  transition: transform 0.3s; /* 滑らかに拡大 */
+}
+header a:hover{
+  transform:scale(1.3);       /* 1.3倍に拡大 */
+}
 
-/* ページ全体のリンク色 */
+/* ページ全体リンク色 */
 a{color:#00ffcc;}
 </style>
 </head>
@@ -91,7 +100,10 @@ async function loadRanking(csvUrl, tableId){
       const cells=rows[i].split(',');
       if(cells.length<3) continue;
       const tr=document.createElement('tr');
-      tr.classList.add('fade-row');  // ← ここでアニメーションクラス追加
+
+      // 左フェードイン用クラス追加
+      tr.classList.add('fade-row');
+      tr.style.animationDelay = `${i*0.1}s`; // 行ごとに少し遅らせる
 
       const tdRank=document.createElement('td'); tdRank.textContent=cells[0]; tr.appendChild(tdRank);
       const tdName=document.createElement('td'); tdName.textContent=cells[1]; tr.appendChild(tdName);
@@ -100,9 +112,6 @@ async function loadRanking(csvUrl, tableId){
       const num=parseInt(cells[2]);
       if(!isNaN(num)) animateNumber(tdValue,num);
       else tdValue.textContent=cells[2];
-
-      // 行ごとに少し遅らせてアニメーション
-      tr.style.animationDelay=`${i*0.1}s`;
 
       table.appendChild(tr);
     }
