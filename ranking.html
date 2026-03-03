@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <title>ランキング - Minfinity Craft</title>
 
-<!-- Google Fonts -->
+<!-- Google Fonts: Bangers -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -16,20 +16,17 @@ body{
   background:#0f2027;
   text-align:center;
 }
-h1,h2,h3{font-family:'Press Start 2P', monospace;}
-table{width:80%;margin:20px auto;border-collapse:collapse;}
-th,td{padding:10px;border-bottom:1px solid #333;}
-th{color:#00ffcc;}
+h1,h2,h3{font-family:'Bangers', cursive;}
 
-/* タイトル光る強化版 */
+/* タイトル光るグラデーション（控えめ） */
 h1{
-  font-size:2em;
+  font-size:3em; /* 少し大きく */
   background: linear-gradient(90deg, #ffdd00, #00ffff, #ff00ff);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  animation: shineText 1.5s linear infinite;
-  text-shadow:0 0 5px #fff,0 0 15px #ff0,0 0 25px #0ff;
+  animation: shineText 2.5s linear infinite;
+  text-shadow:0 0 3px #fff,0 0 8px #ff0,0 0 12px #0ff; /* 光量控えめ */
 }
 
 @keyframes shineText{
@@ -50,12 +47,6 @@ tr:first-child{
   opacity:1;
   transform:translateX(0);
   animation:none;
-}
-
-/* トップ3 プレイヤー名下線固定 */
-.player-name{
-  border-bottom:2px solid #ffdd00; /* 固定下線 */
-  padding-bottom:2px;
 }
 
 /* ナビバー */
@@ -113,7 +104,7 @@ a{color:#00ffcc;}
 </table>
 
 <script>
-// 滑らかカウントアップ（EaseOutQuad）
+// 滑らかカウントアップ
 function animateNumberSmooth(td,target){
   const duration = 800;
   const start = performance.now();
@@ -145,11 +136,7 @@ async function loadRanking(csvUrl, tableId){
 
       const tdRank=document.createElement('td'); tdRank.textContent=cells[0]; tr.appendChild(tdRank);
 
-      const tdName=document.createElement('td');
-      tdName.textContent=cells[1];
-      // トップ3はプレイヤー名下線固定クラス
-      if(i>=1 && i<=3) tdName.classList.add('player-name');
-      tr.appendChild(tdName);
+      const tdName=document.createElement('td'); tdName.textContent=cells[1]; tr.appendChild(tdName);
 
       const tdValue=document.createElement('td'); tr.appendChild(tdValue);
 
@@ -178,7 +165,6 @@ function refresh(){
   loadRanking(moneyCSV,'moneyTable');
 }
 
-// 初回読み込み & 5分ごと自動更新
 refresh();
 setInterval(refresh,5*60*1000);
 </script>
