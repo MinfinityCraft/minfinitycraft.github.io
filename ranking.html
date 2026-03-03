@@ -17,18 +17,20 @@ table{width:80%;margin:20px auto;border-collapse:collapse;}
 th,td{padding:10px;border-bottom:1px solid #333;}
 th{color:#00ffcc;}
 
-/* 左フェードインアニメーション */
-tr{
+/* 左フェードインアニメーション用クラス */
+.fade-row{
   opacity:0;
   transform:translateX(-50px);
   animation:fadeInRow 0.5s forwards;
 }
+
 @keyframes fadeInRow{
   to{
     opacity:1;
     transform:translateX(0);
   }
 }
+
 /* タイトル行はアニメーションなし */
 tr:first-child{
   opacity:1;
@@ -89,6 +91,7 @@ async function loadRanking(csvUrl, tableId){
       const cells=rows[i].split(',');
       if(cells.length<3) continue;
       const tr=document.createElement('tr');
+      tr.classList.add('fade-row');  // ← ここでアニメーションクラス追加
 
       const tdRank=document.createElement('td'); tdRank.textContent=cells[0]; tr.appendChild(tdRank);
       const tdName=document.createElement('td'); tdName.textContent=cells[1]; tr.appendChild(tdName);
@@ -98,10 +101,10 @@ async function loadRanking(csvUrl, tableId){
       if(!isNaN(num)) animateNumber(tdValue,num);
       else tdValue.textContent=cells[2];
 
-      table.appendChild(tr);
-
       // 行ごとに少し遅らせてアニメーション
       tr.style.animationDelay=`${i*0.1}s`;
+
+      table.appendChild(tr);
     }
   }catch(err){console.error("ランキング読み込みエラー:",err);}
 }
