@@ -1,84 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>ランキング - Minfinity Craft</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #000000, #0f2027, #203a43);
-      color: white;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>ランキング - Minfinity Craft</title>
 
-    header {
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(5px);
-      padding: 15px;
-      position: fixed;
-      top: 0;
-      width: 100%;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#000000,#0f2027,#203a43);
+  color:white;
+  text-align:center;
+}
 
-    a {
-      color: #00ffcc;
-      margin: 0 20px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+header{
+  background:rgba(0,0,0,0.8);
+  padding:15px;
+  position:fixed;
+  top:0;
+  width:100%;
+}
 
-    a:hover {
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-    }
+a{
+  color:#00ffcc;
+  margin:0 20px;
+  text-decoration:none;
+}
 
-    h1 {
-      font-size: 50px;
-      text-shadow: 0 0 20px #00ffcc;
-      text-align: center;
-    }
+a:hover{
+  color:#00ffff;
+  text-shadow:0 0 10px #00ffff;
+}
 
-    table {
-      width: 80%;
-      margin: 20px auto;
-      border-collapse: collapse;
-    }
+h1{
+  margin-top:120px;
+  font-size:42px;
+  text-shadow:0 0 15px #00ffcc;
+}
 
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #333;
-    }
+table{
+  width:80%;
+  margin:20px auto 60px auto;
+  border-collapse:collapse;
+}
 
-    th {
-      color: #00ffcc;
-      font-size: 18px;
-    }
+th,td{
+  padding:12px;
+  border-bottom:1px solid #333;
+}
 
-    tr:hover {
-      background-color: #1a1a1a;
-    }
+th{
+  color:#00ffcc;
+}
 
-    /* 上位3人用の装飾 */
-    .gold { background: linear-gradient(#ffd700, #ffaa00); color: black; font-weight: bold; }
-    .silver { background: linear-gradient(#c0c0c0, #888888); color: black; font-weight: bold; }
-    .bronze { background: linear-gradient(#cd7f32, #8b4513); color: black; font-weight: bold; }
+tr:hover{
+  background:#1a1a1a;
+}
 
-    td.block { 
-      background-color: #222; 
-      border-radius: 4px; 
-      padding: 6px 12px;
-    }
+/* 上位3人 */
+.gold{
+  background:linear-gradient(#ffd700,#ffaa00);
+  color:black;
+  font-weight:bold;
+}
 
-    .player-icon {
-      width: 24px; 
-      height: 24px; 
-      vertical-align: middle; 
-      margin-right: 6px; 
-      border-radius: 4px;
-    }
-  </style>
+.silver{
+  background:linear-gradient(#c0c0c0,#888888);
+  color:black;
+  font-weight:bold;
+}
+
+.bronze{
+  background:linear-gradient(#cd7f32,#8b4513);
+  color:black;
+  font-weight:bold;
+}
+
+.block{
+  background:#222;
+  border-radius:6px;
+}
+
+.player-icon{
+  width:24px;
+  height:24px;
+  vertical-align:middle;
+  margin-right:6px;
+  border-radius:4px;
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -87,85 +99,87 @@
   <a href="ranking.html">ランキング</a>
 </header>
 
-<div style="margin-top:100px;">
-  <h1>採掘ランキング</h1>
-  <table id="miningTable">
-    <tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
-  </table>
+<h1>採掘ランキング</h1>
+<table id="miningTable">
+<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
+</table>
 
-  <h1>お金ランキング</h1>
-  <table id="moneyTable">
-    <tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
-  </table>
-</div>
+<h1>お金ランキング</h1>
+<table id="moneyTable">
+<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
+</table>
 
 <script>
 
-async function loadRanking(csvUrl, tableId) {
-  try {
+async function loadRanking(csvUrl, tableId){
+  try{
     const response = await fetch(csvUrl);
-    const data = await response.text();
+    const text = await response.text();
+    const rows = text.trim().split(/\r?\n/);
 
-    const rows = data.trim().split(/\r?\n/);
     const table = document.getElementById(tableId);
 
-    for (let i = 1; i < rows.length; i++) {
+    for(let i=1;i<rows.length;i++){
 
-      // カンマ区切りを安全に処理
-      const cells = rows[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-      if (!cells || cells.length < 3) continue;
+      const cells = rows[i].split(',');
+
+      if(cells.length < 3) continue;
 
       const tr = document.createElement('tr');
 
-      if (i === 1) tr.classList.add('gold');
-      else if (i === 2) tr.classList.add('silver');
-      else if (i === 3) tr.classList.add('bronze');
+      if(i===1) tr.classList.add('gold');
+      else if(i===2) tr.classList.add('silver');
+      else if(i===3) tr.classList.add('bronze');
 
       // 順位
-      const tdRank = document.createElement('td');
-      tdRank.textContent = cells[0].replace(/"/g, "");
-      tdRank.classList.add('block');
-      tr.appendChild(tdRank);
+      const rank = document.createElement('td');
+      rank.textContent = cells[0];
+      rank.classList.add('block');
+      tr.appendChild(rank);
 
-      // プレイヤー名
-      const tdName = document.createElement('td');
+      // 名前 + スキン
+      const name = document.createElement('td');
+      name.classList.add('block');
+
       const img = document.createElement('img');
-      img.src = 'https://mc-heads.net/avatar/' + cells[1].replace(/"/g, "");
-      img.className = 'player-icon';
-      tdName.appendChild(img);
-      tdName.appendChild(document.createTextNode(cells[1].replace(/"/g, "")));
-      tdName.classList.add('block');
-      tr.appendChild(tdName);
+      img.src = "https://mc-heads.net/avatar/" + cells[1];
+      img.className = "player-icon";
+
+      name.appendChild(img);
+      name.appendChild(document.createTextNode(cells[1]));
+      tr.appendChild(name);
 
       // 数値
-      const tdValue = document.createElement('td');
-      tdValue.textContent = cells[2].replace(/"/g, "");
-      tdValue.classList.add('block');
-      tr.appendChild(tdValue);
+      const value = document.createElement('td');
+      value.textContent = cells[2];
+      value.classList.add('block');
+      tr.appendChild(value);
 
       table.appendChild(tr);
     }
-  } catch (err) {
-    console.error('ランキング読み込みエラー:', err);
+
+  }catch(error){
+    console.error("読み込みエラー:", error);
   }
 }
 
-const miningCSV = 'https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
-const moneyCSV = 'https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
+const miningCSV = "https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv";
+const moneyCSV = "https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv";
 
-loadRanking(miningCSV, 'miningTable');
-loadRanking(moneyCSV, 'moneyTable');
-
-setInterval(() => {
+function refresh(){
   document.getElementById('miningTable').innerHTML =
-    '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
+    "<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>";
 
   document.getElementById('moneyTable').innerHTML =
-    '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+    "<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>";
 
-  loadRanking(miningCSV, 'miningTable');
-  loadRanking(moneyCSV, 'moneyTable');
-}, 5*60*1000);
+  loadRanking(miningCSV,'miningTable');
+  loadRanking(moneyCSV,'moneyTable');
+}
+
+refresh();
+setInterval(refresh,5*60*1000);
+
 </script>
 
 </body>
