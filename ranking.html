@@ -21,6 +21,21 @@ table{width:80%;margin:20px auto;border-collapse:collapse;}
 th,td{padding:10px;border-bottom:1px solid #333;}
 th{color:#00ffcc;}
 
+/* タイトル光るグラデーション */
+h1{
+  font-size:2em;
+  background: linear-gradient(90deg, #ffdd00, #00ffff, #ff00ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shineText 3s linear infinite;
+}
+
+@keyframes shineText{
+  0%{ background-position:0% 50%; }
+  100%{ background-position:200% 50%; }
+}
+
 /* 左フェードイン */
 .fade-row{
   opacity:0;
