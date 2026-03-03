@@ -83,33 +83,42 @@
 <script>
   // CSVを読み込んでテーブルに描画する関数
   async function loadRanking(csvUrl, tableId) {
-    const response = await fetch(csvUrl);
-    const data = await response.text();
-    const rows = data.trim().split('\n');
-    const table = document.getElementById(tableId);
-    // 1行目はヘッダーなので飛ばす
-    for (let i = 1; i < rows.length; i++) {
-      const cells = rows[i].split(',');
-      const tr = document.createElement('tr');
-      cells.forEach(cell => {
-        const td = document.createElement('td');
-        td.textContent = cell;
-        tr.appendChild(td);
-      });
-      table.appendChild(tr);
+    try {
+      const response = await fetch(csvUrl);
+      const data = await response.text();
+      const rows = data.trim().split('\n');
+      const table = document.getElementById(tableId);
+      // 1行目はヘッダーなので飛ばす
+      for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].split(',');
+        const tr = document.createElement('tr');
+        cells.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        table.appendChild(tr);
+      }
+    } catch (err) {
+      console.error('ランキング読み込みエラー:', err);
     }
   }
 
-  // ここにスプレッドシートのCSV公開リンクを入れる
- 　loadRanking('https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv', 'miningTable');
-　　loadRanking('https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv', 'moneyTable');
-  // 数分ごとに更新（例: 5分ごと）
+  // 公開リンクをCSV形式に変換
+  const miningCSV = 'https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
+  const moneyCSV = 'https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
+
+  // 最初の読み込み
+  loadRanking(miningCSV, 'miningTable');
+  loadRanking(moneyCSV, 'moneyTable');
+
+  // 数分ごとに更新（例: 5分）
   setInterval(() => {
     document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
     document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
-    loadRanking('https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv', 'miningTable');
-    loadRanking('https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv', 'moneyTable');
-  }, 5*60*1000); // 5分ごと
+    loadRanking(miningCSV, 'miningTable');
+    loadRanking(moneyCSV, 'moneyTable');
+  }, 5 * 60 * 1000); // 5分ごと
 </script>
 
 </body>
