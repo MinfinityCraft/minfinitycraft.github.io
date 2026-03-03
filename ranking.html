@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +11,33 @@ th,td{padding:10px;border-bottom:1px solid #333;}
 th{color:#00ffcc;}
 /* hover効果を削除して押せそうに見えないようにする */
 /* tr:hover{background:#111;} */
+
+/* 以前のナビバー用スタイル */
+header{
+  text-align:center;
+  background:#111;
+  padding:10px;
+  margin-bottom:20px;
+}
+header a{
+  color:#00ffcc;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
+}
+header a:hover{
+  color:#ffffff;
+}
 </style>
 </head>
 <body>
+
+<!-- 以前のナビバー -->
+<header>
+  <a href="index.html">ホーム</a>
+  <a href="about.html">サーバー紹介</a>
+  <a href="ranking.html">ランキング</a>
+</header>
 
 <h1>採掘ランキング</h1>
 <table id="miningTable">
@@ -28,7 +53,7 @@ th{color:#00ffcc;}
 // 数字を0からカウントアップさせる関数
 function animateNumber(td, target){
   let current = 0;
-  const duration = 800; // 0.8秒でカウントアップ
+  const duration = 800; 
   const stepTime = Math.max(Math.floor(duration / target), 20);
   const interval = setInterval(() => {
     current++;
@@ -53,8 +78,6 @@ async function loadRanking(csvUrl, tableId){
 
       const tr = document.createElement('tr');
 
-      // 色装飾を完全削除 → classList.add はなし
-
       const tdRank = document.createElement('td');
       tdRank.textContent = cells[0];
       tr.appendChild(tdRank);
@@ -66,7 +89,6 @@ async function loadRanking(csvUrl, tableId){
       const tdValue = document.createElement('td');
       tr.appendChild(tdValue);
 
-      // 数字をカウントアップ
       const num = parseInt(cells[2]);
       if(!isNaN(num)) animateNumber(tdValue, num);
       else tdValue.textContent = cells[2];
