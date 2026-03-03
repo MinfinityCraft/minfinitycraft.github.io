@@ -58,6 +58,25 @@
     tr:hover {
       background-color: #1a1a1a;
     }
+
+    /* 上位3人用の装飾 */
+    .gold { background: linear-gradient(#ffd700, #ffaa00); color: black; font-weight: bold; }
+    .silver { background: linear-gradient(#c0c0c0, #888888); color: black; font-weight: bold; }
+    .bronze { background: linear-gradient(#cd7f32, #8b4513); color: black; font-weight: bold; }
+
+    td.block { 
+      background-color: #222; 
+      border-radius: 4px; 
+      padding: 6px 12px;
+    }
+
+    .player-icon {
+      width: 24px; 
+      height: 24px; 
+      vertical-align: middle; 
+      margin-right: 6px; 
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -81,44 +100,63 @@
 </div>
 
 <script>
-  // CSVを読み込んでテーブルに描画する関数
-  async function loadRanking(csvUrl, tableId) {
-    try {
-      const response = await fetch(csvUrl);
-      const data = await response.text();
-      const rows = data.trim().split('\n');
-      const table = document.getElementById(tableId);
-      // 1行目はヘッダーなので飛ばす
-      for (let i = 1; i < rows.length; i++) {
-        const cells = rows[i].split(',');
-        const tr = document.createElement('tr');
-        cells.forEach(cell => {
-          const td = document.createElement('td');
-          td.textContent = cell;
-          tr.appendChild(td);
-        });
-        table.appendChild(tr);
-      }
-    } catch (err) {
-      console.error('ランキング読み込みエラー:', err);
+async function loadRanking(csvUrl, tableId) {
+  try {
+    const response = await fetch(csvUrl);
+    const data = await response.text();
+    const rows = data.trim().split('\n');
+    const table = document.getElementById(tableId);
+
+    for (let i = 1; i < rows.length; i++) {
+      const cells = rows[i].split(',');
+      const tr = document.createElement('tr');
+
+      // 上位3人にクラス付与
+      if (i === 1) tr.classList.add('gold');
+      else if (i === 2) tr.classList.add('silver');
+      else if (i === 3) tr.classList.add('bronze');
+
+      // 順位
+      const tdRank = document.createElement('td');
+      tdRank.textContent = cells[0];
+      tdRank.classList.add('block');
+      tr.appendChild(tdRank);
+
+      // プレイヤー名 + 仮アイコン
+      const tdName = document.createElement('td');
+      const img = document.createElement('img');
+      img.src = 'https://i.imgur.com/8Jv9RZS.png'; // 仮スキンアイコン
+      img.className = 'player-icon';
+      tdName.appendChild(img);
+      tdName.appendChild(document.createTextNode(cells[1]));
+      tdName.classList.add('block');
+      tr.appendChild(tdName);
+
+      // 数値
+      const tdValue = document.createElement('td');
+      tdValue.textContent = cells[2];
+      tdValue.classList.add('block');
+      tr.appendChild(tdValue);
+
+      table.appendChild(tr);
     }
+  } catch (err) {
+    console.error('ランキング読み込みエラー:', err);
   }
+}
 
-  // 公開リンクをCSV形式に変換
-  const miningCSV = 'https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
-  const moneyCSV = 'https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
+const miningCSV = 'https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
+const moneyCSV = 'https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
 
-  // 最初の読み込み
+loadRanking(miningCSV, 'miningTable');
+loadRanking(moneyCSV, 'moneyTable');
+
+setInterval(() => {
+  document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
+  document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
   loadRanking(miningCSV, 'miningTable');
   loadRanking(moneyCSV, 'moneyTable');
-
-  // 数分ごとに更新（例: 5分）
-  setInterval(() => {
-    document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
-    document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
-    loadRanking(miningCSV, 'miningTable');
-    loadRanking(moneyCSV, 'moneyTable');
-  }, 5 * 60 * 1000); // 5分ごと
+}, 5*60*1000); // 5分ごと
 </script>
 
 </body>
