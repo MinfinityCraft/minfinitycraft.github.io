@@ -101,15 +101,14 @@
   }
 
   // ここにスプレッドシートのCSV公開リンクを入れる
-  loadRanking('https://docs.google.com/spreadsheets/d/スプレッドシートID1/export?format=csv', 'miningTable');
-  loadRanking('https://docs.google.com/spreadsheets/d/スプレッドシートID2/export?format=csv', 'moneyTable');
-
+ 　loadRanking('https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv', 'miningTable');
+　　loadRanking('https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv', 'moneyTable');
   // 数分ごとに更新（例: 5分ごと）
   setInterval(() => {
     document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
     document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
-    loadRanking('https://docs.google.com/spreadsheets/d/スプレッドシートID1/export?format=csv', 'miningTable');
-    loadRanking('https://docs.google.com/spreadsheets/d/スプレッドシートID2/export?format=csv', 'moneyTable');
+    loadRanking('https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv', 'miningTable');
+    loadRanking('https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv', 'moneyTable');
   }, 5*60*1000); // 5分ごと
 </script>
 
