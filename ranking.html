@@ -20,7 +20,7 @@ h1,h2,h3{font-family:'Bangers', cursive;}
 
 /* タイトル光るグラデーション（控えめ） */
 h1{
-  font-size:3em; /* 少し大きく */
+  font-size:3em; /* 少し大きめ */
   background: linear-gradient(90deg, #ffdd00, #00ffff, #ff00ff);
   background-clip: text;
   -webkit-background-clip: text;
@@ -47,6 +47,19 @@ tr:first-child{
   opacity:1;
   transform:translateX(0);
   animation:none;
+}
+
+/* 中央揃え追加 */
+table{
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+}
+th, td{
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  text-align: center; /* セルも中央揃え */
 }
 
 /* ナビバー */
