@@ -27,6 +27,21 @@ tr:hover{background:#111;}
 </table>
 
 <script>
+// 数字を0からカウントアップさせる関数
+function animateNumber(td, target){
+  let current = 0;
+  const duration = 800; // 0.8秒でカウントアップ
+  const stepTime = Math.max(Math.floor(duration / target), 20);
+  const interval = setInterval(() => {
+    current++;
+    td.textContent = current;
+    if(current >= target){
+      td.textContent = target;
+      clearInterval(interval);
+    }
+  }, stepTime);
+}
+
 async function loadRanking(csvUrl, tableId){
   try{
     const response = await fetch(csvUrl);
@@ -38,29 +53,32 @@ async function loadRanking(csvUrl, tableId){
       const cells = rows[i].split(',');
       if(cells.length<3) continue;
 
-      const tr=document.createElement('tr');
+      const tr = document.createElement('tr');
 
-      // 上位3人にクラス付与
       if(i===1) tr.classList.add('gold');
       else if(i===2) tr.classList.add('silver');
       else if(i===3) tr.classList.add('bronze');
 
-      const tdRank=document.createElement('td');
-      tdRank.textContent=cells[0];
+      const tdRank = document.createElement('td');
+      tdRank.textContent = cells[0];
       tr.appendChild(tdRank);
 
-      const tdName=document.createElement('td');
-      tdName.textContent=cells[1];
+      const tdName = document.createElement('td');
+      tdName.textContent = cells[1];
       tr.appendChild(tdName);
 
-      const tdValue=document.createElement('td');
-      tdValue.textContent=cells[2];
+      const tdValue = document.createElement('td');
       tr.appendChild(tdValue);
+
+      // 数字をカウントアップ
+      const num = parseInt(cells[2]);
+      if(!isNaN(num)) animateNumber(tdValue, num);
+      else tdValue.textContent = cells[2];
 
       table.appendChild(tr);
     }
-  }catch(err){
-    console.error("ランキング読み込みエラー:",err);
+  } catch(err){
+    console.error("ランキング読み込みエラー:", err);
   }
 }
 
@@ -77,7 +95,7 @@ function refresh(){
 
 // 初回読み込み
 refresh();
-// 5分ごとに更新
+// 5分ごとに自動更新
 setInterval(refresh,5*60*1000);
 </script>
 
