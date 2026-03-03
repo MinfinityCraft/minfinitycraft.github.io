@@ -1,76 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ランキング - Minfinity Craft</title>
-<style>
-body{font-family:Arial,sans-serif;color:white;background:#0f2027;text-align:center;}
-table{width:80%;margin:20px auto;border-collapse:collapse;}
-th,td{padding:10px;border-bottom:1px solid #333;}
-th{color:#00ffcc;}
-tr:hover{background:#111;}
-</style>
+  <meta charset="UTF-8">
+  <title>ランキング - Minfinity Craft</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #000000, #0f2027, #203a43);
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+      padding: 15px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+
+    a {
+      color: #00ffcc;
+      margin: 0 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    h1 {
+      font-size: 50px;
+      text-shadow: 0 0 20px #00ffcc;
+      text-align: center;
+    }
+
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      color: #00ffcc;
+      font-size: 18px;
+    }
+
+    tr:hover {
+      background-color: #1a1a1a;
+    }
+  </style>
 </head>
 <body>
 
-<h1>採掘ランキング</h1>
-<table id="miningTable">
-<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
-</table>
+<header>
+  <a href="index.html">ホーム</a>
+  <a href="about.html">サーバー紹介</a>
+  <a href="ranking.html">ランキング</a>
+</header>
 
-<h1>お金ランキング</h1>
-<table id="moneyTable">
-<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
-</table>
+<div style="margin-top:100px;">
+  <h1>採掘ランキング</h1>
+  <table id="miningTable">
+    <tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
+  </table>
+
+  <h1>お金ランキング</h1>
+  <table id="moneyTable">
+    <tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
+  </table>
+</div>
 
 <script>
-async function loadRanking(csvUrl, tableId){
-  try{
-    const response = await fetch(csvUrl);
-    const text = await response.text();
-    const rows = text.trim().split(/\r?\n/);
-    const table = document.getElementById(tableId);
-
-    for(let i=1;i<rows.length;i++){
-      const cells = rows[i].split(',');
-      if(cells.length<3) continue;
-
-      const tr = document.createElement('tr');
-
-      const tdRank = document.createElement('td');
-      tdRank.textContent = cells[0];
-      tr.appendChild(tdRank);
-
-      const tdName = document.createElement('td');
-      tdName.textContent = cells[1];
-      tr.appendChild(tdName);
-
-      const tdValue = document.createElement('td');
-      tdValue.textContent = cells[2];
-      tr.appendChild(tdValue);
-
-      table.appendChild(tr);
+  // CSVを読み込んでテーブルに描画する関数
+  async function loadRanking(csvUrl, tableId) {
+    try {
+      const response = await fetch(csvUrl);
+      const data = await response.text();
+      const rows = data.trim().split('\n');
+      const table = document.getElementById(tableId);
+      // 1行目はヘッダーなので飛ばす
+      for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].split(',');
+        const tr = document.createElement('tr');
+        cells.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+        table.appendChild(tr);
+      }
+    } catch (err) {
+      console.error('ランキング読み込みエラー:', err);
     }
-  }catch(err){
-    console.error("読み込みエラー:",err);
   }
-}
 
-// GoogleスプレッドシートのCSV用URL
-const miningCSV = 'https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
-const moneyCSV = 'https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
+  // 公開リンクをCSV形式に変換
+  const miningCSV = 'https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
+  const moneyCSV = 'https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
 
-function refresh(){
-  document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
-  document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
-  loadRanking(miningCSV,'miningTable');
-  loadRanking(moneyCSV,'moneyTable');
-}
+  // 最初の読み込み
+  loadRanking(miningCSV, 'miningTable');
+  loadRanking(moneyCSV, 'moneyTable');
 
-// 初回読み込み
-refresh();
-// 5分ごとに更新
-setInterval(refresh,5*60*1000);
+  // 数分ごとに更新（例: 5分）
+  setInterval(() => {
+    document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
+    document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+    loadRanking(miningCSV, 'miningTable');
+    loadRanking(moneyCSV, 'moneyTable');
+  }, 5 * 60 * 1000); // 5分ごと
 </script>
+
 </body>
 </html>
