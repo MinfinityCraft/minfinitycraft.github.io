@@ -1,38 +1,38 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ランキング - Minfinity Craft</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-body{font-family:Arial,sans-serif;color:white;background:#0f2027;text-align:center;}
+/* フォント設定 */
+body{font-family:'Roboto', Arial, sans-serif;color:white;background:#0f2027;text-align:center;}
+h1,h2,h3{font-family:'Press Start 2P', monospace;}
 table{width:80%;margin:20px auto;border-collapse:collapse;}
 th,td{padding:10px;border-bottom:1px solid #333;}
 th{color:#00ffcc;}
-/* hover効果を削除して押せそうに見えないようにする */
-/* tr:hover{background:#111;} */
+/* 表のフェードインアニメーション */
+tr{opacity:0; transform:translateY(10px); animation:fadeIn 0.5s forwards;}
+@keyframes fadeIn{to{opacity:1; transform:translateY(0);}}
 
-/* 以前のナビバー用スタイル */
-header{
-  text-align:center;
-  background:#111;
-  padding:10px;
-  margin-bottom:20px;
-}
-header a{
-  color:#00ffcc;
-  text-decoration:none;
-  margin:0 15px;
-  font-weight:bold;
-}
-header a:hover{
-  color:#ffffff;
-}
+/* 以前のナビバー用 */
+header{text-align:center;background:#111;padding:10px;margin-bottom:20px;}
+header a{color:#00ffcc;text-decoration:none;margin:0 15px;font-weight:bold;}
+header a:hover{transform:scale(1.1); transition:transform 0.2s;}
+
+/* ページ全体のリンク色 */
+a{color:#00ffcc;}
 </style>
 </head>
+
 <body>
 
-<!-- 以前のナビバー -->
+<!-- ナビバー -->
 <header>
   <a href="index.html">ホーム</a>
   <a href="about.html">サーバー紹介</a>
@@ -50,54 +50,42 @@ header a:hover{
 </table>
 
 <script>
-// 数字を0からカウントアップさせる関数
-function animateNumber(td, target){
-  let current = 0;
-  const duration = 800; 
-  const stepTime = Math.max(Math.floor(duration / target), 20);
-  const interval = setInterval(() => {
+// 数字カウントアップ
+function animateNumber(td,target){
+  let current=0;
+  const duration=800;
+  const stepTime=Math.max(Math.floor(duration/target),20);
+  const interval=setInterval(()=>{
     current++;
-    td.textContent = current;
-    if(current >= target){
-      td.textContent = target;
-      clearInterval(interval);
-    }
-  }, stepTime);
+    td.textContent=current;
+    if(current>=target){td.textContent=target; clearInterval(interval);}
+  },stepTime);
 }
 
+// CSV読み込み
 async function loadRanking(csvUrl, tableId){
   try{
-    const response = await fetch(csvUrl);
-    const text = await response.text();
-    const rows = text.trim().split(/\r?\n/);
-    const table = document.getElementById(tableId);
+    const response=await fetch(csvUrl);
+    const text=await response.text();
+    const rows=text.trim().split(/\r?\n/);
+    const table=document.getElementById(tableId);
 
     for(let i=1;i<rows.length;i++){
-      const cells = rows[i].split(',');
+      const cells=rows[i].split(',');
       if(cells.length<3) continue;
+      const tr=document.createElement('tr');
 
-      const tr = document.createElement('tr');
+      const tdRank=document.createElement('td'); tdRank.textContent=cells[0]; tr.appendChild(tdRank);
+      const tdName=document.createElement('td'); tdName.textContent=cells[1]; tr.appendChild(tdName);
+      const tdValue=document.createElement('td'); tr.appendChild(tdValue);
 
-      const tdRank = document.createElement('td');
-      tdRank.textContent = cells[0];
-      tr.appendChild(tdRank);
-
-      const tdName = document.createElement('td');
-      tdName.textContent = cells[1];
-      tr.appendChild(tdName);
-
-      const tdValue = document.createElement('td');
-      tr.appendChild(tdValue);
-
-      const num = parseInt(cells[2]);
-      if(!isNaN(num)) animateNumber(tdValue, num);
-      else tdValue.textContent = cells[2];
+      const num=parseInt(cells[2]);
+      if(!isNaN(num)) animateNumber(tdValue,num);
+      else tdValue.textContent=cells[2];
 
       table.appendChild(tr);
     }
-  } catch(err){
-    console.error("ランキング読み込みエラー:", err);
-  }
+  }catch(err){console.error("ランキング読み込みエラー:",err);}
 }
 
 // 公開済みCSVリンク
@@ -111,9 +99,8 @@ function refresh(){
   loadRanking(moneyCSV,'moneyTable');
 }
 
-// 初回読み込み
+// 初回読み込み & 5分ごと自動更新
 refresh();
-// 5分ごとに自動更新
 setInterval(refresh,5*60*1000);
 </script>
 
