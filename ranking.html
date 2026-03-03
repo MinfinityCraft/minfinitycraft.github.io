@@ -21,21 +21,18 @@ table{width:80%;margin:20px auto;border-collapse:collapse;}
 th,td{padding:10px;border-bottom:1px solid #333;}
 th{color:#00ffcc;}
 
-/* 左フェードイン用 */
+/* 左フェードイン */
 .fade-row{
   opacity:0;
   transform:translateX(-50px);
-  animation:fadeInRow 0.4s forwards; /* アニメーション時間を短く */
+  animation:fadeInRow 0.4s forwards;
 }
-
 @keyframes fadeInRow{
   to{
     opacity:1;
     transform:translateX(0);
   }
 }
-
-/* タイトル行はアニメなし */
 tr:first-child{
   opacity:1;
   transform:translateX(0);
@@ -55,10 +52,24 @@ header a{
   text-decoration:none;
   margin:0 15px;
   font-weight:bold;
-  transition: transform 0.3s;
+  transition: transform 0.3s, color 0.3s;
+  position: relative;
 }
 header a:hover{
-  transform:scale(1.3);
+  transform: scale(1.3);
+  color:#ffdd00;
+}
+header a::after{
+  content:'';
+  position:absolute;
+  left:0; bottom:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#ffdd00,#00ffff);
+  transition: width 0.3s;
+}
+header a:hover::after{
+  width:100%;
 }
 
 a{color:#00ffcc;}
@@ -84,16 +95,18 @@ a{color:#00ffcc;}
 </table>
 
 <script>
-// 数字カウントアップ
-function animateNumber(td,target){
-  let current=0;
-  const duration=800;
-  const stepTime=Math.max(Math.floor(duration/target),20);
-  const interval=setInterval(()=>{
-    current++;
-    td.textContent=current;
-    if(current>=target){td.textContent=target; clearInterval(interval);}
-  },stepTime);
+// 滑らかカウントアップ（EaseOutQuad）
+function animateNumberSmooth(td,target){
+  const duration = 800;
+  const start = performance.now();
+  function step(now){
+    const progress = Math.min((now - start)/duration,1);
+    const value = Math.floor(target * (1 - (1-progress)*(1-progress))); // EaseOutQuad
+    td.textContent = value;
+    if(progress < 1) requestAnimationFrame(step);
+    else td.textContent = target;
+  }
+  requestAnimationFrame(step);
 }
 
 // CSV読み込み
@@ -110,7 +123,7 @@ async function loadRanking(csvUrl, tableId){
 
       const tr=document.createElement('tr');
       tr.classList.add('fade-row');
-      tr.style.animationDelay = `${i*0.05}s`; // 前より短い間隔で順番にフェードイン
+      tr.style.animationDelay = `${i*0.05}s`; // 表示間隔短縮
 
       const tdRank=document.createElement('td'); tdRank.textContent=cells[0]; tr.appendChild(tdRank);
       const tdName=document.createElement('td'); tdName.textContent=cells[1]; tr.appendChild(tdName);
@@ -118,9 +131,9 @@ async function loadRanking(csvUrl, tableId){
 
       const num=parseInt(cells[2]);
       if(!isNaN(num)){
-        // アニメ終了後にカウントアップ
+        // フェードイン完了後に滑らかカウント
         tr.addEventListener('animationend',()=>{
-          animateNumber(tdValue,num);
+          animateNumberSmooth(tdValue,num);
         });
       }else{
         tdValue.textContent=cells[2];
