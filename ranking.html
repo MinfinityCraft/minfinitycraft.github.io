@@ -4,64 +4,14 @@
 <meta charset="UTF-8">
 <title>ランキング - Minfinity Craft</title>
 <style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:linear-gradient(135deg,#000,#0f2027,#203a43);
-  color:white;
-  text-align:center;
-}
-header{
-  background:rgba(0,0,0,0.8);
-  padding:15px;
-  position:fixed;
-  top:0;
-  width:100%;
-}
-a{
-  color:#00ffcc;
-  margin:0 20px;
-  text-decoration:none;
-}
-a:hover{
-  color:#00ffff;
-  text-shadow:0 0 10px #00ffff;
-}
-h1{
-  margin-top:120px;
-  font-size:42px;
-  text-shadow:0 0 15px #00ffcc;
-}
-table{
-  width:80%;
-  margin:20px auto 60px auto;
-  border-collapse:collapse;
-}
-th,td{
-  padding:12px;
-  border-bottom:1px solid #333;
-}
-th{
-  color:#00ffcc;
-}
-tr:hover{
-  background:#1a1a1a;
-}
-/* 上位3人 */
-.gold{background:linear-gradient(#ffd700,#ffaa00);color:black;font-weight:bold;}
-.silver{background:linear-gradient(#c0c0c0,#888);color:black;font-weight:bold;}
-.bronze{background:linear-gradient(#cd7f32,#8b4513);color:black;font-weight:bold;}
-.block{background:#222;border-radius:6px;}
-.player-icon{width:24px;height:24px;vertical-align:middle;margin-right:6px;border-radius:4px;}
+body{font-family:Arial;color:white;background:#0f2027;text-align:center;}
+table{width:80%;margin:20px auto;border-collapse:collapse;}
+th,td{padding:10px;border-bottom:1px solid #333;}
+th{color:#00ffcc;}
+tr:hover{background:#111;}
 </style>
 </head>
 <body>
-
-<header>
-  <a href="index.html">ホーム</a>
-  <a href="about.html">サーバー紹介</a>
-  <a href="ranking.html">ランキング</a>
-</header>
 
 <h1>採掘ランキング</h1>
 <table id="miningTable">
@@ -74,7 +24,6 @@ tr:hover{
 </table>
 
 <script>
-// CSVの安全読み込み
 async function loadRanking(csvUrl, tableId){
   try{
     const response = await fetch(csvUrl);
@@ -83,60 +32,42 @@ async function loadRanking(csvUrl, tableId){
     const table = document.getElementById(tableId);
 
     for(let i=1;i<rows.length;i++){
-      const cells = rows[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-      if(!cells || cells.length<3) continue;
+      const cells = rows[i].split(',');
+      if(cells.length<3) continue;
 
-      const tr = document.createElement('tr');
+      const tr=document.createElement('tr');
 
-      if(i===1) tr.classList.add('gold');
-      else if(i===2) tr.classList.add('silver');
-      else if(i===3) tr.classList.add('bronze');
-
-      // 順位
-      const tdRank = document.createElement('td');
-      tdRank.textContent = cells[0].replace(/"/g,'');
-      tdRank.classList.add('block');
+      const tdRank=document.createElement('td');
+      tdRank.textContent=cells[0];
       tr.appendChild(tdRank);
 
-      // プレイヤー名＋スキン
-      const tdName = document.createElement('td');
-      tdName.classList.add('block');
-      const img = document.createElement('img');
-      img.src = "https://mc-heads.net/avatar/"+cells[1].replace(/"/g,'');
-      img.className = "player-icon";
-      tdName.appendChild(img);
-      tdName.appendChild(document.createTextNode(cells[1].replace(/"/g,'')));
+      const tdName=document.createElement('td');
+      tdName.textContent=cells[1];
       tr.appendChild(tdName);
 
-      // 数値
-      const tdValue = document.createElement('td');
-      tdValue.textContent = cells[2].replace(/"/g,'');
-      tdValue.classList.add('block');
+      const tdValue=document.createElement('td');
+      tdValue.textContent=cells[2];
       tr.appendChild(tdValue);
 
       table.appendChild(tr);
     }
   }catch(err){
-    console.error('ランキング読み込みエラー:',err);
+    console.error("読み込みエラー:",err);
   }
 }
 
-// CSVリンク（Googleスプレッドシート）
-const miningCSV = 'https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
-const moneyCSV = 'https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
+const miningCSV='https://docs.google.com/spreadsheets/d/1x9o05a41twCI-MUmWltl1SCV6ZEX2FkStDh32j4RXuQ/export?format=csv';
+const moneyCSV='https://docs.google.com/spreadsheets/d/1qrIctqrZm4frOh-QiStWKI-EWTS58ZtIzwqLiAAzmZQ/export?format=csv';
 
 function refresh(){
-  document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
-  document.getElementById('moneyTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+  document.getElementById('miningTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
+  document.getElementById('moneyTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
   loadRanking(miningCSV,'miningTable');
   loadRanking(moneyCSV,'moneyTable');
 }
 
-// 初回読み込み
 refresh();
-// 5分ごとに更新
 setInterval(refresh,5*60*1000);
-
 </script>
 </body>
 </html>
