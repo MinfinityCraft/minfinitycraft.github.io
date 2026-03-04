@@ -1,65 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>サーバー紹介 - Minfinity Craft</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>サーバー紹介｜Minfinity Craft</title>
+  <meta name="description" content="Minfinity Craftのサーバー紹介ページです。整地特化型Minecraft統合版サーバーの特徴やルールをご紹介します。">
+
+  <!-- ゲーム風フォント -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      background: #0f0f0f;
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
-      font-family: Arial, sans-serif;
-      padding: 50px;
+      text-align: center;
+    }
+
+    /* ---------------- ナビバー ---------------- */
+    nav {
+      background: #111;
+      padding: 15px;
+    }
+
+    nav a {
+      position: relative;
+      display: inline-block;
+      color: #00ffcc;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      padding-bottom: 5px;
+      transition: 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #00ffcc, #ffe600, #ff00ff);
+      box-shadow: 0 0 8px #00ffcc, 0 0 12px #ffe600;
+      transition: width 0.4s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ---------------- ヘッダー ---------------- */
+    header {
+      padding: 60px 20px;
     }
 
     h1 {
-      font-size: 50px;
-      border-bottom: 2px solid #00ffcc;
-      padding-bottom: 10px;
-    }
-
-    h2 {
-      color: #00ffcc;
-      margin-top: 40px;
+      font-size: clamp(24px, 5vw, 42px);
+      text-shadow: 0 0 8px rgba(255,255,255,0.25);
+      margin-bottom: 20px;
     }
 
     p {
+      font-size: clamp(12px, 2.5vw, 16px);
+      max-width: 900px;
+      margin: 0 auto 25px;
       line-height: 1.8;
-      font-size: 18px;
     }
 
-    a {
-      color: #00ffcc;
-      text-decoration: none;
+    .box {
+      background: rgba(255,255,255,0.08);
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 900px;
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+    }
+
+    h2 {
+      color: #ffe600;
+      margin-bottom: 15px;
+    }
+
+    /* ---------------- スマホ対応 ---------------- */
+    @media (max-width: 600px) {
+
+      nav a {
+        display: block;
+        margin: 12px 0;
+      }
+
+      h1 {
+        font-size: 1.6em;
+      }
+
+      .box {
+        margin: 15px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header style="background:#111; padding:15px; text-align:center; position:fixed; top:0; width:100%;">
-  <a href="index.html" style="color:#00ffcc; margin:0 20px; text-decoration:none;">ホーム</a>
-  <a href="about.html" style="color:#00ffcc; margin:0 20px; text-decoration:none;">サーバー紹介</a>
-  <a href="ranking.html" style="color:#00ffcc; margin:0 20px; text-decoration:none;">ランキング</a>
-</header>
 
-<div style="margin-top:80px;">
+  <!-- ナビバー -->
+  <nav>
+    <a href="index.html">ホーム</a>
+    <a href="about.html">サーバー紹介</a>
+    <a href="ranking.html">ランキング</a>
+  </nav>
 
-  <h1>Minfinity Craft</h1>
-  <p>無限に広がる整地の世界へ。</p>
+  <!-- ヘッダー -->
+  <header>
+    <h1>Minfinity Craft<br>サーバー紹介</h1>
+    <p>
+      整地に特化したMinecraft統合版サーバー。<br>
+      コツコツ努力がランキングに反映される、やりがい重視のワールドです。
+    </p>
+  </header>
 
-  <h2>どんなサーバー？</h2>
-  <p>
-    Minfinity Craftは、整地を目的したサーバーになっています。
-    現在開発中のため技術者を募集しています
-  </p>
+  <!-- 特徴 -->
+  <div class="box">
+    <h2>サーバーの特徴</h2>
+    <p>
+      ・整地特化型サーバー<br>
+      ・採掘数ランキングシステム<br>
+      ・定期イベント開催<br>
+      ・初心者歓迎
+    </p>
+  </div>
 
-  <h2>参加方法</h2>
-  <p>
-    参加方法は現在準備中です。<br>
-    詳細はトップページをご確認ください。
-  </p>
+  <!-- ルール -->
+  <div class="box">
+    <h2>基本ルール</h2>
+    <p>
+      ・他プレイヤーへの迷惑行為は禁止<br>
+      ・不正ツールの使用は禁止<br>
+      ・運営の指示には従ってください
+    </p>
+  </div>
 
-  <br><br>
-  <a href="index.html">← トップページへ戻る</a>
+  <!-- 参加方法 -->
+  <div class="box">
+    <h2>参加方法</h2>
+    <p>
+      サーバーアドレスは公式案内をご確認ください。<br>
+      統合版（Bedrock Edition）で参加可能です。
+    </p>
+  </div>
 
-</div>
 </body>
 </html>
