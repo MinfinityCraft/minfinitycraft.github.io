@@ -5,155 +5,120 @@
 <title>ランキング - Minfinity Craft</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- ゲーム風フォント -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
-/* -------------------- 背景グラデーション -------------------- */
+
+/* ---------------- 背景 ---------------- */
 body{
   font-family: Arial, sans-serif;
   color:white;
   margin:0;
   padding:0;
   text-align:center;
-
-  background: linear-gradient(180deg,
-    #0f2027 0%,
-    #203a43 50%,
-    #2c5364 100%
-  );
+  background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
 
-/* -------------------- タイトル（ゲーム風＋光弱め） -------------------- */
+/* ---------------- ナビバー ---------------- */
+nav{
+  background:#111;
+  padding:15px;
+}
+
+nav a{
+  position:relative;
+  display:inline-block;
+  color:#00ffcc;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
+  padding-bottom:6px;
+  transition:color 0.3s ease, transform 0.3s ease;
+}
+
+/* グラデ光下線 */
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:3px;
+
+  background:linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
+  box-shadow:0 0 8px #00ffcc,0 0 15px #ffe600;
+
+  transition:width 0.4s ease;
+}
+
+nav a:hover{
+  color:#ffe600;
+  transform:scale(1.1);
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ---------------- タイトル ---------------- */
 h1{
   font-family:'Press Start 2P', cursive;
-  font-size:2.5em;
-  margin:30px 0;
-
-  background: linear-gradient(90deg, #ffe600, #00ffff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-
-  animation: shineText 6s linear infinite;
-
-  /* 光量かなり控えめ */
-  text-shadow:
-    0 0 2px #fff,
-    0 0 4px #00ffff;
+  font-size:2.2em;
+  margin:40px 0 20px;
+  background: linear-gradient(90deg,#ffe600,#00ffff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
-@keyframes shineText{
-  0%{ background-position:0% 50%; }
-  100%{ background-position:200% 50%; }
-}
-
-/* -------------------- テーブル（PCは自然幅） -------------------- */
+/* ---------------- テーブル ---------------- */
 table{
-  width: 90%;
-  max-width: 800px;
-  margin: 20px auto;
-  border-collapse: collapse;
-  text-align: center;
-  display: table;
-  background: rgba(0,0,0,0.3);
-  border-radius: 10px;
+  width:90%;
+  max-width:800px;
+  margin:20px auto;
+  border-collapse:collapse;
+  background:rgba(0,0,0,0.3);
+  border-radius:10px;
 }
 
-th, td{
-  padding: 12px;
-  border-bottom: 1px solid #444;
-  white-space: nowrap;
+th,td{
+  padding:12px;
+  border-bottom:1px solid #444;
+  white-space:nowrap;
 }
 
 th{
   color:#ffe600;
 }
 
-/* -------------------- フェードイン（PC） -------------------- */
-.fade-row{
-  opacity:0;
-  transform:translateX(-40px);
-  animation:fadeInRow 0.35s forwards;
+tr:hover{
+  background:rgba(255,255,255,0.05);
 }
 
-@keyframes fadeInRow{
+/* ---------------- フェードイン ---------------- */
+.fade-row{
+  opacity:0;
+  transform:translateX(-30px);
+  animation:fadeIn 0.4s forwards;
+}
+
+@keyframes fadeIn{
   to{
     opacity:1;
     transform:translateX(0);
   }
 }
 
-/* -------------------- ナビバー -------------------- */
-
-nav {
-  background: #111;
-  padding: 15px;
-}
-
-nav a {
-  position: relative;
-  display: inline-block;
-  color: #00ffcc;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-  padding-bottom: 6px;
-  transition: 0.3s;
-}
-
-/* 下線 */
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 3px;
-
-  background: linear-gradient(90deg, #00ffcc, #ffe600, #ff00ff);
-  box-shadow: 0 0 8px #00ffcc, 0 0 15px #ffe600;
-
-  transition: 0.4s ease;
-}
-
-nav a:hover {
-  color: #ffe600;
-  transform: scale(1.1);
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-  
-header{
-  background:#111;
-  padding:15px;
-}
-
-header a{
-  display:inline-block;
-  color:#00ffcc;
-  text-decoration:none;
-  margin:0 15px;
-  font-weight:bold;
-  transition:0.3s;
-}
-
-header a:hover{
-  color:#ffe600;
-  transform:scale(1.1);
-}
-
-/* -------------------- スマホ最適化 -------------------- */
+/* ---------------- スマホ ---------------- */
 @media (max-width:600px){
 
+  nav a{
+    display:block;
+    margin:10px 0;
+  }
+
   h1{
-    font-size:1.6em;
+    font-size:1.4em;
   }
 
   table{
@@ -161,39 +126,22 @@ header a:hover{
     overflow-x:auto;
   }
 
-  th, td{
-    padding:8px;
+  th,td{
     font-size:0.85em;
-  }
-
-  /* スマホではスライド無し・ふわっとだけ */
-  .fade-row{
-    transform:none;
-    animation: fadeOnly 0.3s forwards;
-  }
-
-  @keyframes fadeOnly{
-    from{opacity:0;}
-    to{opacity:1;}
+    padding:8px;
   }
 }
 
-@media (max-width:400px){
-  header a{
-    display:block;
-    margin:8px 0;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<header>
+<nav>
   <a href="index.html">ホーム</a>
   <a href="about.html">サーバー紹介</a>
   <a href="ranking.html">ランキング</a>
-</header>
+</nav>
 
 <h1>採掘ランキング</h1>
 <table id="miningTable">
@@ -206,63 +154,56 @@ header a:hover{
 </table>
 
 <script>
-function animateNumberSmooth(td,target){
-  const duration = 700;
-  const start = performance.now();
+function animateNumber(td,target){
+  const duration=600;
+  const start=performance.now();
   function step(now){
-    const progress = Math.min((now - start)/duration,1);
-    const value = Math.floor(target * progress);
-    td.textContent = value;
-    if(progress < 1) requestAnimationFrame(step);
-    else td.textContent = target;
+    const progress=Math.min((now-start)/duration,1);
+    td.textContent=Math.floor(target*progress);
+    if(progress<1) requestAnimationFrame(step);
+    else td.textContent=target;
   }
   requestAnimationFrame(step);
 }
 
-async function loadRanking(csvUrl, tableId){
-  try{
-    const response=await fetch(csvUrl);
-    const text=await response.text();
-    const rows=text.trim().split(/\r?\n/);
-    const table=document.getElementById(tableId);
+async function loadRanking(url,tableId){
+  const res=await fetch(url);
+  const text=await res.text();
+  const rows=text.trim().split(/\r?\n/);
+  const table=document.getElementById(tableId);
 
-    for(let i=1;i<rows.length;i++){
-      const cells=rows[i].split(',');
-      if(cells.length<3) continue;
+  for(let i=1;i<rows.length;i++){
+    const cells=rows[i].split(',');
+    if(cells.length<3) continue;
 
-      const tr=document.createElement('tr');
-      tr.classList.add('fade-row');
-      tr.style.animationDelay = `${i*0.05}s`;
+    const tr=document.createElement('tr');
+    tr.classList.add('fade-row');
+    tr.style.animationDelay=`${i*0.05}s`;
 
-      const tdRank=document.createElement('td');
-      tdRank.textContent=cells[0];
-      tr.appendChild(tdRank);
+    const td1=document.createElement('td');
+    td1.textContent=cells[0];
+    tr.appendChild(td1);
 
-      const tdName=document.createElement('td');
-      tdName.textContent=cells[1];
-      tr.appendChild(tdName);
+    const td2=document.createElement('td');
+    td2.textContent=cells[1];
+    tr.appendChild(td2);
 
-      const tdValue=document.createElement('td');
-      tr.appendChild(tdValue);
+    const td3=document.createElement('td');
+    tr.appendChild(td3);
 
-      const num=parseInt(cells[2]);
-      if(!isNaN(num)){
-        tr.addEventListener('animationend',()=>{
-          animateNumberSmooth(tdValue,num);
-        });
-      }else{
-        tdValue.textContent=cells[2];
-      }
-
-      table.appendChild(tr);
+    const num=parseInt(cells[2]);
+    if(!isNaN(num)){
+      tr.addEventListener('animationend',()=>animateNumber(td3,num));
+    }else{
+      td3.textContent=cells[2];
     }
-  }catch(err){
-    console.error("ランキング読み込みエラー:",err);
+
+    table.appendChild(tr);
   }
 }
 
-const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
-const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
+const miningCSV='（ここにあなたのCSV）';
+const moneyCSV='（ここにあなたのCSV）';
 
 function refresh(){
   document.getElementById('miningTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
