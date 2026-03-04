@@ -90,53 +90,46 @@ th{
 
 /* -------------------- ナビバー -------------------- */
 
-  nav {
-      background: #111;
-      padding: 15px;
-    }
+nav {
+  background: #111;
+  padding: 15px;
+}
 
-    nav a {
-      display: inline-block;
-      color: #00ffcc;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a {
+nav a {
   position: relative;
   display: inline-block;
   color: #00ffcc;
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
-  padding-bottom: 5px;
+  padding-bottom: 6px;
   transition: 0.3s;
 }
 
-/* 下線用 */
+/* 下線 */
 nav a::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 0%;
+  width: 0;
   height: 3px;
+
   background: linear-gradient(90deg, #00ffcc, #ffe600, #ff00ff);
-  box-shadow: 0 0 8px #00ffcc, 0 0 12px #ffe600;
-  transition: width 0.4s ease;
+  box-shadow: 0 0 8px #00ffcc, 0 0 15px #ffe600;
+
+  transition: 0.4s ease;
 }
 
-/* ホバー時 */
+nav a:hover {
+  color: #ffe600;
+  transform: scale(1.1);
+}
+
 nav a:hover::after {
   width: 100%;
 }
-
-    nav a:hover {
-      color: #ffe600;
-      transform: scale(1.1);
-    }
+  
 header{
   background:#111;
   padding:15px;
