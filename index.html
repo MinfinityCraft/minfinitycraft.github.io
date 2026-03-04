@@ -8,8 +8,6 @@
   <title>Minfinity Craft｜Minecraft 整地 Server</title>
   <meta name="description" content="Minfinity Craftはマイクラ整地を楽しめるMinecraft 統合版サーバーです。最新情報やランキング等、サーバーのことなら全部詰まった公式サイトです！">
 
-
-
   <!-- ゲーム風フォント -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
@@ -22,6 +20,27 @@
       text-align: center;
     }
 
+    /* ---------------- ナビバー ---------------- */
+    nav {
+      background: #111;
+      padding: 15px;
+    }
+
+    nav a {
+      display: inline-block;
+      color: #00ffcc;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffe600;
+      transform: scale(1.1);
+    }
+
+    /* ---------------- ヘッダー ---------------- */
     header {
       padding: 60px 20px;
     }
@@ -48,107 +67,84 @@
       backdrop-filter: blur(5px);
     }
 
+    /* ---------------- テーブル ---------------- */
+    table {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #444;
+      white-space: nowrap;
+    }
+
+    th {
+      color: #ffe600;
+    }
+
+    /* ---------------- スマホ最適化 ---------------- */
     @media (max-width: 600px) {
-      header {
-        padding: 40px 10px;
+
+      h1 {
+        font-size: 1.6em;
       }
 
-      .box {
-        margin: 10px;
+      table {
+        display: block;
+        overflow-x: auto;
       }
 
-      /* -------------------- ナビバー -------------------- */
-header{
-  background:#111;
-  padding:15px;
-}
+      th, td {
+        font-size: 0.85em;
+        padding: 8px;
+      }
 
-header a{
-  display:inline-block;
-  color:#00ffcc;
-  text-decoration:none;
-  margin:0 15px;
-  font-weight:bold;
-  transition:0.3s;
-}
-
-header a:hover{
-  color:#ffe600;
-  transform:scale(1.1);
-}
-
-/* -------------------- スマホ最適化 -------------------- */
-@media (max-width:600px){
-
-  h1{
-    font-size:1.6em;
-  }
-
-  table{
-    display:block;
-    overflow-x:auto;
-  }
-
-  th, td{
-    padding:8px;
-    font-size:0.85em;
-  }
-
-      /* -------------------- テーブル（PCは自然幅） -------------------- */
-table{
-  width: 90%;
-  max-width: 800px;
-  margin: 20px auto;
-  border-collapse: collapse;
-  text-align: center;
-  display: table;
-  background: rgba(0,0,0,0.3);
-  border-radius: 10px;
-}
-
-th, td{
-  padding: 12px;
-  border-bottom: 1px solid #444;
-  white-space: nowrap;
-}
-
-th{
-  color:#ffe600;
-}
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- ナビバー -->
+  <nav>
+    <a href="index.html">ホーム</a>
+    <a href="about.html">サーバー紹介</a>
+    <a href="ranking.html">ランキング</a>
+  </nav>
+
+  <!-- メインヘッダー -->
   <header>
-  <a href="index.html">ホーム</a>
-  <a href="about.html">サーバー紹介</a>
-  <a href="ranking.html">ランキング</a>
-</header>
+    <h1>マイクラ整地サーバー<br>Minfinity Craft公式サイト</h1>
+    <p>
+      Minfinity Craftはマイクラ整地を楽しめるMinecraft 統合版サーバーです。<br>
+      最新情報やランキング随時更新中
+    </p>
+  </header>
 
-<header>
-  <h1>マイクラ整地サーバー<br>Minfinity Craft公式サイト</h1>
-  <p>
-    Minfinity Craftはマイクラ整地を楽しめるMinecraft 統合版サーバーです。<br>
-    最新情報やランキング随時更新中
-  </p>
-</header>
+  <div class="box">
+    <h2>サーバーについて</h2>
+    <p>
+      当サーバーは整地をメインにしたマイクラサーバーです。<br>
+      コツコツ整地した成果がランキングに反映されます。
+    </p>
+  </div>
 
-<div class="box">
-  <h2>サーバーについて</h2>
-  <p>
-    当サーバーは整地をメインにしたマイクラサーバーです。<br>
-    コツコツ整地した成果がランキングに反映されます。
-  </p>
-</div>
-
-<div class="box">
-  <h2>ランキング</h2>
-  <p>
-    現在の整地ランキングはサーバー内で確認できます。
-  </p>
-</div>
+  <div class="box">
+    <h2>ランキング</h2>
+    <p>
+      現在の整地ランキングはサーバー内で確認できます。
+    </p>
+  </div>
 
 </body>
 </html>
