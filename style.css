@@ -79,3 +79,9 @@ p{
   box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 h2{color:#ffe600;}
+
+@media (max-width:600px){
+  .main-header{padding:60px 15px;}
+  .box{margin:15px;}
+  header a{display:block;margin:10px 0;}
+}
