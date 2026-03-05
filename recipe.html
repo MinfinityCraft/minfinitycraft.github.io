@@ -63,5 +63,32 @@ onkeyup="searchRecipe()"
 </section>
 
 
+<script>
+
+function searchRecipe() {
+
+let input = document.getElementById("recipeSearch");
+let filter = input.value.toLowerCase();
+
+let list = document.getElementById("recipeList");
+let cards = list.getElementsByClassName("recipe-card");
+
+for (let i = 0; i < cards.length; i++) {
+
+let title = cards[i].getElementsByTagName("h3")[0];
+
+if (title.innerHTML.toLowerCase().indexOf(filter) > -1) {
+cards[i].style.display = "";
+} else {
+cards[i].style.display = "none";
+}
+
+}
+
+}
+
+</script> 
+
+  
 </body>
 </html>
