@@ -2,65 +2,181 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>整地ランキング</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ランキング - Minfinity Craft</title>
 
-<style>
-html, body{
-  margin:0;
-  padding:0;
-  min-height:100vh;
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
 
 </head>
-
 <body>
 
-<h1>整地ランキング</h1>
+<!-- サイドバー -->
+<div class="side-header">
+  <div class="logo">
+    <img src="logo.png" alt="Minfinity Craft ロゴ">
+  </div>
+  <div class="side-nav">
+    <a href="index.html">ホーム</a>
+    <a href="about.html">サーバー紹介</a>
+    <a href="ranking.html">ランキング</a>
+  </div>
+</div>
 
-<table border="1">
-<thead>
+<!-- メイン -->
+<div class="main-content">
+
+<h1 class="main-title">採掘ランキング</h1>
+
+<table id="miningTable">
 <tr>
-<th>順位</th>
-<th>プレイヤー</th>
-<th>採掘数</th>
-<th>所持金</th>
+<th style="width:10%">順位</th>
+<th style="width:60%">プレイヤー名</th>
+<th style="width:30%">採掘数</th>
 </tr>
-</thead>
-
-<tbody id="ranking-body">
-</tbody>
 </table>
 
+<h1 class="main-title">所持金ランキング</h1>
+
+<table id="moneyTable">
+<tr>
+<th style="width:10%">順位</th>
+<th style="width:60%">プレイヤー名</th>
+<th style="width:30%">所持金</th>
+</tr>
+</table>
+
+</div>
 
 <script>
-fetch('./ranking.json')
-.then(response => response.json())
-.then(data => {
 
-const tbody = document.getElementById("ranking-body");
-tbody.innerHTML = "";
+function animateNumber(td,target){
+  const duration=600
+  const start=performance.now()
 
-data.forEach((player, index) => {
+  function step(now){
+    const progress=Math.min((now-start)/duration,1)
+    td.textContent=Math.floor(target*progress)
 
-const row = document.createElement("tr");
+    if(progress<1){
+      requestAnimationFrame(step)
+    }else{
+      td.textContent=target
+    }
+  }
 
-row.innerHTML = `
-<td>${index+1}</td>
-<td>${player.name}</td>
-<td>${player.mined}</td>
-<td>${player.money}</td>
-`;
+  requestAnimationFrame(step)
+}
 
-tbody.appendChild(row);
+async function loadRanking(url,tableId){
 
-});
+  const res=await fetch(url)
+  const text=await res.text()
 
-})
-.catch(error => {
-console.error("ランキング読み込み失敗:", error);
-});
+  const rows=text.trim().split(/\r?\n/)
+  const table=document.getElementById(tableId)
+
+  for(let i=1;i<rows.length;i++){
+
+    const cells=rows[i].split(',')
+    if(cells.length<3) continue
+
+    const tr=document.createElement("tr")
+
+    const td1=document.createElement("td")
+    td1.textContent=cells[0]
+    tr.appendChild(td1)
+
+    const td2=document.createElement("td")
+    td2.textContent=cells[1]
+    tr.appendChild(td2)
+
+    const td3=document.createElement("td")
+    td3.classList.add("number-animate")
+    tr.appendChild(td3)
+
+    const num=parseInt(cells[2])
+
+    if(!isNaN(num)){
+      animateNumber(td3,num)
+    }else{
+      td3.textContent=cells[2]
+    }
+
+    table.appendChild(tr)
+  }
+}
+
+const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv'
+
+const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv'
+
+function refresh(){
+
+document.getElementById("miningTable").innerHTML=
+'<tr><th style="width:10%">順位</th><th style="width:60%">プレイヤー名</th><th style="width:30%">採掘数</th></tr>'
+
+document.getElementById("moneyTable").innerHTML=
+'<tr><th style="width:10%">順位</th><th style="width:60%">プレイヤー名</th><th style="width:30%">所持金</th></tr>'
+
+loadRanking(miningCSV,"miningTable")
+loadRanking(moneyCSV,"moneyTable")
+
+}
+
+refresh()
+
+setInterval(refresh,5*60*1000)
+
 </script>
+
+<style>
+
+.number-animate{
+color:#7fdde0;
+font-weight:bold;
+}
+
+table{
+width:100%;
+max-width:800px;
+margin:0 auto 30px;
+border-collapse:collapse;
+background:rgba(0,0,0,0.25);
+border-radius:10px;
+overflow:hidden;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid rgba(255,255,255,0.1);
+white-space:nowrap;
+color:white;
+}
+
+th{
+color:#ffe600;
+}
+
+tr:hover{
+background:rgba(255,255,255,0.05);
+}
+
+@media(max-width:600px){
+
+table{
+display:block;
+overflow-x:auto;
+}
+
+th,td{
+font-size:0.85em;
+padding:8px;
+}
+
+}
+
+</style>
 
 </body>
 </html>
