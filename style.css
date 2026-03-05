@@ -1,187 +1,16 @@
-/* ==================== 共通CSS ==================== */
-
-/* -------------------- 基本設定 -------------------- */
 body{
   margin:0;
-  padding:0;
   font-family:"Noto Sans JP", sans-serif;
-  color:white;
-  text-align:center;
-
-  /* 背景グラデーション固定 */
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
+  color:white;
 }
 
-/* -------------------- ナビバー共通 -------------------- */
-header {
-  display: flex;
-  flex-direction: column;   /* 上からロゴ→ナビ */
-  align-items: flex-start;  /* 左揃え */
-  padding: 20px;
-  background: #111;
-  color: white;
-}
-
-header .logo img {
-  max-height: 50px;        /* ロゴサイズ */
-  width: auto;
-  margin-bottom: 15px;
-}
-
-/* ナビゲーション */
-header nav {
-  display: flex;
-  gap: 20px;               /* メニュー間スペース */
-}
-
-header nav a {
-  color: #00ffcc;
-  text-decoration: none;
-  font-weight: bold;
-  position: relative;
-  padding-bottom: 5px;
-  transition: color 0.3s, transform 0.3s;
-}
-
-/* 下線グラデーション */
-header nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, #00ffcc, #ffe600, #ff00ff);
-  box-shadow: 0 0 8px #00ffcc, 0 0 12px #ffe600;
-  transition: width 0.4s ease;
-}
-
-header nav a:hover {
-  color: #ffe600;
-  transform: scale(1.05);
-}
-
-header nav a:hover::after {
-  width: 100%;
-}
-
-/* -------------------- メインタイトル -------------------- */
-h1 {
-  font-family:'Press Start 2P', cursive;
-  font-size:clamp(24px,5vw,48px);
-  margin-bottom:20px;
-
-  background:linear-gradient(90deg,#ffe600,#00ffff);
-  background-clip:text;
-  -webkit-background-clip:text;
-  color:transparent;
-  text-shadow:0 0 8px rgba(255,255,255,0.25);
-}
-
-/* -------------------- 説明文 -------------------- */
-p{
-  font-size:clamp(12px,2.5vw,18px);
-  max-width:800px;
-  margin:0 auto 30px;
-  line-height:1.6;
-}
-
-/* -------------------- コンテンツBOX -------------------- */
-.box{
-  background:rgba(255,255,255,0.1);
-  padding:20px;
-  margin:20px auto;
-  max-width:900px;
-  border-radius:15px;
-  backdrop-filter:blur(5px);
-}
-
-/* -------------------- フェードイン -------------------- */
-.fade-row{
-  opacity:0;
-  transform:translateX(-30px);
-  animation:fadeIn 0.4s forwards;
-}
-
-@keyframes fadeIn{
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
-/* -------------------- スマホ対応 -------------------- */
-@media (max-width:600px){
-  .main-header{
-    padding:40px 10px;
-  }
-  .box{
-    margin:10px;
-  }
-  header {
-    padding: 15px;
-  }
-  header nav {
-    flex-direction: column; /* 縦並び */
-    width: 100%;
-  }
-  header nav a {
-    padding: 8px 0;
-    font-size: 0.9em;
-  }
-  h1 {
-    font-size:1.6em;
-  }
-  .logo img {
-    max-height: 40px;
-    margin-bottom: 10px;
-  }
-}
-
-/* ==================== ランキング表用CSS ==================== */
-table {
-  width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  border-collapse: collapse;
-  background: rgba(0,0,0,0.3);
-  border-radius: 10px;
-  pointer-events: none;
-}
-
-th:nth-child(1), td:nth-child(1) { width: 15%; }
-th:nth-child(2), td:nth-child(2) { width: 55%; }
-th:nth-child(3), td:nth-child(3) { width: 30%; }
-
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-  text-align: center;
-  cursor: default;
-  white-space: nowrap;
-}
-
-tr:hover { background: none; transform: none; }
-
-h1.main-title{
-  background: linear-gradient(90deg,#ffe600,#00ffff,#ff00ff,#ffe600);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shine 4s linear infinite;
-  text-shadow:0 0 4px #fff,0 0 8px #00ffff,0 0 12px #00ffff;
-}
-
-/* サイドバー型ヘッダー */
+/* ---------------- サイドバー型ヘッダー ---------------- */
 .side-header {
-  position: fixed;           /* 常に左に固定 */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 160px;              /* 横幅調整可能 */
+  width: 160px;
   height: 100vh;
   background: #111;
   display: flex;
@@ -221,36 +50,60 @@ h1.main-title{
   width: 0%;
   height: 3px;
   background: linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
-  box-shadow: 0 0 8px #00ffcc,0 0 12px #ffe600;
+  box-shadow:0 0 8px #00ffcc,0 0 12px #ffe600;
   transition: width 0.4s ease;
 }
 
 .side-header .side-nav a:hover {
-  color: #ffe600;
-  transform: scale(1.05);
+  color:#ffe600;
+  transform:scale(1.05);
 }
 
 .side-header .side-nav a:hover::after {
-  width: 100%;
+  width:100%;
 }
 
-/* メインコンテンツ右側に寄せる */
-.main-content {
-  margin-left: 160px; /* サイドバー幅と同じに */
+/* ---------------- メインコンテンツ右側 ---------------- */
+.main-content{
+  margin-left:160px;
+  padding:20px;
+}
+
+/* ---------------- メインヘッダー ---------------- */
+.main-header{
+  padding:60px 20px;
+}
+
+.main-header h1{
+  font-family:'Press Start 2P', cursive;
+  font-size:clamp(24px,5vw,48px);
+  margin-bottom:20px;
+  background:linear-gradient(90deg,#ffe600,#00ffff);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+  text-shadow:0 0 4px rgba(255,255,255,0.25);
+}
+
+.main-header p{
+  font-size:clamp(12px,2.5vw,18px);
+  max-width:800px;
+  margin:0 auto 30px;
+  line-height:1.6;
+}
+
+/* ---------------- コンテンツボックス ---------------- */
+.box{
+  background: rgba(255,255,255,0.1);
   padding: 20px;
+  margin: 20px auto;
+  max-width: 900px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
 }
 
-/* スマホも共通で縦型サイドバー */
-@media (max-width: 768px){
-  .side-header {
-    width: 140px;
-  }
-  .main-content {
-    margin-left: 140px;
-  }
-}
-
-@keyframes shine{
-  0%{background-position:0% 50%;}
-  100%{background-position:300% 50%;}
+/* ---------------- スマホ共通 ---------------- */
+@media (max-width:768px){
+  .side-header { width:140px; }
+  .main-content { margin-left:140px; }
 }
