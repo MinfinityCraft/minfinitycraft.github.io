@@ -41,91 +41,97 @@ onkeyup="searchRecipe()"
 <!-- レシピを書く場所 -->
 <section id="recipe-section">
 
-<h2>⛏ ピッケルレシピ</h2>
+<h1>⛏ ピッケルレシピ</h1>
 
-<input type="text" id="recipeSearch" placeholder="ピッケル名・採掘場で検索..." onkeyup="searchRecipe()">
+<!-- 検索バー -->
+<input type="text" id="recipeSearch" placeholder="キーワード検索（ピッケル名・採掘場・素材）" onkeyup="searchRecipe()">
 
+<!-- 採掘場ボタンフィルター -->
+<div id="mineFilter" style="margin:20px 0;">
+<button class="mine-btn" onclick="filterMine('all')">全て</button>
+<button class="mine-btn" onclick="filterMine('第一')">第一採掘場</button>
+<button class="mine-btn" onclick="filterMine('第二')">第二採掘場</button>
+<button class="mine-btn" onclick="filterMine('第三')">第三採掘場</button>
+</div>
 
+<div class="recipe-list">
 
 <!-- 第一採掘場 -->
-<div class="mine">
+<div class="mine" data-mine="第一">
 
-<h2>採掘場名</h2>
+<h2>第一採掘場</h2>
 
-<div class="recipe">
-
-<h3>ピケ名前</h3>
-
+<div class="recipe" data-keywords="第一 初級 丸石">
+<h3>整地ピッケルⅠ</h3>
 <ol>
-<li>１.素材名</li>
-<li>３.素材名</li>　　　　
+<li>① 丸石</li>
+<li>② 丸石</li>
+<li>③ 丸石</li>
+<li>⑤ 棒</li>
+<li>⑧ 棒</li>
 </ol>
-
 </div>
 
-
-<div class="recipe">
-
-<h3>ピケ名前</h3>
-
+<div class="recipe" data-keywords="第一 中級 鉄">
+<h3>整地ピッケルⅡ</h3>
 <ol>
-<li>１.素材名</li>
-<li>３.素材名</li>
+<li>① 鉄インゴット</li>
+<li>② 鉄インゴット</li>
+<li>③ 鉄インゴット</li>
+<li>⑤ 棒</li>
+<li>⑧ 棒</li>
 </ol>
-
 </div>
 
 </div>
-
-
 
 <!-- 第二採掘場 -->
-<div class="mine">
+<div class="mine" data-mine="第二">
 
-<h2>採掘場名</h2>
+<h2>第二採掘場</h2>
 
-<div class="recipe">
-
-<h3>ピケ名前</h3>
-
+<div class="recipe" data-keywords="第二 中級 鉄">
+<h3>整地ピッケルⅢ</h3>
 <ol>
-<li>１.素材名</li>
-<li>２.素材名</li>
+<li>① 鉄インゴット</li>
+<li>② 鉄インゴット</li>
+<li>③ 鉄インゴット</li>
+<li>⑤ 棒</li>
+<li>⑧ 棒</li>
 </ol>
-
 </div>
 
 </div>
 
+</div>
 </section>
 
 
 <script>
-
 function searchRecipe(){
-
-let input = document.getElementById("recipeSearch").value.toLowerCase();
-
-let recipes = document.querySelectorAll(".recipe");
-
-recipes.forEach(function(recipe){
-
-let text = recipe.innerText.toLowerCase();
-
-if(text.includes(input)){
-
-recipe.style.display="block";
-
-}else{
-
-recipe.style.display="none";
-
+  let input = document.getElementById("recipeSearch").value.toLowerCase();
+  let recipes = document.querySelectorAll(".recipe");
+  recipes.forEach(function(recipe){
+    let keywords = recipe.dataset.keywords.toLowerCase();
+    if(keywords.includes(input)){
+      recipe.style.display = "block";
+    } else {
+      recipe.style.display = "none";
+    }
+  });
 }
 
-});
-
+// 採掘場ボタンフィルター
+function filterMine(mine){
+  let mines = document.querySelectorAll(".mine");
+  mines.forEach(function(m){
+    if(mine === 'all' || m.dataset.mine === mine){
+      m.style.display = "block";
+    } else {
+      m.style.display = "none";
+    }
+  });
 }
-
 </script>
   
 </body>
