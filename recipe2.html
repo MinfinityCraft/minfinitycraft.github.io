@@ -2,69 +2,160 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>素材レシピ</title>
+<title>Minfinity Craft サーバー</title>
 <link rel="stylesheet" href="style.css">
 <style>
+/* -------------------- サイドバー -------------------- */
+.side-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 100vh;
+    background: linear-gradient(180deg, #0b1a12, #122c22, #1a3b2e);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+.side-header .logo img{
+    width: 120px;
+    margin-bottom: 30px;
+}
+
+.side-header .side-nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.side-header .side-nav a{
+    display: block;
+    width: 100%;
+    color: #00ffcc;
+    text-decoration: none;
+    margin: 8px 0;
+    font-weight: bold;
+    padding: 8px 0;
+    border-radius: 0;
+    text-shadow: 0 0 3px #00ffcc;
+    text-align: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.side-header .side-nav a::after{
+    content:"";
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:0;
+    height:3px;
+    background: linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
+    box-shadow:0 0 8px #00ffcc,0 0 15px #ffe600;
+    transition: width 0.4s ease;
+}
+
+.side-header .side-nav a:hover{
+    color:#ffe600;
+    transform: scale(1.08);
+    text-shadow:0 0 5px #ffe600;
+}
+
+.side-header .side-nav a:hover::after{
+    width: 100%;
+}
+
+/* -------------------- 素材レシピセクション -------------------- */
 #material-section{
-    margin-left:180px;
-    padding:40px;
+    margin-left: 180px;
+    padding: 40px;
 }
 
+/* 検索バー */
 #materialSearch{
-    width:300px;
-    padding:10px;
-    border-radius:8px;
-    border:none;
-    margin-top:20px;
-    margin-bottom:20px;
-    font-size:16px;
+    width: 300px;
+    max-width: 90%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    background-color: #f0f0f0; /* 薄灰色 */
+    color: black;
 }
 
+/* 採掘場ボタン */
 #materialFilter .mine-btn{
-    background:rgba(0,0,0,0.3);
-    color:white;
-    border:none;
-    padding:8px 12px;
-    margin-right:5px;
-    border-radius:6px;
-    cursor:pointer;
+    background: rgba(0,0,0,0.3);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 5px;
+    border-radius: 6px;
+    cursor: pointer;
     transition: all 0.2s;
 }
 
 #materialFilter .mine-btn:hover{
-    background:#00ffcc;
-    color:black;
+    background: #00ffcc;
+    color: black;
 }
 
+/* 採掘場ボックスを消す */
 .material-mine{
-    margin-top:40px;
-    padding:25px;
-    background:rgba(0,0,0,0.35);
-    border-radius:12px;
-    box-shadow:0 0 10px rgba(0,0,0,0.4);
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-top: 0;
 }
 
 .material-mine h2{
-    margin-bottom:20px;
-    color:#ffe600;
+    margin-bottom: 10px;
+    color: #ffe600;
     text-shadow:0 0 5px #ffe600;
 }
 
+/* 各素材レシピ */
 .material-recipe{
-    background:rgba(0,0,0,0.45);
-    padding:15px;
-    margin:15px 0;
-    border-radius:10px;
+    background: rgba(0,0,0,0.45);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 10px;
 }
 
 .material-recipe h3{
-    color:#00ffcc;
-    margin-bottom:10px;
+    color: #00ffcc;
+    margin-bottom: 10px;
 }
 
 .material-recipe ol{
-    padding-left:20px;
-    line-height:1.8;
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 768px){
+    .side-header{
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+    #material-section{
+        margin-left: 0;
+        padding: 20px;
+    }
+    #materialSearch{
+        width: 90%;
+    }
 }
 </style>
 </head>
@@ -85,7 +176,7 @@
 </div>
 
 <section id="material-section">
-<h1>🧱 素材レシピ</h1>
+<h1>Minfinity Craft サーバー</h1>
 
 <input type="text" id="materialSearch" placeholder="キーワード検索（素材名・採掘場）" onkeyup="searchMaterial()">
 
@@ -99,7 +190,6 @@
 <div class="recipe-list">
 
 <div class="material-mine" data-mine="第一">
-<h2>第一採掘場</h2>
 <div class="material-recipe" data-keywords="第一 丸石 初級">
 <h3>丸石素材</h3>
 <ol>
@@ -119,7 +209,6 @@
 </div>
 
 <div class="material-mine" data-mine="第二">
-<h2>第二採掘場</h2>
 <div class="material-recipe" data-keywords="第二 鉄 上級">
 <h3>鉄素材</h3>
 <ol>
