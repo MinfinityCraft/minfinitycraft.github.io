@@ -39,31 +39,65 @@ onkeyup="searchRecipe()"
 </div>
   
 <!-- レシピを書く場所 -->
-<div id="recipeList">
+<section id="recipe-section">
 
-<div class="recipe-card" data-search="森林採掘場 木のピッケル">
-<h3>森林採掘場</h3>
-<p>使用ピッケル：木のピッケル</p>
+<h2>⛏ ピッケルレシピ</h2>
+
+<input type="text" id="recipeSearch" placeholder="ピッケル名・採掘場で検索..." onkeyup="searchRecipe()">
+
+
+
+<!-- 第一採掘場 -->
+<div class="mine">
+
+<h2>採掘場名</h2>
+
+<div class="recipe">
+
+<h3>ピケ名前</h3>
+
+<ol>
+<li>１.素材名</li>
+<li>３.素材名</li>　　　　
+</ol>
+
 </div>
 
-<div class="recipe-card" data-search="岩山採掘場 石のピッケル">
-<h3>岩山採掘場</h3>
-<p>使用ピッケル：石のピッケル</p>
-</div>
 
-<div class="recipe-card" data-search="鉄鉱山 鉄のピッケル">
-<h3>鉄鉱山</h3>
-<p>使用ピッケル：鉄のピッケル</p>
-</div>
+<div class="recipe">
 
-<div class="recipe-card" data-search="ダイヤ鉱山 ダイヤピッケル">
-<h3>ダイヤ鉱山</h3>
-<p>使用ピッケル：ダイヤピッケル</p>
+<h3>ピケ名前</h3>
+
+<ol>
+<li>１.素材名</li>
+<li>３.素材名</li>
+</ol>
+
 </div>
 
 </div>
 
 
+
+<!-- 第二採掘場 -->
+<div class="mine">
+
+<h2>採掘場名</h2>
+
+<div class="recipe">
+
+<h3>ピケ名前</h3>
+
+<ol>
+<li>１.素材名</li>
+<li>２.素材名</li>
+</ol>
+
+</div>
+
+</div>
+
+</section>
 <script>
 
 function searchRecipe(){
