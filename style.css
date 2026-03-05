@@ -14,7 +14,7 @@ body{
   left: 0;
   width:160px;
   height:100vh;
-  background: linear-gradient(180deg, #0a1519, #122630, #1a3845);
+  background: linear-gradient(180deg, #0b1a12, #122c22, #1a3b2e); /* ←深緑系に変更 */
   display:flex;
   flex-direction: column;
   align-items:center;
@@ -44,10 +44,10 @@ body{
   font-weight:bold;
   padding:8px 0;
   border-radius:0;
-  background:none; /* ボックスなし */
+  background:none;
   text-shadow: 0 0 4px #00ffcc, 0 0 8px #00ffff;
   position:relative;
-  text-align:center; /* 文字中央揃え */
+  text-align:center;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -76,7 +76,7 @@ body{
 
 /* -------------------- メインコンテンツ -------------------- */
 .main-content{
-  margin-left:160px; /* サイドバー分の余白 */
+  margin-left:160px;
   padding:20px;
   text-align: center; /* ボックス外中央揃え */
 }
@@ -99,7 +99,7 @@ p{
   max-width:800px;
   margin:0 auto 30px;
   line-height:1.6;
-  text-align:left; /* ボックス内や本文は左揃え */
+  text-align:left;
 }
 
 /* -------------------- ボックス -------------------- */
@@ -110,11 +110,11 @@ p{
   max-width:900px;
   border-radius:15px;
   backdrop-filter:blur(5px);
-  text-align:left; /* ボックス内左揃え */
+  text-align:left;
 }
 
 .box h2{
-  text-align:center; /* ボックス内タイトルだけ中央 */
+  text-align:center;
 }
 
 /* -------------------- ランキングタイトル -------------------- */
