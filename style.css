@@ -176,6 +176,80 @@ h1.main-title{
   text-shadow:0 0 4px #fff,0 0 8px #00ffff,0 0 12px #00ffff;
 }
 
+/* サイドバー型ヘッダー */
+.side-header {
+  position: fixed;           /* 常に左に固定 */
+  top: 0;
+  left: 0;
+  width: 160px;              /* 横幅調整可能 */
+  height: 100vh;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.side-header .logo img {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.side-header .side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side-header .side-nav a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  padding: 8px 10px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.side-header .side-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
+  box-shadow: 0 0 8px #00ffcc,0 0 12px #ffe600;
+  transition: width 0.4s ease;
+}
+
+.side-header .side-nav a:hover {
+  color: #ffe600;
+  transform: scale(1.05);
+}
+
+.side-header .side-nav a:hover::after {
+  width: 100%;
+}
+
+/* メインコンテンツ右側に寄せる */
+.main-content {
+  margin-left: 160px; /* サイドバー幅と同じに */
+  padding: 20px;
+}
+
+/* スマホも共通で縦型サイドバー */
+@media (max-width: 768px){
+  .side-header {
+    width: 140px;
+  }
+  .main-content {
+    margin-left: 140px;
+  }
+}
+
 @keyframes shine{
   0%{background-position:0% 50%;}
   100%{background-position:300% 50%;}
