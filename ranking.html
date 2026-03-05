@@ -4,10 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ランキング | Minfinity Craft</title>
+
+<!-- フォント -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+<!-- 共通 CSS -->
 <link rel="stylesheet" href="style.css">
+
+<!-- ランキング専用 CSS -->
+<style>
+  /* -------------------- ランキング表 -------------------- */
+  table{
+    width:100%;
+    max-width:800px;
+    margin:20px auto;
+    border-collapse:collapse;
+    pointer-events:none; /* 押せない */
+    background:rgba(0,0,0,0.3);
+    border-radius:10px;
+  }
+
+  th,td{
+    padding:12px;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+    cursor:default;
+    white-space:nowrap;
+  }
+
+  th{color:#ffe600;}
+  tr:hover{background:none;transform:none;}
+
+  /* -------------------- ランキングタイトル光るアニメ -------------------- */
+  h1.main-title{
+    background: linear-gradient(90deg,#ffe600,#00ffff,#ff00ff,#ffe600);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 4s linear infinite;
+    text-shadow:0 0 4px #fff,0 0 8px #00ffff,0 0 12px #00ffff;
+  }
+
+  @keyframes shine{
+    0%{background-position:0% 50%;}
+    100%{background-position:300% 50%;}
+  }
+
+  /* -------------------- スマホ対応 -------------------- */
+  @media (max-width:600px){
+    table{display:block;overflow-x:auto;}
+    th,td{font-size:0.9em;padding:8px;}
+    h1.main-title{font-size:1.4em;}
+  }
+</style>
 </head>
+
 <body>
 
 <header>
@@ -16,6 +68,7 @@
 <a href="ranking.html">ランキング</a>
 </header>
 
+<!-- 採掘ランキング -->
 <h1 class="main-title">採掘ランキング</h1>
 <div class="box">
 <table id="miningTable">
@@ -23,6 +76,7 @@
 </table>
 </div>
 
+<!-- 所持金ランキング -->
 <h1 class="main-title">所持金ランキング</h1>
 <div class="box">
 <table id="moneyTable">
@@ -30,6 +84,7 @@
 </table>
 </div>
 
+<!-- CSV 取得＆アニメーション -->
 <script>
 function animateNumber(td,target){
   const duration=600;
@@ -78,6 +133,7 @@ function refresh(){
   loadRanking(miningCSV,'miningTable');
   loadRanking(moneyCSV,'moneyTable');
 }
+
 refresh();
 setInterval(refresh,5*60*1000);
 </script>
