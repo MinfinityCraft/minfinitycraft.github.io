@@ -9,26 +9,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-<!-- 共通 CSS -->
+<!-- 共通CSS -->
 <link rel="stylesheet" href="style.css">
 
-<!-- ランキング専用 CSS -->
+<!-- ランキング専用CSS -->
 <style>
-/* -------------------- ランキング表 -------------------- */
 table {
-  width: 100%;           /* 画面幅いっぱいに広げる */
-  max-width: 800px;      /* PCでは最大800px */
+  width: 100%;
+  max-width: 800px;
   margin: 20px auto;
   border-collapse: collapse;
   background: rgba(0,0,0,0.3);
   border-radius: 10px;
-  pointer-events: none;  /* 押せない */
+  pointer-events: none;
 }
 
-/* 列幅の比率を指定 */
-th:nth-child(1), td:nth-child(1) { width: 15%; }  /* 順位 */
-th:nth-child(2), td:nth-child(2) { width: 55%; }  /* プレイヤー名 */
-th:nth-child(3), td:nth-child(3) { width: 30%; }  /* 数値 */
+th:nth-child(1), td:nth-child(1) { width: 15%; }
+th:nth-child(2), td:nth-child(2) { width: 55%; }
+th:nth-child(3), td:nth-child(3) { width: 30%; }
 
 th, td {
   padding: 12px;
@@ -40,7 +38,6 @@ th, td {
 
 tr:hover { background: none; transform: none; }
 
-/* -------------------- ランキングタイトル光るアニメ -------------------- */
 h1.main-title{
   background: linear-gradient(90deg,#ffe600,#00ffff,#ff00ff,#ffe600);
   background-size: 300% 100%;
@@ -55,25 +52,21 @@ h1.main-title{
   0%{background-position:0% 50%;}
   100%{background-position:300% 50%;}
 }
-
-/* -------------------- スマホ対応 -------------------- */
-@media (max-width:600px){
-  table { max-width: 100%; } /* 画面幅に合わせる */
-  th, td { font-size: 0.85em; padding: 8px; }
-  h1.main-title { font-size: 1.4em; }
-}
 </style>
 </head>
-
 <body>
 
 <header>
-<a href="index.html">ホーム</a>
-<a href="about.html">サーバー紹介</a>
-<a href="ranking.html">ランキング</a>
+  <div class="logo">
+    <img src="logo.png" alt="Minfinity Craft">
+  </div>
+  <nav>
+    <a href="index.html">ホーム</a>
+    <a href="about.html">サーバー紹介</a>
+    <a href="ranking.html">ランキング</a>
+  </nav>
 </header>
 
-<!-- 採掘ランキング -->
 <h1 class="main-title">採掘ランキング</h1>
 <div class="box">
 <table id="miningTable">
@@ -81,7 +74,6 @@ h1.main-title{
 </table>
 </div>
 
-<!-- 所持金ランキング -->
 <h1 class="main-title">所持金ランキング</h1>
 <div class="box">
 <table id="moneyTable">
@@ -89,7 +81,6 @@ h1.main-title{
 </table>
 </div>
 
-<!-- CSV 取得＆数字アニメーション -->
 <script>
 function animateNumber(td,target){
   const duration=600;
@@ -123,7 +114,7 @@ async function loadRanking(url,tableId){
 
     const num = parseInt(cells[2]);
     if(!isNaN(num)){
-      animateNumber(td3,num); // animationend に頼らず即実行
+      animateNumber(td3,num);
     } else {
       td3.textContent = cells[2];
     }
