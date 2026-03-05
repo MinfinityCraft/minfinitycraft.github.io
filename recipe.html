@@ -98,35 +98,35 @@ onkeyup="searchRecipe()"
 </div>
 
 </section>
+
+
 <script>
 
 function searchRecipe(){
 
-let input = document.getElementById("recipeSearch");
-let filter = input.value.toLowerCase();
+let input = document.getElementById("recipeSearch").value.toLowerCase();
 
-let cards = document.getElementsByClassName("recipe-card");
+let recipes = document.querySelectorAll(".recipe");
 
-for(let i=0;i<cards.length;i++){
+recipes.forEach(function(recipe){
 
-let keywords = cards[i].dataset.search.toLowerCase();
+let text = recipe.innerText.toLowerCase();
 
-if(keywords.indexOf(filter) > -1){
+if(text.includes(input)){
 
-cards[i].style.display="";
+recipe.style.display="block";
 
 }else{
 
-cards[i].style.display="none";
+recipe.style.display="none";
 
 }
 
-}
+});
 
 }
 
 </script>
-
   
 </body>
 </html>
