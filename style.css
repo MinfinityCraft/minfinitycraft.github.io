@@ -7,12 +7,14 @@ body{
   padding:0;
   font-family:"Noto Sans JP", sans-serif;
   color:white;
-  text-align:center; /* ボックス外中央揃え */
-　background: linear-gradient(180deg, #0f1f18, #142820);
-  min-height:100vh;
-  margin:0;
-}
+  text-align:center;
 
+  background: linear-gradient(180deg,#0f1f18,#142820);
+  background-attachment: fixed;
+  background-size: cover;
+
+  min-height:100vh;
+}
 /* -------------------- サイドバー -------------------- */
 .side-header {
   position: fixed;
