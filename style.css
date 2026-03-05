@@ -3,7 +3,7 @@ body{
   padding:0;
   font-family:"Noto Sans JP", sans-serif;
   color:white;
-  text-align:center; /* ページ全体の中央揃えのベース */
+  text-align:center; /* ボックス外中央揃え */
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
 
@@ -12,15 +12,15 @@ body{
   position: fixed;
   top: 0;
   left: 0;
-  width: 160px;
-  height: 100vh;
+  width:160px;
+  height:100vh;
   background: linear-gradient(180deg, #0a1519, #122630, #1a3845);
-  display: flex;
+  display:flex;
   flex-direction: column;
-  align-items: center;
+  align-items:center;
   padding:20px 0;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  z-index: 10;
+  box-shadow:0 0 15px rgba(0,0,0,0.5);
+  z-index:10;
 }
 
 .side-header .logo img{
@@ -28,17 +28,26 @@ body{
   margin-bottom:30px;
 }
 
+.side-header .side-nav{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  width:100%;
+}
+
 .side-header .side-nav a{
   display:block;
+  width:100%;
   color:#00ffcc;
   text-decoration:none;
-  margin:12px 0;
+  margin:8px 0;
   font-weight:bold;
-  padding:8px 0;       
-  border-radius:0;      
-  background: none;     
+  padding:8px 0;
+  border-radius:0;
+  background:none; /* ボックスなし */
   text-shadow: 0 0 4px #00ffcc, 0 0 8px #00ffff;
-  position: relative;
+  position:relative;
+  text-align:center; /* 文字中央揃え */
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -58,7 +67,7 @@ body{
   color:#ffe600;
   transform:scale(1.08);
   text-shadow: 0 0 6px #ffe600, 0 0 12px #ffff00;
-  background: none;
+  background:none;
 }
 
 .side-header .side-nav a:hover::after{
@@ -67,9 +76,9 @@ body{
 
 /* -------------------- メインコンテンツ -------------------- */
 .main-content{
-  margin-left:160px;
+  margin-left:160px; /* サイドバー分の余白 */
   padding:20px;
-  text-align: center; /* ←ボックス外中央揃え */
+  text-align: center; /* ボックス外中央揃え */
 }
 
 /* -------------------- メインタイトル -------------------- */
@@ -81,7 +90,7 @@ body{
   background-clip:text;
   -webkit-background-clip:text;
   color:transparent;
-  text-shadow:0 0 4px rgba(255,255,255,0.2), 0 0 6px rgba(0,255,255,0.2); 
+  text-shadow:0 0 4px rgba(255,255,255,0.2), 0 0 6px rgba(0,255,255,0.2);
 }
 
 /* -------------------- 説明文 -------------------- */
@@ -90,7 +99,7 @@ p{
   max-width:800px;
   margin:0 auto 30px;
   line-height:1.6;
-  text-align:left; /* ←ボックス外は中央、本文は左揃え */
+  text-align:left; /* ボックス内や本文は左揃え */
 }
 
 /* -------------------- ボックス -------------------- */
@@ -101,12 +110,11 @@ p{
   max-width:900px;
   border-radius:15px;
   backdrop-filter:blur(5px);
-  text-align:left; /* ←ボックス内は左揃え */
+  text-align:left; /* ボックス内左揃え */
 }
 
-/* -------------------- ボックス内タイトルだけ中央 -------------------- */
-.box h2 {
-  text-align: center;
+.box h2{
+  text-align:center; /* ボックス内タイトルだけ中央 */
 }
 
 /* -------------------- ランキングタイトル -------------------- */
@@ -128,10 +136,10 @@ table{
   max-width:none;
   margin:0 auto;
   border-collapse:collapse;
-  background:rgba(0,0,0,0.25); 
+  background:rgba(0,0,0,0.25);
   border-radius:10px;
   overflow:hidden;
-  cursor: default;
+  cursor:default;
 }
 
 th, td{
@@ -139,7 +147,7 @@ th, td{
   border-bottom:1px solid rgba(255,255,255,0.1);
   white-space:nowrap;
   color:white;
-  cursor: default;
+  cursor:default;
 }
 
 th{
@@ -173,6 +181,11 @@ td.number-animate{
   .side-header .logo img{
     width:80px;
     margin-bottom:0;
+  }
+
+  .side-header .side-nav{
+    flex-direction:row;
+    width:auto;
   }
 
   .side-header .side-nav a{
