@@ -1,1 +1,168 @@
-a
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>素材レシピ</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* -------------------- 素材レシピ用CSS -------------------- */
+#material-section{
+    margin-left:180px; /* サイドバーある場合 */
+    padding:40px;
+}
+
+/* 検索バー */
+#materialSearch{
+    width:300px;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    margin-top:20px;
+    margin-bottom:20px;
+    font-size:16px;
+}
+
+/* 採掘場ボタン */
+#materialFilter .mine-btn{
+    background:rgba(0,0,0,0.3);
+    color:white;
+    border:none;
+    padding:8px 12px;
+    margin-right:5px;
+    border-radius:6px;
+    cursor:pointer;
+    transition: all 0.2s;
+}
+
+#materialFilter .mine-btn:hover{
+    background:#00ffcc;
+    color:black;
+}
+
+/* 各採掘場ブロック */
+.material-mine{
+    margin-top:40px;
+    padding:25px;
+    background:rgba(0,0,0,0.35);
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+
+.material-mine h2{
+    margin-bottom:20px;
+    color:#ffe600;
+    text-shadow:0 0 5px #ffe600;
+}
+
+/* 各素材レシピ */
+.material-recipe{
+    background:rgba(0,0,0,0.45);
+    padding:15px;
+    margin:15px 0;
+    border-radius:10px;
+}
+
+.material-recipe h3{
+    color:#00ffcc;
+    margin-bottom:10px;
+}
+
+.material-recipe ol{
+    padding-left:20px;
+    line-height:1.8;
+}
+</style>
+</head>
+<body>
+
+<section id="material-section">
+
+<h1>🧱 素材レシピ</h1>
+
+<!-- 検索バー -->
+<input type="text" id="materialSearch" placeholder="キーワード検索（素材名・採掘場）" onkeyup="searchMaterial()">
+
+<!-- 採掘場ボタン -->
+<div id="materialFilter" style="margin:20px 0;">
+<button class="mine-btn" onclick="filterMaterialMine('all')">全て</button>
+<button class="mine-btn" onclick="filterMaterialMine('第一')">第一採掘場</button>
+<button class="mine-btn" onclick="filterMaterialMine('第二')">第二採掘場</button>
+<button class="mine-btn" onclick="filterMaterialMine('第三')">第三採掘場</button>
+</div>
+
+<div class="recipe-list">
+
+<!-- 第一採掘場 -->
+<div class="material-mine" data-mine="第一">
+
+<h2>第一採掘場</h2>
+
+<div class="material-recipe" data-keywords="第一 丸石 初級">
+<h3>丸石素材</h3>
+<ol>
+<li>① 丸石</li>
+<li>② 丸石</li>
+<li>③ 丸石</li>
+</ol>
+</div>
+
+<div class="material-recipe" data-keywords="第一 石炭 中級">
+<h3>石炭素材</h3>
+<ol>
+<li>① 石炭</li>
+<li>② 石炭</li>
+<li>③ 石炭</li>
+</ol>
+</div>
+
+</div>
+
+<!-- 第二採掘場 -->
+<div class="material-mine" data-mine="第二">
+
+<h2>第二採掘場</h2>
+
+<div class="material-recipe" data-keywords="第二 鉄 上級">
+<h3>鉄素材</h3>
+<ol>
+<li>① 鉄インゴット</li>
+<li>② 鉄インゴット</li>
+<li>③ 鉄インゴット</li>
+</ol>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- JavaScript -->
+<script>
+function searchMaterial(){
+    let input = document.getElementById("materialSearch").value.toLowerCase();
+    let recipes = document.querySelectorAll(".material-recipe");
+    recipes.forEach(function(recipe){
+        let keywords = recipe.dataset.keywords.toLowerCase();
+        if(keywords.includes(input)){
+            recipe.style.display = "block";
+        } else {
+            recipe.style.display = "none";
+        }
+    });
+}
+
+// 採掘場ボタンフィルター
+function filterMaterialMine(mine){
+    let mines = document.querySelectorAll(".material-mine");
+    mines.forEach(function(m){
+        if(mine === 'all' || m.dataset.mine === mine){
+            m.style.display = "block";
+        } else {
+            m.style.display = "none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
