@@ -17,7 +17,7 @@ body{
   left: 0;
   width: 160px;
   height: 100vh;
-  background: rgba(0,0,0,0.85);
+  background: linear-gradient(180deg, #0f2027, #203a43, #2c5364); /* ←グラデーション追加 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,7 +78,7 @@ body{
   background-clip:text;
   -webkit-background-clip:text;
   color:transparent;
-  text-shadow:0 0 4px rgba(255,255,255,0.2), 0 0 6px rgba(0,255,255,0.2);
+  text-shadow:0 0 4px rgba(255,255,255,0.2), 0 0 6px rgba(0,255,255,0.2); /* 光控えめ */
 }
 
 /* -------------------- 説明文 -------------------- */
@@ -87,16 +87,18 @@ p{
   max-width:800px;
   margin:0 auto 30px;
   line-height:1.6;
+  text-align:left; /* ←本文左揃え */
 }
 
 /* -------------------- ボックス -------------------- */
 .box{
-  background:rgba(0,0,0,0.35); 
+  background:rgba(0,0,0,0.35);
   padding:20px;
   margin:20px auto;
   max-width:900px;
   border-radius:15px;
   backdrop-filter:blur(5px);
+  text-align:left; /* ←本文左揃え */
 }
 
 /* -------------------- ランキングタイトル -------------------- */
@@ -114,13 +116,14 @@ h1.main-title{
 
 /* -------------------- ランキングテーブル -------------------- */
 table{
-  width:100%; /* 親ボックスいっぱいに広げる */
+  width:100%; /* 親ボックスいっぱい */
   max-width:none; /* 幅制限解除 */
   margin:0 auto; /* 中央寄せ */
   border-collapse:collapse;
   background:rgba(0,0,0,0.25); 
   border-radius:10px;
   overflow:hidden;
+  cursor: default; /* ←押せそうに見えない */
 }
 
 th, td{
@@ -128,6 +131,7 @@ th, td{
   border-bottom:1px solid rgba(255,255,255,0.1);
   white-space:nowrap;
   color:white;
+  cursor: default; /* ←押せそうに見えない */
 }
 
 th{
@@ -142,12 +146,6 @@ tr:hover{
 td.number-animate{
   color:#00ffff;
   font-weight:bold;
-}
-
-/* 光アニメーション */
-@keyframes shine{
-  0%{background-position:0% 50%;}
-  100%{background-position:300% 50%;}
 }
 
 /* -------------------- スマホ対応 -------------------- */
@@ -191,7 +189,7 @@ td.number-animate{
     display:block;
     width:100%; /* 親ボックスいっぱい */
     overflow-x:auto;
-    margin:0 auto; /* 左寄せ防止 */
+    margin:0 auto;
   }
 
   th,td{
