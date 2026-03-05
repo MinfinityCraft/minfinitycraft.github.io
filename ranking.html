@@ -14,49 +14,54 @@
 
 <!-- ランキング専用 CSS -->
 <style>
-  /* -------------------- ランキング表 -------------------- */
-  table{
-    width:100%;
-    max-width:800px;
-    margin:20px auto;
-    border-collapse:collapse;
-    pointer-events:none; /* 押せない */
-    background:rgba(0,0,0,0.3);
-    border-radius:10px;
-  }
+/* -------------------- ランキング表 -------------------- */
+table {
+  width: 100%;           /* 画面幅いっぱいに広げる */
+  max-width: 800px;      /* PCでは最大800px */
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  pointer-events: none;  /* 押せない */
+}
 
-  th,td{
-    padding:12px;
-    border-bottom:1px solid rgba(255,255,255,0.15);
-    cursor:default;
-    white-space:nowrap;
-  }
+/* 列幅の比率を指定 */
+th:nth-child(1), td:nth-child(1) { width: 15%; }  /* 順位 */
+th:nth-child(2), td:nth-child(2) { width: 55%; }  /* プレイヤー名 */
+th:nth-child(3), td:nth-child(3) { width: 30%; }  /* 数値 */
 
-  th{color:#ffe600;}
-  tr:hover{background:none;transform:none;}
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+  cursor: default;
+  white-space: nowrap;
+}
 
-  /* -------------------- ランキングタイトル光るアニメ -------------------- */
-  h1.main-title{
-    background: linear-gradient(90deg,#ffe600,#00ffff,#ff00ff,#ffe600);
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shine 4s linear infinite;
-    text-shadow:0 0 4px #fff,0 0 8px #00ffff,0 0 12px #00ffff;
-  }
+tr:hover { background: none; transform: none; }
 
-  @keyframes shine{
-    0%{background-position:0% 50%;}
-    100%{background-position:300% 50%;}
-  }
+/* -------------------- ランキングタイトル光るアニメ -------------------- */
+h1.main-title{
+  background: linear-gradient(90deg,#ffe600,#00ffff,#ff00ff,#ffe600);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 4s linear infinite;
+  text-shadow:0 0 4px #fff,0 0 8px #00ffff,0 0 12px #00ffff;
+}
 
-  /* -------------------- スマホ対応 -------------------- */
-  @media (max-width:600px){
-    table{display:block;overflow-x:auto;}
-    th,td{font-size:0.9em;padding:8px;}
-    h1.main-title{font-size:1.4em;}
-  }
+@keyframes shine{
+  0%{background-position:0% 50%;}
+  100%{background-position:300% 50%;}
+}
+
+/* -------------------- スマホ対応 -------------------- */
+@media (max-width:600px){
+  table { max-width: 100%; } /* 画面幅に合わせる */
+  th, td { font-size: 0.85em; padding: 8px; }
+  h1.main-title { font-size: 1.4em; }
+}
 </style>
 </head>
 
@@ -84,7 +89,7 @@
 </table>
 </div>
 
-<!-- CSV 取得＆アニメーション -->
+<!-- CSV 取得＆数字アニメーション -->
 <script>
 function animateNumber(td,target){
   const duration=600;
@@ -99,37 +104,40 @@ function animateNumber(td,target){
 }
 
 async function loadRanking(url,tableId){
-  const res=await fetch(url);
-  const text=await res.text();
-  const rows=text.trim().split(/\r?\n/);
-  const table=document.getElementById(tableId);
+  const res = await fetch(url);
+  const text = await res.text();
+  const rows = text.trim().split(/\r?\n/);
+  const table = document.getElementById(tableId);
 
   for(let i=1;i<rows.length;i++){
-    const cells=rows[i].split(',');
+    const cells = rows[i].split(',');
     if(cells.length<3) continue;
 
-    const tr=document.createElement('tr');
+    const tr = document.createElement('tr');
     tr.classList.add('fade-row');
-    tr.style.animationDelay=`${i*0.05}s`;
+    tr.style.animationDelay = `${i*0.05}s`;
 
-    const td1=document.createElement('td'); td1.textContent=cells[0]; tr.appendChild(td1);
-    const td2=document.createElement('td'); td2.textContent=cells[1]; tr.appendChild(td2);
-    const td3=document.createElement('td'); tr.appendChild(td3);
+    const td1 = document.createElement('td'); td1.textContent = cells[0]; tr.appendChild(td1);
+    const td2 = document.createElement('td'); td2.textContent = cells[1]; tr.appendChild(td2);
+    const td3 = document.createElement('td'); tr.appendChild(td3);
 
-    const num=parseInt(cells[2]);
-    if(!isNaN(num)){ tr.addEventListener('animationend',()=>animateNumber(td3,num)); }
-    else td3.textContent=cells[2];
+    const num = parseInt(cells[2]);
+    if(!isNaN(num)){
+      animateNumber(td3,num); // animationend に頼らず即実行
+    } else {
+      td3.textContent = cells[2];
+    }
 
     table.appendChild(tr);
   }
 }
 
-const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
-const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
+const miningCSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
+const moneyCSV  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
 
 function refresh(){
-  document.getElementById('miningTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
-  document.getElementById('moneyTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+  document.getElementById('miningTable').innerHTML = '<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
+  document.getElementById('moneyTable').innerHTML  = '<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
   loadRanking(miningCSV,'miningTable');
   loadRanking(moneyCSV,'moneyTable');
 }
