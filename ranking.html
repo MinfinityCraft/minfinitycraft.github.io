@@ -57,9 +57,12 @@
       if(cells.length<3) continue;
 
       const tr=document.createElement('tr');
+
       const td1=document.createElement('td'); td1.textContent=cells[0]; tr.appendChild(td1);
       const td2=document.createElement('td'); td2.textContent=cells[1]; tr.appendChild(td2);
-      const td3=document.createElement('td'); tr.appendChild(td3);
+      const td3=document.createElement('td'); 
+      td3.classList.add('number-animate'); // ←落ち着いた色で表示
+      tr.appendChild(td3);
 
       const num=parseInt(cells[2]);
       if(!isNaN(num)){
@@ -87,5 +90,14 @@
   </script>
 
 </div>
+
+<style>
+/* 数字アニメ用の落ち着いた色 */
+.number-animate{
+  color:#88e0e0; /* 明るさ控えめ水色 */
+  font-weight:bold;
+}
+</style>
+
 </body>
 </html>
