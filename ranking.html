@@ -6,8 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
+　
 <style>
+  
+/* ---------------- 完全コピー　基本設定 ---------------- */
 
 /* ---------------- 背景 ---------------- */
 body{
@@ -128,20 +130,6 @@ tr:hover{
   background:rgba(255,255,255,0.05);
 }
 
-/* ---------------- フェードイン ---------------- */
-.fade-row{
-  opacity:0;
-  transform:translateX(-30px);
-  animation:fadeIn 0.4s forwards;
-}
-
-@keyframes fadeIn{
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
 /* ---------------- スマホ ---------------- */
 @media (max-width:600px){
 
@@ -164,6 +152,27 @@ tr:hover{
     padding:8px;
   }
 }
+
+
+
+
+
+  
+
+/* ---------------- フェードイン ---------------- */
+.fade-row{
+  opacity:0;
+  transform:translateX(-30px);
+  animation:fadeIn 0.4s forwards;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
 
 </style>
 </head>
