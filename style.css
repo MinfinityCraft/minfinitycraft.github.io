@@ -17,6 +17,34 @@ body::before{
 
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
+
+/* -------------------- マイクラ風タイトル -------------------- */
+
+.mc-title{
+  font-size:48px;
+  font-weight:900;
+  letter-spacing:3px;
+
+  margin-top:40px;
+  margin-bottom:10px;
+
+  color:#00ffcc;
+
+  text-shadow:
+    0 0 5px #00ffcc,
+    0 0 10px #00ffcc,
+    0 0 20px #00ffcc,
+    0 0 40px #00ffee;
+}
+
+.mc-subtitle{
+  font-size:16px;
+  color:#aaffff;
+
+  text-shadow:0 0 5px #00ffee;
+
+  margin-bottom:40px;
+}
 /* -------------------- サイドバー -------------------- */
 .side-header {
   position: fixed;
