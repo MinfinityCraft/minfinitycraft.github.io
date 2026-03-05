@@ -256,33 +256,50 @@ td.number-animate{
   }
 }
 
-.recipe-search{
+/* -------------------- レシピ -------------------- */
 
-margin:40px 0;
+#recipe-section{
+margin-left:180px;
+padding:40px;
+}
 
+.mine{
+margin-top:40px;
+padding:25px;
+background:rgba(0,0,0,0.35);
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+
+.mine h2{
+margin-bottom:20px;
+color:#ffe600;
+text-shadow:0 0 5px #ffe600;
+}
+
+.recipe{
+background:rgba(0,0,0,0.45);
+padding:15px;
+margin:15px 0;
+border-radius:10px;
+}
+
+.recipe h3{
+color:#00ffcc;
+margin-bottom:10px;
+}
+
+.recipe ol{
+padding-left:20px;
+line-height:1.8;
 }
 
 #recipeSearch{
-
-width:250px;
+width:300px;
 padding:10px;
-
 border-radius:8px;
-
-border:2px solid #00ffcc;
-
-background:rgba(0,0,0,0.4);
-
-color:white;
-
+border:none;
+margin-top:20px;
+margin-bottom:20px;
 font-size:16px;
-
-outline:none;
-
-}
-
-#recipeSearch:focus{
-
-box-shadow:0 0 10px #00ffcc;
-
 }
