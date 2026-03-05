@@ -64,7 +64,7 @@ body{
 
 /* -------------------- メインコンテンツ -------------------- */
 .main-content{
-  margin-left:160px; /* サイドバー分の余白 */
+  margin-left:160px;
   padding:20px;
 }
 
@@ -73,13 +73,11 @@ body{
   font-family:'Press Start 2P', cursive;
   font-size:clamp(24px,5vw,48px);
   margin-bottom:20px;
-
-  background:linear-gradient(90deg,#ffe600,#00ffff); /* 控えめグラデ */
+  background:linear-gradient(90deg,#ffe600,#00ffff);
   background-clip:text;
   -webkit-background-clip:text;
   color:transparent;
-
-  text-shadow: 0 0 4px rgba(255,255,255,0.2), 0 0 6px rgba(0,255,255,0.2);
+  text-shadow:0 0 4px rgba(255,255,255,0.2), 0 0 6px rgba(0,255,255,0.2);
 }
 
 /* -------------------- 説明文 -------------------- */
@@ -92,7 +90,7 @@ p{
 
 /* -------------------- ボックス -------------------- */
 .box{
-  background:rgba(255,255,255,0.1);
+  background:rgba(0,0,0,0.35); /* 表のボックスも少し暗め */
   padding:20px;
   margin:20px auto;
   max-width:900px;
@@ -105,21 +103,50 @@ h1.main-title{
   font-family:'Press Start 2P',cursive;
   font-size:clamp(28px,5vw,48px);
   margin:40px 0 20px;
-
   background:linear-gradient(90deg,#ffe600,#00ffff,#ff00ff);
   background-size:300% 100%;
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
-
   animation:shine 4s linear infinite;
-
   text-shadow:0 0 4px rgba(255,255,255,0.15),
               0 0 8px rgba(0,255,255,0.15),
               0 0 12px rgba(255,0,255,0.15);
 }
 
-/* 光アニメーション */
+/* -------------------- ランキングテーブル -------------------- */
+table{
+  width:100%;
+  max-width:800px;
+  margin:0 auto;
+  border-collapse:collapse;
+  background:rgba(0,0,0,0.25); /* 光を控えめに */
+  border-radius:10px;
+  overflow:hidden;
+}
+
+th, td{
+  padding:12px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  white-space:nowrap;
+  color:white;
+}
+
+th{
+  color:#ffe600;
+}
+
+tr:hover{
+  background:rgba(255,255,255,0.05); /* ホバー光を弱めに */
+}
+
+/* -------------------- 数字アニメ用（採掘数・所持金） -------------------- */
+td.number-animate{
+  color:#00ffff;
+  font-weight:bold;
+}
+
+/* -------------------- 光アニメーション -------------------- */
 @keyframes shine{
   0%{background-position:0% 50%;}
   100%{background-position:300% 50%;}
@@ -160,5 +187,15 @@ h1.main-title{
   .box{
     margin:10px auto;
     padding:15px;
+  }
+
+  table{
+    display:block;
+    overflow-x:auto;
+  }
+
+  th,td{
+    font-size:0.85em;
+    padding:8px;
   }
 }
