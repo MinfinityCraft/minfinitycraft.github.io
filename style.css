@@ -255,3 +255,34 @@ td.number-animate{
     padding:8px;
   }
 }
+
+.recipe-search{
+
+margin:40px 0;
+
+}
+
+#recipeSearch{
+
+width:250px;
+padding:10px;
+
+border-radius:8px;
+
+border:2px solid #00ffcc;
+
+background:rgba(0,0,0,0.4);
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+#recipeSearch:focus{
+
+box-shadow:0 0 10px #00ffcc;
+
+}
