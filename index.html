@@ -1,1 +1,194 @@
 
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO -->
+<title>Minfinity Craft｜Minecraft 整地 Server</title>
+<meta name="description" content="Minfinity Craftはマイクラ整地を楽しめるMinecraft 統合版サーバーです。ランキングやサーバー情報を掲載している公式サイトです。">
+
+<!-- フォント -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+<style>
+
+/* -------------------- 基本設定 -------------------- */
+
+body{
+  margin:0;
+  font-family:"Noto Sans JP", sans-serif; /* ←本文用フォント */
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color:white;
+  text-align:center;
+}
+
+/* -------------------- ナビバー -------------------- */
+
+header{
+  background:#111;
+  padding:15px;
+}
+
+header a{
+  position:relative;
+  display:inline-block;
+  color:#00ffcc;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
+  padding-bottom:6px;
+  transition:0.3s;
+}
+
+/* ホバーで文字変化 */
+header a:hover{
+  color:#ffe600;
+  transform:scale(1.1);
+}
+
+/* 光るグラデーション下線 */
+
+header a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:3px;
+
+  background:linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
+  box-shadow:0 0 8px #00ffcc,0 0 12px #ffe600;
+
+  transition:0.4s;
+}
+
+header a:hover::after{
+  width:100%;
+}
+
+/* -------------------- メインヘッダー -------------------- */
+
+.main-header{
+  padding:60px 20px;
+}
+
+/* タイトルだけゲームフォント */
+
+h1{
+  font-family:'Press Start 2P', cursive;
+  font-size:clamp(24px,5vw,48px);
+  margin-bottom:20px;
+
+  background:linear-gradient(90deg,#ffe600,#00ffff);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+
+  text-shadow:
+    0 0 4px #fff,
+    0 0 8px #00ffff;
+
+  animation:shineText 6s linear infinite;
+}
+
+/* タイトル光アニメーション */
+
+@keyframes shineText{
+  0%{background-position:0% 50%;}
+  100%{background-position:200% 50%;}
+}
+
+/* -------------------- 説明文 -------------------- */
+
+p{
+  font-size:clamp(12px,2.5vw,18px);
+  max-width:800px;
+  margin:0 auto 30px;
+  line-height:1.6;
+}
+
+/* -------------------- コンテンツBOX -------------------- */
+
+.box{
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  margin:20px auto;
+  max-width:900px;
+  border-radius:15px;
+  backdrop-filter:blur(5px);
+}
+
+/* -------------------- スマホ対応 -------------------- */
+
+@media (max-width:600px){
+
+  .main-header{
+    padding:40px 10px;
+  }
+
+  .box{
+    margin:10px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ナビバー -->
+
+<header>
+<a href="index.html">ホーム</a>
+<a href="about.html">サーバー紹介</a>
+<a href="ranking.html">ランキング</a>
+</header>
+
+<!-- メインヘッダー -->
+
+<div class="main-header">
+
+<h1>
+マイクラ整地サーバー<br>
+Minfinity Craft公式サイト
+</h1>
+
+<p>
+Minfinity Craftはマイクラ整地を楽しめるMinecraft統合版サーバーです。<br>
+最新情報やランキングを随時更新しています。
+</p>
+
+</div>
+
+<!-- サーバー説明 -->
+
+<div class="box">
+
+<h2>サーバーについて</h2>
+
+<p>
+このサーバーは整地をメインにしたMinecraftサーバーです。<br>
+整地したブロック数や所持金などがランキングに反映されます。
+</p>
+
+</div>
+
+<!-- ランキング案内 -->
+
+<div class="box">
+
+<h2>ランキング</h2>
+
+<p>
+現在の整地ランキングや所持金ランキングはランキングページで確認できます。
+</p>
+
+</div>
+
+</body>
+</html>
