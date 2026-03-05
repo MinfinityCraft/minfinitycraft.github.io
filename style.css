@@ -1,125 +1,164 @@
+/* -------------------- 共通設定 -------------------- */
+
+/* 基本設定 */
 body{
   margin:0;
+  padding:0;
   font-family:"Noto Sans JP", sans-serif;
-  background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
   color:white;
+  text-align:center;
+  background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
 
-/* ---------------- サイドバー ---------------- */
+/* -------------------- サイドバー -------------------- */
 .side-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 160px;
   height: 100vh;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.85);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
-  box-sizing: border-box;
-  border-right: 1px solid rgba(255,255,255,0.1);
-  z-index: 999;
+  padding:20px 0;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
-.side-header .logo img {
-  max-width: 100px;
-  height: auto;
-  margin-bottom: 30px;
+.side-header .logo img{
+  width:120px;
+  margin-bottom:30px;
 }
 
-.side-header .side-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.side-header .side-nav a{
+  display:block;
+  color:#00ffcc;
+  text-decoration:none;
+  margin:15px 0;
+  font-weight:bold;
+  position:relative;
+  padding-bottom:6px;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.side-header .side-nav a {
-  color: #00ffcc;
-  text-decoration: none;
-  font-weight: bold;
-  text-align: center;
-  position: relative;
-  padding: 8px 10px;
-  transition: color 0.3s, transform 0.3s;
-}
-
-.side-header .side-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
-  box-shadow:0 0 8px #00ffcc,0 0 12px #ffe600;
+.side-header .side-nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:3px;
+  background:linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
+  box-shadow:0 0 8px #00ffcc,0 0 15px #ffe600;
   transition: width 0.4s ease;
 }
 
-.side-header .side-nav a:hover {
+.side-header .side-nav a:hover{
   color:#ffe600;
-  transform:scale(1.05);
+  transform:scale(1.1);
 }
 
-.side-header .side-nav a:hover::after {
+.side-header .side-nav a:hover::after{
   width:100%;
 }
 
-/* ---------------- メインコンテンツ ---------------- */
+/* -------------------- メインコンテンツ -------------------- */
 .main-content{
-  margin-left:160px;
+  margin-left:160px; /* サイドバー分の余白 */
   padding:20px;
 }
 
-/* ---------------- メインヘッダー ---------------- */
-.main-header{
-  padding:60px 20px;
-  text-align:center;
-}
-
+/* -------------------- メインタイトル -------------------- */
 .main-header h1{
   font-family:'Press Start 2P', cursive;
-  font-size:clamp(28px,6vw,64px);
+  font-size:clamp(24px,5vw,48px);
   margin-bottom:20px;
-  background: linear-gradient(90deg,#ffe600,#00ffff,#ff00ff,#ffe600);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shine 4s linear infinite;
-  text-shadow:
-    0 0 6px #fff,
-    0 0 12px #00ffff,
-    0 0 18px #ff00ff;
+
+  background:linear-gradient(90deg,#ffe600,#00ffff); /* 控えめグラデ */
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+
+  text-shadow: 0 0 4px rgba(255,255,255,0.2), 0 0 6px rgba(0,255,255,0.2);
 }
 
+/* -------------------- 説明文 -------------------- */
+p{
+  font-size:clamp(12px,2.5vw,18px);
+  max-width:800px;
+  margin:0 auto 30px;
+  line-height:1.6;
+}
+
+/* -------------------- ボックス -------------------- */
+.box{
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  margin:20px auto;
+  max-width:900px;
+  border-radius:15px;
+  backdrop-filter:blur(5px);
+}
+
+/* -------------------- ランキングタイトル -------------------- */
+h1.main-title{
+  font-family:'Press Start 2P',cursive;
+  font-size:clamp(28px,5vw,48px);
+  margin:40px 0 20px;
+
+  background:linear-gradient(90deg,#ffe600,#00ffff,#ff00ff);
+  background-size:300% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+
+  animation:shine 4s linear infinite;
+
+  text-shadow:0 0 4px rgba(255,255,255,0.15),
+              0 0 8px rgba(0,255,255,0.15),
+              0 0 12px rgba(255,0,255,0.15);
+}
+
+/* 光アニメーション */
 @keyframes shine{
   0%{background-position:0% 50%;}
   100%{background-position:300% 50%;}
 }
 
-.main-header p{
-  font-size:clamp(14px,2.5vw,20px);
-  max-width:800px;
-  margin:0 auto 30px;
-  line-height:1.6;
-  text-shadow:0 0 4px rgba(0,0,0,0.4);
-}
+/* -------------------- スマホ対応 -------------------- */
+@media (max-width:600px){
+  .main-content{
+    margin-left:0;
+    padding:10px;
+  }
 
-/* ---------------- コンテンツボックス ---------------- */
-.box{
-  background: rgba(0,0,0,0.35); /* 少し濃い目の半透明でタイトルとのコントラスト */
-  padding: 25px;
-  margin: 25px auto;
-  max-width: 900px;
-  border-radius: 15px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 20px rgba(255,255,255,0.05); /* 柔らかい光 */
-}
+  .side-header{
+    width:100%;
+    height:auto;
+    flex-direction:row;
+    justify-content:space-around;
+    padding:10px 0;
+  }
 
-/* ---------------- スマホ共通 ---------------- */
-@media (max-width:768px){
-  .side-header { width:140px; }
-  .main-content { margin-left:140px; }
+  .side-header .logo img{
+    width:80px;
+    margin-bottom:0;
+  }
+
+  .side-header .side-nav a{
+    margin:0 10px;
+  }
+
+  h1.main-title{
+    font-size:clamp(20px,6vw,36px);
+  }
+
+  .main-header h1{
+    font-size:clamp(20px,6vw,36px);
+  }
+
+  .box{
+    margin:10px auto;
+    padding:15px;
+  }
 }
