@@ -1,3 +1,4 @@
+/* ---------------- 基本設定 ---------------- */
 body{
   margin:0;
   font-family:"Noto Sans JP", sans-serif;
@@ -12,12 +13,15 @@ body{
   left: 0;
   width: 160px;
   height: 100vh;
-  background: #111;
+  background: rgba(0,0,0,0.5);  /* 半透明黒 */
+  backdrop-filter: blur(10px);   /* 背景をぼかしてガラス風 */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
   box-sizing: border-box;
+  border-right: 1px solid rgba(255,255,255,0.1); /* 軽い境界線で立体感 */
+  z-index: 999;
 }
 
 .side-header .logo img {
