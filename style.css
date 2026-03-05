@@ -4,7 +4,9 @@ body{
   font-family:"Noto Sans JP", sans-serif;
   color:white;
   text-align:center; /* ボックス外中央揃え */
-  background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
+　background: linear-gradient(180deg, #0f1f18, #142820);
+  min-height:100vh;
+  margin:0;
 }
 
 /* -------------------- サイドバー -------------------- */
@@ -45,7 +47,7 @@ body{
   padding:8px 0;
   border-radius:0;
   background:none;
-  text-shadow: 0 0 4px #00ffcc, 0 0 8px #00ffff;
+  text-shadow: 0 0 3px #00ffcc;
   position:relative;
   text-align:center;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -66,7 +68,7 @@ body{
 .side-header .side-nav a:hover{
   color:#ffe600;
   transform:scale(1.08);
-  text-shadow: 0 0 6px #ffe600, 0 0 12px #ffff00;
+  text-shadow: 0 0 5px #ffe600;
   background:none;
 }
 
