@@ -1,187 +1,211 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO -->
-  <title>サーバー紹介</title>
-  <meta name="description" content="Minfinity Craftのサーバー紹介ページです。整地特化型Minecraft統合版サーバーの特徴やルールをご紹介します。">
+<title>サーバー紹介 | Minfinity Craft</title>
+<meta name="description" content="Minfinity Craftのサーバー紹介ページです。整地特化型Minecraft統合版サーバーの特徴やルールをご紹介します。">
 
-  <!-- ゲーム風フォント -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<!-- フォント -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      text-align: center;
-    }
+<style>
 
-    /* ---------------- ナビバー ---------------- */
-    nav {
-      background: #111;
-      padding: 15px;
-    }
+/* ================= 基本設定 ================= */
 
-    nav a {
-      display: inline-block;
-      color: #00ffcc;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a {
-  position: relative;
-  display: inline-block;
-  color: #00ffcc;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-  padding-bottom: 5px;
-  transition: 0.3s;
+body{
+  margin:0;
+  padding:0;
+  font-family:"Noto Sans JP", sans-serif;
+  color:white;
+  text-align:center;
+  background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
 
-/* 下線用 */
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, #00ffcc, #ffe600, #ff00ff);
-  box-shadow: 0 0 8px #00ffcc, 0 0 12px #ffe600;
-  transition: width 0.4s ease;
+/* ================= ナビバー ================= */
+
+header{
+  background:#111;
+  padding:15px;
 }
 
-/* ホバー時 */
-nav a:hover::after {
-  width: 100%;
+header a{
+  position:relative;
+  display:inline-block;
+  color:#00ffcc;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
+  padding-bottom:6px;
+  transition:0.3s;
 }
 
-    nav a:hover {
-      color: #ffe600;
-      transform: scale(1.1);
-    }
+header a:hover{
+  color:#ffe600;
+  transform:scale(1.1);
+}
 
-    /* ---------------- ヘッダー ---------------- */
-    header {
-      padding: 60px 20px;
-    }
+header a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:3px;
 
-    h1 {
-      font-size: clamp(24px, 5vw, 42px);
-      text-shadow: 0 0 8px rgba(255,255,255,0.25);
-      margin-bottom: 20px;
-    }
+  background:linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
+  box-shadow:0 0 8px #00ffcc,0 0 12px #ffe600;
 
-    p {
-      font-size: clamp(12px, 2.5vw, 16px);
-      max-width: 900px;
-      margin: 0 auto 25px;
-      line-height: 1.8;
-    }
+  transition:0.4s;
+}
 
-    .box {
-      background: rgba(255,255,255,0.08);
-      padding: 25px;
-      margin: 20px auto;
-      max-width: 900px;
-      border-radius: 15px;
-      backdrop-filter: blur(6px);
-    }
+header a:hover::after{
+  width:100%;
+}
 
-    h2 {
-      color: #ffe600;
-      margin-bottom: 15px;
-    }
+/* ================= ヘッダー ================= */
 
-    /* タイトルだけゲームフォント */
+.main-header{
+  padding:100px 20px;
+}
 
-h1{
+.main-title{
   font-family:'Press Start 2P', cursive;
   font-size:clamp(24px,5vw,48px);
-  margin-bottom:20px;
+  margin-bottom:30px;
 
   background:linear-gradient(90deg,#ffe600,#00ffff);
   background-clip:text;
   -webkit-background-clip:text;
   color:transparent;
 
+  text-shadow:
+  0 0 8px rgba(255,255,255,0.25),
+  0 0 15px rgba(0,255,255,0.15);
 }
 
+/* ================= 本文 ================= */
 
-    /* ---------------- スマホ対応 ---------------- */
-    @media (max-width: 600px) {
+p{
+  font-size:clamp(12px,2.5vw,18px);
+  max-width:800px;
+  margin:0 auto 30px;
+  line-height:1.6;
+}
 
-      nav a {
-        display: block;
-        margin: 12px 0;
-      }
+/* ================= ガラスパネル ================= */
 
-      h1 {
-        font-size: 1.6em;
-      }
+.box{
+  background:rgba(255,255,255,0.08);
+  padding:25px;
+  margin:30px auto;
+  max-width:900px;
+  border-radius:15px;
 
-      .box {
-        margin: 15px;
-      }
-    }
-  </style>
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,255,255,0.15);
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+h2{
+  color:#ffe600;
+}
+
+/* ================= スマホ対応 ================= */
+
+@media (max-width:600px){
+
+.main-header{
+  padding:60px 15px;
+}
+
+.box{
+  margin:15px;
+}
+
+header a{
+  display:block;
+  margin:10px 0;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- ナビバー -->
-  <nav>
-    <a href="index.html">ホーム</a>
-    <a href="about.html">サーバー紹介</a>
-    <a href="ranking.html">ランキング</a>
-  </nav>
+<!-- ナビバー -->
 
-  <!-- ヘッダー -->
-  <header>
-    <h1>Minfinity Craft<br>サーバー紹介</h1>
-    <p>
-      整地に特化したMinecraft統合版サーバー。<br>
-      コツコツ努力がランキングに反映される、やりがい重視のワールドです。
-    </p>
-  </header>
+<header>
+<a href="index.html">ホーム</a>
+<a href="about.html">サーバー紹介</a>
+<a href="ranking.html">ランキング</a>
+</header>
 
-  <!-- 特徴 -->
-  <div class="box">
-    <h2>サーバーの特徴</h2>
-    <p>
-      ・整地特化型サーバー<br>
-      ・採掘数ランキングシステム<br>
-      ・定期イベント開催<br>
-      ・初心者歓迎
-    </p>
-  </div>
+<!-- ヘッダー -->
 
-  <!-- ルール -->
-  <div class="box">
-    <h2>基本ルール</h2>
-    <p>
-      ・他プレイヤーへの迷惑行為は禁止<br>
-      ・不正ツールの使用は禁止<br>
-      ・運営の指示には従ってください
-    </p>
-  </div>
+<div class="main-header">
 
-  <!-- 参加方法 -->
-  <div class="box">
-    <h2>参加方法</h2>
-    <p>
-      サーバーアドレスは公式案内をご確認ください。<br>
-      統合版（Bedrock Edition）で参加可能です。
-    </p>
-  </div>
+<h1 class="main-title">
+Minfinity Craft<br>
+サーバー紹介
+</h1>
+
+<p>
+整地に特化したMinecraft統合版サーバー。<br>
+コツコツ努力がランキングに反映される、やりがい重視のワールドです。
+</p>
+
+</div>
+
+<!-- 特徴 -->
+
+<div class="box">
+
+<h2>サーバーの特徴</h2>
+
+<p>
+・整地特化型サーバー<br>
+・採掘数ランキングシステム<br>
+・定期イベント開催<br>
+・初心者歓迎
+</p>
+
+</div>
+
+<!-- ルール -->
+
+<div class="box">
+
+<h2>基本ルール</h2>
+
+<p>
+・他プレイヤーへの迷惑行為は禁止<br>
+・不正ツールの使用は禁止<br>
+・運営の指示には従ってください
+</p>
+
+</div>
+
+<!-- 参加方法 -->
+
+<div class="box">
+
+<h2>参加方法</h2>
+
+<p>
+サーバーアドレスは公式案内をご確認ください。<br>
+統合版（Bedrock Edition）で参加可能です。
+</p>
+
+</div>
 
 </body>
 </html>
+```
