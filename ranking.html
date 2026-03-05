@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,7 +12,6 @@
 <style>
 
 /* ================= 基本設定 ================= */
-
 body{
   margin:0;
   padding:0;
@@ -24,7 +22,6 @@ body{
 }
 
 /* ================= ナビバー ================= */
-
 header{
   background:#111;
   padding:15px;
@@ -53,10 +50,8 @@ header a::after{
   bottom:0;
   width:0;
   height:3px;
-
   background:linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
   box-shadow:0 0 8px #00ffcc,0 0 12px #ffe600;
-
   transition:0.4s;
 }
 
@@ -65,48 +60,42 @@ header a:hover::after{
 }
 
 /* ================= タイトル ================= */
-
 .main-title{
   font-family:'Press Start 2P', cursive;
   font-size:clamp(24px,5vw,42px);
   margin:60px 0 30px;
-
   background:linear-gradient(90deg,#ffe600,#00ffff);
   background-clip:text;
   -webkit-background-clip:text;
   color:transparent;
-
   text-shadow:
-  0 0 8px rgba(255,255,255,0.25),
-  0 0 15px rgba(0,255,255,0.15);
+    0 0 8px rgba(255,255,255,0.25),
+    0 0 15px rgba(0,255,255,0.15);
 }
 
 /* ================= ランキングパネル ================= */
-
 .rank-box{
   background:rgba(255,255,255,0.08);
   padding:25px;
   margin:40px auto;
   max-width:900px;
   border-radius:15px;
-
   backdrop-filter:blur(10px);
-
   border:1px solid rgba(255,255,255,0.15);
-
   box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 /* ================= テーブル ================= */
-
 table{
   width:100%;
   border-collapse:collapse;
+  pointer-events: none; /* 完全に押せない */
 }
 
 th,td{
   padding:12px;
   border-bottom:1px solid rgba(255,255,255,0.15);
+  cursor: default; /* カーソルも普通に */
 }
 
 th{
@@ -114,19 +103,11 @@ th{
 }
 
 tr:hover{
-  background:rgba(255,255,255,0.05);
-}
-
-table{
-  user-select:none;
-}
-
-table td, table th{
-  cursor:default;
+  background: none; /* ホバー効果なし */
+  transform: none;
 }
 
 /* ================= フェードイン ================= */
-
 .fade-row{
   opacity:0;
   transform:translateX(-30px);
@@ -141,32 +122,29 @@ table td, table th{
 }
 
 /* ================= スマホ ================= */
-
 @media (max-width:600px){
+  header a{
+    display:block;
+    margin:10px 0;
+  }
 
-header a{
-  display:block;
-  margin:10px 0;
-}
+  .main-title{
+    font-size:20px;
+  }
 
-.main-title{
-  font-size:20px;
-}
+  .rank-box{
+    margin:20px 10px;
+  }
 
-.rank-box{
-  margin:20px 10px;
-}
+  table{
+    display:block;
+    overflow-x:auto;
+  }
 
-table{
-  display:block;
-  overflow-x:auto;
-}
-
-th,td{
-  font-size:0.9em;
-  padding:8px;
-}
-
+  th,td{
+    font-size:0.9em;
+    padding:8px;
+  }
 }
 
 </style>
@@ -175,7 +153,6 @@ th,td{
 <body>
 
 <!-- ナビバー -->
-
 <header>
 <a href="index.html">ホーム</a>
 <a href="about.html">サーバー紹介</a>
@@ -183,7 +160,6 @@ th,td{
 </header>
 
 <h1 class="main-title">採掘ランキング</h1>
-
 <div class="rank-box">
 <table id="miningTable">
 <tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
@@ -191,7 +167,6 @@ th,td{
 </div>
 
 <h1 class="main-title">所持金ランキング</h1>
-
 <div class="rank-box">
 <table id="moneyTable">
 <tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
@@ -199,31 +174,25 @@ th,td{
 </div>
 
 <script>
-
 function animateNumber(td,target){
   const duration=600;
   const start=performance.now();
-
   function step(now){
     const progress=Math.min((now-start)/duration,1);
     td.textContent=Math.floor(target*progress);
-
     if(progress<1) requestAnimationFrame(step);
     else td.textContent=target;
   }
-
   requestAnimationFrame(step);
 }
 
 async function loadRanking(url,tableId){
-
   const res=await fetch(url);
   const text=await res.text();
   const rows=text.trim().split(/\r?\n/);
   const table=document.getElementById(tableId);
 
   for(let i=1;i<rows.length;i++){
-
     const cells=rows[i].split(',');
     if(cells.length<3) continue;
 
@@ -243,7 +212,6 @@ async function loadRanking(url,tableId){
     tr.appendChild(td3);
 
     const num=parseInt(cells[2]);
-
     if(!isNaN(num)){
       tr.addEventListener('animationend',()=>animateNumber(td3,num));
     }else{
@@ -252,28 +220,21 @@ async function loadRanking(url,tableId){
 
     table.appendChild(tr);
   }
-
 }
 
 const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
-
 const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
 
 function refresh(){
-
   document.getElementById('miningTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
   document.getElementById('moneyTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
-
   loadRanking(miningCSV,'miningTable');
   loadRanking(moneyCSV,'moneyTable');
-
 }
 
 refresh();
 setInterval(refresh,5*60*1000);
-
 </script>
 
 </body>
 </html>
-```
