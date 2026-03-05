@@ -1,13 +1,18 @@
 /* style.css */
 
-/* ================= 基本設定 ================= */
+/* ================= 背景 ================= */
 body{
   margin:0;
   padding:0;
   font-family:"Noto Sans JP", sans-serif;
   color:white;
   text-align:center;
+
+  /* 背景グラデーションを画面固定にする */
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
+  background-attachment: fixed; /* ←これがポイント */
+  background-size: cover;       /* ページ全体に広げる */
+  background-repeat: no-repeat;
 }
 
 /* ================= ナビバー ================= */
