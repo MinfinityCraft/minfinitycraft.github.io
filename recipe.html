@@ -5,29 +5,12 @@
 <title>ピッケルレシピ</title>
 <link rel="stylesheet" href="style.css">
 <style>
-
-
-/* -------------------- サイドバー -------------------- */
-<div class="side-header">
-  <div class="logo">
-    <img src="logo.png" alt="Minfinity Craft ロゴ">
-  </div>
-  <div class="side-nav">
-    <a href="index.html">ホーム</a>
-    <a href="about.html">サーバー紹介</a>
-    <a href="ranking.html">ランキング</a>
-    <a href="recipe.html">ピッケルレシピ</a>
-    <a heaf="recipe2.html">素材レシピ</a>
-  </div>
-</div>
-    
 /* -------------------- レシピセクション -------------------- */
 #recipe-section{
-    margin-left:180px; /* サイドバーある場合 */
+    margin-left:180px; /* サイドバーがある場合 */
     padding:40px;
 }
 
-/* 検索バー */
 #recipeSearch{
     width:300px;
     padding:10px;
@@ -38,7 +21,6 @@
     font-size:16px;
 }
 
-/* 採掘場ボタン */
 #mineFilter .mine-btn{
     background:rgba(0,0,0,0.3);
     color:white;
@@ -55,7 +37,6 @@
     color:black;
 }
 
-/* 各採掘場ブロック */
 .mine{
     margin-top:40px;
     padding:25px;
@@ -70,7 +51,6 @@
     text-shadow:0 0 5px #ffe600;
 }
 
-/* 各ピッケルレシピ */
 .recipe{
     background:rgba(0,0,0,0.45);
     padding:15px;
@@ -91,14 +71,25 @@
 </head>
 <body>
 
-<section id="recipe-section">
+<!-- -------------------- サイドバー -------------------- -->
+<div class="side-header">
+  <div class="logo">
+    <img src="logo.png" alt="Minfinity Craft ロゴ">
+  </div>
+  <div class="side-nav">
+    <a href="index.html">ホーム</a>
+    <a href="about.html">サーバー紹介</a>
+    <a href="ranking.html">ランキング</a>
+    <a href="recipe.html">ピッケルレシピ</a>
+    <a href="recipe2.html">素材レシピ</a>
+  </div>
+</div>
 
+<section id="recipe-section">
 <h1>⛏ ピッケルレシピ</h1>
 
-<!-- 検索バー -->
 <input type="text" id="recipeSearch" placeholder="キーワード検索（ピッケル名・採掘場・素材）" onkeyup="searchRecipe()">
 
-<!-- 採掘場ボタン -->
 <div id="mineFilter" style="margin:20px 0;">
 <button class="mine-btn" onclick="filterMine('all')">全て</button>
 <button class="mine-btn" onclick="filterMine('第一')">第一採掘場</button>
@@ -108,11 +99,8 @@
 
 <div class="recipe-list">
 
-<!-- 第一採掘場 -->
 <div class="mine" data-mine="第一">
-
 <h2>第一採掘場</h2>
-
 <div class="recipe" data-keywords="第一 石 丸石 初級">
 <h3>整地ピッケルⅠ</h3>
 <ol>
@@ -123,7 +111,6 @@
 <li>⑧ 棒</li>
 </ol>
 </div>
-
 <div class="recipe" data-keywords="第一 鉄 中級">
 <h3>整地ピッケルⅡ</h3>
 <ol>
@@ -134,14 +121,10 @@
 <li>⑧ 棒</li>
 </ol>
 </div>
-
 </div>
 
-<!-- 第二採掘場 -->
 <div class="mine" data-mine="第二">
-
 <h2>第二採掘場</h2>
-
 <div class="recipe" data-keywords="第二 鉄 上級">
 <h3>整地ピッケルⅢ</h3>
 <ol>
@@ -152,35 +135,25 @@
 <li>⑧ 棒</li>
 </ol>
 </div>
-
 </div>
 
 </div>
 </section>
 
-<!-- JavaScript -->
 <script>
 function searchRecipe(){
     let input = document.getElementById("recipeSearch").value.toLowerCase();
     let recipes = document.querySelectorAll(".recipe");
     recipes.forEach(function(recipe){
         let keywords = recipe.dataset.keywords.toLowerCase();
-        if(keywords.includes(input)){
-            recipe.style.display = "block";
-        } else {
-            recipe.style.display = "none";
-        }
+        recipe.style.display = keywords.includes(input) ? "block" : "none";
     });
 }
 
 function filterMine(mine){
     let mines = document.querySelectorAll(".mine");
     mines.forEach(function(m){
-        if(mine === 'all' || m.dataset.mine === mine){
-            m.style.display = "block";
-        } else {
-            m.style.display = "none";
-        }
+        m.style.display = (mine === 'all' || m.dataset.mine === mine) ? "block" : "none";
     });
 }
 </script>
