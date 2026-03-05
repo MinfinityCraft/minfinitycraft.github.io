@@ -256,50 +256,71 @@ td.number-animate{
   }
 }
 
-/* -------------------- レシピ -------------------- */
+
+/* -------------------- レシピセクション -------------------- */
 
 #recipe-section{
-margin-left:180px;
-padding:40px;
+    margin-left:180px; /* サイドバーある場合 */
+    padding:40px;
 }
 
+/* 検索バー */
+#recipeSearch{
+    width:300px;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    margin-top:20px;
+    margin-bottom:20px;
+    font-size:16px;
+}
+
+/* 採掘場ボタン */
+#mineFilter .mine-btn{
+    background:rgba(0,0,0,0.3);
+    color:white;
+    border:none;
+    padding:8px 12px;
+    margin-right:5px;
+    border-radius:6px;
+    cursor:pointer;
+    transition: all 0.2s;
+}
+
+#mineFilter .mine-btn:hover{
+    background:#00ffcc;
+    color:black;
+}
+
+/* 各採掘場ブロック */
 .mine{
-margin-top:40px;
-padding:25px;
-background:rgba(0,0,0,0.35);
-border-radius:12px;
-box-shadow:0 0 10px rgba(0,0,0,0.4);
+    margin-top:40px;
+    padding:25px;
+    background:rgba(0,0,0,0.35);
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.4);
 }
 
 .mine h2{
-margin-bottom:20px;
-color:#ffe600;
-text-shadow:0 0 5px #ffe600;
+    margin-bottom:20px;
+    color:#ffe600;
+    text-shadow:0 0 5px #ffe600;
 }
 
+/* 各ピッケルレシピ */
 .recipe{
-background:rgba(0,0,0,0.45);
-padding:15px;
-margin:15px 0;
-border-radius:10px;
+    background:rgba(0,0,0,0.45);
+    padding:15px;
+    margin:15px 0;
+    border-radius:10px;
 }
 
 .recipe h3{
-color:#00ffcc;
-margin-bottom:10px;
+    color:#00ffcc;
+    margin-bottom:10px;
 }
 
 .recipe ol{
-padding-left:20px;
-line-height:1.8;
-}
-
-#recipeSearch{
-width:300px;
-padding:10px;
-border-radius:8px;
-border:none;
-margin-top:20px;
-margin-bottom:20px;
-font-size:16px;
+    padding-left:20px;
+    line-height:1.8;
 }
