@@ -108,29 +108,30 @@ onkeyup="searchRecipe()"
 
 
 <script>
+// キーワード検索
 function searchRecipe(){
-  let input = document.getElementById("recipeSearch").value.toLowerCase();
-  let recipes = document.querySelectorAll(".recipe");
-  recipes.forEach(function(recipe){
-    let keywords = recipe.dataset.keywords.toLowerCase();
-    if(keywords.includes(input)){
-      recipe.style.display = "block";
-    } else {
-      recipe.style.display = "none";
-    }
-  });
+    let input = document.getElementById("recipeSearch").value.toLowerCase();
+    let recipes = document.querySelectorAll(".recipe");
+    recipes.forEach(function(recipe){
+        let keywords = recipe.dataset.keywords.toLowerCase();
+        if(keywords.includes(input)){
+            recipe.style.display = "block";
+        } else {
+            recipe.style.display = "none";
+        }
+    });
 }
 
 // 採掘場ボタンフィルター
 function filterMine(mine){
-  let mines = document.querySelectorAll(".mine");
-  mines.forEach(function(m){
-    if(mine === 'all' || m.dataset.mine === mine){
-      m.style.display = "block";
-    } else {
-      m.style.display = "none";
-    }
-  });
+    let mines = document.querySelectorAll(".mine");
+    mines.forEach(function(m){
+        if(mine === 'all' || m.dataset.mine === mine){
+            m.style.display = "block";
+        } else {
+            m.style.display = "none";
+        }
+    });
 }
 </script>
   
