@@ -1,33 +1,36 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>ランキング - Minfinity Craft</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-　
-<style>
-  
-/* ---------------- 完全コピー　基本設定 ---------------- */
+<title>ランキング | Minfinity Craft</title>
 
-/* ---------------- 背景 ---------------- */
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= 基本設定 ================= */
+
 body{
-  font-family: Arial, sans-serif;
-  color:white;
   margin:0;
   padding:0;
+  font-family:"Noto Sans JP", sans-serif;
+  color:white;
   text-align:center;
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
 
-/* ---------------- ナビバー ---------------- */
-nav{
+/* ================= ナビバー ================= */
+
+header{
   background:#111;
   padding:15px;
 }
 
-nav a{
+header a{
   position:relative;
   display:inline-block;
   color:#00ffcc;
@@ -35,11 +38,15 @@ nav a{
   margin:0 15px;
   font-weight:bold;
   padding-bottom:6px;
-  transition:color 0.3s ease, transform 0.3s ease;
+  transition:0.3s;
 }
 
-/* グラデ光下線 */
-nav a::after{
+header a:hover{
+  color:#ffe600;
+  transform:scale(1.1);
+}
+
+header a::after{
   content:"";
   position:absolute;
   left:0;
@@ -48,78 +55,58 @@ nav a::after{
   height:3px;
 
   background:linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
-  box-shadow:0 0 8px #00ffcc,0 0 15px #ffe600;
+  box-shadow:0 0 8px #00ffcc,0 0 12px #ffe600;
 
-  transition:width 0.4s ease;
+  transition:0.4s;
 }
 
-nav a:hover{
-  color:#ffe600;
-  transform:scale(1.1);
-}
-
-nav a:hover::after{
+header a:hover::after{
   width:100%;
 }
 
-/* ---------------- タイトル ---------------- */
-h1{
+/* ================= タイトル ================= */
+
+.main-title{
   font-family:'Press Start 2P', cursive;
-  font-size:2.2em;
-  margin:40px 0 20px;
+  font-size:clamp(24px,5vw,42px);
+  margin:60px 0 30px;
 
-  background: linear-gradient(
-    90deg,
-    #ffe600,
-    #00ffff,
-    #ff00ff,
-    #ffe600
-  );
-
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-
-  animation: shine 4s linear infinite;
+  background:linear-gradient(90deg,#ffe600,#00ffff);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
 
   text-shadow:
-    0 0 4px #fff,
-    0 0 8px #00ffff,
-    0 0 12px #00ffff;
+  0 0 8px rgba(255,255,255,0.25),
+  0 0 15px rgba(0,255,255,0.15);
 }
 
-@keyframes shine{
-  0%{
-    background-position: 0% 50%;
-  }
-  100%{
-    background-position: 300% 50%;
-  }
+/* ================= ランキングパネル ================= */
+
+.rank-box{
+  background:rgba(255,255,255,0.08);
+  padding:25px;
+  margin:40px auto;
+  max-width:900px;
+  border-radius:15px;
+
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,255,255,0.15);
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* ---------------- テーブル ---------------- */
+/* ================= テーブル ================= */
+
 table{
-  width:90%;
-  max-width:800px;
-  margin:20px auto;
+  width:100%;
   border-collapse:collapse;
-  background:rgba(0,0,0,0.3);
-  border-radius:10px;
 }
 
-  table {
-  user-select: none;
-}
-
-table td, table th {
-  cursor: default;
-}
-  
 th,td{
   padding:12px;
-  border-bottom:1px solid #444;
-  white-space:nowrap;
+  border-bottom:1px solid rgba(255,255,255,0.15);
 }
 
 th{
@@ -130,36 +117,16 @@ tr:hover{
   background:rgba(255,255,255,0.05);
 }
 
-/* ---------------- スマホ ---------------- */
-@media (max-width:600px){
-
-  nav a{
-    display:block;
-    margin:10px 0;
-  }
-
-  h1{
-    font-size:1.4em;
-  }
-
-  table{
-    display:block;
-    overflow-x:auto;
-  }
-
-  th,td{
-    font-size:0.85em;
-    padding:8px;
-  }
+table{
+  user-select:none;
 }
 
+table td, table th{
+  cursor:default;
+}
 
+/* ================= フェードイン ================= */
 
-
-
-  
-
-/* ---------------- フェードイン ---------------- */
 .fade-row{
   opacity:0;
   transform:translateX(-30px);
@@ -173,48 +140,90 @@ tr:hover{
   }
 }
 
+/* ================= スマホ ================= */
+
+@media (max-width:600px){
+
+header a{
+  display:block;
+  margin:10px 0;
+}
+
+.main-title{
+  font-size:20px;
+}
+
+.rank-box{
+  margin:20px 10px;
+}
+
+table{
+  display:block;
+  overflow-x:auto;
+}
+
+th,td{
+  font-size:0.9em;
+  padding:8px;
+}
+
+}
 
 </style>
 </head>
 
 <body>
 
-<nav>
-  <a href="index.html">ホーム</a>
-  <a href="about.html">サーバー紹介</a>
-  <a href="ranking.html">ランキング</a>
-</nav>
+<!-- ナビバー -->
 
-<h1>採掘ランキング</h1>
+<header>
+<a href="index.html">ホーム</a>
+<a href="about.html">サーバー紹介</a>
+<a href="ranking.html">ランキング</a>
+</header>
+
+<h1 class="main-title">採掘ランキング</h1>
+
+<div class="rank-box">
 <table id="miningTable">
 <tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
 </table>
+</div>
 
-<h1>所持金ランキング</h1>
+<h1 class="main-title">所持金ランキング</h1>
+
+<div class="rank-box">
 <table id="moneyTable">
 <tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
 </table>
+</div>
 
 <script>
+
 function animateNumber(td,target){
   const duration=600;
   const start=performance.now();
+
   function step(now){
     const progress=Math.min((now-start)/duration,1);
     td.textContent=Math.floor(target*progress);
+
     if(progress<1) requestAnimationFrame(step);
     else td.textContent=target;
   }
+
   requestAnimationFrame(step);
 }
 
 async function loadRanking(url,tableId){
+
   const res=await fetch(url);
   const text=await res.text();
   const rows=text.trim().split(/\r?\n/);
   const table=document.getElementById(tableId);
 
   for(let i=1;i<rows.length;i++){
+
     const cells=rows[i].split(',');
     if(cells.length<3) continue;
 
@@ -234,6 +243,7 @@ async function loadRanking(url,tableId){
     tr.appendChild(td3);
 
     const num=parseInt(cells[2]);
+
     if(!isNaN(num)){
       tr.addEventListener('animationend',()=>animateNumber(td3,num));
     }else{
@@ -242,6 +252,7 @@ async function loadRanking(url,tableId){
 
     table.appendChild(tr);
   }
+
 }
 
 const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
@@ -249,15 +260,20 @@ const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_d
 const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
 
 function refresh(){
+
   document.getElementById('miningTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
   document.getElementById('moneyTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+
   loadRanking(miningCSV,'miningTable');
   loadRanking(moneyCSV,'moneyTable');
+
 }
 
 refresh();
 setInterval(refresh,5*60*1000);
+
 </script>
 
 </body>
 </html>
+```
