@@ -103,17 +103,17 @@ h1.main-title{
   font-family:'Press Start 2P',cursive;
   font-size:clamp(28px,5vw,48px);
   margin:40px 0 20px;
-  background:linear-gradient(90deg,#ffe600,#00ffff,#ff00ff);
-  background-size:300% 100%;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  animation:shine 4s linear infinite;
-  text-shadow:0 0 4px rgba(255,255,255,0.15),
-              0 0 8px rgba(0,255,255,0.15),
-              0 0 12px rgba(255,0,255,0.15);
-}
 
+  /* 虹色→黄色→水色の控えめグラデ */
+  background: linear-gradient(90deg, #ffe600, #00ffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:0 0 4px rgba(255,255,255,0.15),
+              0 0 8px rgba(0,255,255,0.15);
+  animation: none; /* 虹アニメは消す */
+}
 /* -------------------- ランキングテーブル -------------------- */
 table{
   width:100%;
