@@ -101,6 +101,26 @@ nav a:hover::after {
       margin-bottom: 15px;
     }
 
+    /* タイトルだけゲームフォント */
+
+h1{
+  font-family:'Press Start 2P', cursive;
+  font-size:clamp(24px,5vw,48px);
+  margin-bottom:20px;
+
+  background:linear-gradient(90deg,#ffe600,#00ffff);
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+
+  text-shadow:
+    0 0 4px #fff,
+    0 0 8px #00ffff;
+
+
+}
+
+
     /* ---------------- スマホ対応 ---------------- */
     @media (max-width: 600px) {
 
