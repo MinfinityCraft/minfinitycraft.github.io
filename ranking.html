@@ -2,10 +2,13 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ランキング - Minfinity Craft</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<!-- フォント -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<!-- 共通 CSS 読み込み -->
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -25,34 +28,29 @@
 
 <!-- メインコンテンツ -->
 <div class="main-content">
+  <div class="main-header">
+    <h1 class="main-title">採掘ランキング</h1>
+  </div>
 
-  <!-- 採掘ランキング -->
-  <h1 class="main-title">採掘ランキング</h1>
   <div class="box">
     <table id="miningTable">
-      <tr>
-        <th>順位</th>
-        <th>プレイヤー名</th>
-        <th>採掘数</th>
-      </tr>
+      <tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
     </table>
   </div>
 
-  <!-- 所持金ランキング -->
-  <h1 class="main-title">所持金ランキング</h1>
+  <div class="main-header">
+    <h1 class="main-title">所持金ランキング</h1>
+  </div>
+
   <div class="box">
     <table id="moneyTable">
-      <tr>
-        <th>順位</th>
-        <th>プレイヤー名</th>
-        <th>所持金</th>
-      </tr>
+      <tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
     </table>
   </div>
-
 </div>
 
 <script>
+// 数字アニメーション
 function animateNumber(td,target){
   const duration=600;
   const start=performance.now();
@@ -65,6 +63,7 @@ function animateNumber(td,target){
   requestAnimationFrame(step);
 }
 
+// CSV 読み込み
 async function loadRanking(url,tableId){
   const res=await fetch(url);
   const text=await res.text();
@@ -88,22 +87,21 @@ async function loadRanking(url,tableId){
     tr.appendChild(td2);
 
     const td3=document.createElement('td');
-    td3.classList.add('number-animate'); // ←数字だけ光らせる
-    tr.appendChild(td3);
-
+    td3.classList.add('number-animate'); // ←ここ重要！
     const num=parseInt(cells[2]);
     if(!isNaN(num)){
       tr.addEventListener('animationend',()=>animateNumber(td3,num));
     }else{
       td3.textContent=cells[2];
     }
+    tr.appendChild(td3);
 
     table.appendChild(tr);
   }
 }
 
+// CSV URL
 const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
-
 const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
 
 function refresh(){
