@@ -3,156 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>ランキング | Minfinity Craft</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-
-<style>
-
-/* ================= 基本設定 ================= */
-body{
-  margin:0;
-  padding:0;
-  font-family:"Noto Sans JP", sans-serif;
-  color:white;
-  text-align:center;
-  background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
-}
-
-/* ================= ナビバー ================= */
-header{
-  background:#111;
-  padding:15px;
-}
-
-header a{
-  position:relative;
-  display:inline-block;
-  color:#00ffcc;
-  text-decoration:none;
-  margin:0 15px;
-  font-weight:bold;
-  padding-bottom:6px;
-  transition:0.3s;
-}
-
-header a:hover{
-  color:#ffe600;
-  transform:scale(1.1);
-}
-
-header a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:0;
-  height:3px;
-  background:linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
-  box-shadow:0 0 8px #00ffcc,0 0 12px #ffe600;
-  transition:0.4s;
-}
-
-header a:hover::after{
-  width:100%;
-}
-
-/* ================= タイトル ================= */
-.main-title{
-  font-family:'Press Start 2P', cursive;
-  font-size:clamp(24px,5vw,42px);
-  margin:60px 0 30px;
-  background:linear-gradient(90deg,#ffe600,#00ffff);
-  background-clip:text;
-  -webkit-background-clip:text;
-  color:transparent;
-  text-shadow:
-    0 0 8px rgba(255,255,255,0.25),
-    0 0 15px rgba(0,255,255,0.15);
-}
-
-/* ================= ランキングパネル ================= */
-.rank-box{
-  background:rgba(255,255,255,0.08);
-  padding:25px;
-  margin:40px auto;
-  max-width:900px;
-  border-radius:15px;
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.15);
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
-}
-
-/* ================= テーブル ================= */
-table{
-  width:100%;
-  border-collapse:collapse;
-  pointer-events: none; /* 完全に押せない */
-}
-
-th,td{
-  padding:12px;
-  border-bottom:1px solid rgba(255,255,255,0.15);
-  cursor: default; /* カーソルも普通に */
-}
-
-th{
-  color:#ffe600;
-}
-
-tr:hover{
-  background: none; /* ホバー効果なし */
-  transform: none;
-}
-
-/* ================= フェードイン ================= */
-.fade-row{
-  opacity:0;
-  transform:translateX(-30px);
-  animation:fadeIn 0.4s forwards;
-}
-
-@keyframes fadeIn{
-  to{
-    opacity:1;
-    transform:translateX(0);
-  }
-}
-
-/* ================= スマホ ================= */
-@media (max-width:600px){
-  header a{
-    display:block;
-    margin:10px 0;
-  }
-
-  .main-title{
-    font-size:20px;
-  }
-
-  .rank-box{
-    margin:20px 10px;
-  }
-
-  table{
-    display:block;
-    overflow-x:auto;
-  }
-
-  th,td{
-    font-size:0.9em;
-    padding:8px;
-  }
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- ナビバー -->
 <header>
 <a href="index.html">ホーム</a>
 <a href="about.html">サーバー紹介</a>
@@ -160,14 +17,14 @@ tr:hover{
 </header>
 
 <h1 class="main-title">採掘ランキング</h1>
-<div class="rank-box">
+<div class="box">
 <table id="miningTable">
 <tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
 </table>
 </div>
 
 <h1 class="main-title">所持金ランキング</h1>
-<div class="rank-box">
+<div class="box">
 <table id="moneyTable">
 <tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
 </table>
@@ -200,23 +57,13 @@ async function loadRanking(url,tableId){
     tr.classList.add('fade-row');
     tr.style.animationDelay=`${i*0.05}s`;
 
-    const td1=document.createElement('td');
-    td1.textContent=cells[0];
-    tr.appendChild(td1);
-
-    const td2=document.createElement('td');
-    td2.textContent=cells[1];
-    tr.appendChild(td2);
-
-    const td3=document.createElement('td');
-    tr.appendChild(td3);
+    const td1=document.createElement('td'); td1.textContent=cells[0]; tr.appendChild(td1);
+    const td2=document.createElement('td'); td2.textContent=cells[1]; tr.appendChild(td2);
+    const td3=document.createElement('td'); tr.appendChild(td3);
 
     const num=parseInt(cells[2]);
-    if(!isNaN(num)){
-      tr.addEventListener('animationend',()=>animateNumber(td3,num));
-    }else{
-      td3.textContent=cells[2];
-    }
+    if(!isNaN(num)){ tr.addEventListener('animationend',()=>animateNumber(td3,num)); }
+    else td3.textContent=cells[2];
 
     table.appendChild(tr);
   }
@@ -231,7 +78,6 @@ function refresh(){
   loadRanking(miningCSV,'miningTable');
   loadRanking(moneyCSV,'moneyTable');
 }
-
 refresh();
 setInterval(refresh,5*60*1000);
 </script>
