@@ -95,13 +95,13 @@ async function loadRanking(url,tableId){
     td3.classList.add("number-animate")
     tr.appendChild(td3)
 
-    const num=parseInt(cells[2])
+    const num=parseInt(cells[2]);
 
-    if(!isNaN(num)){
-      animateNumber(td3,num)
-    }else{
-      td3.textContent=cells[2]
-    }
+if(!isNaN(num)){
+  animateNumber(td3,num);
+}else{
+  td3.textContent=cells[2];
+}
 
     table.appendChild(tr)
   }
