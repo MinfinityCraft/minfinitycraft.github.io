@@ -1,6 +1,6 @@
-/* style.css */
+/* ==================== 共通CSS ==================== */
 
-/* ================= 背景 ================= */
+/* -------------------- 基本設定 -------------------- */
 body{
   margin:0;
   padding:0;
@@ -8,63 +8,80 @@ body{
   color:white;
   text-align:center;
 
-  /* 背景グラデーションを画面固定にする */
+  /* 背景グラデーション固定 */
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
-  background-attachment: fixed; /* ←これがポイント */
-  background-size: cover;       /* ページ全体に広げる */
+  background-attachment: fixed;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
-/* ================= ナビバー ================= */
-header{
-  background:#111;
-  padding:15px;
-}
-header a{
-  position:relative;
-  display:inline-block;
-  color:#00ffcc;
-  text-decoration:none;
-  margin:0 15px;
-  font-weight:bold;
-  padding-bottom:6px;
-  transition:0.3s;
-}
-header a:hover{
-  color:#ffe600;
-  transform:scale(1.1);
-}
-header a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:0;
-  height:3px;
-  background:linear-gradient(90deg,#00ffcc,#ffe600,#ff00ff);
-  box-shadow:0 0 8px #00ffcc,0 0 12px #ffe600;
-  transition:0.4s;
-}
-header a:hover::after{
-  width:100%;
+/* -------------------- ナビバー共通 -------------------- */
+header {
+  display: flex;
+  flex-direction: column;   /* 上からロゴ→ナビ */
+  align-items: flex-start;  /* 左揃え */
+  padding: 20px;
+  background: #111;
+  color: white;
 }
 
-/* ================= タイトル ================= */
-.main-header{
-  padding:100px 20px;
+header .logo img {
+  max-height: 50px;        /* ロゴサイズ */
+  width: auto;
+  margin-bottom: 15px;
 }
-.main-title{
+
+/* ナビゲーション */
+header nav {
+  display: flex;
+  gap: 20px;               /* メニュー間スペース */
+}
+
+header nav a {
+  color: #00ffcc;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+/* 下線グラデーション */
+header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #00ffcc, #ffe600, #ff00ff);
+  box-shadow: 0 0 8px #00ffcc, 0 0 12px #ffe600;
+  transition: width 0.4s ease;
+}
+
+header nav a:hover {
+  color: #ffe600;
+  transform: scale(1.05);
+}
+
+header nav a:hover::after {
+  width: 100%;
+}
+
+/* -------------------- メインタイトル -------------------- */
+h1 {
   font-family:'Press Start 2P', cursive;
   font-size:clamp(24px,5vw,48px);
-  margin:0 0 30px 0;
+  margin-bottom:20px;
+
   background:linear-gradient(90deg,#ffe600,#00ffff);
   background-clip:text;
   -webkit-background-clip:text;
   color:transparent;
-  text-shadow:0 0 8px rgba(255,255,255,0.25),0 0 15px rgba(0,255,255,0.15);
+  text-shadow:0 0 8px rgba(255,255,255,0.25);
 }
 
-/* ================= 本文 ================= */
+/* -------------------- 説明文 -------------------- */
 p{
   font-size:clamp(12px,2.5vw,18px);
   max-width:800px;
@@ -72,21 +89,94 @@ p{
   line-height:1.6;
 }
 
-/* ================= ガラスパネル ================= */
+/* -------------------- コンテンツBOX -------------------- */
 .box{
-  background:rgba(255,255,255,0.08);
-  padding:25px;
-  margin:30px auto;
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  margin:20px auto;
   max-width:900px;
   border-radius:15px;
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.15);
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  backdrop-filter:blur(5px);
 }
-h2{color:#ffe600;}
 
+/* -------------------- フェードイン -------------------- */
+.fade-row{
+  opacity:0;
+  transform:translateX(-30px);
+  animation:fadeIn 0.4s forwards;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+/* -------------------- スマホ対応 -------------------- */
 @media (max-width:600px){
-  .main-header{padding:60px 15px;}
-  .box{margin:15px;}
-  header a{display:block;margin:10px 0;}
+  .main-header{
+    padding:40px 10px;
+  }
+  .box{
+    margin:10px;
+  }
+  header {
+    padding: 15px;
+  }
+  header nav {
+    flex-direction: column; /* 縦並び */
+    width: 100%;
+  }
+  header nav a {
+    padding: 8px 0;
+    font-size: 0.9em;
+  }
+  h1 {
+    font-size:1.6em;
+  }
+  .logo img {
+    max-height: 40px;
+    margin-bottom: 10px;
+  }
+}
+
+/* ==================== ランキング表用CSS ==================== */
+table {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: rgba(0,0,0,0.3);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+th:nth-child(1), td:nth-child(1) { width: 15%; }
+th:nth-child(2), td:nth-child(2) { width: 55%; }
+th:nth-child(3), td:nth-child(3) { width: 30%; }
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+  cursor: default;
+  white-space: nowrap;
+}
+
+tr:hover { background: none; transform: none; }
+
+h1.main-title{
+  background: linear-gradient(90deg,#ffe600,#00ffff,#ff00ff,#ffe600);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 4s linear infinite;
+  text-shadow:0 0 4px #fff,0 0 8px #00ffff,0 0 12px #00ffff;
+}
+
+@keyframes shine{
+  0%{background-position:0% 50%;}
+  100%{background-position:300% 50%;}
 }
