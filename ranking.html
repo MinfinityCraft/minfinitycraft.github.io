@@ -8,6 +8,64 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="style.css" rel="stylesheet">
 
+<style>
+
+/* 背景の保険（白くならないように） */
+html{
+  min-height:100%;
+  background:#0f1f18;
+}
+
+body{
+  min-height:100vh;
+}
+
+.number-animate{
+color:#7fdde0;
+font-weight:bold;
+}
+
+table{
+width:100%;
+max-width:800px;
+margin:0 auto 30px;
+border-collapse:collapse;
+background:rgba(0,0,0,0.25);
+border-radius:10px;
+overflow:hidden;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid rgba(255,255,255,0.1);
+white-space:nowrap;
+color:white;
+}
+
+th{
+color:#ffe600;
+}
+
+tr:hover{
+background:rgba(255,255,255,0.05);
+}
+
+@media(max-width:600px){
+
+table{
+display:block;
+overflow-x:auto;
+}
+
+th,td{
+font-size:0.85em;
+padding:8px;
+}
+
+}
+
+</style>
+
 </head>
 <body>
 
@@ -16,6 +74,7 @@
   <div class="logo">
     <img src="logo.png" alt="Minfinity Craft ロゴ">
   </div>
+
   <div class="side-nav">
     <a href="index.html">ホーム</a>
     <a href="about.html">サーバー紹介</a>
@@ -95,13 +154,13 @@ async function loadRanking(url,tableId){
     td3.classList.add("number-animate")
     tr.appendChild(td3)
 
-    const num=parseInt(cells[2]);
+    const num=parseInt(cells[2])
 
-if(!isNaN(num)){
-  animateNumber(td3,num);
-}else{
-  td3.textContent=cells[2];
-}
+    if(!isNaN(num)){
+      animateNumber(td3,num)
+    }else{
+      td3.textContent=cells[2]
+    }
 
     table.appendChild(tr)
   }
@@ -129,54 +188,6 @@ refresh()
 setInterval(refresh,5*60*1000)
 
 </script>
-
-<style>
-
-.number-animate{
-color:#7fdde0;
-font-weight:bold;
-}
-
-table{
-width:100%;
-max-width:800px;
-margin:0 auto 30px;
-border-collapse:collapse;
-background:rgba(0,0,0,0.25);
-border-radius:10px;
-overflow:hidden;
-}
-
-th,td{
-padding:12px;
-border-bottom:1px solid rgba(255,255,255,0.1);
-white-space:nowrap;
-color:white;
-}
-
-th{
-color:#ffe600;
-}
-
-tr:hover{
-background:rgba(255,255,255,0.05);
-}
-
-@media(max-width:600px){
-
-table{
-display:block;
-overflow-x:auto;
-}
-
-th,td{
-font-size:0.85em;
-padding:8px;
-}
-
-}
-
-</style>
 
 </body>
 </html>
