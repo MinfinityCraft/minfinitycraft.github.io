@@ -3,20 +3,40 @@ body{
   padding:0;
   font-family:"Noto Sans JP", sans-serif;
   color:white;
-  text-align:center;
+  text-align:center; /* ページ全体の中央揃えのベース */
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
 
-/* -------------------- サイドバー ・ナビ -------------------- */
+/* -------------------- サイドバー -------------------- */
+.side-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0a1519, #122630, #1a3845);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:20px 0;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.side-header .logo img{
+  width:120px;
+  margin-bottom:30px;
+}
+
 .side-header .side-nav a{
   display:block;
   color:#00ffcc;
   text-decoration:none;
   margin:12px 0;
   font-weight:bold;
-  padding:8px 0;        /* 上下だけ余白を残す */
-  border-radius:0;       /* ボックス丸み削除 */
-  background: none;      /* ボックスなし */
+  padding:8px 0;       
+  border-radius:0;      
+  background: none;     
   text-shadow: 0 0 4px #00ffcc, 0 0 8px #00ffff;
   position: relative;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -38,7 +58,7 @@ body{
   color:#ffe600;
   transform:scale(1.08);
   text-shadow: 0 0 6px #ffe600, 0 0 12px #ffff00;
-  background: none;      /* ホバーでもボックスなし */
+  background: none;
 }
 
 .side-header .side-nav a:hover::after{
@@ -49,6 +69,7 @@ body{
 .main-content{
   margin-left:160px;
   padding:20px;
+  text-align: center; /* ←ボックス外中央揃え */
 }
 
 /* -------------------- メインタイトル -------------------- */
@@ -69,7 +90,7 @@ p{
   max-width:800px;
   margin:0 auto 30px;
   line-height:1.6;
-  text-align:left;
+  text-align:left; /* ←ボックス外は中央、本文は左揃え */
 }
 
 /* -------------------- ボックス -------------------- */
@@ -80,7 +101,7 @@ p{
   max-width:900px;
   border-radius:15px;
   backdrop-filter:blur(5px);
-  text-align:left;
+  text-align:left; /* ←ボックス内は左揃え */
 }
 
 /* -------------------- ボックス内タイトルだけ中央 -------------------- */
