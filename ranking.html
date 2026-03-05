@@ -4,13 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ランキング - Minfinity Craft</title>
-
-<!-- フォント -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
-<!-- 共通 CSS 読み込み -->
-<link rel="stylesheet" href="style.css">
-
+<link href="style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -28,92 +23,69 @@
 
 <!-- メインコンテンツ -->
 <div class="main-content">
-  <div class="main-header">
-    <h1 class="main-title">採掘ランキング</h1>
-  </div>
+  <h1 class="main-title">採掘ランキング</h1>
+  <table id="miningTable">
+    <tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
+  </table>
 
-  <div class="box">
-    <table id="miningTable">
-      <tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>
-    </table>
-  </div>
+  <h1 class="main-title">所持金ランキング</h1>
+  <table id="moneyTable">
+    <tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
+  </table>
 
-  <div class="main-header">
-    <h1 class="main-title">所持金ランキング</h1>
-  </div>
-
-  <div class="box">
-    <table id="moneyTable">
-      <tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>
-    </table>
-  </div>
-</div>
-
-<script>
-// 数字アニメーション
-function animateNumber(td,target){
-  const duration=600;
-  const start=performance.now();
-  function step(now){
-    const progress=Math.min((now-start)/duration,1);
-    td.textContent=Math.floor(target*progress);
-    if(progress<1) requestAnimationFrame(step);
-    else td.textContent=target;
-  }
-  requestAnimationFrame(step);
-}
-
-// CSV 読み込み
-async function loadRanking(url,tableId){
-  const res=await fetch(url);
-  const text=await res.text();
-  const rows=text.trim().split(/\r?\n/);
-  const table=document.getElementById(tableId);
-
-  for(let i=1;i<rows.length;i++){
-    const cells=rows[i].split(',');
-    if(cells.length<3) continue;
-
-    const tr=document.createElement('tr');
-    tr.classList.add('fade-row');
-    tr.style.animationDelay=`${i*0.05}s`;
-
-    const td1=document.createElement('td');
-    td1.textContent=cells[0];
-    tr.appendChild(td1);
-
-    const td2=document.createElement('td');
-    td2.textContent=cells[1];
-    tr.appendChild(td2);
-
-    const td3=document.createElement('td');
-    td3.classList.add('number-animate'); // ←ここ重要！
-    const num=parseInt(cells[2]);
-    if(!isNaN(num)){
-      tr.addEventListener('animationend',()=>animateNumber(td3,num));
-    }else{
-      td3.textContent=cells[2];
+  <script>
+  function animateNumber(td,target){
+    const duration=600;
+    const start=performance.now();
+    function step(now){
+      const progress=Math.min((now-start)/duration,1);
+      td.textContent=Math.floor(target*progress);
+      if(progress<1) requestAnimationFrame(step);
+      else td.textContent=target;
     }
-    tr.appendChild(td3);
-
-    table.appendChild(tr);
+    requestAnimationFrame(step);
   }
-}
 
-// CSV URL
-const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
-const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
+  async function loadRanking(url,tableId){
+    const res=await fetch(url);
+    const text=await res.text();
+    const rows=text.trim().split(/\r?\n/);
+    const table=document.getElementById(tableId);
 
-function refresh(){
-  document.getElementById('miningTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
-  document.getElementById('moneyTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
-  loadRanking(miningCSV,'miningTable');
-  loadRanking(moneyCSV,'moneyTable');
-}
+    for(let i=1;i<rows.length;i++){
+      const cells=rows[i].split(',');
+      if(cells.length<3) continue;
 
-refresh();
-setInterval(refresh,5*60*1000);
-</script>
+      const tr=document.createElement('tr');
+      const td1=document.createElement('td'); td1.textContent=cells[0]; tr.appendChild(td1);
+      const td2=document.createElement('td'); td2.textContent=cells[1]; tr.appendChild(td2);
+      const td3=document.createElement('td'); tr.appendChild(td3);
 
+      const num=parseInt(cells[2]);
+      if(!isNaN(num)){
+        tr.addEventListener('animationend',()=>animateNumber(td3,num));
+      }else{
+        td3.textContent=cells[2];
+      }
+
+      table.appendChild(tr);
+    }
+  }
+
+  const miningCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vSbPNYc-q67wJ_dIjnqcbkFdms6YTuHKXTnhH0Yy9EM35YhDlehk_H-QPNR9ptD3WbbSyD2eqY49xSn/pub?gid=0&single=true&output=csv';
+  const moneyCSV='https://docs.google.com/spreadsheets/d/e/2PACX-1vQwcLU-WT6QwxyGfzaEC0ncUBuSmrBsADeD1R8AuT5MmangVKn4XgYXuz2DlbW3iDYjSH49RcHYwQzx/pub?gid=939922891&single=true&output=csv';
+
+  function refresh(){
+    document.getElementById('miningTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>採掘数</th></tr>';
+    document.getElementById('moneyTable').innerHTML='<tr><th>順位</th><th>プレイヤー名</th><th>所持金</th></tr>';
+    loadRanking(miningCSV,'miningTable');
+    loadRanking(moneyCSV,'moneyTable');
+  }
+
+  refresh();
+  setInterval(refresh,5*60*1000);
+  </script>
+
+</div>
 </body>
 </html>
