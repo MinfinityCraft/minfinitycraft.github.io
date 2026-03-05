@@ -7,39 +7,19 @@ body{
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
 
-/* -------------------- サイドバー -------------------- */
-.side-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 160px;
-  height: 100vh;
-  background: linear-gradient(180deg, #0a1519, #122630, #1a3845);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding:20px 0;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  z-index: 10;
-}
-
-.side-header .logo img{
-  width:120px;
-  margin-bottom:30px;
-}
-
+/* -------------------- サイドバー ・ナビ -------------------- */
 .side-header .side-nav a{
   display:block;
   color:#00ffcc;
   text-decoration:none;
   margin:12px 0;
   font-weight:bold;
-  padding:8px 12px;
-  border-radius:6px;
-  background: rgba(0,255,204,0.08);
+  padding:8px 0;        /* 上下だけ余白を残す */
+  border-radius:0;       /* ボックス丸み削除 */
+  background: none;      /* ボックスなし */
   text-shadow: 0 0 4px #00ffcc, 0 0 8px #00ffff;
   position: relative;
-  transition: color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .side-header .side-nav a::after{
@@ -57,8 +37,8 @@ body{
 .side-header .side-nav a:hover{
   color:#ffe600;
   transform:scale(1.08);
-  background: rgba(255,230,0,0.15);
   text-shadow: 0 0 6px #ffe600, 0 0 12px #ffff00;
+  background: none;      /* ホバーでもボックスなし */
 }
 
 .side-header .side-nav a:hover::after{
