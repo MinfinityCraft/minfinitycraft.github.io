@@ -65,29 +65,32 @@ onkeyup="searchRecipe()"
 
 <script>
 
-function searchRecipe() {
+function searchRecipe(){
 
 let input = document.getElementById("recipeSearch");
 let filter = input.value.toLowerCase();
 
-let list = document.getElementById("recipeList");
-let cards = list.getElementsByClassName("recipe-card");
+let cards = document.getElementsByClassName("recipe-card");
 
-for (let i = 0; i < cards.length; i++) {
+for(let i=0;i<cards.length;i++){
 
-let title = cards[i].getElementsByTagName("h3")[0];
+let keywords = cards[i].dataset.search.toLowerCase();
 
-if (title.innerHTML.toLowerCase().indexOf(filter) > -1) {
-cards[i].style.display = "";
-} else {
-cards[i].style.display = "none";
+if(keywords.indexOf(filter) > -1){
+
+cards[i].style.display="";
+
+}else{
+
+cards[i].style.display="none";
+
 }
 
 }
 
 }
 
-</script> 
+</script>
 
   
 </body>
