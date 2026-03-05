@@ -23,6 +23,7 @@ body{
   align-items: center;
   padding:20px 0;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  z-index: 10;
 }
 
 .side-header .logo img{
@@ -90,7 +91,7 @@ p{
 
 /* -------------------- ボックス -------------------- */
 .box{
-  background:rgba(0,0,0,0.35); /* 表のボックスも少し暗め */
+  background:rgba(0,0,0,0.35); 
   padding:20px;
   margin:20px auto;
   max-width:900px;
@@ -103,24 +104,21 @@ h1.main-title{
   font-family:'Press Start 2P',cursive;
   font-size:clamp(28px,5vw,48px);
   margin:40px 0 20px;
-
-  /* 虹色→黄色→水色の控えめグラデ */
   background: linear-gradient(90deg, #ffe600, #00ffff);
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip:text;
+  background-clip:text;
   color: transparent;
-
-  text-shadow:0 0 4px rgba(255,255,255,0.15),
-              0 0 8px rgba(0,255,255,0.15);
-  animation: none; /* 虹アニメは消す */
+  text-shadow:0 0 4px rgba(255,255,255,0.15), 0 0 8px rgba(0,255,255,0.15);
+  animation: none;
 }
+
 /* -------------------- ランキングテーブル -------------------- */
 table{
-  width:100%;
-  max-width:800px;
-  margin:0 auto;
+  width:100%; /* 親ボックスいっぱいに広げる */
+  max-width:none; /* 幅制限解除 */
+  margin:0 auto; /* 中央寄せ */
   border-collapse:collapse;
-  background:rgba(0,0,0,0.25); /* 光を控えめに */
+  background:rgba(0,0,0,0.25); 
   border-radius:10px;
   overflow:hidden;
 }
@@ -137,16 +135,16 @@ th{
 }
 
 tr:hover{
-  background:rgba(255,255,255,0.05); /* ホバー光を弱めに */
+  background:rgba(255,255,255,0.05);
 }
 
-/* -------------------- 数字アニメ用（採掘数・所持金） -------------------- */
+/* 数字アニメ用（採掘数・所持金） */
 td.number-animate{
   color:#00ffff;
   font-weight:bold;
 }
 
-/* -------------------- 光アニメーション -------------------- */
+/* 光アニメーション */
 @keyframes shine{
   0%{background-position:0% 50%;}
   100%{background-position:300% 50%;}
@@ -191,7 +189,9 @@ td.number-animate{
 
   table{
     display:block;
+    width:100%; /* 親ボックスいっぱい */
     overflow-x:auto;
+    margin:0 auto; /* 左寄せ防止 */
   }
 
   th,td{
