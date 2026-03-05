@@ -26,6 +26,30 @@ body{
   text-align:center;
 }
 
+/* -------------------- 動く背景グラデーション -------------------- */
+  
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(-45deg, #4facfe, #00f2fe, #43e97b, #38f9d7);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
 /* -------------------- ナビバー -------------------- */
 
 header{
