@@ -2,43 +2,79 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ピッケルレシピ</title>
-<meta name="description" content="Minfinity Craftのサーバー紹介ページです。整地特化型Minecraft統合版サーバーの特徴やルールをご紹介します。">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* -------------------- レシピセクション -------------------- */
+#recipe-section{
+    margin-left:180px; /* サイドバーある場合 */
+    padding:40px;
+}
+
+/* 検索バー */
+#recipeSearch{
+    width:300px;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    margin-top:20px;
+    margin-bottom:20px;
+    font-size:16px;
+}
+
+/* 採掘場ボタン */
+#mineFilter .mine-btn{
+    background:rgba(0,0,0,0.3);
+    color:white;
+    border:none;
+    padding:8px 12px;
+    margin-right:5px;
+    border-radius:6px;
+    cursor:pointer;
+    transition: all 0.2s;
+}
+
+#mineFilter .mine-btn:hover{
+    background:#00ffcc;
+    color:black;
+}
+
+/* 各採掘場ブロック */
+.mine{
+    margin-top:40px;
+    padding:25px;
+    background:rgba(0,0,0,0.35);
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+
+.mine h2{
+    margin-bottom:20px;
+    color:#ffe600;
+    text-shadow:0 0 5px #ffe600;
+}
+
+/* 各ピッケルレシピ */
+.recipe{
+    background:rgba(0,0,0,0.45);
+    padding:15px;
+    margin:15px 0;
+    border-radius:10px;
+}
+
+.recipe h3{
+    color:#00ffcc;
+    margin-bottom:10px;
+}
+
+.recipe ol{
+    padding-left:20px;
+    line-height:1.8;
+}
+</style>
 </head>
 <body>
 
-<!-- サイドバー -->
-<div class="side-header">
-  <div class="logo">
-    <img src="logo.png" alt="Minfinity Craft ロゴ">
-  </div>
-  <div class="side-nav">
-    <a href="index.html">ホーム</a>
-    <a href="about.html">サーバー紹介</a>
-    <a href="ranking.html">ランキング</a>
-    <a href="recipe.html">ピッケルレシピ</a>
-    <a heaf="recipe2.html">素材レシピ</a>
-  </div>
-
-<!-- タイトル -->
-<h1 class="mc-title">⛏ ピッケルレシピ</h1>
-<p class="mc-subtitle">Pickaxe Crafting Recipes</p>
-
-<div class="recipe-search">
-
-<input 
-type="text" 
-id="recipeSearch" 
-placeholder="ピッケルを検索..."
-onkeyup="searchRecipe()"
->
-
-</div>
-  
-<!-- レシピを書く場所 -->
 <section id="recipe-section">
 
 <h1>⛏ ピッケルレシピ</h1>
@@ -46,7 +82,7 @@ onkeyup="searchRecipe()"
 <!-- 検索バー -->
 <input type="text" id="recipeSearch" placeholder="キーワード検索（ピッケル名・採掘場・素材）" onkeyup="searchRecipe()">
 
-<!-- 採掘場ボタンフィルター -->
+<!-- 採掘場ボタン -->
 <div id="mineFilter" style="margin:20px 0;">
 <button class="mine-btn" onclick="filterMine('all')">全て</button>
 <button class="mine-btn" onclick="filterMine('第一')">第一採掘場</button>
@@ -61,7 +97,7 @@ onkeyup="searchRecipe()"
 
 <h2>第一採掘場</h2>
 
-<div class="recipe" data-keywords="第一 初級 丸石">
+<div class="recipe" data-keywords="第一 石 丸石 初級">
 <h3>整地ピッケルⅠ</h3>
 <ol>
 <li>① 丸石</li>
@@ -72,7 +108,7 @@ onkeyup="searchRecipe()"
 </ol>
 </div>
 
-<div class="recipe" data-keywords="第一 中級 鉄">
+<div class="recipe" data-keywords="第一 鉄 中級">
 <h3>整地ピッケルⅡ</h3>
 <ol>
 <li>① 鉄インゴット</li>
@@ -90,7 +126,7 @@ onkeyup="searchRecipe()"
 
 <h2>第二採掘場</h2>
 
-<div class="recipe" data-keywords="第二 中級 鉄">
+<div class="recipe" data-keywords="第二 鉄 上級">
 <h3>整地ピッケルⅢ</h3>
 <ol>
 <li>① 鉄インゴット</li>
@@ -106,9 +142,8 @@ onkeyup="searchRecipe()"
 </div>
 </section>
 
-
+<!-- JavaScript -->
 <script>
-// キーワード検索
 function searchRecipe(){
     let input = document.getElementById("recipeSearch").value.toLowerCase();
     let recipes = document.querySelectorAll(".recipe");
@@ -122,7 +157,6 @@ function searchRecipe(){
     });
 }
 
-// 採掘場ボタンフィルター
 function filterMine(mine){
     let mines = document.querySelectorAll(".mine");
     mines.forEach(function(m){
@@ -134,6 +168,6 @@ function filterMine(mine){
     });
 }
 </script>
-  
+
 </body>
 </html>
