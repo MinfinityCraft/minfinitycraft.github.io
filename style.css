@@ -368,3 +368,20 @@ margin-top:10px;
 }
 
 }
+
+/* レシピの見た目を整える */
+
+.recipe-item{
+margin:10px 0;
+}
+
+.recipe-item summary{
+cursor:pointer;
+font-weight:bold;
+color:#00ffcc;
+font-size:18px;
+}
+
+.recipe-item summary:hover{
+color:#ffe600;
+}
