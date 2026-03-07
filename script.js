@@ -39,3 +39,38 @@ steps:[
 ]
 }
 ];
+
+
+function generateRecipes(){
+
+const list = document.getElementById("recipeList");
+
+recipes.forEach(recipe=>{
+
+let stepsHTML="";
+
+recipe.steps.forEach(step=>{
+stepsHTML += `<li>${step}</li>`;
+});
+
+list.innerHTML += `
+
+<details class="material-recipe"
+data-mine="${recipe.mine}"
+data-keywords="${recipe.keywords}">
+
+<summary>${recipe.name}</summary>
+
+<ol>
+${stepsHTML}
+</ol>
+
+</details>
+
+`;
+
+});
+
+}
+
+generateRecipes();
