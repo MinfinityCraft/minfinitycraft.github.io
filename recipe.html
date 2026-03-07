@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,6 +11,14 @@
 </head>
 
 <body>
+
+<!-- ヘッダー -->
+<div id="header"></div>
+
+<!-- ハンバーガー -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<section id="recipe-section">
 
 <h1>ピッケルレシピ</h1>
 
@@ -23,13 +32,15 @@ onkeyup="searchRecipe('recipeSearch','recipe')"
 <div>
 
 <button onclick="filterMine('recipe','all')">全て</button>
-<button onclick="filterMine('recipe','第一')">第一</button>
-<button onclick="filterMine('recipe','第二')">第二</button>
-<button onclick="filterMine('recipe','第三')">第三</button>
+<button onclick="filterMine('recipe','第一')">第一採掘場</button>
+<button onclick="filterMine('recipe','第二')">第二採掘場</button>
+<button onclick="filterMine('recipe','第三')">第三採掘場</button>
 
 </div>
 
 <div id="recipeList"></div>
+
+</section>
 
 <script src="data.js"></script>
 <script src="script.js"></script>
