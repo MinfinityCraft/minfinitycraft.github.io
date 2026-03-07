@@ -12,7 +12,7 @@
 
 <body>
 
-<!-- ヘッダー -->
+<!-- ナビバー -->
 <div id="header"></div>
 
 <!-- ハンバーガー -->
@@ -22,6 +22,8 @@
 
 <h1>ピッケルレシピ</h1>
 
+<!-- 検索 -->
+
 <input
 type="text"
 id="recipeSearch"
@@ -29,28 +31,53 @@ placeholder="ピッケル・素材検索"
 onkeyup="searchRecipe('recipeSearch','recipe')"
 >
 
-<div>
+<!-- 採掘場フィルター -->
 
-<button onclick="filterMine('recipe','all')">全て</button>
-<button onclick="filterMine('recipe','第一')">第一採掘場</button>
-<button onclick="filterMine('recipe','第二')">第二採掘場</button>
-<button onclick="filterMine('recipe','第三')">第三採掘場</button>
+<div style="margin:20px 0;">
+
+<button onclick="filterMine('recipe','all')">
+全て
+</button>
+
+<button onclick="filterMine('recipe','第一')">
+第一採掘場
+</button>
+
+<button onclick="filterMine('recipe','第二')">
+第二採掘場
+</button>
+
+<button onclick="filterMine('recipe','第三')">
+第三採掘場
+</button>
 
 </div>
+
+<!-- レシピ表示エリア -->
 
 <div id="recipeList"></div>
 
 </section>
 
+
+<!-- JS読み込み -->
+
 <script src="data.js"></script>
 <script src="script.js"></script>
 
+
 <script>
+
+/* ページ読み込み後にレシピ生成 */
+
+window.onload=function(){
 
 document
 .getElementById("recipeList")
 .innerHTML=
 createRecipeHTML(recipes,"recipe");
+
+};
 
 </script>
 
