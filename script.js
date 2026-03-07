@@ -35,11 +35,13 @@ function createRecipeHTML(data,className){
 
 let html="";
 
-data.forEach(r=>{
+data.forEach(function(r){
 
 html+=`
 
-<details class="${className}" data-mine="${r.mine}" data-keywords="${r.keywords}">
+<details class="${className}"
+data-mine="${r.mine}"
+data-keywords="${r.keywords}">
 
 <summary>${r.name}</summary>
 
@@ -69,11 +71,13 @@ let input=document
 .value
 .toLowerCase();
 
-let recipes=document.querySelectorAll("."+className);
+let recipes=document
+.querySelectorAll("."+className);
 
 recipes.forEach(function(recipe){
 
-let keywords=recipe.dataset.keywords.toLowerCase();
+let keywords=
+recipe.dataset.keywords.toLowerCase();
 
 if(keywords.includes(input)){
 recipe.style.display="block";
@@ -90,7 +94,8 @@ recipe.style.display="none";
 
 function filterMine(className,mine){
 
-let recipes=document.querySelectorAll("."+className);
+let recipes=
+document.querySelectorAll("."+className);
 
 recipes.forEach(function(recipe){
 
@@ -107,13 +112,14 @@ recipe.style.display="none";
 }
 
 
-/* ハンバーガーメニュー */
+/* ハンバーガー */
 
 function toggleMenu(){
 
-document
-.querySelector(".side-header")
-.classList
-.toggle("active");
+let menu=document.querySelector(".side-header");
+
+if(menu){
+menu.classList.toggle("active");
+}
 
 }
