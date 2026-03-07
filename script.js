@@ -28,6 +28,8 @@ recipe.style.display="none";
 
 
 
+  
+
 
 function createRecipeHTML(data,className){
 
@@ -37,9 +39,7 @@ data.forEach(r=>{
 
 html+=`
 
-<details class="${className}" 
-data-mine="${r.mine}" 
-data-keywords="${r.keywords}">
+<details class="${className}" data-mine="${r.mine}" data-keywords="${r.keywords}">
 
 <summary>${r.name}</summary>
 
@@ -69,13 +69,11 @@ let input=document
 .value
 .toLowerCase();
 
-let recipes=
-document.querySelectorAll("."+className);
+let recipes=document.querySelectorAll("."+className);
 
 recipes.forEach(function(recipe){
 
-let keywords=
-recipe.dataset.keywords.toLowerCase();
+let keywords=recipe.dataset.keywords.toLowerCase();
 
 if(keywords.includes(input)){
 recipe.style.display="block";
@@ -92,13 +90,11 @@ recipe.style.display="none";
 
 function filterMine(className,mine){
 
-let recipes=
-document.querySelectorAll("."+className);
+let recipes=document.querySelectorAll("."+className);
 
 recipes.forEach(function(recipe){
 
-let recipeMine=
-recipe.dataset.mine;
+let recipeMine=recipe.dataset.mine;
 
 if(mine==="all"||recipeMine===mine){
 recipe.style.display="block";
@@ -107,5 +103,17 @@ recipe.style.display="none";
 }
 
 });
+
+}
+
+
+/* ハンバーガーメニュー */
+
+function toggleMenu(){
+
+document
+.querySelector(".side-header")
+.classList
+.toggle("active");
 
 }
