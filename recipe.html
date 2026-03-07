@@ -1,232 +1,47 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
+
 <meta charset="UTF-8">
 <title>ピッケルレシピ</title>
+
 <link rel="stylesheet" href="style.css">
-
-<style>
-
-/* ---------------- レシピセクション ---------------- */
-
-#recipe-section{
-margin-left:180px;
-padding:40px;
-}
-
-/* 検索バー */
-
-#recipeSearch{
-width:300px;
-max-width:90%;
-padding:10px;
-border-radius:8px;
-border:none;
-margin-top:20px;
-margin-bottom:20px;
-font-size:16px;
-background:#f0f0f0;
-color:black;
-}
-
-/* 採掘場ボタン */
-
-#mineFilter .mine-btn{
-background:rgba(0,0,0,0.3);
-color:white;
-border:none;
-padding:8px 12px;
-margin-right:5px;
-border-radius:6px;
-cursor:pointer;
-transition:0.2s;
-}
-
-#mineFilter .mine-btn:hover{
-background:#00ffcc;
-color:black;
-}
-
-/* レシピ */
-
-.recipe{
-background:rgba(0,0,0,0.45);
-padding:15px;
-margin:15px 0;
-border-radius:10px;
-}
-
-.recipe summary{
-color:#00ffcc;
-font-size:18px;
-cursor:pointer;
-}
-
-.recipe ol{
-padding-left:20px;
-line-height:1.8;
-}
-
-/* スマホ */
-
-@media screen and (max-width:768px){
-
-.side-header{
-position:relative;
-width:100%;
-height:auto;
-flex-direction:row;
-justify-content:space-around;
-padding:10px 0;
-}
-
-#recipe-section{
-margin-left:0;
-padding:20px;
-}
-
-#recipeSearch{
-width:90%;
-}
-
-}
-
-</style>
 
 </head>
 
 <body>
 
-<div id="header"></div>
-
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-<section id="recipe-section">
-
-<h1>Minfinity Craft サーバー</h1>
+<h1>ピッケルレシピ</h1>
 
 <input
 type="text"
 id="recipeSearch"
-placeholder="キーワード検索（ピッケル名・採掘場・素材）"
-onkeyup="searchRecipe()"
-
+placeholder="ピッケル・素材検索"
+onkeyup="searchRecipe('recipeSearch','recipe')"
 >
 
-<div id="mineFilter" style="margin:20px 0;">
-<button class="mine-btn" onclick="filterMine('all')">全て</button>
-<button class="mine-btn" onclick="filterMine('第一')">第一採掘場</button>
-<button class="mine-btn" onclick="filterMine('第二')">第二採掘場</button>
-<button class="mine-btn" onclick="filterMine('第三')">第三採掘場</button>
-</div>
+<div>
 
-<div class="recipe-list">
-
-<details class="recipe" data-keywords="第一 丸石 初級 丸石ピッケル" data-mine="第一">
-<summary>丸石ピッケル</summary>
-<ol>
-<li>① 丸石</li>
-<li>② 丸石</li>
-<li>③ 丸石</li>
-</ol>
-</details>
-
-<details class="recipe" data-keywords="第二 鉄 中級 鉄ピッケル" data-mine="第二">
-<summary>鉄ピッケル</summary>
-<ol>
-<li>① 鉄素材</li>
-<li>② 鉄素材</li>
-<li>③ 棒</li>
-</ol>
-</details>
-
-<details class="recipe" data-keywords="第二 金 中級 金ピッケル" data-mine="第二">
-<summary>金ピッケル</summary>
-<ol>
-<li>① 金素材</li>
-<li>② 金素材</li>
-<li>③ 棒</li>
-</ol>
-</details>
-
-<details class="recipe" data-keywords="第三 ダイヤ 上級 ダイヤピッケル" data-mine="第三">
-<summary>ダイヤピッケル</summary>
-<ol>
-<li>① ダイヤ素材</li>
-<li>② ダイヤ素材</li>
-<li>③ 棒</li>
-</ol>
-</details>
+<button onclick="filterMine('recipe','all')">全て</button>
+<button onclick="filterMine('recipe','第一')">第一</button>
+<button onclick="filterMine('recipe','第二')">第二</button>
+<button onclick="filterMine('recipe','第三')">第三</button>
 
 </div>
 
-</section>
+<div id="recipeList"></div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
 
 <script>
 
-/* 現在選択されている採掘場 */
-
-let selectedMine = "all";
-
-/* 検索 */
-
-function searchRecipe(){
-updateRecipes();
-}
-
-/* 採掘場フィルター */
-
-function filterMine(mine){
-selectedMine = mine;
-updateRecipes();
-}
-
-/* 検索＋採掘場フィルター */
-
-function updateRecipes(){
-
-let input =
-document.getElementById("recipeSearch")
-.value
-.toLowerCase();
-
-let recipes =
-document.querySelectorAll(".recipe");
-
-recipes.forEach(function(recipe){
-
-let keywords =
-recipe.dataset.keywords.toLowerCase();
-
-let mine =
-recipe.dataset.mine;
-
-let matchSearch =
-keywords.includes(input);
-
-let matchMine =
-(selectedMine === "all" || mine === selectedMine);
-
-if(matchSearch && matchMine){
-recipe.style.display="block";
-}else{
-recipe.style.display="none";
-}
-
-});
-
-}
-
-/* ハンバーガーメニュー */
-
-function toggleMenu(){
-document.querySelector(".side-header").classList.toggle("active");
-}
+document
+.getElementById("recipeList")
+.innerHTML=
+createRecipeHTML(recipes,"recipe");
 
 </script>
-
-<script src="script.js"></script>
 
 </body>
 </html>
