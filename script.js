@@ -8,28 +8,6 @@ fetch("header.html")
 document.getElementById("header").innerHTML = data;
 });
 
-function searchRecipe(){
-
-let input = document.getElementById("recipeSearch").value.toLowerCase();
-
-let recipes = document.querySelectorAll(".recipe-item");
-
-recipes.forEach(function(recipe){
-
-let keywords = recipe.dataset.keywords.toLowerCase();
-
-if(keywords.includes(input)){
-recipe.style.display="block";
-}else{
-recipe.style.display="none";
-}
-
-});
-
-
-
-  
-
 
 function createRecipeHTML(data,className){
 
@@ -108,18 +86,5 @@ recipe.style.display="none";
 }
 
 });
-
-}
-
-
-/* ハンバーガー */
-
-function toggleMenu(){
-
-let menu=document.querySelector(".side-header");
-
-if(menu){
-menu.classList.toggle("active");
-}
 
 }
