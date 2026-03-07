@@ -27,3 +27,15 @@ recipe.style.display="none";
 });
 
 }
+const recipes = [
+{
+name:"鉄素材",
+mine:"第二",
+keywords:"鉄 第二採掘場 インゴット",
+steps:[
+"① 鉄インゴット",
+"② 鉄インゴット",
+"③ 鉄インゴット"
+]
+}
+];
