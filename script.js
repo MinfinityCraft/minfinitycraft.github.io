@@ -26,56 +26,27 @@ recipe.style.display="none";
 
 });
 
-}
-const recipes = [
-{
-name:"鉄素材",
-mine:"第二",
-keywords:"鉄 第二採掘場 インゴット",
-steps:[
-"① 鉄インゴット",
-"② 鉄インゴット",
-"③ 鉄インゴット"
-]
-},
-
-{
-name:"鉄素材",
-mine:"第二",
-keywords:"鉄 第二採掘場 インゴット",
-steps:[
-"① 鉄インゴット",
-"② 鉄インゴット",
-"③ 鉄インゴット"
-]
-},
-
-  
-];
 
 
-function generateRecipes(){
 
-const list = document.getElementById("recipeList");
+function createRecipeHTML(data,className){
 
-recipes.forEach(recipe=>{
+let html="";
 
-let stepsHTML="";
+data.forEach(r=>{
 
-recipe.steps.forEach(step=>{
-stepsHTML += `<li>${step}</li>`;
-});
+html+=`
 
-list.innerHTML += `
+<details class="${className}" 
+data-mine="${r.mine}" 
+data-keywords="${r.keywords}">
 
-<details class="material-recipe"
-data-mine="${recipe.mine}"
-data-keywords="${recipe.keywords}">
-
-<summary>${recipe.name}</summary>
+<summary>${r.name}</summary>
 
 <ol>
-${stepsHTML}
+<li>① ${r.items[0]}</li>
+<li>② ${r.items[1]}</li>
+<li>③ ${r.items[2]}</li>
 </ol>
 
 </details>
@@ -84,6 +55,57 @@ ${stepsHTML}
 
 });
 
+return html;
+
 }
 
-generateRecipes();
+
+/* 検索 */
+
+function searchRecipe(inputId,className){
+
+let input=document
+.getElementById(inputId)
+.value
+.toLowerCase();
+
+let recipes=
+document.querySelectorAll("."+className);
+
+recipes.forEach(function(recipe){
+
+let keywords=
+recipe.dataset.keywords.toLowerCase();
+
+if(keywords.includes(input)){
+recipe.style.display="block";
+}else{
+recipe.style.display="none";
+}
+
+});
+
+}
+
+
+/* 採掘場フィルター */
+
+function filterMine(className,mine){
+
+let recipes=
+document.querySelectorAll("."+className);
+
+recipes.forEach(function(recipe){
+
+let recipeMine=
+recipe.dataset.mine;
+
+if(mine==="all"||recipeMine===mine){
+recipe.style.display="block";
+}else{
+recipe.style.display="none";
+}
+
+});
+
+}
