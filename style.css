@@ -355,22 +355,14 @@ display:block;
 
 }
 /* -------------------- レスポンシブ対応 -------------------- */
-@media screen and (max-width: 768px){
-    .side-header{
-        position: relative;
-        width: 100%;
-        height: auto;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 10px 0;
-    }
-    section.recipe-section,
-    section#material-section{
-        margin-left: 0;
-        padding: 20px;
-    }
-    #recipeSearch,
-    #materialSearch{
-        width: 90%;
-    }
+@media screen and (max-width:768px){
+
+main{
+margin-left:0;
+}
+
+#material-section{
+margin-left:0;
+}
+
 }
