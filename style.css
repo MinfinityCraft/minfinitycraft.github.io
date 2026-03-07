@@ -306,6 +306,40 @@ section#material-section{
     line-height: 1.8;
 }
 
+/* ハンバーガーボタン */
+
+.menu-btn{
+    display:none;
+    position:fixed;
+    top:15px;
+    left:15px;
+    font-size:28px;
+    background:none;
+    border:none;
+    color:white;
+    z-index:20;
+    cursor:pointer;
+}
+
+/* スマホのみハンバーガーボタン */
+
+@media screen and (max-width:768px){
+
+.side-header{
+    transform: translateX(-100%);
+    transition: 0.3s;
+}
+
+.side-header.active{
+    transform: translateX(0);
+}
+
+.menu-btn{
+    display:block;
+}
+
+}
+
 /* -------------------- レスポンシブ対応 -------------------- */
 @media screen and (max-width: 768px){
     .side-header{
