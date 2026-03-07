@@ -12,7 +12,7 @@
 
 <body>
 
-<!-- ヘッダー -->
+<!-- ナビバー -->
 <div id="header"></div>
 
 <!-- ハンバーガー -->
@@ -22,6 +22,8 @@
 
 <h1>素材レシピ</h1>
 
+<!-- 検索 -->
+
 <input
 type="text"
 id="materialSearch"
@@ -29,28 +31,53 @@ placeholder="素材・採掘場検索"
 onkeyup="searchRecipe('materialSearch','material-recipe')"
 >
 
-<div>
+<!-- フィルター -->
 
-<button onclick="filterMine('material-recipe','all')">全て</button>
-<button onclick="filterMine('material-recipe','第一')">第一採掘場</button>
-<button onclick="filterMine('material-recipe','第二')">第二採掘場</button>
-<button onclick="filterMine('material-recipe','第三')">第三採掘場</button>
+<div style="margin:20px 0;">
+
+<button onclick="filterMine('material-recipe','all')">
+全て
+</button>
+
+<button onclick="filterMine('material-recipe','第一')">
+第一採掘場
+</button>
+
+<button onclick="filterMine('material-recipe','第二')">
+第二採掘場
+</button>
+
+<button onclick="filterMine('material-recipe','第三')">
+第三採掘場
+</button>
 
 </div>
+
+<!-- レシピ表示エリア -->
 
 <div id="recipeList"></div>
 
 </section>
 
+
+<!-- JS読み込み（順番大事） -->
+
 <script src="data.js"></script>
 <script src="script.js"></script>
 
+
 <script>
+
+/* ページ読み込み後に表示 */
+
+window.onload=function(){
 
 document
 .getElementById("recipeList")
 .innerHTML=
 createRecipeHTML(materials,"material-recipe");
+
+};
 
 </script>
 
