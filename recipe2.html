@@ -1,261 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
 <meta charset="UTF-8">
 <title>素材レシピ</title>
+
 <link rel="stylesheet" href="style.css">
 
-<style>
-
-/* -------------------- 素材レシピセクション -------------------- */
-
-#material-section{
-    margin-left: 180px;
-    padding: 40px;
-}
-
-/* 検索バー */
-
-#materialSearch{
-    width: 300px;
-    max-width: 90%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    background-color: #f0f0f0;
-    color: black;
-}
-
-/* 採掘場ボタン */
-
-#materialFilter .mine-btn{
-    background: rgba(0,0,0,0.3);
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    margin-right: 5px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-#materialFilter .mine-btn:hover{
-    background: #00ffcc;
-    color: black;
-}
-
-/* レシピ */
-
-.material-recipe{
-    background: rgba(0,0,0,0.45);
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 10px;
-}
-
-.material-recipe summary{
-    font-size: 18px;
-    color: #00ffcc;
-    cursor: pointer;
-}
-
-.material-recipe ol{
-    padding-left: 20px;
-    line-height: 1.8;
-}
-
-/* スマホ */
-
-@media screen and (max-width:768px){
-
-    #material-section{
-        margin-left:0;
-        padding:20px;
-    }
-
-    #materialSearch{
-        width:90%;
-    }
-
-}
-
-</style>
 </head>
 
 <body>
 
-<!-- ヘッダー読み込み -->
-<div id="header"></div>
+<h1>素材レシピ</h1>
 
-<!-- ハンバーガー -->
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-<section id="material-section">
-
-<h1>Minfinity Craft サーバー</h1>
-
-<!-- 検索 -->
-
-<input type="text"
+<input
+type="text"
 id="materialSearch"
-placeholder="素材・採掘場で検索"
-onkeyup="searchMaterial()">
+placeholder="素材・採掘場検索"
+onkeyup="searchRecipe('materialSearch','material-recipe')"
+>
 
-<!-- 採掘場フィルター -->
+<div>
 
-<div id="materialFilter" style="margin:20px 0;">
-
-<button class="mine-btn" onclick="filterMaterialMine('all')">
-全て
-</button>
-
-<button class="mine-btn" onclick="filterMaterialMine('第一')">
-第一採掘場
-</button>
-
-<button class="mine-btn" onclick="filterMaterialMine('第二')">
-第二採掘場
-</button>
-
-<button class="mine-btn" onclick="filterMaterialMine('第三')">
-第三採掘場
-</button>
+<button onclick="filterMine('material-recipe','all')">全て</button>
+<button onclick="filterMine('material-recipe','第一')">第一</button>
+<button onclick="filterMine('material-recipe','第二')">第二</button>
+<button onclick="filterMine('material-recipe','第三')">第三</button>
 
 </div>
 
-<!-- レシピ一覧 -->
+<div id="recipeList"></div>
 
-<div class="recipe-list" id="recipeList">
-
-<details class="material-recipe"
-data-mine="第二"
-data-keywords="鉄 第二採掘場 インゴット">
-
-    
-
-
-    
-<summary>鉄素材</summary>
-
-<ol>
-<li>① 鉄インゴット</li>
-<li>② 鉄インゴット</li>
-<li>③ 鉄インゴット</li>
-</ol>
-
-</details>
-
-
-
-    
-    
-<details class="material-recipe"
-data-mine="第一"
-data-keywords="金 第一採掘場 インゴット">
-
-<summary>金素材</summary>
-
-<ol>
-<li>① 金インゴット</li>
-<li>② 金インゴット</li>
-<li>③ 金インゴット</li>
-</ol>
-
-</details>
-
-<details class="material-recipe"
-data-mine="第二"
-data-keywords="ダイヤ 第二採掘場">
-
-<summary>ダイヤ素材</summary>
-
-<ol>
-<li>① ダイヤ</li>
-<li>② ダイヤ</li>
-<li>③ ダイヤ</li>
-</ol>
-
-</details>
-
-</div>
-
-</section>
-
+<script src="data.js"></script>
+<script src="script.js"></script>
 
 <script>
 
-/* 検索 */
-
-function searchMaterial(){
-
-let input =
-document.getElementById("materialSearch")
-.value
-.toLowerCase();
-
-let recipes =
-document.querySelectorAll(".material-recipe");
-
-recipes.forEach(function(recipe){
-
-let keywords =
-recipe.dataset.keywords.toLowerCase();
-
-if(keywords.includes(input)){
-recipe.style.display = "block";
-}else{
-recipe.style.display = "none";
-}
-
-});
-
-}
-
-
-/* 採掘場フィルター */
-
-function filterMaterialMine(mine){
-
-let recipes =
-document.querySelectorAll(".material-recipe");
-
-recipes.forEach(function(recipe){
-
-let recipeMine =
-recipe.dataset.mine;
-
-if(mine === "all" || recipeMine === mine){
-
-recipe.style.display = "block";
-
-}else{
-
-recipe.style.display = "none";
-
-}
-
-});
-
-}
-
-
-/* ハンバーガー */
-
-function toggleMenu(){
-
 document
-.querySelector(".side-header")
-.classList
-.toggle("active");
-
-}
+.getElementById("recipeList")
+.innerHTML=
+createRecipeHTML(materials,"material-recipe");
 
 </script>
-
-<script src="script.js"></script>
 
 </body>
 </html>
