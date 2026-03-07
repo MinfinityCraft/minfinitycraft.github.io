@@ -248,6 +248,12 @@ function filterMine(mine){
         m.style.display = (mine === 'all' || m.dataset.mine === mine) ? "block" : "none";
     });
 }
+
+
+function toggleMenu(){
+document.querySelector(".side-header").classList.toggle("active");
+}
+
 </script>
 
 </body>
