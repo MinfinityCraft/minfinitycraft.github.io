@@ -1,36 +1,11 @@
-const recipes = [
-
-{
-name:"鉄ピッケル",
-mine:"第一",
-keywords:"鉄 ピッケル 第一",
-items:["鉄素材","鉄素材","棒"]
-},
-
-{
-name:"金ピッケル",
-mine:"第二",
-keywords:"金 ピッケル 第二 中級",
-items:["金素材","金素材","棒"]
-}
-
+// data.js
+const materialsRecipes = [
+  { name: "木の板", ingredients: ["木材 x1"], result: "木の板 x4" },
+  { name: "石の道具", ingredients: ["石 x3", "棒 x2"], result: "石のツルハシ x1" },
+  // どんどん追加
 ];
 
-
-const materials = [
-
-{
-name:"鉄素材",
-mine:"第二",
-keywords:"鉄 第二採掘場 インゴット",
-items:["鉄インゴット","鉄インゴット","鉄インゴット"]
-},
-
-{
-name:"金素材",
-mine:"第一",
-keywords:"金 第一採掘場 インゴット",
-items:["金インゴット","金インゴット","金インゴット"]
-}
-
+const pickaxeRecipes = [
+  { name: "木のツルハシ", ingredients: ["木材 x3", "棒 x2"], result: "木のツルハシ x1" },
+  { name: "石のツルハシ", ingredients: ["石 x3", "棒 x2"], result: "石のツルハシ x1" },
 ];
