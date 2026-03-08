@@ -1,76 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>素材レシピ</title>
-<meta name="description" content="Minfinity Craftの素材レシピページです。サーバー内で使用できる素材の作り方を紹介しています。">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
 <link href="style.css" rel="stylesheet">
+
 </head>
+
+
 <body>
 
-<!-- ヘッダー -->
 <div id="header"></div>
 
-<!-- スマホ用ハンバーガーボタン -->
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!-- メインコンテンツ -->
 <div class="main-content">
-  <div class="main-header">
-    <h1>素材レシピ</h1>
-    <p>サーバー内で使える素材の作り方を一覧で紹介します。</p>
-  </div>
 
-  <!-- 検索バー -->
-  <input type="text" id="materialSearch" placeholder="検索…">
-
-  <!-- 素材リスト -->
-  <section id="material-section">
-    <div class="material-mine">
-      <h2>採掘場A</h2>
-      <div class="material-recipe">
-        <h3>素材1</h3>
-        <ol>
-          <li>素材Aを1つ用意</li>
-          <li>素材Bとクラフト</li>
-          <li>完成！</li>
-        </ol>
-      </div>
-      <div class="material-recipe">
-        <h3>素材2</h3>
-        <ol>
-          <li>素材Cを2つ用意</li>
-          <li>素材Dとクラフト</li>
-          <li>完成！</li>
-        </ol>
-      </div>
-    </div>
-  </section>
+<div class="main-header">
+<h1>素材レシピ</h1>
+<p>素材の作り方一覧</p>
 </div>
 
-<script>
-function toggleMenu(){
-  document.querySelector(".side-header").classList.toggle("active");
-}
 
-// 検索機能
-document.getElementById("materialSearch").addEventListener("input", function(){
-  const filter = this.value.toLowerCase();
-  const items = document.querySelectorAll(".material-recipe");
-  items.forEach(item => {
-    const text = item.textContent.toLowerCase();
-    item.style.display = text.includes(filter) ? "" : "none";
-  });
+<div class="box">
+
+<h2>圧縮鉄</h2>
+
+<p>
+鉄 ×9
+</p>
+
+</div>
+
+
+<div class="box">
+
+<h2>強化棒</h2>
+
+<p>
+木材 ×2<br>
+石 ×1
+</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+fetch("header.html")
+.then(res => res.text())
+.then(data => {
+document.getElementById("header").innerHTML = data;
 });
 
-// header.htmlを読み込む
-fetch('header.html')
-  .then(res => res.text())
-  .then(html => document.getElementById('header').innerHTML = html);
+function toggleMenu(){
+document.querySelector(".side-header").classList.toggle("active");
+}
+
 </script>
 
-<script src="script.js"></script>
 </body>
 </html>
