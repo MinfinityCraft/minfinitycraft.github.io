@@ -2,16 +2,25 @@
   {
     "category": "first",
     "name": "土の素材",
-    "details": "必要素材：土×3\n説明：初心者向け素材"
+    "materials": ["土","土","土"],
+    "performance": "初心者向け",
+    "area": "第一採掘場",
+    "description": "土の素材は初心者でも扱いやすい素材です。"
   },
   {
     "category": "first",
     "name": "桜の素材",
-    "details": "必要素材：桜の木×3\n説明：かわいい見た目"
+    "materials": ["桜の木","桜の木","桜の木"],
+    "performance": "装飾向き",
+    "area": "第一採掘場",
+    "description": "見た目がかわいい素材です。"
   },
   {
     "category": "second",
     "name": "鉄の素材",
-    "details": "必要素材：鉄×3\n説明：鉄採掘用"
+    "materials": ["鉄","鉄","鉄"],
+    "performance": "耐久性高",
+    "area": "第二採掘場",
+    "description": "鉄採掘用の素材です。"
   }
 ]
