@@ -1,1 +1,17 @@
-
+[
+  {
+    "category": "first",
+    "name": "土の素材",
+    "details": "必要素材：土×3\n説明：初心者向け素材"
+  },
+  {
+    "category": "first",
+    "name": "桜の素材",
+    "details": "必要素材：桜の木×3\n説明：かわいい見た目"
+  },
+  {
+    "category": "second",
+    "name": "鉄の素材",
+    "details": "必要素材：鉄×3\n説明：鉄採掘用"
+  }
+]
