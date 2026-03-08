@@ -3,30 +3,39 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>素材レシピ</title>
 
-<link href="style.css" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
 
 </head>
 
 <body>
 
-<div id="header"></div>
+<header>
 
-<div class="main-content">
+<nav class="navbar">
 
-<div class="main-header">
+<a href="../index.html">ホーム</a>
+
+<a href="../recipe.html">ピッケル</a>
+
+<a href="../recipe2.html">素材</a>
+
+</nav>
+
+</header>
+
+
+<main>
+
 <h1>素材レシピ</h1>
-<p>素材の作り方一覧</p>
-</div>
-
-<input type="text" id="recipeSearch" placeholder="素材を検索..." class="search-box">
 
 <div id="recipeList"></div>
 
-<script src="data.js"></script>
+</main>
+
+
+<script src="../data.js"></script>
 
 <script>
 
@@ -40,7 +49,9 @@ const mines = {};
 materialRecipes.forEach(item => {
 
 if(!mines[item.mine]){
+
 mines[item.mine] = [];
+
 }
 
 mines[item.mine].push(item);
@@ -52,15 +63,18 @@ mines[item.mine].push(item);
 
 for(const mine in mines){
 
-let section = "<h2>"+mine+"</h2>";
+let section = `<h2>${mine}</h2>`;
 
 mines[mine].forEach(item=>{
 
 section += `
+
 <div class="recipe-item">
 
 <div class="recipe-title" onclick="toggleRecipe(this)">
+
 ${item.name}
+
 </div>
 
 <div class="recipe-content">
@@ -70,6 +84,7 @@ ${item.recipe.join("<br>")}
 </div>
 
 </div>
+
 `;
 
 });
@@ -86,9 +101,13 @@ function toggleRecipe(el){
 const content = el.nextElementSibling;
 
 if(content.style.display === "block"){
+
 content.style.display = "none";
+
 }else{
+
 content.style.display = "block";
+
 }
 
 }
