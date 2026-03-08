@@ -1,26 +1,16 @@
 [
   {
-    "category": "first",
     "name": "土のピッケル",
-    "materials": ["土","木","木"],
-    "performance": "初心者向け",
+    "recipe": ["土", "木棒", "木棒"],
+    "performance": "掘削速度:低",
     "area": "第一採掘場",
-    "description": "初心者でも扱いやすいピッケルです。"
+    "description": "初心者用のピッケル。耐久は低い。"
   },
   {
-    "category": "first",
     "name": "桜のピッケル",
-    "materials": ["桜の木","木","木"],
-    "performance": "見た目がかわいい",
-    "area": "第一採掘場",
-    "description": "見た目重視のピッケルです。"
-  },
-  {
-    "category": "second",
-    "name": "鉄のピッケル",
-    "materials": ["鉄","木","木"],
-    "performance": "鉄採掘用",
+    "recipe": ["桜の木材", "木棒", "木棒"],
+    "performance": "掘削速度:中",
     "area": "第二採掘場",
-    "description": "耐久性の高いピッケルです。"
+    "description": "少し速く掘れるピッケル。見た目も可愛い。"
   }
 ]
