@@ -339,3 +339,37 @@ border:none;
 .section-box li {
   margin-bottom: 6px;
 }
+
+
+
+
+/* 折りたたみボタン */
+.accordion {
+  background-color: rgba(255,255,255,0.05);
+  color: #ffffff;
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  transition: 0.3s;
+}
+
+/* 開いた状態の色 */
+.accordion.active, .accordion:hover {
+  background-color: rgba(255,255,255,0.15);
+}
+
+/* 折りたたみパネル */
+.panel {
+  padding: 0 15px;
+  display: none;
+  background-color: rgba(255,255,255,0.02);
+  overflow: hidden;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 10px;
+}
