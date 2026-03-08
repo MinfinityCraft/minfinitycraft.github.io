@@ -10,97 +10,73 @@
 </head>
 <body>
 
+<!-- ナビバー読み込み -->
 <div id="header"></div>
+
+<!-- スマホ用ハンバーガーボタン -->
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<main>
-  <h1>ピッケルレシピ</h1>
-
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="キーワード検索">
-    <select id="categorySelect">
-      <option value="all">すべての採掘場</option>
-      <option value="first">第一採掘場</option>
-      <option value="second">第二採掘場</option>
-    </select>
+<!--  メインコンテンツ  -->
+<main class="main-content">
+  <div class="main-header">
+    <h1>ピッケルレシピ</h1>
+    <p>ピッケルごとのクラフト方法を確認できます</p>
+    <input type="text" class="search-box" id="pickelSearch" placeholder="キーワード検索">
   </div>
 
-  <div id="recipeContainer"></div>
+  <div id="pickelList">
+    <!-- JSでピッケルレシピを展開 -->
+  </div>
 </main>
 
 <script src="script.js"></script>
 <script>
-fetch('header.html')
-  .then(res => res.text())
-  .then(data => document.getElementById('header').innerHTML = data);
+  // 例: pickel.json から読み込む
+  fetch('pickel.json')
+    .then(res => res.json())
+    .then(data => {
+      const list = document.getElementById('pickelList');
+      data.forEach(item => {
+        const acc = document.createElement('button');
+        acc.className = 'accordion';
+        acc.textContent = item.name;
 
-const recipeContainer = document.getElementById('recipeContainer');
-const searchInput = document.getElementById('searchInput');
-const categorySelect = document.getElementById('categorySelect');
-let recipes = [];
+        const panel = document.createElement('div');
+        panel.className = 'panel';
+        panel.innerHTML = `
+          <ol>
+            ${item.recipe.map(i => `<li>${i}</li>`).join('')}
+          </ol>
+          <p>性能：${item.performance}</p>
+          <p>掘れるエリア：${item.area}</p>
+          <p>説明：${item.description}</p>
+        `;
 
-fetch('pickel.json')
-  .then(res => res.json())
-  .then(data => { recipes = data; renderRecipes(); });
+        acc.addEventListener('click', () => {
+          acc.classList.toggle('active');
+          panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        });
 
-function renderRecipes() {
-  const keyword = searchInput.value.toLowerCase();
-  const category = categorySelect.value;
-
-  const filtered = recipes.filter(r =>
-    (category === 'all' || r.category === category) &&
-    r.name.toLowerCase().includes(keyword)
-  );
-
-  recipeContainer.innerHTML = '';
-  const grouped = {};
-  filtered.forEach(r => {
-    if (!grouped[r.category]) grouped[r.category] = [];
-    grouped[r.category].push(r);
-  });
-
-  for (const cat in grouped) {
-    const section = document.createElement('div');
-    section.className = 'recipe-section';
-    const heading = document.createElement('h2');
-    heading.textContent = cat === 'first' ? '第一採掘場' : '第二採掘場';
-    section.appendChild(heading);
-
-    grouped[cat].forEach(r => {
-      const accordion = document.createElement('button');
-      accordion.className = 'accordion';
-      accordion.textContent = r.name + ' ▽';
-
-      const panel = document.createElement('div');
-      panel.className = 'panel';
-      panel.style.display = 'none';
-
-      let materialsList = '<ol>';
-      r.materials.forEach(m => materialsList += `<li>${m}</li>`);
-      materialsList += '</ol>';
-
-      panel.innerHTML = `
-        ${materialsList}
-        <p>性能：${r.performance}</p>
-        <p>掘れるエリア：${r.area}</p>
-        <p>説明：${r.description}</p>
-      `;
-
-      accordion.addEventListener('click', () => {
-        accordion.classList.toggle('active');
-        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        list.appendChild(acc);
+        list.appendChild(panel);
       });
-
-      section.appendChild(accordion);
-      section.appendChild(panel);
     });
 
-    recipeContainer.appendChild(section);
-  }
-}
-
-searchInput.addEventListener('input', renderRecipes);
-categorySelect.addEventListener('change', renderRecipes);
+  // 検索機能
+  document.getElementById('pickelSearch').addEventListener('input', function() {
+    const keyword = this.value.toLowerCase();
+    document.querySelectorAll('#pickelList .accordion').forEach(acc => {
+      const panel = acc.nextElementSibling;
+      if(acc.textContent.toLowerCase().includes(keyword)) {
+        acc.style.display = '';
+        panel.style.display = acc.classList.contains('active') ? 'block' : 'none';
+      } else {
+        acc.style.display = 'none';
+        panel.style.display = 'none';
+      }
+    });
+  });
 </script>
+
 </body>
 </html>
