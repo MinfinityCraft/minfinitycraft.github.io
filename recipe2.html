@@ -107,6 +107,14 @@
     const filtered = recipes.filter(r => r.name.toLowerCase().includes(keyword));
     renderRecipes(filtered);
   });
+
+   // Html内に読み込み（header）
+<div id="headerContainer"></div>
+fetch('header.html')
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('headerContainer').innerHTML = html;
+  });
 </script>
 
 </body>
