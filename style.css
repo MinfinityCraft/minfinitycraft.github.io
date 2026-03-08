@@ -398,3 +398,12 @@ border:none;
   margin: 8px 0;
   line-height: 1.6;
 }
+
+.panel .subheading {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #66ffff;
+  text-shadow: 0 0 5px rgba(0,255,255,0.3);
+}
