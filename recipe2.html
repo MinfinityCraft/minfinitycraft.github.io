@@ -10,10 +10,13 @@
 
 </head>
 
-
 <body>
 
-<header id="header"></header>
+<header>
+
+<iframe src="../header.html" class="header-frame"></iframe>
+
+</header>
 
 
 <main>
@@ -27,19 +30,13 @@
 </main>
 
 
-<script src="../header.js"></script>
 <script src="../data.js"></script>
 
-
 <script>
-
-/* 要素取得 */
 
 const container = document.getElementById("recipeList");
 const searchBox = document.getElementById("searchBox");
 
-
-/* レシピ表示関数 */
 
 function renderRecipes(list){
 
@@ -47,8 +44,6 @@ container.innerHTML = "";
 
 const mines = {};
 
-
-/* 採掘場ごとに分類 */
 
 list.forEach(item => {
 
@@ -62,8 +57,6 @@ mines[item.mine].push(item);
 
 });
 
-
-/* HTML生成 */
 
 for(const mine in mines){
 
@@ -96,8 +89,6 @@ container.innerHTML += section;
 }
 
 
-/* クリックで展開 */
-
 function toggleRecipe(el){
 
 const content = el.nextElementSibling;
@@ -115,8 +106,6 @@ content.style.display = "block";
 }
 
 
-/* 検索機能 */
-
 searchBox.addEventListener("input", function(){
 
 const word = this.value.toLowerCase();
@@ -130,12 +119,9 @@ renderRecipes(filtered);
 });
 
 
-/* 初期表示 */
-
 renderRecipes(materialRecipes);
 
 </script>
-
 
 </body>
 </html>
