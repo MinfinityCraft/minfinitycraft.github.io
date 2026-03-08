@@ -24,36 +24,11 @@
 
 <input type="text" id="recipeSearch" placeholder="レシピを検索..." class="search-box">
 
-
-<div class="box">
-<h2>木のピッケル</h2>
-<p>
-木材 ×3<br>
-棒 ×2
-</p>
-</div>
-
-
-<div class="box">
-<h2>石のピッケル</h2>
-<p>
-石 ×3<br>
-棒 ×2
-</p>
-</div>
-
-
-<div class="box">
-<h2>鉄のピッケル</h2>
-<p>
-鉄 ×3<br>
-棒 ×2
-</p>
-</div>
-
+<div id="recipeList"></div>
 
 </div>
 
+<script src="data.js"></script>
 
 <script>
 
@@ -66,6 +41,28 @@ document.getElementById("header").innerHTML = data;
 function toggleMenu(){
 document.querySelector(".side-header").classList.toggle("active");
 }
+
+
+const container = document.getElementById("recipeList");
+
+
+pickaxeRecipes.forEach(item => {
+
+let recipeHTML = "<div class='box'>";
+
+recipeHTML += "<h2>" + item.name + "</h2>";
+
+recipeHTML += "<p>";
+
+item.recipe.forEach(mat=>{
+recipeHTML += mat + "<br>";
+});
+
+recipeHTML += "</p></div>";
+
+container.innerHTML += recipeHTML;
+
+});
 
 
 const search = document.getElementById("recipeSearch");
