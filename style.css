@@ -137,16 +137,11 @@ width:100%;
 
 /* ===== メインコンテンツ ===== */
 
-.main-content{
-
-margin-left:200px;
-
-padding:40px;
-
-max-width:900px;
-
-margin-right:auto;
-
+.main-content {
+    margin-left: 200px;
+    padding: 80px 40px 40px 40px; /* 上：80px に変更 */
+    max-width: 900px;
+    margin-right: auto;
 }
 
 
