@@ -4,48 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Minfinity Craft｜Minecraft 整地 Server</title>
+
 <meta name="description" content="Minfinity Craftはマイクラ整地を楽しめるMinecraft 統合版サーバーです。ランキングやサーバー情報を掲載している公式サイトです。">
+
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
 
-<!--  ヘッダーファイル読み込み  -->
-  
+<!-- ヘッダーファイル読み込み -->
 <div id="header"></div>
 
 <!-- スマホのみハンバーガーボタン -->
-
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
 
 <!-- メインコンテンツ -->
 <div class="main-content">
-  <div class="main-header">
-    <h1>Minfinity Craft<br>公式サイト</h1>
-    <p>Minfinity Craftはマイクラ整地を楽しめるMinecraft統合版サーバーです。<br>最新情報やランキングを随時更新しています。</p>
-  </div>
 
-  <div class="box">
-    <h2>サーバーについて</h2>
-    <p>このサーバーは整地をメインにしたMinecraftサーバーです。<br>整地したブロック数や所持金などがランキングに反映されます。</p>
-  </div>
+<div class="main-header">
 
-  <div class="box">
-    <h2>ランキング案内</h2>
-    <p>現在の整地ランキングや所持金ランキングはランキングページで確認できます。</p>
-  </div>
+<h1 class="site-title">
+<span class="mc-text">Minfinity Craft</span><br>
+公式サイト
+</h1>
+
+<p>
+Minfinity Craftはマイクラ整地を楽しめるMinecraft統合版サーバーです。<br>
+最新情報やランキングを随時更新しています。
+</p>
+
+</div>
+
+<div class="box">
+<h2>サーバーについて</h2>
+
+<p>
+このサーバーは整地をメインにしたMinecraftサーバーです。<br>
+整地したブロック数や所持金などがランキングに反映されます。
+</p>
+
+</div>
+
+<div class="box">
+<h2>ランキング案内</h2>
+
+<p>
+現在の整地ランキングや所持金ランキングはランキングページで確認できます。
+</p>
+
+</div>
+
 </div>
 
 <script>
+
 function toggleMenu(){
 document.querySelector(".side-header").classList.toggle("active");
 }
+
 </script>
 
-<!--  script.js読み込み  -->
 <script src="script.js"></script>
-  
 
 </body>
 </html>
