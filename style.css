@@ -1,9 +1,13 @@
+/* -------------------- body 背景対応 -------------------- */
 body{
   margin:0;
   padding:0;
   font-family:"Noto Sans JP", sans-serif;
   color:white;
   text-align:center;
+
+  min-height: 100vh;      /* 画面いっぱいの高さを確保 */
+  position: relative;      /* ::before の基準に */
 }
 
 body::before{
@@ -13,8 +17,7 @@ body::before{
   left:0;
   width:100%;
   height:100%;
-  z-index:-1;
-
+  z-index:-1;              /* 背景は最背面 */
   background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
 }
 
@@ -24,12 +27,9 @@ body::before{
   font-size:48px;
   font-weight:900;
   letter-spacing:3px;
-
   margin-top:40px;
   margin-bottom:10px;
-
   color:#00ffcc;
-
   text-shadow:
     0 0 5px #00ffcc,
     0 0 10px #00ffcc,
@@ -40,13 +40,11 @@ body::before{
 .mc-subtitle{
   font-size:16px;
   color:#aaffff;
-
   text-shadow:0 0 5px #00ffee;
-
   margin-bottom:40px;
 }
-/* -------------------- サイドバー -------------------- */
 
+/* -------------------- サイドバー -------------------- */
 .side-header {
     position: fixed;
     top: 0;
@@ -59,7 +57,7 @@ body::before{
     align-items: center;
     padding: 20px 0;
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    z-index: 10;
+    z-index: 10;   /* 背景より上に表示 */
 }
 
 .side-header .logo img{
@@ -89,7 +87,9 @@ body::before{
 .main-content{
   margin-left:160px;
   padding:20px;
-  text-align: center; /* ボックス外中央揃え */
+  text-align: center; 
+  position: relative;   /* 背景::beforeの基準に */
+  z-index: 1;           /* 背景より上に表示 */
 }
 
 /* -------------------- メインタイトル -------------------- */
@@ -232,7 +232,7 @@ td.number-animate{
 /* -------------------- 共通レシピセクション -------------------- */
 section.recipe-section,
 section#material-section{
-    margin-left: 180px; /* サイドバー分の余白 */
+    margin-left: 180px; 
     padding: 40px;
 }
 
@@ -307,7 +307,6 @@ section#material-section{
 }
 
 /*  ハンバーガーボタン  */
-
 .menu-btn{
 display:none;
 position:fixed;
@@ -322,66 +321,50 @@ cursor:pointer;
 }
 
 /* スマホ */
-
 @media screen and (max-width:768px){
-
 .side-header{
 transform:translateX(-100%);
 transition:0.3s;
 }
-
 .side-header.active{
 transform:translateX(0);
 }
-
 .menu-btn{
 display:block;
 }
-
 }
+
 /* -------------------- レスポンシブ対応 -------------------- */
 @media screen and (max-width:768px){
-
 main{
 margin-left:0;
 }
-
 #material-section{
 margin-left:0;
 }
-
 }
 
 /* スマホ用ヘッダー余白 */
-
 @media screen and (max-width:768px){
-
 main{
 margin-left:0;
 padding-top:80px;
 }
-
-/* タイトル位置調整 */
-
 h1{
 margin-top:10px;
 }
-
 }
 
 /* レシピの見た目を整える */
-
 .recipe-item{
 margin:10px 0;
 }
-
 .recipe-item summary{
 cursor:pointer;
 font-weight:bold;
 color:#00ffcc;
 font-size:18px;
 }
-
 .recipe-item summary:hover{
 color:#ffe600;
 }
