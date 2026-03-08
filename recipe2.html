@@ -11,11 +11,9 @@
 
 </head>
 
-
 <body>
 
 <div id="header"></div>
-
 
 <div class="main-content">
 
@@ -24,28 +22,34 @@
 <p>素材の作り方一覧</p>
 </div>
 
+<input type="text" id="recipeSearch" placeholder="素材を検索..." class="search-box">
+
 
 <div class="box">
-
 <h2>圧縮鉄</h2>
-
 <p>
 鉄 ×9
 </p>
-
 </div>
 
 
 <div class="box">
-
 <h2>強化棒</h2>
-
 <p>
 木材 ×2<br>
 石 ×1
 </p>
-
 </div>
+
+
+<div class="box">
+<h2>魔力クリスタル</h2>
+<p>
+ダイヤ ×1<br>
+レッドストーン ×4
+</p>
+</div>
+
 
 </div>
 
@@ -61,6 +65,29 @@ document.getElementById("header").innerHTML = data;
 function toggleMenu(){
 document.querySelector(".side-header").classList.toggle("active");
 }
+
+
+const search = document.getElementById("recipeSearch");
+
+search.addEventListener("input", function(){
+
+const keyword = search.value.toLowerCase();
+
+const recipes = document.querySelectorAll(".box");
+
+recipes.forEach(function(recipe){
+
+const text = recipe.textContent.toLowerCase();
+
+if(text.includes(keyword)){
+recipe.style.display = "block";
+}else{
+recipe.style.display = "none";
+}
+
+});
+
+});
 
 </script>
 
