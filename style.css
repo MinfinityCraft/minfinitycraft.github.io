@@ -374,7 +374,7 @@ border:none;
 
 /* 開いた状態 */
 .accordion.active {
-  background-color: rgba(102, 255, 255, 0.15); /* 水色に変更 */
+  background-color: rgba(102, 255, 255, 0.15); /* 水色に変化 */
   color: #66ffff; /* 文字色も水色 */
 }
 
@@ -393,8 +393,8 @@ border:none;
   text-align: left; /* 左揃え */
 }
 
-/* パネル内は普通の文章 */
+/* パネル内の文章 */
 .panel p {
-  margin: 5px 0;
+  margin: 8px 0;
   line-height: 1.6;
 }
