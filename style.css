@@ -1,19 +1,18 @@
 /* ===== 背景設定 ===== */
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: white;
   text-align: center;
-
-  /* 背景グラデーション */
   background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-  
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;
 }
 
-/* ===== サイドナビ（左固定） ===== */
+/* ===== サイドナビ ===== */
+
 .side-header {
   position: fixed;
   top: 0;
@@ -30,6 +29,7 @@ body {
 }
 
 /* ===== ロゴ ===== */
+
 .logo {
   font-family: 'Press Start 2P', cursive;
   font-size: 14px;
@@ -38,6 +38,7 @@ body {
 }
 
 /* ===== ナビリンク ===== */
+
 .side-nav {
   display: flex;
   flex-direction: column;
@@ -75,144 +76,74 @@ body {
 }
 
 /* ===== メインコンテンツ ===== */
+
 .main-content {
-  margin-left: 200px; /* 左固定ナビバー幅 */
-  padding: 80px 40px 40px 40px; /* 上余白 80px */
+  margin-left: 200px;
+  padding: 80px 40px 40px 40px;
   max-width: 900px;
   margin-right: auto;
 }
 
-/* ===== タイトル ===== */
-.site-title {
-  font-size: 40px;
-  margin-bottom: 10px;
-  line-height: 1.5;
-}
+/* ===== メインタイトル ===== */
 
-.mc-text {
-  font-family:'Press Start 2P', cursive;
-  font-size: 52px;
+.site-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 40px;
   background: linear-gradient(90deg, #ffe600 0%, #7fffd4 50%, #66ffff 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent !important;
   text-shadow:
     0 0 10px rgba(255,255,255,0.6),
     0 0 20px rgba(0,255,255,0.5),
     0 0 30px rgba(0,255,255,0.3);
-  letter-spacing: 3px;
+  margin-top: 40px;    /* 上余白 */
+  margin-bottom: 30px; /* 下余白 */
+  line-height: 1.2;
 }
 
-.main-header {
-  margin-bottom: 40px;
-}
-
-.main-header h1 {
-  font-size: 40px;
-  margin-bottom: 10px;
-}
-
-.main-header p {
-  opacity: 0.8;
-}
-
-/* ===== コンテンツBOX ===== */
-.box {
-  background: rgba(255,255,255,0.05);
-  border-radius: 10px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-}
-
-.box h2 {
-  margin-top: 0;
-}
-
-.box p {
-  line-height: 1.6;
-}
-
-/* ===== ハンバーガー ===== */
-.menu-btn {
-  display: none;
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  font-size: 25px;
-  background: #1a3b2e;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  z-index: 20;
-  cursor: pointer;
-}
-
-/* ===== スマホ ===== */
-@media screen and (max-width:768px) {
-  .menu-btn {
-    display: block;
-  }
-  .side-header {
-    transform: translateX(-100%);
-    transition: 0.3s;
-  }
-  .side-header.active {
-    transform: translateX(0);
-  }
-  .main-content {
-    margin-left: 0;
-    padding-top: 80px;
-  }
-}
-
-/* ===== 検索ボックス ===== */
-.search-box {
-  width: 60%;
-  max-width: 400px;
-  padding: 12px;
-  margin-bottom: 30px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-/* ===== サーバー紹介ページボックス改善 ===== */
-.section-box {
-  max-width: 800px;
-  margin: 0 auto 25px;
-  padding: 20px 25px;
-  background: rgba(255,255,255,0.05);
-  border-left: 5px solid #66ffff;
-  border-radius: 8px;
-  text-align: left;
-}
-
-.section-box h2 {
-  font-size: 22px;
-  margin-bottom: 12px;
-  border-bottom: 2px solid #7fffd4;
+.mc-text {
+  line-height: 1.2;
   display: inline-block;
 }
 
-.section-box p {
-  line-height: 1.6;
-  margin-bottom: 12px;
+/* ページ説明文 */
+.page-desc {
+  margin: 20px 0;
+  font-size: 16px;
+  opacity: 0.8;
+  line-height: 1.5;
 }
 
-.section-box ul {
-  padding-left: 20px;
-  line-height: 1.6;
-  margin-bottom: 0;
+/* ===== 検索ボックス ===== */
+
+.search-box {
+  width: 70%;
+  max-width: 450px;
+  padding: 14px 20px;
+  margin: 20px auto 40px auto;
+  display: block;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0,255,255,0.2), 0 0 20px rgba(0,255,255,0.1);
+  transition: all 0.3s ease;
 }
 
-.section-box li {
-  margin-bottom: 6px;
+.search-box::placeholder {
+  color: rgba(255,255,255,0.6);
 }
 
-/* ===== アコーディオン（折りたたみボタン） ===== */
+.search-box:focus {
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 20px rgba(0,255,255,0.4), 0 0 40px rgba(0,255,255,0.2);
+  transform: scale(1.02);
+}
+
+/* ===== アコーディオン ===== */
+
 .accordion {
   background-color: rgba(255,255,255,0.05);
   color: #ffffff;
@@ -229,7 +160,6 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* アイコンを右側に表示 */
 .accordion::after {
   content: "+";
   font-size: 18px;
@@ -240,7 +170,6 @@ body {
   transition: transform 0.3s, color 0.3s;
 }
 
-/* 開いた状態 */
 .accordion.active {
   background-color: rgba(102, 255, 255, 0.15);
   color: #66ffff;
@@ -250,9 +179,8 @@ body {
   content: "−";
 }
 
-/* パネル */
 .panel {
-  padding: 15px 20px; /* 余白広めに調整 */
+  padding: 10px 15px;
   display: none;
   background-color: rgba(255,255,255,0.02);
   overflow: hidden;
@@ -261,13 +189,8 @@ body {
   text-align: left;
 }
 
-.panel ol {
-  padding-left: 20px; /* 番号付きリスト用インデント */
-  margin: 8px 0;
-}
-
 .panel p {
-  margin: 6px 0;
+  margin: 8px 0;
   line-height: 1.6;
 }
 
@@ -279,6 +202,3 @@ body {
   color: #66ffff;
   text-shadow: 0 0 5px rgba(0,255,255,0.3);
 }
-
-
-
