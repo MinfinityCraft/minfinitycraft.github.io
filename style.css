@@ -282,8 +282,3 @@ body {
 
 
 
-.site-title {
-    -webkit-text-fill-color: transparent !important; /* これで白色指定を上書き */
-    background-clip: text;
-    -webkit-background-clip: text;
-}
