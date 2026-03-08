@@ -1,5 +1,3 @@
-/* ピッケルレシピ */
-
 const pickaxeRecipes = [
 
 {
@@ -28,9 +26,6 @@ recipe: [
 
 ];
 
-
-
-/* 素材レシピ */
 
 const materialRecipes = [
 
