@@ -3,101 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MinfinityCraft レシピ集</title>
-<link rel="stylesheet" href="common.css">  
-<style>
-  /* レシピボックス部分だけ個別調整 */
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
-  }
-
-  .box {
-    background-color: #fff; /* ボックスだけ白で中身見やすく */
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    width: 200px;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .box img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 10px;
-  }
-
-  .box p {
-    font-size: 14px;
-    line-height: 1.4;
-    margin: 0;
-  }
-
-  .search-container {
-    text-align: center;
-    margin: 20px 0;
-  }
-
-  .search-container input {
-    width: 300px;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #eee;
-    font-size: 16px;
-  }
-</style>
+<title>素材レシピ</title>
+<meta name="description" content="Minfinity Craftの素材レシピページです。サーバー内で使用できる素材の作り方を紹介しています。">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
 </head>
 <body>
 
-<!-- 共通ヘッダー -->
-<div id="headerContainer"></div>
+<!-- ヘッダー -->
+<div id="header"></div>
 
-<div class="search-container">
-  <input type="text" id="searchInput" placeholder="レシピを検索...">
+<!-- スマホ用ハンバーガーボタン -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<!-- メインコンテンツ -->
+<div class="main-content">
+  <div class="main-header">
+    <h1>素材レシピ</h1>
+    <p>サーバー内で使える素材の作り方を一覧で紹介します。</p>
+  </div>
+
+  <!-- 検索バー -->
+  <input type="text" id="materialSearch" placeholder="検索…">
+
+  <!-- 素材リスト -->
+  <section id="material-section">
+    <div class="material-mine">
+      <h2>採掘場A</h2>
+      <div class="material-recipe">
+        <h3>素材1</h3>
+        <ol>
+          <li>素材Aを1つ用意</li>
+          <li>素材Bとクラフト</li>
+          <li>完成！</li>
+        </ol>
+      </div>
+      <div class="material-recipe">
+        <h3>素材2</h3>
+        <ol>
+          <li>素材Cを2つ用意</li>
+          <li>素材Dとクラフト</li>
+          <li>完成！</li>
+        </ol>
+      </div>
+    </div>
+  </section>
 </div>
 
-<div class="container" id="recipeContainer"></div>
-
-<!-- レシピデータ読み込み -->
-<script src="date.js"></script>
 <script>
-  const container = document.getElementById('recipeContainer');
+function toggleMenu(){
+  document.querySelector(".side-header").classList.toggle("active");
+}
 
-  function renderRecipes(list) {
-    container.innerHTML = '';
-    list.forEach(item => {
-      const box = document.createElement('div');
-      box.className = 'box';
-      box.innerHTML = `
-        <img src="${item.img}" alt="${item.name}">
-        <p>${item.name}</p>
-      `;
-      container.appendChild(box);
-    });
-  }
-
-  renderRecipes(recipes);
-
-  // 検索機能
-  const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', () => {
-    const keyword = searchInput.value.toLowerCase();
-    const filtered = recipes.filter(r => r.name.toLowerCase().includes(keyword));
-    renderRecipes(filtered);
+// 検索機能
+document.getElementById("materialSearch").addEventListener("input", function(){
+  const filter = this.value.toLowerCase();
+  const items = document.querySelectorAll(".material-recipe");
+  items.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = text.includes(filter) ? "" : "none";
   });
+});
 
-  // 共通header読み込み
-  fetch('header.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('headerContainer').innerHTML = html;
-    });
+// header.htmlを読み込む
+fetch('header.html')
+  .then(res => res.text())
+  .then(html => document.getElementById('header').innerHTML = html);
 </script>
 
+<script src="script.js"></script>
 </body>
 </html>
