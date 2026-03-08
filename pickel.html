@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ピッケルレシピ</title>
+<meta name="description" content="Minfinity Craftのピッケルレシピページです。">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
 
+<div id="header"></div>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<main>
+  <h1>ピッケルレシピ</h1>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="キーワード検索">
+    <select id="categorySelect">
+      <option value="all">すべての採掘場</option>
+      <option value="first">第一採掘場</option>
+      <option value="second">第二採掘場</option>
+    </select>
+  </div>
+
+  <div id="recipeContainer"></div>
+</main>
+
+<script src="script.js"></script>
+<script>
+  fetch('header.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('header').innerHTML = data);
+
+  const recipeContainer = document.getElementById('recipeContainer');
+  const searchInput = document.getElementById('searchInput');
+  const categorySelect = document.getElementById('categorySelect');
+
+  let recipes = [];
+
+  // JSON読み込み
+  fetch('pickel.json')
+    .then(res => res.json())
+    .then(data => {
+      recipes = data;
+      renderRecipes();
+    });
+
+  function renderRecipes() {
+    const keyword = searchInput.value.toLowerCase();
+    const category = categorySelect.value;
+
+    const filtered = recipes.filter(r =>
+      (category === 'all' || r.category === category) &&
+      r.name.toLowerCase().includes(keyword)
+    );
+
+    recipeContainer.innerHTML = '';
+
+    const grouped = {};
+    filtered.forEach(r => {
+      if (!grouped[r.category]) grouped[r.category] = [];
+      grouped[r.category].push(r);
+    });
+
+    for (const cat in grouped) {
+      const section = document.createElement('div');
+      section.className = 'recipe-section';
+      const heading = document.createElement('h2');
+      heading.textContent = cat === 'first' ? '第一採掘場' : '第二採掘場';
+      section.appendChild(heading);
+
+      grouped[cat].forEach(r => {
+        const accordion = document.createElement('button');
+        accordion.className = 'accordion';
+        accordion.textContent = r.name;
+
+        const panel = document.createElement('div');
+        panel.className = 'panel';
+        panel.innerHTML = `<p>${r.details}</p>`;
+
+        accordion.addEventListener('click', () => {
+          accordion.classList.toggle('active');
+          panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        });
+
+        section.appendChild(accordion);
+        section.appendChild(panel);
+      });
+
+      recipeContainer.appendChild(section);
+    }
+  }
+
+  searchInput.addEventListener('input', renderRecipes);
+  categorySelect.addEventListener('change', renderRecipes);
+</script>
+</body>
+</html>
