@@ -1,26 +1,16 @@
 [
   {
-    "category": "first",
     "name": "土の素材",
-    "materials": ["土","土","土"],
-    "performance": "初心者向け",
+    "recipe": ["土", "土", "土"],
+    "performance": "なし",
     "area": "第一採掘場",
-    "description": "土の素材は初心者でも扱いやすい素材です。"
+    "description": "基本素材。大量に集められる。"
   },
   {
-    "category": "first",
-    "name": "桜の素材",
-    "materials": ["桜の木","桜の木","桜の木"],
-    "performance": "装飾向き",
-    "area": "第一採掘場",
-    "description": "見た目がかわいい素材です。"
-  },
-  {
-    "category": "second",
-    "name": "鉄の素材",
-    "materials": ["鉄","鉄","鉄"],
-    "performance": "耐久性高",
+    "name": "木の素材",
+    "recipe": ["木材", "木材", "木材"],
+    "performance": "燃料になる",
     "area": "第二採掘場",
-    "description": "鉄採掘用の素材です。"
+    "description": "加工に使える素材。"
   }
 ]
