@@ -16,7 +16,7 @@
 <!-- スマホ用ハンバーガーボタン -->
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!--  メインコンテンツ  -->
+<!-- メインコンテンツ -->
 <main class="main-content">
   <div class="main-header">
     <h1>素材レシピ</h1>
@@ -25,57 +25,69 @@
   </div>
 
   <div id="materialList">
-    <!-- ここにJSで素材レシピを展開 -->
+    <!-- JSで素材レシピを展開 -->
   </div>
 </main>
 
-<script src="script.js"></script>
 <script>
-  // 例: material.json から読み込む
-  fetch('material.json')
-    .then(res => res.json())
-    .then(data => {
-      const list = document.getElementById('materialList');
-      data.forEach(item => {
-        const acc = document.createElement('button');
-        acc.className = 'accordion';
-        acc.textContent = item.name;
+// ナビバー読み込み
+fetch('header.html')
+  .then(res => res.text())
+  .then(data => document.getElementById('header').innerHTML = data);
 
-        const panel = document.createElement('div');
-        panel.className = 'panel';
-        panel.innerHTML = `
-          <ol>
-            ${item.recipe.map(i => `<li>${i}</li>`).join('')}
-          </ol>
-          <p>性能：${item.performance}</p>
-          <p>掘れるエリア：${item.area}</p>
-          <p>説明：${item.description}</p>
-        `;
+// JSON から素材レシピを読み込む
+fetch('material.json')
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById('materialList');
+    data.forEach(item => {
+      const acc = document.createElement('button');
+      acc.className = 'accordion';
+      acc.textContent = item.name;
 
-        acc.addEventListener('click', () => {
-          acc.classList.toggle('active');
-          panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        });
+      const panel = document.createElement('div');
+      panel.className = 'panel';
+      panel.innerHTML = `
+        <ol>
+          ${item.recipe.map(i => `<li>${i}</li>`).join('')}
+        </ol>
+        <p>性能：${item.performance}</p>
+        <p>掘れるエリア：${item.area}</p>
+        <p>説明：${item.description}</p>
+      `;
 
-        list.appendChild(acc);
-        list.appendChild(panel);
+      acc.addEventListener('click', () => {
+        acc.classList.toggle('active');
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
       });
-    });
 
-  // 検索機能
-  document.getElementById('materialSearch').addEventListener('input', function() {
-    const keyword = this.value.toLowerCase();
-    document.querySelectorAll('#materialList .accordion').forEach(acc => {
-      const panel = acc.nextElementSibling;
-      if(acc.textContent.toLowerCase().includes(keyword)) {
-        acc.style.display = '';
-        panel.style.display = acc.classList.contains('active') ? 'block' : 'none';
-      } else {
-        acc.style.display = 'none';
-        panel.style.display = 'none';
-      }
+      list.appendChild(acc);
+      list.appendChild(panel);
     });
   });
+
+// 検索機能
+document.getElementById('materialSearch').addEventListener('input', function() {
+  const keyword = this.value.toLowerCase();
+  document.querySelectorAll('#materialList .accordion').forEach(acc => {
+    const panel = acc.nextElementSibling;
+    if(acc.textContent.toLowerCase().includes(keyword)) {
+      acc.style.display = '';
+      panel.style.display = acc.classList.contains('active') ? 'block' : 'none';
+    } else {
+      acc.style.display = 'none';
+      panel.style.display = 'none';
+    }
+  });
+});
+
+// ハンバーガーメニュー
+function toggleMenu() {
+  const header = document.getElementById('header');
+  const main = document.querySelector('main');
+  header.classList.toggle('active');
+  main.style.marginLeft = header.classList.contains('active') ? '200px' : '0';
+}
 </script>
 
 </body>
