@@ -1,0 +1,108 @@
+<!-- material_recipe.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>素材レシピ - MinfinityCraft</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ヘッダー読み込み -->
+  <div id="header"></div>
+
+  <main>
+    <h1>素材レシピ</h1>
+
+    <!-- 検索バー -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="キーワード検索">
+      <select id="categorySelect">
+        <option value="all">すべての採掘場</option>
+        <option value="first">第一採掘場</option>
+        <option value="second">第二採掘場</option>
+      </select>
+    </div>
+
+    <!-- レシピ表示エリア -->
+    <div id="recipeContainer"></div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // header.html読み込み
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('header').innerHTML = data);
+
+    // レシピデータ（サンプル）
+    const recipes = [
+      {category: 'first', name: '土のピッケル', details: '必要素材：土×3, 木×2\n説明：初心者向けピッケル'},
+      {category: 'first', name: '桜のピッケル', details: '必要素材：桜の木×3, 木×2\n説明：見た目がかわいいピッケル'},
+      {category: 'second', name: '鉄のピッケル', details: '必要素材：鉄×3, 木×2\n説明：鉄採掘用'},
+      {category: 'second', name: '石のピッケル', details: '必要素材：石×3, 木×2\n説明：安定した採掘用'}
+    ];
+
+    const recipeContainer = document.getElementById('recipeContainer');
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+
+    function renderRecipes() {
+      const keyword = searchInput.value.toLowerCase();
+      const category = categorySelect.value;
+
+      // カテゴリと検索でフィルタ
+      const filtered = recipes.filter(r => 
+        (category === 'all' || r.category === category) &&
+        r.name.toLowerCase().includes(keyword)
+      );
+
+      // 採掘場ごとに分類表示
+      const grouped = {};
+      filtered.forEach(r => {
+        if(!grouped[r.category]) grouped[r.category] = [];
+        grouped[r.category].push(r);
+      });
+
+      recipeContainer.innerHTML = '';
+
+      for(const cat in grouped){
+        const section = document.createElement('div');
+        section.className = 'recipe-section';
+        const heading = document.createElement('h2');
+        heading.textContent = cat === 'first' ? '第一採掘場' : '第二採掘場';
+        section.appendChild(heading);
+
+        grouped[cat].forEach(r => {
+          const item = document.createElement('div');
+          item.className = 'recipe-item';
+          const title = document.createElement('div');
+          title.className = 'recipe-title';
+          title.textContent = r.name + ' ▽';
+          const details = document.createElement('pre');
+          details.className = 'recipe-details';
+          details.textContent = r.details;
+          details.style.display = 'none';
+
+          // アコーディオン
+          title.addEventListener('click', () => {
+            details.style.display = details.style.display === 'none' ? 'block' : 'none';
+          });
+
+          item.appendChild(title);
+          item.appendChild(details);
+          section.appendChild(item);
+        });
+
+        recipeContainer.appendChild(section);
+      }
+    }
+
+    // イベント
+    searchInput.addEventListener('input', renderRecipes);
+    categorySelect.addEventListener('change', renderRecipes);
+
+    // 初期表示
+    renderRecipes();
+  </script>
+</body>
+</html>
