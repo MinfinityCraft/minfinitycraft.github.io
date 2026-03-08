@@ -2,16 +2,25 @@
   {
     "category": "first",
     "name": "土のピッケル",
-    "details": "必要素材：土×3, 木×2\n説明：初心者向けピッケル"
+    "materials": ["土","木","木"],
+    "performance": "初心者向け",
+    "area": "第一採掘場",
+    "description": "初心者でも扱いやすいピッケルです。"
   },
   {
     "category": "first",
     "name": "桜のピッケル",
-    "details": "必要素材：桜の木×3, 木×2\n説明：見た目がかわいいピッケル"
+    "materials": ["桜の木","木","木"],
+    "performance": "見た目がかわいい",
+    "area": "第一採掘場",
+    "description": "見た目重視のピッケルです。"
   },
   {
     "category": "second",
     "name": "鉄のピッケル",
-    "details": "必要素材：鉄×3, 木×2\n説明：鉄採掘用"
+    "materials": ["鉄","木","木"],
+    "performance": "鉄採掘用",
+    "area": "第二採掘場",
+    "description": "耐久性の高いピッケルです。"
   }
 ]
