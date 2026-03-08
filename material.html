@@ -1,108 +1,108 @@
-<!-- material_recipe.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>素材レシピ - MinfinityCraft</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>素材レシピ</title>
+<meta name="description" content="Minfinity Craftの素材レシピページです。">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <!-- ヘッダー読み込み -->
-  <div id="header"></div>
 
-  <main>
-    <h1>素材レシピ</h1>
+<!-- ナビバー読み込み -->
+<div id="header"></div>
 
-    <!-- 検索バー -->
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="キーワード検索">
-      <select id="categorySelect">
-        <option value="all">すべての採掘場</option>
-        <option value="first">第一採掘場</option>
-        <option value="second">第二採掘場</option>
-      </select>
-    </div>
+<!-- スマホ用ハンバーガーボタン -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-    <!-- レシピ表示エリア -->
-    <div id="recipeContainer"></div>
-  </main>
+<!--  メインコンテンツ  -->
+<main>
+  <h1>素材レシピ</h1>
 
-  <script src="script.js"></script>
-  <script>
-    // header.html読み込み
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => document.getElementById('header').innerHTML = data);
+  <!-- 検索バー -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="キーワード検索">
+    <select id="categorySelect">
+      <option value="all">すべての採掘場</option>
+      <option value="first">第一採掘場</option>
+      <option value="second">第二採掘場</option>
+    </select>
+  </div>
 
-    // レシピデータ（サンプル）
-    const recipes = [
-      {category: 'first', name: '土のピッケル', details: '必要素材：土×3, 木×2\n説明：初心者向けピッケル'},
-      {category: 'first', name: '桜のピッケル', details: '必要素材：桜の木×3, 木×2\n説明：見た目がかわいいピッケル'},
-      {category: 'second', name: '鉄のピッケル', details: '必要素材：鉄×3, 木×2\n説明：鉄採掘用'},
-      {category: 'second', name: '石のピッケル', details: '必要素材：石×3, 木×2\n説明：安定した採掘用'}
-    ];
+  <!-- レシピ表示エリア -->
+  <div id="recipeContainer"></div>
+</main>
 
-    const recipeContainer = document.getElementById('recipeContainer');
-    const searchInput = document.getElementById('searchInput');
-    const categorySelect = document.getElementById('categorySelect');
+<script src="script.js"></script>
+<script>
+  // header.html読み込み
+  fetch('header.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('header').innerHTML = data);
 
-    function renderRecipes() {
-      const keyword = searchInput.value.toLowerCase();
-      const category = categorySelect.value;
+  const recipeContainer = document.getElementById('recipeContainer');
+  const searchInput = document.getElementById('searchInput');
+  const categorySelect = document.getElementById('categorySelect');
 
-      // カテゴリと検索でフィルタ
-      const filtered = recipes.filter(r => 
-        (category === 'all' || r.category === category) &&
-        r.name.toLowerCase().includes(keyword)
-      );
+  let recipes = [];
 
-      // 採掘場ごとに分類表示
-      const grouped = {};
-      filtered.forEach(r => {
-        if(!grouped[r.category]) grouped[r.category] = [];
-        grouped[r.category].push(r);
-      });
+  // JSON読み込み
+  fetch('material.json')
+    .then(res => res.json())
+    .then(data => {
+      recipes = data;
+      renderRecipes();
+    });
 
-      recipeContainer.innerHTML = '';
+  function renderRecipes() {
+    const keyword = searchInput.value.toLowerCase();
+    const category = categorySelect.value;
 
-      for(const cat in grouped){
-        const section = document.createElement('div');
-        section.className = 'recipe-section';
-        const heading = document.createElement('h2');
-        heading.textContent = cat === 'first' ? '第一採掘場' : '第二採掘場';
-        section.appendChild(heading);
+    const filtered = recipes.filter(r =>
+      (category === 'all' || r.category === category) &&
+      r.name.toLowerCase().includes(keyword)
+    );
 
-        grouped[cat].forEach(r => {
-          const item = document.createElement('div');
-          item.className = 'recipe-item';
-          const title = document.createElement('div');
-          title.className = 'recipe-title';
-          title.textContent = r.name + ' ▽';
-          const details = document.createElement('pre');
-          details.className = 'recipe-details';
-          details.textContent = r.details;
-          details.style.display = 'none';
+    recipeContainer.innerHTML = '';
 
-          // アコーディオン
-          title.addEventListener('click', () => {
-            details.style.display = details.style.display === 'none' ? 'block' : 'none';
-          });
+    const grouped = {};
+    filtered.forEach(r => {
+      if (!grouped[r.category]) grouped[r.category] = [];
+      grouped[r.category].push(r);
+    });
 
-          item.appendChild(title);
-          item.appendChild(details);
-          section.appendChild(item);
+    for (const cat in grouped) {
+      const section = document.createElement('div');
+      section.className = 'recipe-section';
+      const heading = document.createElement('h2');
+      heading.textContent = cat === 'first' ? '第一採掘場' : '第二採掘場';
+      section.appendChild(heading);
+
+      grouped[cat].forEach(r => {
+        const accordion = document.createElement('button');
+        accordion.className = 'accordion';
+        accordion.textContent = r.name;
+
+        const panel = document.createElement('div');
+        panel.className = 'panel';
+        panel.innerHTML = `<p>${r.details}</p>`;
+
+        accordion.addEventListener('click', () => {
+          accordion.classList.toggle('active');
+          panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         });
 
-        recipeContainer.appendChild(section);
-      }
+        section.appendChild(accordion);
+        section.appendChild(panel);
+      });
+
+      recipeContainer.appendChild(section);
     }
+  }
 
-    // イベント
-    searchInput.addEventListener('input', renderRecipes);
-    categorySelect.addEventListener('change', renderRecipes);
-
-    // 初期表示
-    renderRecipes();
-  </script>
+  searchInput.addEventListener('input', renderRecipes);
+  categorySelect.addEventListener('change', renderRecipes);
+</script>
 </body>
 </html>
