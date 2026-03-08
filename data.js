@@ -1,3 +1,5 @@
+/* ピッケルレシピ */
+
 const pickaxeRecipes = [
 
 {
@@ -18,4 +20,41 @@ recipe: [
 
 {
 name: "鉄のピッケル",
-recipe:
+recipe: [
+"鉄 ×3",
+"棒 ×2"
+]
+}
+
+];
+
+
+
+/* 素材レシピ */
+
+const materialRecipes = [
+
+{
+name: "圧縮鉄",
+recipe: [
+"鉄 ×9"
+]
+},
+
+{
+name: "強化棒",
+recipe: [
+"木材 ×2",
+"石 ×1"
+]
+},
+
+{
+name: "魔力クリスタル",
+recipe: [
+"ダイヤ ×1",
+"レッドストーン ×4"
+]
+}
+
+];
