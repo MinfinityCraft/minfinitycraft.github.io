@@ -10,13 +10,9 @@
 </head>
 <body>
 
-<!-- ナビバー読み込み -->
 <div id="header"></div>
-
-<!-- スマホ用ハンバーガーボタン -->
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!--  メインコンテンツ  -->
 <main class="main-content">
   <div class="main-header">
     <h1>ピッケルレシピ</h1>
@@ -24,58 +20,64 @@
     <input type="text" class="search-box" id="pickelSearch" placeholder="キーワード検索">
   </div>
 
-  <div id="pickelList">
-    <!-- JSでピッケルレシピを展開 -->
-  </div>
+  <div id="pickelList"></div>
 </main>
 
-<script src="script.js"></script>
 <script>
-  // 例: pickel.json から読み込む
-  fetch('pickel.json')
-    .then(res => res.json())
-    .then(data => {
-      const list = document.getElementById('pickelList');
-      data.forEach(item => {
-        const acc = document.createElement('button');
-        acc.className = 'accordion';
-        acc.textContent = item.name;
+fetch('header.html')
+  .then(res => res.text())
+  .then(data => document.getElementById('header').innerHTML = data);
 
-        const panel = document.createElement('div');
-        panel.className = 'panel';
-        panel.innerHTML = `
-          <ol>
-            ${item.recipe.map(i => `<li>${i}</li>`).join('')}
-          </ol>
-          <p>性能：${item.performance}</p>
-          <p>掘れるエリア：${item.area}</p>
-          <p>説明：${item.description}</p>
-        `;
+fetch('pickel.json')
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById('pickelList');
+    data.forEach(item => {
+      const acc = document.createElement('button');
+      acc.className = 'accordion';
+      acc.textContent = item.name;
 
-        acc.addEventListener('click', () => {
-          acc.classList.toggle('active');
-          panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        });
+      const panel = document.createElement('div');
+      panel.className = 'panel';
+      panel.innerHTML = `
+        <ol>
+          ${item.recipe.map(i => `<li>${i}</li>`).join('')}
+        </ol>
+        <p>性能：${item.performance}</p>
+        <p>掘れるエリア：${item.area}</p>
+        <p>説明：${item.description}</p>
+      `;
 
-        list.appendChild(acc);
-        list.appendChild(panel);
+      acc.addEventListener('click', () => {
+        acc.classList.toggle('active');
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
       });
-    });
 
-  // 検索機能
-  document.getElementById('pickelSearch').addEventListener('input', function() {
-    const keyword = this.value.toLowerCase();
-    document.querySelectorAll('#pickelList .accordion').forEach(acc => {
-      const panel = acc.nextElementSibling;
-      if(acc.textContent.toLowerCase().includes(keyword)) {
-        acc.style.display = '';
-        panel.style.display = acc.classList.contains('active') ? 'block' : 'none';
-      } else {
-        acc.style.display = 'none';
-        panel.style.display = 'none';
-      }
+      list.appendChild(acc);
+      list.appendChild(panel);
     });
   });
+
+document.getElementById('pickelSearch').addEventListener('input', function() {
+  const keyword = this.value.toLowerCase();
+  document.querySelectorAll('#pickelList .accordion').forEach(acc => {
+    const panel = acc.nextElementSibling;
+    if(acc.textContent.toLowerCase().includes(keyword)) {
+      acc.style.display = '';
+      panel.style.display = acc.classList.contains('active') ? 'block' : 'none';
+    } else {
+      acc.style.display = 'none';
+      panel.style.display = 'none';
+    }
+  });
+});
+
+function toggleMenu() {
+  const header = document.getElementById('header');
+  const main = document.querySelector('main');
+  header.classList.toggle('active');
+  main.style.marginLeft = header.classList.contains('active') ? '200px' : '0';
+}
 </script>
 
 </body>
