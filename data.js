@@ -1,38 +1,28 @@
-const pickaxeRecipes = [
+const materialRecipes = [
 
 {
 mine:"採掘場A",
-name:"木のピッケル",
+name:"圧縮鉄",
 recipe:[
-"木材 ×3",
-"棒 ×2"
+"鉄 ×9"
 ]
 },
 
 {
 mine:"採掘場A",
-name:"石のピッケル",
+name:"強化棒",
 recipe:[
-"石 ×3",
-"棒 ×2"
+"木材 ×2",
+"石 ×1"
 ]
 },
 
 {
 mine:"採掘場B",
-name:"鉄のピッケル",
+name:"魔力クリスタル",
 recipe:[
-"鉄 ×3",
-"棒 ×2"
-]
-},
-
-{
-mine:"採掘場B",
-name:"ダイヤピッケル",
-recipe:[
-"ダイヤ ×3",
-"棒 ×2"
+"ダイヤ ×1",
+"レッドストーン ×4"
 ]
 }
 
