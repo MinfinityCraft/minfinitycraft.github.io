@@ -30,62 +30,72 @@
 
 <script src="data.js"></script>
 
+<script src="data.js"></script>
+
 <script>
-
-fetch("header.html")
-.then(res => res.text())
-.then(data => {
-document.getElementById("header").innerHTML = data;
-});
-
-function toggleMenu(){
-document.querySelector(".side-header").classList.toggle("active");
-}
-
 
 const container = document.getElementById("recipeList");
 
+const mines = {};
+
+
+/* 採掘場ごと分類 */
 
 pickaxeRecipes.forEach(item => {
 
-let recipeHTML = "<div class='box'>";
-
-recipeHTML += "<h2>" + item.name + "</h2>";
-
-recipeHTML += "<p>";
-
-item.recipe.forEach(mat=>{
-recipeHTML += mat + "<br>";
-});
-
-recipeHTML += "</p></div>";
-
-container.innerHTML += recipeHTML;
-
-});
-
-
-const search = document.getElementById("recipeSearch");
-
-search.addEventListener("input", function(){
-
-const keyword = search.value.toLowerCase();
-
-const recipes = document.querySelectorAll(".box");
-
-recipes.forEach(function(recipe){
-
-const text = recipe.textContent.toLowerCase();
-
-if(text.includes(keyword)){
-recipe.style.display = "block";
-}else{
-recipe.style.display = "none";
+if(!mines[item.mine]){
+mines[item.mine] = [];
 }
 
-});
+mines[item.mine].push(item);
 
 });
+
+
+/* HTML生成 */
+
+for(const mine in mines){
+
+let section = "<h2>"+mine+"</h2>";
+
+mines[mine].forEach(item=>{
+
+section += `
+<div class="recipe-item">
+
+<div class="recipe-title" onclick="toggleRecipe(this)">
+${item.name}
+</div>
+
+<div class="recipe-content">
+
+${item.recipe.join("<br>")}
+
+</div>
+
+</div>
+`;
+
+});
+
+container.innerHTML += section;
+
+}
+
+
+/* 開閉 */
+
+function toggleRecipe(el){
+
+const content = el.nextElementSibling;
+
+if(content.style.display === "block"){
+content.style.display = "none";
+}else{
+content.style.display = "block";
+}
+
+}
 
 </script>
 
