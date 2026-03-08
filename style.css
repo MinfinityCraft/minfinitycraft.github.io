@@ -1,370 +1,200 @@
-/* -------------------- body 背景対応 -------------------- */
+/* ===== 全体設定 ===== */
+
 body{
-  margin:0;
-  padding:0;
-  font-family:"Noto Sans JP", sans-serif;
-  color:white;
-  text-align:center;
+margin:0;
+font-family:Arial, sans-serif;
+color:white;
+text-align:center;
 
-  min-height: 100vh;      /* 画面いっぱいの高さを確保 */
-  position: relative;      /* ::before の基準に */
+min-height:100vh;
+
+background:linear-gradient(
+180deg,
+#0f2027 0%,
+#203a43 50%,
+#2c5364 100%
+);
 }
 
-body::before{
-  content:"";
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  z-index:-1;              /* 背景は最背面 */
-  background: linear-gradient(180deg,#0f2027 0%,#203a43 50%,#2c5364 100%);
+
+/* ===== サイドナビ ===== */
+
+.side-header{
+
+position:fixed;
+top:0;
+left:0;
+
+width:200px;
+height:100vh;
+
+background:linear-gradient(
+180deg,
+#0b1a12,
+#122c22,
+#1a3b2e
+);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding-top:20px;
+
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+
+z-index:10;
 }
 
-/* -------------------- マイクラ風タイトル -------------------- */
 
-.mc-title{
-  font-size:48px;
-  font-weight:900;
-  letter-spacing:3px;
-  margin-top:40px;
-  margin-bottom:10px;
-  color:#00ffcc;
-  text-shadow:
-    0 0 5px #00ffcc,
-    0 0 10px #00ffcc,
-    0 0 20px #00ffcc,
-    0 0 40px #00ffee;
+/* ロゴ */
+
+.logo{
+font-size:20px;
+font-weight:bold;
+margin-bottom:30px;
 }
 
-.mc-subtitle{
-  font-size:16px;
-  color:#aaffff;
-  text-shadow:0 0 5px #00ffee;
-  margin-bottom:40px;
+
+/* ナビリンク */
+
+.side-nav{
+display:flex;
+flex-direction:column;
+width:100%;
 }
 
-/* -------------------- サイドバー -------------------- */
-.side-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 160px;
-    height: 100vh;
-    background: linear-gradient(180deg, #0b1a12, #122c22, #1a3b2e);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    z-index: 10;   /* 背景より上に表示 */
+.side-nav a{
+
+color:white;
+text-decoration:none;
+
+padding:15px;
+
+border-bottom:1px solid rgba(255,255,255,0.1);
+
+transition:0.2s;
+
 }
 
-.side-header .logo img{
-    width: 120px;
-    margin-bottom: 30px;
+.side-nav a:hover{
+
+background:rgba(255,255,255,0.1);
+
 }
 
-.side-header .side-nav{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
 
-.side-header .side-nav a{
-    display: block;
-    width: 100%;
-    color: #00ffcc;
-    text-decoration: none;
-    margin: 8px 0;
-    font-weight: bold;
-    padding: 8px 0;
-    text-align: center;
-}
+/* ===== メインコンテンツ ===== */
 
-/* -------------------- メインコンテンツ -------------------- */
 .main-content{
-  margin-left:160px;
-  padding:20px;
-  text-align: center; 
-  position: relative;   /* 背景::beforeの基準に */
-  z-index: 1;           /* 背景より上に表示 */
+
+margin-left:200px;
+
+padding:40px;
+
+max-width:900px;
+
+margin-right:auto;
+margin-left:200px;
+
 }
 
-/* -------------------- メインタイトル -------------------- */
+
+/* タイトル */
+
+.main-header{
+margin-bottom:40px;
+}
+
 .main-header h1{
-  font-family:'Press Start 2P', cursive;
-  font-size:clamp(24px,5vw,48px);
-  margin-bottom:20px;
-  background:linear-gradient(90deg,#ffe600,#00ffff);
-  background-clip:text;
-  -webkit-background-clip:text;
-  color:transparent;
-  text-shadow:0 0 4px rgba(255,255,255,0.2), 0 0 6px rgba(0,255,255,0.2);
+font-size:40px;
+margin-bottom:10px;
 }
 
-/* -------------------- 説明文 -------------------- */
-p{
-  font-size:clamp(12px,2.5vw,18px);
-  max-width:800px;
-  margin:0 auto 30px;
-  line-height:1.6;
-  text-align:left;
+.main-header p{
+opacity:0.8;
 }
 
-/* -------------------- ボックス -------------------- */
+
+/* ===== コンテンツBOX ===== */
+
 .box{
-  background:rgba(0,0,0,0.35);
-  padding:20px;
-  margin:20px auto;
-  max-width:900px;
-  border-radius:15px;
-  backdrop-filter:blur(5px);
-  text-align:left;
+
+background:rgba(255,255,255,0.05);
+
+border-radius:10px;
+
+padding:25px;
+
+margin-bottom:25px;
+
+box-shadow:0 5px 10px rgba(0,0,0,0.2);
+
 }
 
 .box h2{
-  text-align:center;
+margin-top:0;
 }
 
-/* -------------------- ランキングタイトル -------------------- */
-h1.main-title{
-  font-family:'Press Start 2P',cursive;
-  font-size:clamp(28px,5vw,48px);
-  margin:40px 0 20px;
-  background: linear-gradient(90deg, #ffe600, #00ffff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color: transparent;
-  text-shadow:0 0 4px rgba(255,255,255,0.15), 0 0 8px rgba(0,255,255,0.15);
-  animation: none;
+.box p{
+line-height:1.6;
 }
 
-/* -------------------- ランキングテーブル -------------------- */
-table{
-  width:100%;
-  max-width:none;
-  margin:0 auto;
-  border-collapse:collapse;
-  background:rgba(0,0,0,0.25);
-  border-radius:10px;
-  overflow:hidden;
-  cursor:default;
-}
 
-th, td{
-  padding:12px;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-  white-space:nowrap;
-  color:white;
-  cursor:default;
-}
+/* ===== ハンバーガーボタン ===== */
 
-th{
-  color:#ffe600;
-}
-
-tr:hover{
-  background:rgba(255,255,255,0.05);
-}
-
-td.number-animate{
-  color:#00ffff;
-  font-weight:bold;
-}
-
-/* -------------------- スマホ対応 -------------------- */
-@media (max-width:600px){
-  .main-content{
-    margin-left:0;
-    padding:10px;
-  }
-
-  .side-header{
-    width:100%;
-    height:auto;
-    flex-direction:row;
-    justify-content:space-around;
-    padding:10px 0;
-  }
-
-  .side-header .logo img{
-    width:80px;
-    margin-bottom:0;
-  }
-
-  .side-header .side-nav{
-    flex-direction:row;
-    width:auto;
-  }
-
-  .side-header .side-nav a{
-    margin:0 10px;
-  }
-
-  h1.main-title{
-    font-size:clamp(20px,6vw,36px);
-  }
-
-  .main-header h1{
-    font-size:clamp(20px,6vw,36px);
-  }
-
-  .box{
-    margin:10px auto;
-    padding:15px;
-  }
-
-  table{
-    display:block;
-    width:100%;
-    overflow-x:auto;
-    margin:0 auto;
-  }
-
-  th,td{
-    font-size:0.85em;
-    padding:8px;
-  }
-}
-
-/* -------------------- 共通レシピセクション -------------------- */
-section.recipe-section,
-section#material-section{
-    margin-left: 180px; 
-    padding: 40px;
-}
-
-/* 検索バー */
-#recipeSearch,
-#materialSearch{
-    width: 300px;
-    max-width: 90%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 16px;
-}
-
-/* 採掘場ボタン */
-#mineFilter .mine-btn,
-#materialFilter .mine-btn{
-    background: rgba(0,0,0,0.3);
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    margin-right: 5px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-#mineFilter .mine-btn:hover,
-#materialFilter .mine-btn:hover{
-    background: #00ffcc;
-    color: black;
-}
-
-/* 採掘場ブロック */
-.mine,
-.material-mine{
-    margin-top: 40px;
-    padding: 25px;
-    background: rgba(0,0,0,0.35);
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
-}
-
-.mine h2,
-.material-mine h2{
-    margin-bottom: 20px;
-    color: #ffe600;
-    text-shadow:0 0 5px #ffe600;
-}
-
-/* 各レシピ */
-.recipe,
-.material-recipe{
-    background: rgba(0,0,0,0.45);
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 10px;
-}
-
-.recipe h3,
-.material-recipe h3{
-    color: #00ffcc;
-    margin-bottom: 10px;
-}
-
-.recipe ol,
-.material-recipe ol{
-    padding-left: 20px;
-    line-height: 1.8;
-}
-
-/*  ハンバーガーボタン  */
 .menu-btn{
+
 display:none;
+
 position:fixed;
+
 top:15px;
-left:10px;
-font-size:30px;
-background:none;
-border:none;
+left:15px;
+
+font-size:25px;
+
+background:#1a3b2e;
+
 color:white;
+
+border:none;
+
+padding:10px 15px;
+
+border-radius:5px;
+
 z-index:20;
+
 cursor:pointer;
+
 }
 
-/* スマホ */
+
+/* ===== スマホ対応 ===== */
+
 @media screen and (max-width:768px){
-.side-header{
-transform:translateX(-100%);
-transition:0.3s;
-}
-.side-header.active{
-transform:translateX(0);
-}
+
 .menu-btn{
 display:block;
 }
+
+.side-header{
+
+transform:translateX(-100%);
+transition:0.3s;
+
 }
 
-/* -------------------- レスポンシブ対応 -------------------- */
-@media screen and (max-width:768px){
-main{
-margin-left:0;
-}
-#material-section{
-margin-left:0;
-}
+.side-header.active{
+transform:translateX(0);
 }
 
-/* スマホ用ヘッダー余白 */
-@media screen and (max-width:768px){
-main{
+.main-content{
+
 margin-left:0;
 padding-top:80px;
-}
-h1{
-margin-top:10px;
-}
+
 }
 
-/* レシピの見た目を整える */
-.recipe-item{
-margin:10px 0;
-}
-.recipe-item summary{
-cursor:pointer;
-font-weight:bold;
-color:#00ffcc;
-font-size:18px;
-}
-.recipe-item summary:hover{
-color:#ffe600;
 }
