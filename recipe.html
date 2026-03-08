@@ -1,41 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<link rel="stylesheet" href="common.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MinfinityCraft レシピ集</title>
+<link rel="stylesheet" href="common.css">  
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    margin: 0;
-    padding: 0;
-  }
-
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  .search-container {
-    text-align: center;
-    margin: 20px 0;
-  }
-
-  .search-container input {
-    width: 300px;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #eee;
-    font-size: 16px;
-  }
-
+  /* レシピボックス部分だけ個別調整 */
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -45,7 +16,7 @@
   }
 
   .box {
-    background-color: #fff;
+    background-color: #fff; /* ボックスだけ白で中身見やすく */
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     width: 200px;
@@ -65,11 +36,26 @@
     line-height: 1.4;
     margin: 0;
   }
+
+  .search-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .search-container input {
+    width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eee;
+    font-size: 16px;
+  }
 </style>
 </head>
 <body>
 
-<header>MinfinityCraft レシピ集</header>
+<!-- 共通ヘッダー -->
+<div id="headerContainer"></div>
 
 <div class="search-container">
   <input type="text" id="searchInput" placeholder="レシピを検索...">
@@ -77,7 +63,7 @@
 
 <div class="container" id="recipeContainer"></div>
 
-<!-- date.js からレシピデータを読み込む -->
+<!-- レシピデータ読み込み -->
 <script src="date.js"></script>
 <script>
   const container = document.getElementById('recipeContainer');
@@ -95,7 +81,6 @@
     });
   }
 
-  // 最初に全レシピを表示
   renderRecipes(recipes);
 
   // 検索機能
@@ -106,14 +91,12 @@
     renderRecipes(filtered);
   });
 
- // Html内に読み込み（header）
-<div id="headerContainer"></div>
-fetch('header.html')
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById('headerContainer').innerHTML = html;
-  });
-
+  // 共通header読み込み
+  fetch('header.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('headerContainer').innerHTML = html;
+    });
 </script>
 
 </body>
