@@ -11,12 +11,9 @@
 
 </head>
 
-
 <body>
 
-<!-- header読み込み -->
 <div id="header"></div>
-
 
 <div class="main-content">
 
@@ -25,29 +22,35 @@
 <p>ピッケルの作り方一覧</p>
 </div>
 
+<input type="text" id="recipeSearch" placeholder="レシピを検索..." class="search-box">
+
 
 <div class="box">
-
 <h2>木のピッケル</h2>
-
 <p>
 木材 ×3<br>
 棒 ×2
 </p>
-
 </div>
 
 
 <div class="box">
-
 <h2>石のピッケル</h2>
-
 <p>
 石 ×3<br>
 棒 ×2
 </p>
-
 </div>
+
+
+<div class="box">
+<h2>鉄のピッケル</h2>
+<p>
+鉄 ×3<br>
+棒 ×2
+</p>
+</div>
+
 
 </div>
 
@@ -63,6 +66,29 @@ document.getElementById("header").innerHTML = data;
 function toggleMenu(){
 document.querySelector(".side-header").classList.toggle("active");
 }
+
+
+const search = document.getElementById("recipeSearch");
+
+search.addEventListener("input", function(){
+
+const keyword = search.value.toLowerCase();
+
+const recipes = document.querySelectorAll(".box");
+
+recipes.forEach(function(recipe){
+
+const text = recipe.textContent.toLowerCase();
+
+if(text.includes(keyword)){
+recipe.style.display = "block";
+}else{
+recipe.style.display = "none";
+}
+
+});
+
+});
 
 </script>
 
