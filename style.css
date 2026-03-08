@@ -1,19 +1,21 @@
-/* ===== 全体 ===== */
+/* ===== 背景設定 ===== */
 
-body{
-margin:0;
-font-family:Arial, sans-serif;
-color:white;
-text-align:center;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
 
-min-height:100vh;
+  /* 背景グラデーション */
+  background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  
+  /* ページのスクロールに関係なく背景を固定 */
+  background-attachment: fixed;
 
-background:linear-gradient(
-180deg,
-#0f2027 0%,
-#203a43 50%,
-#2c5364 100%
-);
+  /* 背景を常に画面全体に広げる */
+  background-size: cover;
+
+  min-height: 100vh;
 }
 
 
