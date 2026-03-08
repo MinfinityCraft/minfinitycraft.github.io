@@ -1,5 +1,6 @@
 [
   {
+    "category": "第一採掘場",
     "name": "土の素材",
     "recipe": ["土", "土", "土"],
     "performance": "なし",
@@ -7,6 +8,7 @@
     "description": "基本素材。大量に集められる。"
   },
   {
+    "category": "第二採掘場",
     "name": "木の素材",
     "recipe": ["木材", "木材", "木材"],
     "performance": "燃料になる",
