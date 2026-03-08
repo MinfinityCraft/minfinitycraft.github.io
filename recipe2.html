@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 
 <meta charset="UTF-8">
@@ -9,44 +10,47 @@
 
 </head>
 
+
 <body>
 
-<header>
-
-<nav class="navbar">
-
-<a href="../index.html">ホーム</a>
-
-<a href="../recipe.html">ピッケル</a>
-
-<a href="../recipe2.html">素材</a>
-
-</nav>
-
-</header>
+<header id="header"></header>
 
 
 <main>
 
 <h1>素材レシピ</h1>
 
+<input type="text" id="searchBox" placeholder="素材を検索...">
+
 <div id="recipeList"></div>
 
 </main>
 
 
+<script src="../header.js"></script>
 <script src="../data.js"></script>
+
 
 <script>
 
+/* 要素取得 */
+
 const container = document.getElementById("recipeList");
+const searchBox = document.getElementById("searchBox");
+
+
+/* レシピ表示関数 */
+
+function renderRecipes(list){
+
+container.innerHTML = "";
 
 const mines = {};
 
 
 /* 採掘場ごとに分類 */
 
-materialRecipes.forEach(item => {
+list.forEach(item => {
 
 if(!mines[item.mine]){
 
@@ -72,15 +76,11 @@ section += `
 <div class="recipe-item">
 
 <div class="recipe-title" onclick="toggleRecipe(this)">
-
 ${item.name}
-
 </div>
 
 <div class="recipe-content">
-
 ${item.recipe.join("<br>")}
-
 </div>
 
 </div>
@@ -93,8 +93,10 @@ container.innerHTML += section;
 
 }
 
+}
 
-/* 開閉 */
+
+/* クリックで展開 */
 
 function toggleRecipe(el){
 
@@ -112,7 +114,28 @@ content.style.display = "block";
 
 }
 
+
+/* 検索機能 */
+
+searchBox.addEventListener("input", function(){
+
+const word = this.value.toLowerCase();
+
+const filtered = materialRecipes.filter(item =>
+item.name.toLowerCase().includes(word)
+);
+
+renderRecipes(filtered);
+
+});
+
+
+/* 初期表示 */
+
+renderRecipes(materialRecipes);
+
 </script>
+
 
 </body>
 </html>
