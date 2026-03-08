@@ -1,4 +1,4 @@
-/* ===== 全体設定 ===== */
+/* ===== 全体 ===== */
 
 body{
 margin:0;
@@ -47,16 +47,22 @@ z-index:10;
 }
 
 
-/* ロゴ */
+/* ===== ロゴ ===== */
 
 .logo{
-font-size:20px;
-font-weight:bold;
+
+font-family:'Press Start 2P', cursive;
+
+font-size:14px;
+
+color:#7fffd4;
+
 margin-bottom:30px;
+
 }
 
 
-/* ナビリンク */
+/* ===== ナビリンク ===== */
 
 .side-nav{
 display:flex;
@@ -64,22 +70,67 @@ flex-direction:column;
 width:100%;
 }
 
+
 .side-nav a{
 
-color:white;
+color:#b8ffe1;
+
 text-decoration:none;
 
 padding:15px;
 
-border-bottom:1px solid rgba(255,255,255,0.1);
+border-bottom:1px solid rgba(255,255,255,0.05);
 
-transition:0.2s;
+transition:0.3s;
+
+position:relative;
 
 }
 
+
+/* ホバー文字色 */
+
 .side-nav a:hover{
 
-background:rgba(255,255,255,0.1);
+color:#ffffff;
+
+background:rgba(255,255,255,0.05);
+
+}
+
+
+/* ===== 光る下線 ===== */
+
+.side-nav a::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+bottom:0;
+
+width:0%;
+height:2px;
+
+background:linear-gradient(
+90deg,
+#00ffcc,
+#66ffff
+);
+
+box-shadow:0 0 8px #00ffcc;
+
+transition:0.3s;
+
+}
+
+
+/* 下線アニメーション */
+
+.side-nav a:hover::after{
+
+width:100%;
 
 }
 
@@ -95,12 +146,11 @@ padding:40px;
 max-width:900px;
 
 margin-right:auto;
-margin-left:200px;
 
 }
 
 
-/* タイトル */
+/* ===== タイトル ===== */
 
 .main-header{
 margin-bottom:40px;
@@ -141,7 +191,7 @@ line-height:1.6;
 }
 
 
-/* ===== ハンバーガーボタン ===== */
+/* ===== ハンバーガー ===== */
 
 .menu-btn{
 
@@ -171,7 +221,7 @@ cursor:pointer;
 }
 
 
-/* ===== スマホ対応 ===== */
+/* ===== スマホ ===== */
 
 @media screen and (max-width:768px){
 
