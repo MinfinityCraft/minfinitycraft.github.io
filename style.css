@@ -164,26 +164,26 @@ line-height:1.5;
 
 font-family:'Press Start 2P', cursive;
 
-font-size:44px;
+font-size:52px;
 
 background:linear-gradient(
 90deg,
-#ffe600,
-#7fffd4,
-#66ffff
+#ffe600 0%,
+#7fffd4 50%,
+#66ffff 100%
 );
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
 text-shadow:
-0 0 8px rgba(255,255,255,0.4),
-0 0 16px rgba(0,255,255,0.4);
+0 0 10px rgba(255,255,255,0.6),
+0 0 20px rgba(0,255,255,0.5),
+0 0 30px rgba(0,255,255,0.3);
 
-letter-spacing:2px;
+letter-spacing:3px;
 
 }
-
 .main-header{
 margin-bottom:40px;
 }
