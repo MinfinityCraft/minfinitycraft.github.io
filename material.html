@@ -10,13 +10,11 @@
 </head>
 <body>
 
-<!-- ナビバー読み込み -->
 <div id="header"></div>
-
-<!-- スマホ用ハンバーガーボタン -->
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!-- メインコンテンツ -->
+
+
 <main class="main-content">
   <div class="main-header">
     <h1>素材レシピ</h1>
@@ -24,9 +22,7 @@
     <input type="text" class="search-box" id="materialSearch" placeholder="キーワード検索">
   </div>
 
-  <div id="materialList">
-    <!-- JSで素材レシピを展開 -->
-  </div>
+  <div id="materialList"></div>
 </main>
 
 <script>
@@ -35,12 +31,12 @@ fetch('header.html')
   .then(res => res.text())
   .then(data => document.getElementById('header').innerHTML = data);
 
-// JSON から素材レシピを読み込む（カテゴリ別）
+// JSON から素材レシピ読み込み
 fetch('material.json')
   .then(res => res.json())
   .then(data => {
     const list = document.getElementById('materialList');
-    const categories = [...new Set(data.map(item => item.category))];
+    const categories = [...new Set(data.map(item => item.category || '未分類'))];
 
     categories.forEach(cat => {
       const catHeading = document.createElement('h2');
@@ -56,11 +52,11 @@ fetch('material.json')
         panel.className = 'panel';
         panel.innerHTML = `
           <ol>
-            ${item.recipe.map(i => `<li>${i}</li>`).join('')}
+            ${Array.isArray(item.recipe) ? item.recipe.map(i => `<li>${i}</li>`).join('') : ''}
           </ol>
-          <p>性能：${item.performance}</p>
-          <p>掘れるエリア：${item.area}</p>
-          <p>説明：${item.description}</p>
+          <p>性能：${item.performance || ''}</p>
+          <p>掘れるエリア：${item.area || ''}</p>
+          <p>説明：${item.description || ''}</p>
         `;
 
         acc.addEventListener('click', () => {
@@ -74,12 +70,11 @@ fetch('material.json')
     });
   });
 
-// 検索機能（カテゴリも考慮）
+// 検索機能
 document.getElementById('materialSearch').addEventListener('input', function() {
   const keyword = this.value.toLowerCase();
   document.querySelectorAll('#materialList h2, #materialList .accordion').forEach(el => {
     if(el.tagName === 'H2') {
-      // カテゴリはその下のアコーディオンで表示判定
       const nextSiblings = [];
       let next = el.nextElementSibling;
       while(next && next.tagName === 'BUTTON') {
