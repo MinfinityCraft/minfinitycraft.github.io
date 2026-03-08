@@ -279,3 +279,11 @@ body {
   color: #66ffff;
   text-shadow: 0 0 5px rgba(0,255,255,0.3);
 }
+
+
+
+.site-title {
+    -webkit-text-fill-color: transparent !important; /* これで白色指定を上書き */
+    background-clip: text;
+    -webkit-background-clip: text;
+}
