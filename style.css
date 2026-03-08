@@ -342,8 +342,6 @@ border:none;
 
 
 
-
-/* 折りたたみボタン */
 .accordion {
   background-color: rgba(255,255,255,0.05);
   color: #ffffff;
@@ -357,19 +355,45 @@ border:none;
   border-radius: 8px;
   margin-bottom: 5px;
   transition: 0.3s;
+  position: relative;
 }
 
-/* 開いた状態の色 */
-.accordion.active, .accordion:hover {
+/* アイコンを右側に表示 */
+.accordion::after {
+  content: "+";
+  font-size: 18px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s;
+}
+
+/* 開いた状態 */
+.accordion.active {
   background-color: rgba(255,255,255,0.15);
+  color: #66ffff;
 }
 
-/* 折りたたみパネル */
+.accordion.active::after {
+  content: "−";
+  transform: translateY(-50%) rotate(0deg);
+}
+
+/* パネル */
 .panel {
-  padding: 0 15px;
+  padding: 10px 15px;
   display: none;
   background-color: rgba(255,255,255,0.02);
   overflow: hidden;
   border-radius: 0 0 8px 8px;
   margin-bottom: 10px;
+}
+
+/* パネル内リスト */
+.panel ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+  margin: 5px 0;
 }
