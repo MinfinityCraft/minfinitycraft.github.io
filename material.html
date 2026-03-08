@@ -13,8 +13,6 @@
 <div id="header"></div>
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-
-
 <main class="main-content">
   <div class="main-header">
     <h1>素材レシピ</h1>
@@ -54,8 +52,6 @@ fetch('material.json')
           <ol>
             ${Array.isArray(item.recipe) ? item.recipe.map(i => `<li>${i}</li>`).join('') : ''}
           </ol>
-          <p>性能：${item.performance || ''}</p>
-          <p>掘れるエリア：${item.area || ''}</p>
           <p>説明：${item.description || ''}</p>
         `;
 
