@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>サーバー紹介</title>
+<title>サーバー紹介｜Minfinity Craft</title>
 <meta name="description" content="Minfinity Craftのサーバー紹介ページです。整地特化型Minecraft統合版サーバーの特徴やルールをご紹介します。">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link href="style.css" rel="stylesheet">
 </head>
 <body>
 
-<!--  ヘッダーファイル読み込み  -->
+<!-- ナビバー読み込み -->
 <div id="header"></div>
 
-<!-- スマホのみハンバーガーボタン -->
+<!-- スマホ用ハンバーガーボタン -->
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
 <!-- メインコンテンツ -->
@@ -45,18 +45,16 @@
       <li>運営の指示には従ってください</li>
     </ul>
   </section>
-
- 
 </div>
-
 
 <script>
 fetch("header.html")
 .then(response => response.text())
 .then(data => {
-document.getElementById("header").innerHTML = data;
+  document.getElementById("header").innerHTML = data;
 });
 </script>
+
 <script src="script.js"></script>
 
 </body>
