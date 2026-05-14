@@ -348,6 +348,12 @@ body {
   text-align: center;
 }
 
+.home {
+  position: relative;
+
+  z-index: 2;
+}
+
 /* 中央 */
 .home-inner {
 
@@ -507,12 +513,12 @@ body {
   overflow: hidden;
   pointer-events: none;
 
-  z-index: -1;
+  z-index: 1;
 
   opacity: 0;
 
   transition:
-    opacity 2s ease;
+    opacity 3s ease;
 }
 
 /* 表示 */
