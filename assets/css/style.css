@@ -118,6 +118,30 @@ body {
   }
 
   .hamburger {
+
+
+
+
+.level1 {
+  font-weight: bold;
+  color: #ff4d4d;
+}
+
+.level2 {
+  font-weight: bold;
+  color: #ffa500;
+}
+
+.level3 {
+  font-weight: bold;
+  color: #7dd3fc;
+}
+
+/* ［］用の大きめ表現 */
+h2 {
+  font-size: 22px;
+  margin-top: 30px;
+}
     display: block;
   }
 }
