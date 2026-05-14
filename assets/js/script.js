@@ -2,45 +2,63 @@ function toggleMenu() {
   document.querySelector(".sidebar").classList.toggle("active");
 }
 
+/* 現在ページ */
 const links = document.querySelectorAll(".sidebar a");
 const current = window.location.pathname.split("/").pop();
 
 links.forEach(link => {
+
   if (link.getAttribute("href") === current) {
     link.classList.add("active");
   }
+
 });
 
+/* ローディング */
 window.addEventListener("load", () => {
 
   setTimeout(() => {
 
     const loading = document.getElementById("loading");
 
-    loading.classList.add("fade-out");
+    if (loading) {
 
-    setTimeout(() => {
-      loading.remove();
-    }, 800);
+      loading.classList.add("fade-out");
+
+      setTimeout(() => {
+        loading.remove();
+      }, 800);
+
+    }
 
   }, 1600);
 
 });
 
-fetch("assets/data/news.json")
-  .then(res => res.json())
-  .then(data => {
-    const newsBox = document.getElementById("news");
+/* NEWS */
+const newsBox = document.getElementById("news");
 
-    data.forEach(item => {
-      const p = document.createElement("p");
-      p.textContent = "・" + item.text;
-      newsBox.appendChild(p);
+if (newsBox) {
+
+  fetch("assets/data/news.json")
+    .then(res => res.json())
+    .then(data => {
+
+      data.forEach(item => {
+
+        const p = document.createElement("p");
+
+        p.textContent = "・" + item.text;
+
+        newsBox.appendChild(p);
+
+      });
+
     });
-  });
 
+}
 
-/* 粒子生成 */
+/* 粒子 */
 const particles = document.getElementById("particles");
 
 if (particles) {
@@ -51,12 +69,17 @@ if (particles) {
 
     particle.classList.add("particle");
 
-    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.left =
+      Math.random() * 100 + "vw";
 
-    const size = Math.random() * 4 + 2;
+    const size =
+      Math.random() * 4 + 2;
 
-    particle.style.width = size + "px";
-    particle.style.height = size + "px";
+    particle.style.width =
+      size + "px";
+
+    particle.style.height =
+      size + "px";
 
     particle.style.animationDuration =
       (Math.random() * 10 + 8) + "s";
