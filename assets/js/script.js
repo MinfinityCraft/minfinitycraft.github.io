@@ -69,17 +69,29 @@ if (particles) {
 /* =========================
    ⏳ ローディング
 ========================= */
+
+/* ローディング */
 window.addEventListener("load", () => {
 
   const loading =
     document.getElementById("loading");
 
-  /* 粒子表示 */
-  if (particles) {
-    particles.classList.add("show");
-  }
+  const particles =
+    document.getElementById("particles");
 
-  /* フェード開始 */
+  const home =
+    document.querySelector(".home-inner");
+
+  /* 途中で粒子 */
+  setTimeout(() => {
+
+    if (particles) {
+      particles.classList.add("show");
+    }
+
+  }, 1000);
+
+  /* ローディング終了 */
   setTimeout(() => {
 
     if (loading) {
@@ -87,12 +99,19 @@ window.addEventListener("load", () => {
       loading.classList.add("fade-out");
 
       setTimeout(() => {
+
         loading.remove();
-      }, 2600);
+
+        /* ホーム表示 */
+        if (home) {
+          home.classList.add("show");
+        }
+
+      }, 2200);
 
     }
 
-  }, 2200);
+  }, 2600);
 
 });
 
