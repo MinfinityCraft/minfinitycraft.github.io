@@ -7,8 +7,14 @@ body {
   font-family: Arial, sans-serif;
   color: white;
 
-  background: linear-gradient(135deg, #000000, #0b2f2a);
-  background-attachment: fixed;
+ background:
+linear-gradient(
+  135deg,
+  #000000 0%,
+  #071b1a 30%,
+  #0b3d3a 65%,
+  #124d4a 100%
+);
 }
 
 /* =========================
