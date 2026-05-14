@@ -342,22 +342,63 @@ linear-gradient(
     homeFade 1.5s ease;
 }
 
-/* NEWS */
+/* =========================
+   📰 NEWS BOX
+========================= */
 .news-box {
-  margin-bottom: 60px;
+
+  width: 520px;
+
+  margin: 0 auto 60px auto;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  text-align: left;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  border:
+    1px solid rgba(125, 211, 252, 0.15);
+
+  border-radius: 14px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.35);
 }
 
 /* NEWSタイトル */
 .news-box h2 {
+
+  margin-top: 0;
+  margin-bottom: 18px;
+
   color: #ffd700;
 
   letter-spacing: 2px;
 
+  text-align: center;
+
   text-shadow:
     0 0 8px #ffd700,
     0 0 18px #ff9900;
+}
 
-  margin-bottom: 15px;
+/* NEWS本文 */
+#news p {
+
+  margin: 10px 0;
+
+  color: #d8f3ff;
+
+  text-shadow:
+    0 0 4px rgba(125, 211, 252, 0.45);
+
+  line-height: 1.7;
 }
 
 /* =========================
@@ -535,6 +576,13 @@ linear-gradient(
   .news-box h2 {
     font-size: 18px;
   }
+
+   .news-box {
+
+  width: 92%;
+
+  padding: 18px;
+}
 
   /* メニュー */
   .menu-list {
