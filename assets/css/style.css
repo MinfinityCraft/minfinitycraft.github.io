@@ -338,8 +338,12 @@ linear-gradient(
 
   transform: translateY(-40px);
 
+  opacity: 0;
+
   animation:
-    homeFade 1.5s ease;
+    homeFade 2.2s ease forwards;
+
+  animation-delay: 1.2s;
 }
 
 /* =========================
@@ -468,12 +472,12 @@ linear-gradient(
 
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(-20px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-40px);
   }
 
 }
@@ -483,14 +487,22 @@ linear-gradient(
 ========================= */
 #particles {
   position: fixed;
-
   inset: 0;
 
   overflow: hidden;
-
   pointer-events: none;
 
   z-index: -1;
+
+  opacity: 0;
+
+  transition:
+    opacity 2s ease;
+}
+
+/* 表示 */
+#particles.show {
+  opacity: 1;
 }
 
 /* 粒 */
