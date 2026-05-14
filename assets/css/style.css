@@ -13,6 +13,8 @@ body {
 
   color: white;
 
+  -webkit-font-smoothing: antialiased;
+
   background:
 
     radial-gradient(
@@ -38,11 +40,99 @@ body {
 
   background-attachment: fixed;
 
+  background-size: cover;
+
+  position: relative;
 }
+
+/* 超薄グリッド */
+body::before {
+
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  background-image:
+
+    linear-gradient(
+      rgba(255,255,255,0.015) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.015) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+/* =========================
+   🌌 ページ別背景
+========================= */
+.rules-page {
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(255, 180, 0, 0.15),
+      transparent 40%
+    ),
+
+    linear-gradient(
+      160deg,
+      #020304 0%,
+      #1f1700 100%
+    );
+}
+
+.about-page {
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(80, 180, 255, 0.15),
+      transparent 40%
+    ),
+
+    linear-gradient(
+      160deg,
+      #020304 0%,
+      #071d2d 100%
+    );
+}
+
+.staff-page {
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.12),
+      transparent 40%
+    ),
+
+    linear-gradient(
+      160deg,
+      #020304 0%,
+      #162024 100%
+    );
+}
+
 /* =========================
    🧭 サイドバー
 ========================= */
 .sidebar {
+
   position: fixed;
 
   left: 0;
@@ -64,7 +154,8 @@ body {
     1px solid rgba(125, 211, 252, 0.15);
 
   box-shadow:
-    0 0 20px rgba(0, 0, 0, 0.6);
+    0 0 20px rgba(0,0,0,0.6),
+    0 0 18px rgba(125,211,252,0.08);
 
   animation:
     sidebarFloat 6s ease-in-out infinite;
@@ -91,6 +182,7 @@ body {
 
 /* ロゴ */
 .logo {
+
   font-size: 18px;
 
   color: #7dd3fc;
@@ -105,6 +197,7 @@ body {
    🔗 サイドバーリンク
 ========================= */
 .sidebar a {
+
   position: relative;
 
   display: inline-block;
@@ -112,6 +205,7 @@ body {
   margin: 10px 0;
 
   color: #7dd3fc;
+
   text-decoration: none;
 
   transition: 0.25s ease;
@@ -119,6 +213,7 @@ body {
 
 /* ホバー */
 .sidebar a:hover {
+
   transform: scale(1.08);
 
   color: #ffd700;
@@ -130,6 +225,7 @@ body {
 
 /* 下線 */
 .sidebar a::after {
+
   content: "";
 
   position: absolute;
@@ -157,6 +253,7 @@ body {
 
 /* 現在ページ */
 .sidebar a.active {
+
   color: #ffd700;
 
   font-weight: bold;
@@ -175,6 +272,11 @@ body {
    🧱 コンテンツ
 ========================= */
 .content {
+
+  position: relative;
+
+  z-index: 2;
+
   margin-left: 240px;
 
   padding: 40px;
@@ -182,8 +284,11 @@ body {
   text-align: center;
 }
 
-/* タイトル */
+/* =========================
+   🎮 タイトル
+========================= */
 .title {
+
   font-family: 'Press Start 2P', cursive;
 
   font-size: 52px;
@@ -195,14 +300,12 @@ body {
     0 0 16px #7dd3fc;
 
   margin-bottom: 80px;
-}
-
-.title {
 
   animation:
     titleFloat 5s ease-in-out infinite;
 }
 
+/* 浮遊 */
 @keyframes titleFloat {
 
   0% {
@@ -219,11 +322,15 @@ body {
 
 }
 
-/* カード */
+/* =========================
+   🧊 カード
+========================= */
 .card {
+
   max-width: 600px;
 
   margin: 20px auto;
+
   padding: 20px;
 
   border-radius: 12px;
@@ -233,12 +340,15 @@ body {
 
   box-shadow:
     0 0 12px rgba(125, 211, 252, 0.25);
+
+  backdrop-filter: blur(10px);
 }
 
 /* =========================
    ☰ ハンバーガー
 ========================= */
 .hamburger {
+
   display: none;
 
   position: fixed;
@@ -257,7 +367,9 @@ body {
 
 /* サイドバー開時 */
 .sidebar.active + .hamburger {
+
   opacity: 0;
+
   pointer-events: none;
 }
 
@@ -265,11 +377,13 @@ body {
    ⏳ ローディング
 ========================= */
 #loading {
+
   position: fixed;
 
   inset: 0;
 
   display: flex;
+
   justify-content: center;
   align-items: center;
 
@@ -291,10 +405,9 @@ body {
   filter: blur(8px);
 
   transition:
-    opacity 1.4s ease,
-    filter 1.4s ease;
+    opacity 1.1s ease,
+    filter 1.1s ease;
 }
-
 
 /* ローディングBOX */
 .loader-box {
@@ -303,6 +416,7 @@ body {
 
 /* ロゴ */
 .loader-box .logo {
+
   font-family: 'Press Start 2P', cursive;
 
   color: #7dd3fc;
@@ -315,7 +429,9 @@ body {
 
 /* バー */
 .bar {
+
   width: 220px;
+
   height: 6px;
 
   margin: 0 auto;
@@ -330,7 +446,9 @@ body {
 
 /* 進行 */
 .progress {
+
   width: 0%;
+
   height: 100%;
 
   background:
@@ -367,19 +485,19 @@ body {
 
 /* ホーム全体 */
 .home {
+
+  position: relative;
+
+  z-index: 2;
+
   height: 100vh;
 
   display: flex;
+
   justify-content: center;
   align-items: center;
 
   text-align: center;
-}
-
-.home {
-  position: relative;
-
-  z-index: 2;
 }
 
 /* 中央 */
@@ -401,10 +519,13 @@ body {
 
   transform: translateY(0);
 }
+
 /* =========================
-   📰 NEWS BOX
+   📰 NEWS
 ========================= */
 .news-box {
+
+  position: relative;
 
   width: 520px;
 
@@ -417,23 +538,46 @@ body {
   text-align: left;
 
   background:
-    rgba(255, 255, 255, 0.04);
+    rgba(255,255,255,0.04);
 
   border:
-    1px solid rgba(125, 211, 252, 0.15);
+    1px solid rgba(125,211,252,0.15);
 
   border-radius: 14px;
 
   backdrop-filter: blur(10px);
 
   box-shadow:
-    0 0 20px rgba(0, 0, 0, 0.35);
+    0 0 20px rgba(0,0,0,0.35);
+}
+
+/* 上ライン */
+.news-box::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(125,211,252,0.5),
+      transparent
+    );
 }
 
 /* NEWSタイトル */
 .news-box h2 {
 
   margin-top: 0;
+
   margin-bottom: 18px;
 
   color: #ffd700;
@@ -455,7 +599,7 @@ body {
   color: #d8f3ff;
 
   text-shadow:
-    0 0 4px rgba(125, 211, 252, 0.45);
+    0 0 4px rgba(125,211,252,0.45);
 
   line-height: 1.7;
 }
@@ -482,16 +626,15 @@ body {
   height: 52px;
 
   display: flex;
+
   align-items: center;
 
   padding-left: 20px;
 
   box-sizing: border-box;
 
-  border:
-    1px solid transparent;
-
   color: #7dd3fc;
+
   text-decoration: none;
 
   font-size: 22px;
@@ -502,6 +645,7 @@ body {
     0 0 6px #7dd3fc;
 }
 
+/* > */
 .menu-btn::before {
 
   content: ">";
@@ -513,8 +657,8 @@ body {
   transition: 0.2s ease;
 }
 
+/* hover */
 .menu-btn:hover::before {
-
   opacity: 1;
 }
 
@@ -529,31 +673,18 @@ body {
     0 0 6px #ffd700,
     0 0 12px #ff9900;
 }
-/* =========================
-   ✨ フェード
-========================= */
-@keyframes homeFade {
-
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(-40px);
-  }
-
-}
 
 /* =========================
    🌌 粒子
 ========================= */
 #particles {
+
   position: fixed;
+
   inset: 0;
 
   overflow: hidden;
+
   pointer-events: none;
 
   z-index: 1;
@@ -571,6 +702,7 @@ body {
 
 /* 粒 */
 .particle {
+
   position: absolute;
 
   width: 4px;
@@ -579,7 +711,7 @@ body {
   border-radius: 50%;
 
   background:
-    rgba(125, 211, 252, 0.8);
+    rgba(125,211,252,0.8);
 
   box-shadow:
     0 0 6px #7dd3fc,
@@ -593,7 +725,9 @@ body {
 @keyframes floatParticle {
 
   from {
+
     transform: translateY(0px);
+
     opacity: 0;
   }
 
@@ -602,25 +736,39 @@ body {
   }
 
   to {
+
     transform: translateY(-100vh);
+
     opacity: 0;
   }
 
 }
 
 /* =========================
-   🌌 ページ遷移フェード
+   🎬 シネマフェード
 ========================= */
+.screen-fade {
 
-body {
-  opacity: 1;
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(0,0,0,0);
+
+  pointer-events: none;
+
+  z-index: 99999;
 
   transition:
-    opacity 0.5s ease;
+    background 0.28s ease;
 }
 
-body.fade-out {
-  opacity: 0;
+/* 発動 */
+.screen-fade.active {
+
+  background:
+    rgba(0,0,0,1);
 }
 
 /* =========================
@@ -630,6 +778,7 @@ body.fade-out {
 
   /* サイドバー */
   .sidebar {
+
     left: -260px;
 
     transition: 0.3s;
@@ -641,6 +790,7 @@ body.fade-out {
 
   /* コンテンツ */
   .content {
+
     margin-left: 0;
 
     padding: 20px;
@@ -664,16 +814,16 @@ body.fade-out {
   }
 
   /* NEWS */
+  .news-box {
+
+    width: 92%;
+
+    padding: 18px;
+  }
+
   .news-box h2 {
     font-size: 18px;
   }
-
-   .news-box {
-
-  width: 92%;
-
-  padding: 18px;
-}
 
   /* メニュー */
   .menu-list {
@@ -726,59 +876,3 @@ body.fade-out {
   }
 
 }
-
-/* =========================
-   🌌 ページフェード
-========================= */
-
-body {
-
-  transition:
-    opacity 0.5s ease;
-}
-
-body.fade-out {
-  opacity: 0;
-}
-
-/* =========================
-   🎬 シネマフェード
-========================= */
-
-.screen-fade {
-
-  position: fixed;
-
-  inset: 0;
-
-  background:
-    rgba(0, 0, 0, 0);
-
-  pointer-events: none;
-
-  z-index: 99999;
-
- transition:
-  background 0.28s ease;
-}
-
-/* 発動 */
-.screen-fade.active {
-
-  background:
-    rgba(0, 0, 0, 1);
-}
-
-/* =========================
-   🌌 ページフェードイン
-========================= */
-
-body {
-
-  opacity: 0;
-
-  animation:
-    pageFadeIn 0.9s ease forwards;
-}
-
-
