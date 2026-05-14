@@ -197,6 +197,28 @@ body {
   margin-bottom: 80px;
 }
 
+.title {
+
+  animation:
+    titleFloat 5s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
 /* カード */
 .card {
   max-width: 600px;
@@ -478,6 +500,22 @@ body {
 
   text-shadow:
     0 0 6px #7dd3fc;
+}
+
+.menu-btn::before {
+
+  content: ">";
+
+  opacity: 0;
+
+  margin-right: 8px;
+
+  transition: 0.2s ease;
+}
+
+.menu-btn:hover::before {
+
+  opacity: 1;
 }
 
 /* ホバー */
