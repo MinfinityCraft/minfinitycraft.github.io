@@ -1,71 +1,42 @@
 function toggleMenu() {
-  document.querySelector(".sidebar").classList.toggle("active");
+  document
+    .querySelector(".sidebar")
+    .classList.toggle("active");
 }
 
-/* 現在ページ */
-const links = document.querySelectorAll(".sidebar a");
-const current = window.location.pathname.split("/").pop();
+/* =========================
+   📄 現在ページ
+========================= */
+const links =
+  document.querySelectorAll(".sidebar a");
+
+const current =
+  window.location.pathname
+  .split("/")
+  .pop();
 
 links.forEach(link => {
 
-  if (link.getAttribute("href") === current) {
+  if (
+    link.getAttribute("href") === current
+  ) {
     link.classList.add("active");
   }
 
 });
 
-/* ローディング */
-window.addEventListener("load", () => {
-
-  setTimeout(() => {
-
-    const loading = document.getElementById("loading");
-
-    if (loading) {
-
-      loading.classList.add("fade-out");
-
-      setTimeout(() => {
-        loading.remove();
-      }, 800);
-
-    }
-
-  }, 1600);
-
-});
-
-/* NEWS */
-const newsBox = document.getElementById("news");
-
-if (newsBox) {
-
-  fetch("assets/data/news.json")
-    .then(res => res.json())
-    .then(data => {
-
-      data.forEach(item => {
-
-        const p = document.createElement("p");
-
-        p.textContent = "・" + item.text;
-
-        newsBox.appendChild(p);
-
-      });
-
-    });
-
-}
-
-/* 粒子 */
-const particles = document.getElementById("particles");
+/* =========================
+   🌌 粒子
+========================= */
+const particles =
+  document.getElementById("particles");
 
 if (particles) {
 
   for (let i = 0; i < 40; i++) {
 
-    const particle = document.createElement("div");
+    const particle =
+      document.createElement("div");
 
     particle.classList.add("particle");
 
@@ -92,5 +63,63 @@ if (particles) {
     particles.appendChild(particle);
 
   }
+
+}
+
+/* =========================
+   ⏳ ローディング
+========================= */
+window.addEventListener("load", () => {
+
+  const loading =
+    document.getElementById("loading");
+
+  /* 粒子表示 */
+  if (particles) {
+    particles.classList.add("show");
+  }
+
+  /* フェード開始 */
+  setTimeout(() => {
+
+    if (loading) {
+
+      loading.classList.add("fade-out");
+
+      setTimeout(() => {
+        loading.remove();
+      }, 1800);
+
+    }
+
+  }, 1200);
+
+});
+
+/* =========================
+   📰 NEWS
+========================= */
+const newsBox =
+  document.getElementById("news");
+
+if (newsBox) {
+
+  fetch("assets/data/news.json")
+    .then(res => res.json())
+    .then(data => {
+
+      data.forEach(item => {
+
+        const p =
+          document.createElement("p");
+
+        p.textContent =
+          "・" + item.text;
+
+        newsBox.appendChild(p);
+
+      });
+
+    });
 
 }
