@@ -260,7 +260,7 @@ document
             window.location.href =
               href;
 
-          }, 450);
+          }, 260);
 
         }
 
