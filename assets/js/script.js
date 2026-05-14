@@ -17,3 +17,15 @@ window.addEventListener("load", () => {
     if (loading) loading.remove();
   }, 1800);
 });
+
+fetch("assets/data/news.json")
+  .then(res => res.json())
+  .then(data => {
+    const newsBox = document.getElementById("news");
+
+    data.forEach(item => {
+      const p = document.createElement("p");
+      p.textContent = "・" + item.text;
+      newsBox.appendChild(p);
+    });
+  });
