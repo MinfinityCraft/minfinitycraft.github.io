@@ -1,5 +1,6 @@
+
 /* =========================
-   背景（固定グラデ）
+   🌌 背景
 ========================= */
 body {
   margin: 0;
@@ -11,7 +12,7 @@ body {
 }
 
 /* =========================
-   サイドバー（PC）
+   🧭 サイドバー（ガラス＋浮遊）
 ========================= */
 .sidebar {
   position: fixed;
@@ -20,14 +21,27 @@ body {
   width: 220px;
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+
+  border-right: 1px solid rgba(125, 211, 252, 0.15);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 
   display: flex;
   flex-direction: column;
   padding: 20px;
+
+  animation: sidebarFloat 6s ease-in-out infinite;
 }
 
+/* 浮遊アニメーション */
+@keyframes sidebarFloat {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-4px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ロゴ */
 .logo {
   font-size: 18px;
   color: #7dd3fc;
@@ -35,27 +49,68 @@ body {
   margin-bottom: 20px;
 }
 
-/* ナビリンク */
+/* =========================
+   🔗 サイドバーリンク（ホバー演出）
+========================= */
 .sidebar a {
+  position: relative;
+  display: inline-block;
+
   color: #7dd3fc;
   text-decoration: none;
+
   margin: 10px 0;
-  transition: 0.2s;
+  transition: all 0.25s ease;
 }
 
+/* ホバー：拡大＋発光 */
 .sidebar a:hover {
+  transform: scale(1.08);
   color: #ffd700;
-  text-shadow: 0 0 10px #ffd700;
+
+  text-shadow:
+    0 0 8px #ffd700,
+    0 0 16px #ff9900;
 }
 
+/* 下線（初期） */
+.sidebar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(90deg, #ffd700, #ff8800);
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+/* ホバーで下線表示 */
+.sidebar a:hover::after {
+  transform: scaleX(1);
+}
+
+/* 現在ページ */
 .sidebar a.active {
   color: #ffd700;
-  text-shadow: 0 0 12px #ffd700;
   font-weight: bold;
+
+  text-shadow:
+    0 0 8px #ffd700,
+    0 0 16px #ff9900;
+}
+
+/* 常時下線 */
+.sidebar a.active::after {
+  transform: scaleX(1);
 }
 
 /* =========================
-   メイン
+   🧱 メインコンテンツ
 ========================= */
 .content {
   margin-left: 240px;
@@ -68,6 +123,7 @@ body {
   font-family: 'Press Start 2P', cursive;
   font-size: 42px;
   color: #7dd3fc;
+
   text-shadow: 0 0 18px #7dd3fc;
   margin-bottom: 40px;
 }
@@ -78,27 +134,30 @@ body {
   padding: 20px;
   margin: 20px auto;
   max-width: 600px;
+
   border-radius: 12px;
 
   box-shadow: 0 0 12px rgba(125, 211, 252, 0.25);
 }
 
 /* =========================
-   ハンバーガー（スマホ）
+   ☰ ハンバーガー（スマホ）
 ========================= */
 .hamburger {
   display: none;
   position: fixed;
   top: 15px;
   left: 15px;
+
   font-size: 30px;
   cursor: pointer;
+
   color: #7dd3fc;
   z-index: 1000;
 }
 
 /* =========================
-   スマホ対応
+   📱 レスポンシブ
 ========================= */
 @media (max-width: 768px) {
 
@@ -118,70 +177,6 @@ body {
   }
 
   .hamburger {
-
-
-
-
-.level1 {
-  font-weight: bold;
-  color: #ff4d4d;
-}
-
-.level2 {
-  font-weight: bold;
-  color: #ffa500;
-}
-
-.level3 {
-  font-weight: bold;
-  color: #7dd3fc;
-}
-
-/* ［］用の大きめ表現 */
-h2 {
-  font-size: 22px;
-  margin-top: 30px;
-}
-
-
-.sidebar a {
-  position: relative;
-  display: inline-block;
-  color: #7dd3fc;
-  text-decoration: none;
-  margin: 10px 0;
-  transition: all 0.25s ease;
-}
-
-/* ホバー：拡大＋発光 */
-.sidebar a:hover {
-  transform: scale(1.08);
-  color: #ffd700;
-  text-shadow: 
-    0 0 8px #ffd700,
-    0 0 16px #ff9900;
-}
-
-/* 下線（初期状態） */
-.sidebar a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-
-  background: linear-gradient(90deg, #ffd700, #ff8800);
-
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
-}
-
-/* ホバー時に下線アニメ */
-.sidebar a:hover::after {
-  transform: scaleX(1);
-}
     display: block;
   }
 }
