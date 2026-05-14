@@ -697,3 +697,31 @@ body {
 body.fade-out {
   opacity: 0;
 }
+
+/* =========================
+   🎬 シネマフェード
+========================= */
+
+.screen-fade {
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(0, 0, 0, 0);
+
+  pointer-events: none;
+
+  z-index: 99999;
+
+  transition:
+    background 0.8s ease;
+}
+
+/* 発動 */
+.screen-fade.active {
+
+  background:
+    rgba(0, 0, 0, 1);
+}
