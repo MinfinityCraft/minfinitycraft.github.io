@@ -183,48 +183,6 @@ if (newsBox) {
     });
 
 }
-
-/* =========================
-   🌌 ページ遷移
-========================= */
-
-document
-  .querySelectorAll("a")
-  .forEach(link => {
-
-    link.addEventListener(
-      "click",
-      function(e) {
-
-        const href =
-          this.getAttribute("href");
-
-        /* 外部リンク除外 */
-        if (
-          href &&
-          !href.startsWith("#") &&
-          !href.startsWith("http")
-        ) {
-
-          e.preventDefault();
-
-          document.body
-            .classList
-            .add("fade-out");
-
-          setTimeout(() => {
-
-            window.location.href = href;
-
-          }, 500);
-
-        }
-
-      }
-    );
-
-  });
-
 /* =========================
    🌌 ページ遷移
 ========================= */
@@ -243,6 +201,7 @@ document
         const href =
           this.getAttribute("href");
 
+        /* 除外 */
         if (
           href &&
           !href.startsWith("#") &&
@@ -251,16 +210,23 @@ document
 
           e.preventDefault();
 
+          /* bodyフェード */
+          document.body
+            .classList
+            .add("fade-out");
+
+          /* シネマフェード */
           if (fade) {
             fade.classList.add("active");
           }
 
+          /* 遷移 */
           setTimeout(() => {
 
             window.location.href =
               href;
 
-          }, 260);
+          }, 280);
 
         }
 
