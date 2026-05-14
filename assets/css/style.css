@@ -720,8 +720,8 @@ body.fade-out {
 
   z-index: 99999;
 
-  transition:
-    background 0.8s ease;
+ transition:
+  background 0.45s ease;
 }
 
 /* 発動 */
