@@ -356,16 +356,24 @@ body {
 }
 
 /* 中央 */
+
 .home-inner {
 
   transform: translateY(-40px);
 
   opacity: 0;
 
-  animation:
-    homeFade 2.2s ease forwards;
+  transition:
+    opacity 1.8s ease,
+    transform 1.8s ease;
+}
 
-  animation-delay: 1.2s;
+/* 表示後 */
+.home-inner.show {
+
+  opacity: 1;
+
+  transform: translateY(-60px);
 }
 
 /* =========================
@@ -519,7 +527,7 @@ body {
   opacity: 0;
 
   transition:
-    opacity 3s ease;
+    opacity 2.5s ease;
 }
 
 /* 表示 */
