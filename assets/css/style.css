@@ -518,7 +518,7 @@ body {
   opacity: 0;
 
   transition:
-    opacity 2.5s ease;
+    opacity 1s ease;
 }
 
 /* 表示 */
