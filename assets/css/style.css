@@ -406,3 +406,181 @@ linear-gradient(
     opacity: 0;
   }
 }
+
+
+/* =========================
+   🌌 背景強化
+========================= */
+body {
+  background:
+  linear-gradient(
+    135deg,
+    #000000 0%,
+    #071b1a 30%,
+    #0b3d3a 65%,
+    #124d4a 100%
+  );
+}
+
+/* =========================
+   🎮 ホーム専用
+========================= */
+.home-page .sidebar,
+.home-page .hamburger {
+  display: none;
+}
+
+.home-page .content {
+  margin-left: 0;
+}
+
+/* ホーム */
+.home {
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.home-inner {
+  animation: homeFade 1.5s ease;
+}
+
+/* タイトル */
+.title {
+  font-family: 'Press Start 2P', cursive;
+
+  font-size: 52px;
+
+  color: #7dd3fc;
+
+  text-shadow:
+    0 0 8px #7dd3fc,
+    0 0 16px #7dd3fc;
+
+  margin-bottom: 50px;
+}
+
+/* NEWS */
+.news-box {
+  margin-bottom: 45px;
+}
+
+.news-box h2 {
+  color: #ffd700;
+
+  text-shadow:
+    0 0 8px #ff9900;
+
+  margin-bottom: 15px;
+}
+
+/* メニュー */
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ボタン */
+.menu-btn {
+  color: #7dd3fc;
+
+  text-decoration: none;
+
+  font-size: 22px;
+
+  transition: 0.25s ease;
+
+  text-shadow:
+    0 0 6px #7dd3fc;
+}
+
+/* ホバー */
+.menu-btn:hover {
+  transform: scale(1.08);
+
+  color: #ffd700;
+
+  text-shadow:
+    0 0 6px #ffd700,
+    0 0 12px #ff9900;
+}
+
+/* フェード */
+@keyframes homeFade {
+
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* =========================
+   📱 スマホ調整
+========================= */
+@media (max-width: 768px) {
+
+  /* タイトル */
+  .title {
+    font-size: 28px;
+
+    text-shadow:
+      0 0 5px #7dd3fc,
+      0 0 10px #7dd3fc;
+  }
+
+  /* NEWS */
+  .news-box h2 {
+    font-size: 18px;
+  }
+
+  /* メニュー */
+  .menu-btn {
+    font-size: 18px;
+
+    text-shadow:
+      0 0 4px #7dd3fc;
+  }
+
+  /* サイドバー発光 */
+  .sidebar a:hover,
+  .sidebar a.active {
+
+    text-shadow:
+      0 0 4px #ffd700,
+      0 0 8px #ff9900;
+  }
+
+  /* カード */
+  .card {
+    padding: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+}
+
+/* =========================
+   ☰ 修正
+========================= */
+.sidebar.active + .hamburger {
+  opacity: 0;
+  pointer-events: none;
+}
