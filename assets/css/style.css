@@ -15,29 +15,30 @@ body {
 
   background:
 
-  radial-gradient(
-    circle at top,
-    rgba(30, 120, 140, 0.35),
-    transparent 45%
-  ),
+    radial-gradient(
+      circle at top,
+      rgba(30, 120, 140, 0.35),
+      transparent 45%
+    ),
 
-  radial-gradient(
-    circle at bottom right,
-    rgba(20, 180, 160, 0.18),
-    transparent 40%
-  ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(20, 180, 160, 0.18),
+      transparent 40%
+    ),
 
-  linear-gradient(
-    160deg,
-    #020304 0%,
-    #061312 20%,
-    #0a2423 45%,
-    #103635 70%,
-    #174847 100%
-  );
+    linear-gradient(
+      160deg,
+      #020304 0%,
+      #061312 20%,
+      #0a2423 45%,
+      #103635 70%,
+      #174847 100%
+    );
+
+  background-attachment: fixed;
 
 }
-
 /* =========================
    🧭 サイドバー
 ========================= */
