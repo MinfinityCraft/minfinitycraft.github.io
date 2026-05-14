@@ -33,7 +33,17 @@ const particles =
 
 if (particles) {
 
-  for (let i = 0; i < 40; i++) {
+  /* ホーム判定 */
+const isHome =
+  document.body.classList.contains(
+    "home-page"
+  );
+
+/* 粒子数 */
+const particleCount =
+  isHome ? 40 : 18;
+
+for (let i = 0; i < particleCount; i++){
 
     const particle =
       document.createElement("div");
