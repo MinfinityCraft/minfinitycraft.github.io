@@ -37,36 +37,6 @@ body {
     );
 
   background-attachment: fixed;
-
-  opacity: 0;
-
-  animation:
-    pageFadeIn 0.7s ease forwards;
-
-  transition:
-    opacity 0.28s ease;
-}
-
-/* =========================
-   ✨ ページフェード
-========================= */
-
-/* フェードアウト */
-body.fade-out {
-  opacity: 0;
-}
-
-/* フェードイン */
-@keyframes pageFadeIn {
-
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-
 }
 
 /* =========================
@@ -156,6 +126,7 @@ body.fade-out {
   margin: 10px 0;
 
   color: #7dd3fc;
+
   text-decoration: none;
 
   transition: 0.25s ease;
@@ -229,6 +200,43 @@ body.fade-out {
   padding: 40px;
 
   text-align: center;
+
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+
+  animation:
+    contentFadeIn 0.5s ease;
+}
+
+/* フェードイン */
+@keyframes contentFadeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(8px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+/* フェードアウト */
+.content.fade-out {
+
+  opacity: 0;
+
+  transform:
+    translateY(8px);
 }
 
 /* =========================
@@ -242,17 +250,14 @@ body.fade-out {
 
   color: #7dd3fc;
 
-  text-shadow:
-    0 0 8px #7dd3fc,
-    0 0 16px #7dd3fc;
-
   margin-bottom: 80px;
 
   animation:
-    titleFloat 5s ease-in-out infinite;
+    titleFloat 5s ease-in-out infinite,
+    glowPulse 3s ease-in-out infinite;
 }
 
-/* タイトル浮遊 */
+/* 浮遊 */
 @keyframes titleFloat {
 
   0% {
@@ -265,6 +270,32 @@ body.fade-out {
 
   100% {
     transform: translateY(0px);
+  }
+
+}
+
+/* 発光 */
+@keyframes glowPulse {
+
+  0% {
+
+    text-shadow:
+      0 0 6px #7dd3fc,
+      0 0 14px #7dd3fc;
+  }
+
+  50% {
+
+    text-shadow:
+      0 0 12px #7dd3fc,
+      0 0 28px #7dd3fc;
+  }
+
+  100% {
+
+    text-shadow:
+      0 0 6px #7dd3fc,
+      0 0 14px #7dd3fc;
   }
 
 }
@@ -522,6 +553,10 @@ body.fade-out {
 
   width: 520px;
 
+  max-height: 260px;
+
+  overflow-y: auto;
+
   margin: 0 auto 60px auto;
 
   padding: 24px;
@@ -603,6 +638,7 @@ body.fade-out {
   box-sizing: border-box;
 
   color: #7dd3fc;
+
   text-decoration: none;
 
   font-size: 22px;
@@ -678,6 +714,8 @@ body.fade-out {
 
   border-radius: 50%;
 
+  filter: blur(1px);
+
   background:
     rgba(125, 211, 252, 0.8);
 
@@ -693,7 +731,9 @@ body.fade-out {
 @keyframes floatParticle {
 
   from {
+
     transform: translateY(0px);
+
     opacity: 0;
   }
 
@@ -702,7 +742,9 @@ body.fade-out {
   }
 
   to {
+
     transform: translateY(-100vh);
+
     opacity: 0;
   }
 
@@ -733,26 +775,6 @@ body.fade-out {
 
   background:
     rgba(0, 0, 0, 1);
-}
-
-/* =========================
-   🌌 コンテンツフェード
-========================= */
-
-.content {
-
-  transition:
-    opacity 0.28s ease,
-    transform 0.28s ease;
-}
-
-/* フェードアウト */
-.content.fade-out {
-
-  opacity: 0;
-
-  transform:
-    translateY(8px);
 }
 
 /* =========================
@@ -791,10 +813,6 @@ body.fade-out {
     font-size: 28px;
 
     line-height: 1.6;
-
-    text-shadow:
-      0 0 3px #7dd3fc,
-      0 0 6px #7dd3fc;
   }
 
   /* NEWS */
@@ -827,18 +845,6 @@ body.fade-out {
     font-size: 18px;
 
     margin: 0 auto;
-
-    text-shadow:
-      0 0 4px #7dd3fc;
-  }
-
-  /* サイドバー */
-  .sidebar a:hover,
-  .sidebar a.active {
-
-    text-shadow:
-      0 0 4px #ffd700,
-      0 0 8px #ff9900;
   }
 
   /* カード */
