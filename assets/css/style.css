@@ -350,3 +350,53 @@ body {
     transform: translateY(0);
   }
 }
+
+
+/* =========================
+   🌌 粒子背景
+========================= */
+#particles {
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+/* 粒子 */
+.particle {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: rgba(125, 211, 252, 0.8);
+
+  box-shadow:
+    0 0 6px #7dd3fc,
+    0 0 12px #7dd3fc;
+
+  animation: floatParticle linear infinite;
+}
+
+/* 浮遊 */
+@keyframes floatParticle {
+
+  from {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
