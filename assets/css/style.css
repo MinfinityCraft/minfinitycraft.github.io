@@ -142,6 +142,46 @@ h2 {
   font-size: 22px;
   margin-top: 30px;
 }
+
+
+.sidebar a {
+  position: relative;
+  display: inline-block;
+  color: #7dd3fc;
+  text-decoration: none;
+  margin: 10px 0;
+  transition: all 0.25s ease;
+}
+
+/* ホバー：拡大＋発光 */
+.sidebar a:hover {
+  transform: scale(1.08);
+  color: #ffd700;
+  text-shadow: 
+    0 0 8px #ffd700,
+    0 0 16px #ff9900;
+}
+
+/* 下線（初期状態） */
+.sidebar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(90deg, #ffd700, #ff8800);
+
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+/* ホバー時に下線アニメ */
+.sidebar a:hover::after {
+  transform: scaleX(1);
+}
     display: block;
   }
 }
