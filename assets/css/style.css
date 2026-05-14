@@ -726,6 +726,26 @@ body.fade-out {
 }
 
 /* =========================
+   🌌 コンテンツフェード
+========================= */
+
+.content {
+
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+}
+
+/* フェードアウト */
+.content.fade-out {
+
+  opacity: 0;
+
+  transform:
+    translateY(8px);
+}
+
+/* =========================
    📱 スマホ
 ========================= */
 @media (max-width: 768px) {
