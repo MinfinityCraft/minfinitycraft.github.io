@@ -88,29 +88,6 @@ body.fade-out {
   flex-direction: column;
 
   background:
-    rgba(0, 0, 0, 0.55);
-
-  backdrop-filter: blur(12px);
-
-  border-right:
-    1px solid rgba(125, 211, 252, 0.15);
-
- .sidebar {
-
-  position: fixed;
-
-  left: 0;
-  top: 0;
-
-  width: 220px;
-  height: 100vh;
-
-  padding: 20px;
-
-  display: flex;
-  flex-direction: column;
-
-  background:
 
     linear-gradient(
       to bottom,
@@ -130,12 +107,6 @@ body.fade-out {
     inset -1px 0 0 rgba(125, 211, 252, 0.18),
 
     0 0 12px rgba(125, 211, 252, 0.08);
-
-  animation:
-    sidebarFloat 6s ease-in-out infinite;
-
-  z-index: 999;
-}
 
   animation:
     sidebarFloat 6s ease-in-out infinite;
