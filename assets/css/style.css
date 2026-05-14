@@ -356,26 +356,24 @@ body {
 }
 
 /* 中央 */
-
 .home-inner {
 
-  transform: translateY(-40px);
-
   opacity: 0;
+
+  transform: translateY(20px);
 
   transition:
     opacity 1.8s ease,
     transform 1.8s ease;
 }
 
-/* 表示後 */
+/* 表示 */
 .home-inner.show {
 
   opacity: 1;
 
-  transform: translateY(-60px);
+  transform: translateY(0px);
 }
-
 /* =========================
    📰 NEWS BOX
 ========================= */
