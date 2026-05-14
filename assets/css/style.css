@@ -263,11 +263,16 @@ body {
 
 /* フェード */
 #loading.fade-out {
-  opacity: 0;
-  visibility: hidden;
 
-  transition: 2.4s ease;
+  opacity: 0;
+
+  filter: blur(8px);
+
+  transition:
+    opacity 1.4s ease,
+    filter 1.4s ease;
 }
+
 
 /* ローディングBOX */
 .loader-box {
