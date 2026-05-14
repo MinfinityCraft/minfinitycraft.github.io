@@ -229,6 +229,9 @@ document
    🌌 ページ遷移
 ========================= */
 
+const fade =
+  document.querySelector(".screen-fade");
+
 document
   .querySelectorAll("a")
   .forEach(link => {
@@ -248,16 +251,16 @@ document
 
           e.preventDefault();
 
-          document.body
-            .classList
-            .add("fade-out");
+          if (fade) {
+            fade.classList.add("active");
+          }
 
           setTimeout(() => {
 
             window.location.href =
               href;
 
-          }, 500);
+          }, 800);
 
         }
 
