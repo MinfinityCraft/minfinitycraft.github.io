@@ -201,7 +201,6 @@ document
         const href =
           this.getAttribute("href");
 
-        /* 除外 */
         if (
           href &&
           !href.startsWith("#") &&
@@ -210,12 +209,15 @@ document
 
           e.preventDefault();
 
-          /* bodyフェード */
-          document.body
-            .classList
-            .add("fade-out");
+          /* コンテンツ */
+          const content =
+            document.querySelector(".content");
 
-          /* シネマフェード */
+          if (content) {
+            content.classList.add("fade-out");
+          }
+
+          /* 暗転 */
           if (fade) {
             fade.classList.add("active");
           }
