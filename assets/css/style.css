@@ -231,3 +231,29 @@ body {
     visibility: hidden;
   }
 }
+
+.subtitle {
+  color: #ffd700;
+  text-shadow: 0 0 10px #ff9900;
+  margin-bottom: 30px;
+}
+
+.start-box {
+  margin-top: 20px;
+}
+
+.start-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border: 1px solid #7dd3fc;
+  color: #7dd3fc;
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  background: #7dd3fc;
+  color: black;
+  box-shadow: 0 0 15px #7dd3fc;
+}
