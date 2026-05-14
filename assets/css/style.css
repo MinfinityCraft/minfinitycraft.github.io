@@ -759,7 +759,7 @@ body.fade-out {
   z-index: 99999;
 
  transition:
-  background 0.45s ease;
+  background 0.28s ease;
 }
 
 /* 発動 */
@@ -781,14 +781,4 @@ body {
     pageFadeIn 0.9s ease forwards;
 }
 
-@keyframes pageFadeIn {
 
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-
-}
