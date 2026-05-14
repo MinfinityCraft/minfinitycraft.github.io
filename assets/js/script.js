@@ -82,14 +82,14 @@ window.addEventListener("load", () => {
   const home =
     document.querySelector(".home-inner");
 
-  /* 途中で粒子 */
+  /* 粒子開始 */
   setTimeout(() => {
 
     if (particles) {
       particles.classList.add("show");
     }
 
-  }, 1000);
+  }, 700);
 
   /* ローディング終了 */
   setTimeout(() => {
@@ -98,6 +98,7 @@ window.addEventListener("load", () => {
 
       loading.classList.add("fade-out");
 
+      /* 少し短め */
       setTimeout(() => {
 
         loading.remove();
@@ -107,14 +108,13 @@ window.addEventListener("load", () => {
           home.classList.add("show");
         }
 
-      }, 2200);
+      }, 1000);
 
     }
 
-  }, 2600);
+  }, 1800);
 
 });
-
 /* =========================
    📰 NEWS
 ========================= */
