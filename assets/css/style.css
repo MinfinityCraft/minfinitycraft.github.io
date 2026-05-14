@@ -1,1 +1,99 @@
+/* 背景固定グラデーション */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
 
+  background: linear-gradient(135deg, #000000, #0b2f2a);
+  background-attachment: fixed;
+}
+
+/* サイドバー */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar a {
+  color: #7dd3fc;
+  text-decoration: none;
+  margin: 10px 0;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  color: yellow;
+  text-shadow: 0 0 10px yellow;
+}
+
+/* ロゴ */
+.logo {
+  color: #7dd3fc;
+  text-shadow: 0 0 10px #7dd3fc;
+}
+
+/* メイン */
+.content {
+  margin-left: 240px;
+  padding: 40px;
+  text-align: center;
+}
+
+/* タイトル（発光） */
+.title {
+  font-size: 60px;
+  color: #7dd3fc;
+  text-shadow: 0 0 15px #7dd3fc;
+  margin-bottom: 40px;
+}
+
+/* カード */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(125, 211, 252, 0.2);
+}
+
+/* ハンバーガー */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #7dd3fc;
+}
+
+/* スマホ */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -260px;
+    transition: 0.3s;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
