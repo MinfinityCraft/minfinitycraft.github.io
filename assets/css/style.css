@@ -446,9 +446,12 @@ body {
 }
 
 .home-inner {
-  animation: homeFade 1.5s ease;
-}
 
+  animation: homeFade 1.5s ease;
+
+  transform: translateY(-40px);
+
+}
 /* タイトル */
 .title {
   font-family: 'Press Start 2P', cursive;
@@ -461,12 +464,12 @@ body {
     0 0 8px #7dd3fc,
     0 0 16px #7dd3fc;
 
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 }
 
 /* NEWS */
 .news-box {
-  margin-bottom: 45px;
+  margin-bottom: 60px;
 }
 
 .news-box h2 {
@@ -480,26 +483,36 @@ body {
 
   letter-spacing: 2px;
 }
-}
 
-/* メニュー */
+
+/* メニュー全体 */
 .menu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
 
-  align-items: flex-start;
-}
-.menu-btn {
-  width: 220px;
+  display: grid;
 
-  text-align: left;
+  grid-template-columns:
+    repeat(2, 240px);
+
+  gap: 22px;
+
+  justify-content: center;
+
 }
 
 /* ボタン */
 .menu-btn {
-  color: #7dd3fc;
 
+  width: 240px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+
+  padding-left: 20px;
+
+  box-sizing: border-box;
+
+  color: #7dd3fc;
   text-decoration: none;
 
   font-size: 22px;
@@ -508,7 +521,28 @@ body {
 
   text-shadow:
     0 0 6px #7dd3fc;
+
+  border: 1px solid transparent;
 }
+
+/* ホバー */
+.menu-btn:hover {
+
+  transform: scale(1.05);
+
+  color: #ffd700;
+
+  text-shadow:
+    0 0 6px #ffd700,
+    0 0 12px #ff9900;
+
+  border-color: rgba(255, 215, 0, 0.4);
+
+  background:
+    rgba(255, 215, 0, 0.05);
+}
+
+
 
 /* ホバー */
 .menu-btn:hover {
@@ -541,14 +575,16 @@ body {
 ========================= */
 @media (max-width: 768px) {
 
-  /* タイトル */
   .title {
+
     font-size: 28px;
 
     text-shadow:
-      0 0 5px #7dd3fc,
-      0 0 10px #7dd3fc;
+      0 0 3px #7dd3fc,
+      0 0 6px #7dd3fc;
+
   }
+
 
   /* NEWS */
   .news-box h2 {
