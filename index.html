@@ -3,53 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Minfinity craft</title>
 
-  <!-- Minecraft風フォント -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="home-page">
 
-<div id="loading">
-  <div class="loader-box">
-    <div class="logo">Minfinity craft</div>
+  <!-- ローディング -->
+  <div id="loading">
+    <div class="loader-box">
 
-    <div class="bar">
-      <div class="progress"></div>
+      <div class="logo">
+        Minfinity craft
+      </div>
+
+      <div class="bar">
+        <div class="progress"></div>
+      </div>
+
+      <p>Loading...</p>
+
     </div>
-
-    <p>Loading...</p>
-  </div>
-</div>
-
-<div id="particles"></div>
-  
-  <!-- メイン -->
- 
-<main class="home">
-
-  <div class="home-inner">
-
-    <h1 class="title">Minfinity craft</h1>
-
-    <!-- 新着 -->
-    <div class="news-box">
-      <h2>NEWS</h2>
-      <div id="news"></div>
-    </div>
-
-    <!-- ENTER -->
-    <div class="start-box">
-      <a href="about.html" class="start-btn">ENTER</a>
-    </div>
-
   </div>
 
-</main>
+  <!-- 粒子 -->
+  <div id="particles"></div>
+
+  <!-- ホーム -->
+  <main class="home">
+
+    <div class="home-inner">
+
+      <h1 class="title">Minfinity craft</h1>
+
+      <!-- NEWS -->
+      <div class="news-box">
+        <h2>NEWS</h2>
+
+        <div id="news"></div>
+      </div>
+
+      <!-- メニュー -->
+      <div class="menu-list">
+
+        <a href="about.html" class="menu-btn">
+          ▶ SERVER
+        </a>
+
+        <a href="rules.html" class="menu-btn">
+          RULES
+        </a>
+
+        <a href="permissions.html" class="menu-btn">
+          STAFF
+        </a>
+
+        <a href="recipes.html" class="menu-btn">
+          RECIPES
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
 
   <script src="assets/js/script.js"></script>
+
 </body>
 </html>
