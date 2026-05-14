@@ -363,8 +363,8 @@ body {
   transform: translateY(20px);
 
   transition:
-    opacity 1.8s ease,
-    transform 1.8s ease;
+    opacity 1.2s ease,
+    transform 1.2s ease;
 }
 
 /* 表示 */
@@ -372,7 +372,7 @@ body {
 
   opacity: 1;
 
-  transform: translateY(0px);
+  transform: translateY(0);
 }
 /* =========================
    📰 NEWS BOX
