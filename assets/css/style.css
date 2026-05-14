@@ -1,4 +1,6 @@
-/* 背景固定グラデーション */
+/* =========================
+   背景（固定グラデ）
+========================= */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -8,7 +10,9 @@ body {
   background-attachment: fixed;
 }
 
-/* サイドバー */
+/* =========================
+   サイドバー（PC）
+========================= */
 .sidebar {
   position: fixed;
   left: 0;
@@ -16,14 +20,22 @@ body {
   width: 220px;
   height: 100vh;
 
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
 
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
 
+.logo {
+  font-size: 18px;
+  color: #7dd3fc;
+  text-shadow: 0 0 10px #7dd3fc;
+  margin-bottom: 20px;
+}
+
+/* ナビリンク */
 .sidebar a {
   color: #7dd3fc;
   text-decoration: none;
@@ -32,28 +44,25 @@ body {
 }
 
 .sidebar a:hover {
-  color: yellow;
-  text-shadow: 0 0 10px yellow;
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700;
 }
 
-/* ロゴ */
-.logo {
-  color: #7dd3fc;
-  text-shadow: 0 0 10px #7dd3fc;
-}
-
-/* メイン */
+/* =========================
+   メイン
+========================= */
 .content {
   margin-left: 240px;
   padding: 40px;
   text-align: center;
 }
 
-/* タイトル（発光） */
+/* タイトル */
 .title {
-  font-size: 60px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 42px;
   color: #7dd3fc;
-  text-shadow: 0 0 15px #7dd3fc;
+  text-shadow: 0 0 18px #7dd3fc;
   margin-bottom: 40px;
 }
 
@@ -64,10 +73,13 @@ body {
   margin: 20px auto;
   max-width: 600px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(125, 211, 252, 0.2);
+
+  box-shadow: 0 0 12px rgba(125, 211, 252, 0.25);
 }
 
-/* ハンバーガー */
+/* =========================
+   ハンバーガー（スマホ）
+========================= */
 .hamburger {
   display: none;
   position: fixed;
@@ -76,13 +88,18 @@ body {
   font-size: 30px;
   cursor: pointer;
   color: #7dd3fc;
+  z-index: 1000;
 }
 
-/* スマホ */
+/* =========================
+   スマホ対応
+========================= */
 @media (max-width: 768px) {
+
   .sidebar {
     left: -260px;
     transition: 0.3s;
+    z-index: 999;
   }
 
   .sidebar.active {
@@ -91,6 +108,7 @@ body {
 
   .content {
     margin-left: 0;
+    padding: 20px;
   }
 
   .hamburger {
