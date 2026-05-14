@@ -683,3 +683,17 @@ body.fade-out {
   }
 
 }
+
+/* =========================
+   🌌 ページフェード
+========================= */
+
+body {
+
+  transition:
+    opacity 0.5s ease;
+}
+
+body.fade-out {
+  opacity: 0;
+}
