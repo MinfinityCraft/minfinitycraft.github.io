@@ -88,11 +88,11 @@ window.addEventListener("load", () => {
 
       setTimeout(() => {
         loading.remove();
-      }, 1800);
+      }, 2600);
 
     }
 
-  }, 1200);
+  }, 2200);
 
 });
 
