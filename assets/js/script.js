@@ -12,10 +12,19 @@ links.forEach(link => {
 });
 
 window.addEventListener("load", () => {
+
   setTimeout(() => {
+
     const loading = document.getElementById("loading");
-    if (loading) loading.remove();
-  }, 1800);
+
+    loading.classList.add("fade-out");
+
+    setTimeout(() => {
+      loading.remove();
+    }, 800);
+
+  }, 1600);
+
 });
 
 fetch("assets/data/news.json")
