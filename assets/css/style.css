@@ -473,9 +473,13 @@ body {
   color: #ffd700;
 
   text-shadow:
-    0 0 8px #ff9900;
+    0 0 8px #ffd700,
+    0 0 18px #ff9900;
 
   margin-bottom: 15px;
+
+  letter-spacing: 2px;
+}
 }
 
 /* メニュー */
@@ -483,6 +487,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 18px;
+
+  align-items: flex-start;
+}
+.menu-btn {
+  width: 220px;
+
+  text-align: left;
 }
 
 /* ボタン */
