@@ -10,3 +10,10 @@ links.forEach(link => {
     link.classList.add("active");
   }
 });
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const loading = document.getElementById("loading");
+    if (loading) loading.remove();
+  }, 1800);
+});
