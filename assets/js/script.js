@@ -38,3 +38,36 @@ fetch("assets/data/news.json")
       newsBox.appendChild(p);
     });
   });
+
+
+/* 粒子生成 */
+const particles = document.getElementById("particles");
+
+if (particles) {
+
+  for (let i = 0; i < 40; i++) {
+
+    const particle = document.createElement("div");
+
+    particle.classList.add("particle");
+
+    particle.style.left = Math.random() * 100 + "vw";
+
+    const size = Math.random() * 4 + 2;
+
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+
+    particle.style.animationDuration =
+      (Math.random() * 10 + 8) + "s";
+
+    particle.style.animationDelay =
+      Math.random() * 5 + "s";
+
+    particle.style.bottom = "-20px";
+
+    particles.appendChild(particle);
+
+  }
+
+}
