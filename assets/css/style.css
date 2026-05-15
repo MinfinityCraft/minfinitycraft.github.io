@@ -225,6 +225,10 @@ body::before {
 
   color: #7dd3fc;
 
+　text-align: center;
+
+  width: 100%;
+
   text-shadow:
     0 0 8px #7dd3fc,
     0 0 16px #7dd3fc;
@@ -595,25 +599,20 @@ body::before {
 ========================= */
 @media (max-width: 768px) {
 
-  /* サイドバー */
   .sidebar {
 
     left: 0;
 
-    transform:
-      translateX(-260px);
+    transform: translateX(-260px);
 
-    transition:
-      transform 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .sidebar.active {
 
-    transform:
-      translateX(0);
+    transform: translateX(0);
   }
 
-  /* コンテンツ */
   .content {
 
     margin-left: 0;
@@ -621,27 +620,33 @@ body::before {
     padding: 20px;
   }
 
-  /* ハンバーガー */
   .hamburger {
 
     display: block;
   }
 
-  /* メニュー */
   .menu-list {
 
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      repeat(2, minmax(120px, 1fr));
 
-    gap: 16px;
+    gap: 14px;
   }
 
-  /* NEWS */
+  .menu-btn {
+
+    width: 100%;
+
+    min-height: 46px;
+
+    font-size: 15px;
+  }
+
   .news-box {
 
     width: 92%;
   }
 
-  /* タイトル */
   .title {
 
     margin-top: 60px;
