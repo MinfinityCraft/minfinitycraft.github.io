@@ -340,6 +340,11 @@ body::before {
   z-index: 9999;
 }
 
+.loader-box {
+
+  text-align: center;
+}
+
 #loading.fade-out {
   opacity: 0;
   filter: blur(8px);
