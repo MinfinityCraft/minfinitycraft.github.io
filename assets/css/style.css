@@ -416,40 +416,71 @@ body::before {
 }
 
 .menu-btn {
-  width: 240px;
-  height: 52px;
+
+  width: min(240px, 78vw);
+
+  min-height: 52px;
 
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 
   padding-left: 20px;
 
+  box-sizing: border-box;
+
   color: #7dd3fc;
+
   text-decoration: none;
 
-  font-size: 22px;
+  font-size: clamp(16px, 3vw, 22px);
 
-  transition: 0.25s ease;
+  letter-spacing: 1px;
+
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease,
+    text-shadow 0.25s ease;
+
+  text-shadow:
+    0 0 6px #7dd3fc;
 }
 
+/* > */
 .menu-btn::before {
+
   content: ">";
+
   opacity: 0;
+
   margin-right: 8px;
-  transition: 0.2s ease;
+
+  transform: translateX(-4px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
+/* 表示 */
 .menu-btn:hover::before {
+
   opacity: 1;
+
+  transform: translateX(0);
 }
 
+/* ホバー */
 .menu-btn:hover {
+
   transform: scale(1.05);
+
   color: #ffd700;
 
-  text-shadow: 0 0 6px #ffd700, 0 0 12px #ff9900;
+  text-shadow:
+    0 0 6px #ffd700,
+    0 0 12px #ff9900;
 }
-
 /* =========================
    🌌 粒子
 ========================= */
