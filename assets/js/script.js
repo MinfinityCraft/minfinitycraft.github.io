@@ -1,7 +1,15 @@
 function toggleMenu() {
-  document.querySelector(".sidebar").classList.toggle("active");
-}
 
+  const sidebar =
+    document.querySelector(".sidebar");
+
+  const hamburger =
+    document.querySelector(".hamburger");
+
+  sidebar.classList.toggle("active");
+
+  hamburger.classList.toggle("hide");
+}
 /* =========================
    📄 現在ページ
 ========================= */
