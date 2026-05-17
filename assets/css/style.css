@@ -37,6 +37,23 @@ body::before {
   z-index: 0;
 }
 
+.mining-page {
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(0,255,170,0.12),
+      transparent 40%
+    ),
+
+    linear-gradient(
+      160deg,
+      #020304 0%,
+      #041d18 100%
+    );
+}
+
 /* =========================
    🧭 サイドバー
 ========================= */
