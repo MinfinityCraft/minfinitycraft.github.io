@@ -916,3 +916,19 @@ body::before {
 
   margin-top: 0;
 }
+
+/* 採掘場タイトル */
+.mine-name {
+
+  margin-bottom: 16px;
+
+  font-size: 28px;
+
+  color: #9fffd9;
+
+  text-align: center;
+
+  text-shadow:
+    0 0 8px rgba(0,255,170,0.5),
+    0 0 18px rgba(0,255,170,0.25);
+}
