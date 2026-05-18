@@ -10,10 +10,13 @@
 </head>
 
 <body class="about-page">
+
+  <!-- 粒子 -->
   <div id="particles"></div>
 
   <!-- サイドバー -->
   <div class="sidebar">
+
     <div class="logo">Minfinity</div>
 
     <a href="about.html">サーバー説明</a>
@@ -21,6 +24,7 @@
     <a href="permissions.html">権限者一覧</a>
     <a href="recipes.html">クラフトレシピ</a>
     <a href="mining.html" class="active">採掘場情報</a>
+
   </div>
 
   <!-- ハンバーガー -->
@@ -31,34 +35,117 @@
 
     <h1 class="title">MINING</h1>
 
-    <section class="card">
+    <!-- 説明 -->
+    <section class="card mining-top-card">
       <h2>採掘場について</h2>
+
       <p>
-        未定<br>
-        未定
+        Minfinity craftでは、専用の採掘場で資源を集めることができます。<br>
+        採掘場ごとに生成される鉱石やドロップ率が異なります。
       </p>
     </section>
 
-    <section class="card">
-      <h2>採掘ルール</h2>
-      <p>
-        ・未定<br>
-        ・未定<br>
-        ・未定
-      </p>
-    </section>
+    <!-- 採掘場カード -->
+    <section class="mine-card">
 
-    <section class="card">
-      <h2>第一採掘場</h2>
-      <p>
-        未定<br>
-        未定
+      <!-- 画像 -->
+      <img
+        src="assets/images/mines/normalmine.png"
+        alt="通常採掘場"
+        class="mine-image"
+      >
+
+      <!-- タイトル -->
+      <h2 class="mine-title">通常採掘場</h2>
+
+      <!-- ドロップ -->
+      <div class="mine-drops">
+
+        <span class="drop-item">石炭</span>
+        <span class="drop-item">鉄</span>
+        <span class="drop-item">金</span>
+        <span class="drop-item">ダイヤ</span>
+
+      </div>
+
+      <!-- 説明 -->
+      <p class="mine-description">
+        初心者向けの基本採掘場。<br>
+        バランスよく鉱石が出現します。
       </p>
+
+      <!-- アコーディオン -->
+      <button class="accordion-btn">
+        詳細データ ▼
+      </button>
+
+      <div class="accordion-content">
+
+        <div class="mine-table">
+
+          <div class="mine-row">
+            <span>石</span>
+            <span>60%</span>
+          </div>
+
+          <div class="mine-row">
+            <span>鉄鉱石</span>
+            <span>20%</span>
+          </div>
+
+          <div class="mine-row">
+            <span>金鉱石</span>
+            <span>12%</span>
+          </div>
+
+          <div class="mine-row">
+            <span>ダイヤ鉱石</span>
+            <span>8%</span>
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
 
   </main>
 
-  <script src="assets/js/script.js"></script>
+  <!-- フェード -->
   <div class="screen-fade"></div>
+
+  <script src="assets/js/script.js"></script>
+
+  <!-- アコーディオン -->
+  <script>
+
+    const accordionBtns =
+      document.querySelectorAll(".accordion-btn");
+
+    accordionBtns.forEach(btn => {
+
+      btn.addEventListener("click", () => {
+
+        btn.classList.toggle("open");
+
+        const content =
+          btn.nextElementSibling;
+
+        if (content.style.maxHeight) {
+
+          content.style.maxHeight = null;
+
+        } else {
+
+          content.style.maxHeight =
+            content.scrollHeight + "px";
+        }
+
+      });
+
+    });
+
+  </script>
+
 </body>
-</html>　
+</html>
