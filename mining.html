@@ -1,58 +1,111 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>採掘場情報 | Minfinity Craft</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+  <title>
+    採掘場情報 | Minfinity Craft
+  </title>
+
+  <link rel="stylesheet"
+        href="style.css">
+
 </head>
 
 <body class="mining-page">
 
-  <!-- サイドバー -->
+  <!-- 🌌 粒子 -->
+  <div id="particles"></div>
+
+  <!-- 🎬 フェード -->
+  <div class="screen-fade"></div>
+
+  <!-- ☰ ハンバーガー -->
+  <div class="hamburger">
+    ☰
+  </div>
+
+  <!-- 🧭 サイドバー -->
   <div class="sidebar">
 
     <div class="logo">
       MINFINITY
     </div>
 
-    <a href="index.html">HOME</a>
-    <a href="rules.html">RULE</a>
-    <a href="about.html">ABOUT</a>
-    <a href="staff.html">STAFF</a>
+    <a href="index.html">
+      HOME
+    </a>
 
-    <!-- 追加 -->
-    <a href="mining.html" class="active">
+    <a href="rules.html">
+      RULE
+    </a>
+
+    <a href="about.html">
+      ABOUT
+    </a>
+
+    <a href="staff.html">
+      STAFF
+    </a>
+
+    <a href="mining.html"
+       class="active">
+
       採掘場情報
     </a>
 
   </div>
 
-  <!-- コンテンツ -->
+  <!-- 🧱 コンテンツ -->
   <div class="content">
 
     <h1 class="title">
       採掘場情報
     </h1>
 
+    <!-- ⛏ 第一区画 -->
     <div class="card">
 
-      <h2>第一区画</h2>
+      <h2>
+        SECTOR-01
+      </h2>
 
       <p>
-        高純度鉱石を採掘可能。
+        高純度鉱石を採掘可能。<br>
+        初心者向け区域。
       </p>
 
     </div>
 
+    <!-- ⛏ 第二区画 -->
     <div class="card">
 
-      <h2>危険区域</h2>
+      <h2>
+        SECTOR-02
+      </h2>
 
       <p>
-        深層部では崩落に注意。
+        深層鉱脈を確認。<br>
+        崩落危険区域あり。
+      </p>
+
+    </div>
+
+    <!-- ⛏ 危険区域 -->
+    <div class="card">
+
+      <h2>
+        DANGER AREA
+      </h2>
+
+      <p>
+        深層部にて異常エネルギー反応を検出。<br>
+        許可なき侵入は禁止されています。
       </p>
 
     </div>
@@ -62,4 +115,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
