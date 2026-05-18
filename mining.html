@@ -1,159 +1,78 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>採掘場情報 | Minfinity craft</title>
+<section class="card mine-card">
 
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
+  <!-- 採掘場タイトル -->
+  <h2 class="mine-name">
+    通常採掘場
+  </h2>
 
-<body class="recipes-page">
+  <!-- 画像 -->
+  <img
+    src="assets/images/mine1.jpg"
+    alt="通常採掘場"
+    class="mine-image"
+  >
 
-  <!-- 粒子 -->
-  <div id="particles"></div>
+  <!-- ドロップアイテム -->
+  <div class="mine-drops">
 
-  <!-- サイドバー -->
-  <div class="sidebar">
+    <span class="drop-item">
+      石炭
+    </span>
 
-    <div class="logo">Minfinity</div>
+    <span class="drop-item">
+      鉄
+    </span>
 
-    <a href="about.html">サーバー説明</a>
-    <a href="rules.html">サーバールール</a>
-    <a href="permissions.html">権限者一覧</a>
-    <a href="recipes.html">クラフトレシピ</a>
-    <a href="mining.html" class="active">採掘場情報</a>
-
-  </div>
-
-  <!-- ハンバーガー -->
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-  <!-- メイン -->
-  <main class="content">
-
-    <h1 class="title">MINING</h1>
-
-    <!-- 説明 -->
-    <section class="card mining-top-card">
-      <h2>採掘場について</h2>
-
-      <p>
-        Minfinity craftでは、専用の採掘場で資源を集めることができます。<br>
-        採掘場ごとに生成される鉱石やドロップ率が異なります。
-      </p>
-    </section>
-
-    <!-- 採掘場カード -->
-    <section class="mine-card">
-
-      <!-- 画像 -->
-      <img
-        src="assets/images/mines/normalmine.png"
-        alt="通常採掘場"
-        class="mine-image"
-      >
-
-      <!-- タイトル -->
-      <h2 class="mine-title">通常採掘場</h2>
-
-      <!-- ドロップ -->
-      <div class="mine-drops">
-
-        <span class="drop-item">石炭</span>
-        <span class="drop-item">鉄</span>
-        <span class="drop-item">金</span>
-        <span class="drop-item">ダイヤ</span>
-
-      </div>
-
-      <!-- 説明 -->
-      <p class="mine-description">
-        初心者向けの基本採掘場。<br>
-        バランスよく鉱石が出現します。
-      </p>
-
-      <!-- アコーディオン -->
-      <button class="accordion-btn">
-        詳細データ ▼
-      </button>
-
-    <div class="accordion-content">
-
-  <div class="mine-table">
-
-    <h3 class="mine-subtitle">
-      生成ブロック
-    </h3>
-
-    <div class="mine-row">
-      <span>未定</span>
-      <span>0%</span>
-    </div>
-
-    <div class="mine-row">
-      <span>未定</span>
-      <span>0%</span>
-    </div>
-
-    <h3 class="mine-subtitle">
-      ドロップアイテム
-    </h3>
-
-    <div class="mine-row">
-      <span>未定</span>
-      <span>0%</span>
-    </div>
-
-    <div class="mine-row">
-      <span>未定</span>
-      <span>0%</span>
-    </div>
+    <span class="drop-item">
+      銅
+    </span>
 
   </div>
-
-</div>
-
-    </section>
-
-  </main>
-
-  <!-- フェード -->
-  <div class="screen-fade"></div>
-
-  <script src="assets/js/script.js"></script>
 
   <!-- アコーディオン -->
-  <script>
+  <button class="accordion">
 
-    const accordionBtns =
-      document.querySelectorAll(".accordion-btn");
+    詳細データ ▼
 
-    accordionBtns.forEach(btn => {
+  </button>
 
-      btn.addEventListener("click", () => {
+  <!-- 開閉部分 -->
+  <div class="accordion-content">
 
-        btn.classList.toggle("open");
+    <div class="mine-table">
 
-        const content =
-          btn.nextElementSibling;
+      <!-- 生成ブロック -->
+      <h3 class="mine-subtitle">
+        生成ブロック
+      </h3>
 
-        if (content.style.maxHeight) {
+      <div class="mine-row">
+        <span>未定</span>
+        <span>0%</span>
+      </div>
 
-          content.style.maxHeight = null;
+      <div class="mine-row">
+        <span>未定</span>
+        <span>0%</span>
+      </div>
 
-        } else {
+      <!-- ドロップアイテム -->
+      <h3 class="mine-subtitle">
+        ドロップアイテム
+      </h3>
 
-          content.style.maxHeight =
-            content.scrollHeight + "px";
-        }
+      <div class="mine-row">
+        <span>未定</span>
+        <span>0%</span>
+      </div>
 
-      });
+      <div class="mine-row">
+        <span>未定</span>
+        <span>0%</span>
+      </div>
 
-    });
+    </div>
 
-  </script>
+  </div>
 
-</body>
-</html>
+</section>
