@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>採掘場情報 | Minfinity craft</title>
+  <title>クラフトレシピ | Minfinity craft</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body class="mining-page">
+<body class="recipes-page">
 
   <!-- 粒子 -->
   <div id="particles"></div>
@@ -23,8 +23,8 @@
     <a href="about.html">サーバー説明</a>
     <a href="rules.html">サーバールール</a>
     <a href="permissions.html">権限者一覧</a>
-    <a href="recipes.html">クラフトレシピ</a>
-    <a href="mining.html" class="active">採掘場情報</a>
+    <a href="recipes.html" class="active">クラフトレシピ</a>
+    <a href="mining.html">採掘場情報</a>
   </div>
 
   <!-- ハンバーガー -->
@@ -33,70 +33,85 @@
   <!-- メイン -->
   <main class="content">
 
-    <h1 class="title">MINING</h1>
+    <h1 class="title">RECIPES</h1>
 
-    <!-- 説明カード -->
-    <section class="card mining-top-card">
-      <h2>採掘場について</h2>
+    <!-- 検索カード -->
+    <section class="card">
+      <h2>検索方法</h2>
       <p>
-        採掘場では様々なブロックを採掘できます。<br>
-        採掘場ごとに生成ブロックやドロップアイテムが異なります。<br><br>
-        詳細データを開くことで、確率を確認できます。
+        ・検索バーに名前を入力<br>
+        ・該当レシピを表示
       </p>
+
+      <input id="searchBox" type="text" placeholder="レシピを検索..." />
     </section>
 
-    <!-- =========================
-         採掘場①
-    ========================== -->
-    <section class="mine-card">
+    <!-- ピッケルレシピ -->
+    <section class="card recipe-section">
 
-      <h2 class="mine-name">通常採掘場</h2>
+      <details>
+        <summary>⛏ ピッケルレシピ</summary>
 
-      <img src="assets/images/mine1.jpg" alt="通常採掘場" class="mine-image">
+        <!-- 第一採掘場 -->
+        <h3>第一採掘場</h3>
 
-      <div class="mine-drops">
-        <span class="drop-item">石炭</span>
-        <span class="drop-item">鉄</span>
-        <span class="drop-item">銅</span>
-      </div>
+        <details>
+          <summary>石ピッケル</summary>
+          <div class="drop-data">
+            <h3>性能</h3>
+            採掘速度：普通<br>
+            耐久：低
+          </div>
+        </details>
 
-      <!-- 木のピッケル -->
-      <details class="tool-box">
+        <details>
+          <summary>鉄ピッケル</summary>
+          <div class="drop-data">
+            <h3>性能</h3>
+            採掘速度：速い<br>
+            耐久：中
+          </div>
+        </details>
 
-        <summary>🪵 木のピッケル</summary>
+        <!-- 第二採掘場 -->
+        <h3>第二採掘場</h3>
 
-        <div class="tool-info">
-          <p>⚡ 性能：採掘速度 1.0 / 耐久 100</p>
-
-          <details>
-            <summary>📦 レシピ</summary>
-            <div class="drop-data">
-              ・木材 × 3<br>
-              ・棒 × 2
-            </div>
-          </details>
-
-        </div>
+        <details>
+          <summary>金ピッケル</summary>
+          <div class="drop-data">
+            <h3>性能</h3>
+            採掘速度：非常に速い<br>
+            耐久：低
+          </div>
+        </details>
 
       </details>
 
-      <!-- 石のピッケル -->
-      <details class="tool-box">
+    </section>
 
-        <summary>🪨 石のピッケル</summary>
+    <!-- 素材レシピ -->
+    <section class="card recipe-section">
 
-        <div class="tool-info">
-          <p>⚡ 性能：採掘速度 1.2 / 耐久 250</p>
+      <details>
+        <summary>📦 素材レシピ</summary>
 
-          <details>
-            <summary>📦 レシピ</summary>
-            <div class="drop-data">
-              ・丸石 × 3<br>
-              ・棒 × 2
-            </div>
-          </details>
+        <h3>基本素材</h3>
 
-        </div>
+        <details>
+          <summary>圧縮石</summary>
+          <div class="drop-data">
+            <h3>レシピ</h3>
+            石 × 9 → 圧縮石
+          </div>
+        </details>
+
+        <details>
+          <summary>鉄塊</summary>
+          <div class="drop-data">
+            <h3>レシピ</h3>
+            鉄インゴット × 9 → 鉄塊
+          </div>
+        </details>
 
       </details>
 
@@ -108,6 +123,27 @@
   <div class="screen-fade"></div>
 
   <script src="assets/js/script.js"></script>
+
+  <!-- 🔍 検索機能（簡易版） -->
+  <script>
+    const box = document.getElementById("searchBox");
+
+    box.addEventListener("input", function () {
+      const value = this.value.toLowerCase();
+      const items = document.querySelectorAll("summary");
+
+      items.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        const parent = el.parentElement;
+
+        if (text.includes(value)) {
+          parent.style.display = "";
+        } else {
+          parent.style.display = "none";
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
