@@ -932,3 +932,90 @@ body::before {
     0 0 8px rgba(0,255,170,0.5),
     0 0 18px rgba(0,255,170,0.25);
 }
+
+/* =========================
+   ⛏ 採掘場アコーディオン
+========================= */
+
+details {
+
+  margin-top: 18px;
+
+  border:
+    1px solid rgba(125,211,252,0.15);
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  backdrop-filter: blur(8px);
+}
+
+summary {
+
+  list-style: none;
+
+  cursor: pointer;
+
+  padding: 16px 20px;
+
+  font-size: 18px;
+
+  color: #7dd3fc;
+
+  font-weight: bold;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+/* ▼ 消す */
+summary::-webkit-details-marker {
+
+  display: none;
+}
+
+/* ホバー */
+summary:hover {
+
+  background:
+    rgba(125,211,252,0.08);
+
+  color: #ffd700;
+}
+
+/* 開いた時 */
+details[open] summary {
+
+  border-bottom:
+    1px solid rgba(125,211,252,0.15);
+}
+
+/* 中身 */
+.drop-data {
+
+  padding: 20px;
+
+  text-align: left;
+
+  line-height: 1.9;
+}
+
+/* 小タイトル */
+.drop-data h3 {
+
+  color: #ffd700;
+
+  margin-top: 18px;
+
+  margin-bottom: 10px;
+
+  font-size: 18px;
+
+  text-shadow:
+    0 0 6px #ffcc00;
+}
