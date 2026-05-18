@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>クラフトレシピ | Minfinity craft</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body class="recipes-page">
-
-  <!-- 粒子 -->
+<body>
   <div id="particles"></div>
 
-  <!-- サイドバー -->
   <div class="sidebar">
     <div class="logo">Minfinity</div>
 
@@ -27,123 +22,32 @@
     <a href="mining.html">採掘場情報</a>
   </div>
 
-  <!-- ハンバーガー -->
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 
-  <!-- メイン -->
   <main class="content">
 
     <h1 class="title">RECIPES</h1>
 
-    <!-- 検索カード -->
     <section class="card">
-      <h2>検索方法</h2>
-      <p>
-        ・検索バーに名前を入力<br>
-        ・該当レシピを表示
-      </p>
-
-      <input id="searchBox" type="text" placeholder="レシピを検索..." />
+      <h2>レシピカテゴリ</h2>
+      <p>見たいレシピを選んでください</p>
     </section>
 
-    <!-- ピッケルレシピ -->
-    <section class="card recipe-section">
+    <section class="menu-list">
 
-      <details>
-        <summary>⛏ ピッケルレシピ</summary>
+      <a class="menu-btn" href="pickaxe.html">
+        ピッケルレシピ
+      </a>
 
-        <!-- 第一採掘場 -->
-        <h3>第一採掘場</h3>
-
-        <details>
-          <summary>石ピッケル</summary>
-          <div class="drop-data">
-            <h3>性能</h3>
-            採掘速度：普通<br>
-            耐久：低
-          </div>
-        </details>
-
-        <details>
-          <summary>鉄ピッケル</summary>
-          <div class="drop-data">
-            <h3>性能</h3>
-            採掘速度：速い<br>
-            耐久：中
-          </div>
-        </details>
-
-        <!-- 第二採掘場 -->
-        <h3>第二採掘場</h3>
-
-        <details>
-          <summary>金ピッケル</summary>
-          <div class="drop-data">
-            <h3>性能</h3>
-            採掘速度：非常に速い<br>
-            耐久：低
-          </div>
-        </details>
-
-      </details>
-
-    </section>
-
-    <!-- 素材レシピ -->
-    <section class="card recipe-section">
-
-      <details>
-        <summary>📦 素材レシピ</summary>
-
-        <h3>基本素材</h3>
-
-        <details>
-          <summary>圧縮石</summary>
-          <div class="drop-data">
-            <h3>レシピ</h3>
-            石 × 9 → 圧縮石
-          </div>
-        </details>
-
-        <details>
-          <summary>鉄塊</summary>
-          <div class="drop-data">
-            <h3>レシピ</h3>
-            鉄インゴット × 9 → 鉄塊
-          </div>
-        </details>
-
-      </details>
+      <a class="menu-btn" href="materials.html">
+        素材レシピ
+      </a>
 
     </section>
 
   </main>
 
-  <!-- フェード -->
-  <div class="screen-fade"></div>
-
   <script src="assets/js/script.js"></script>
-
-  <!-- 🔍 検索機能（簡易版） -->
-  <script>
-    const box = document.getElementById("searchBox");
-
-    box.addEventListener("input", function () {
-      const value = this.value.toLowerCase();
-      const items = document.querySelectorAll("summary");
-
-      items.forEach(el => {
-        const text = el.textContent.toLowerCase();
-        const parent = el.parentElement;
-
-        if (text.includes(value)) {
-          parent.style.display = "";
-        } else {
-          parent.style.display = "none";
-        }
-      });
-    });
-  </script>
-
+  <div class="screen-fade"></div>
 </body>
 </html>
