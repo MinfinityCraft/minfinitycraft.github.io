@@ -1,78 +1,153 @@
-<section class="card mine-card">
+<!DOCTYPE html>
+<html lang="ja">
 
-  <!-- 採掘場タイトル -->
-  <h2 class="mine-name">
-    通常採掘場
-  </h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- 画像 -->
-  <img
-    src="assets/images/mine1.jpg"
-    alt="通常採掘場"
-    class="mine-image"
+  <title>採掘場情報 | Minfinity craft</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
   >
 
-  <!-- ドロップアイテム -->
-  <div class="mine-drops">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-    <span class="drop-item">
-      石炭
-    </span>
+<body class="recipes-page">
 
-    <span class="drop-item">
-      鉄
-    </span>
+  <!-- 粒子 -->
+  <div id="particles"></div>
 
-    <span class="drop-item">
-      銅
-    </span>
+  <!-- サイドバー -->
+  <div class="sidebar">
 
-  </div>
-
-  <!-- アコーディオン -->
-  <button class="accordion">
-
-    詳細データ ▼
-
-  </button>
-
-  <!-- 開閉部分 -->
-  <div class="accordion-content">
-
-    <div class="mine-table">
-
-      <!-- 生成ブロック -->
-      <h3 class="mine-subtitle">
-        生成ブロック
-      </h3>
-
-      <div class="mine-row">
-        <span>未定</span>
-        <span>0%</span>
-      </div>
-
-      <div class="mine-row">
-        <span>未定</span>
-        <span>0%</span>
-      </div>
-
-      <!-- ドロップアイテム -->
-      <h3 class="mine-subtitle">
-        ドロップアイテム
-      </h3>
-
-      <div class="mine-row">
-        <span>未定</span>
-        <span>0%</span>
-      </div>
-
-      <div class="mine-row">
-        <span>未定</span>
-        <span>0%</span>
-      </div>
-
+    <div class="logo">
+      Minfinity
     </div>
 
+    <a href="about.html">
+      サーバー説明
+    </a>
+
+    <a href="rules.html">
+      サーバールール
+    </a>
+
+    <a href="permissions.html">
+      権限者一覧
+    </a>
+
+    <a href="recipes.html">
+      クラフトレシピ
+    </a>
+
+    <a href="mining.html" class="active">
+      採掘場情報
+    </a>
+
   </div>
 
-</section>
+  <!-- ハンバーガー -->
+  <div class="hamburger" onclick="toggleMenu()">
+    ☰
+  </div>
+
+  <!-- メイン -->
+  <main class="content">
+
+    <h1 class="title">
+      MINING
+    </h1>
+
+    <!-- 採掘場カード -->
+    <section class="card mine-card">
+
+      <!-- 採掘場タイトル -->
+      <h2 class="mine-name">
+        通常採掘場
+      </h2>
+
+      <!-- 画像 -->
+      <img
+        src="assets/images/mine1.jpg"
+        alt="通常採掘場"
+        class="mine-image"
+      >
+
+      <!-- ドロップアイテム -->
+      <div class="mine-drops">
+
+        <span class="drop-item">
+          石炭
+        </span>
+
+        <span class="drop-item">
+          鉄
+        </span>
+
+        <span class="drop-item">
+          銅
+        </span>
+
+      </div>
+
+      <!-- アコーディオン -->
+      <button class="accordion">
+
+        詳細データ ▼
+
+      </button>
+
+      <!-- 開閉部分 -->
+      <div class="accordion-content">
+
+        <div class="mine-table">
+
+          <!-- 生成ブロック -->
+          <h3 class="mine-subtitle">
+            ⛏ 生成ブロック
+          </h3>
+
+          <div class="mine-row">
+            <span>未定</span>
+            <span>0%</span>
+          </div>
+
+          <div class="mine-row">
+            <span>未定</span>
+            <span>0%</span>
+          </div>
+
+          <!-- ドロップアイテム -->
+          <h3 class="mine-subtitle">
+            🎁 ドロップアイテム
+          </h3>
+
+          <div class="mine-row">
+            <span>未定</span>
+            <span>0%</span>
+          </div>
+
+          <div class="mine-row">
+            <span>未定</span>
+            <span>0%</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- フェード -->
+  <div class="screen-fade"></div>
+
+  <!-- JS -->
+  <script src="assets/js/script.js"></script>
+
+</body>
+</html>
