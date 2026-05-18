@@ -1,119 +1,98 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <meta charset="UTF-8">
+  <title>採掘場情報 | Minfinity Craft</title>
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 
-  <title>
-    採掘場情報 | Minfinity Craft
-  </title>
-
-  <link rel="stylesheet"
-        href="style.css">
-
+  <!-- ドット風フォント -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  >
 </head>
 
-<body class="mining-page">
+<body>
 
-  <!-- 🌌 粒子 -->
-  <div id="particles"></div>
+  <!-- ローディング -->
+  <div id="loading">
+    <div class="loader-box">
 
-  <!-- 🎬 フェード -->
+      <h2>Loading Mining Data...</h2>
+
+      <div class="bar">
+        <div class="progress"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- フェード -->
   <div class="screen-fade"></div>
 
-  <!-- ☰ ハンバーガー -->
-  <div class="hamburger">
+  <!-- 粒子 -->
+  <div id="particles"></div>
+
+  <!-- ハンバーガー -->
+  <div class="hamburger" id="hamburger">
     ☰
   </div>
 
-  <!-- 🧭 サイドバー -->
-  <div class="sidebar">
+  <!-- サイドバー -->
+  <div class="sidebar" id="sidebar">
 
     <div class="logo">
       MINFINITY
     </div>
 
-    <a href="index.html">
-      HOME
-    </a>
-
-    <a href="rules.html">
-      RULE
-    </a>
-
-    <a href="about.html">
-      ABOUT
-    </a>
-
-    <a href="staff.html">
-      STAFF
-    </a>
-
-    <a href="mining.html"
-       class="active">
-
-      採掘場情報
-    </a>
+    <a href="index.html">HOME</a>
+    <a href="rules.html">RULES</a>
+    <a href="about.html">ABOUT</a>
+    <a href="staff.html">STAFF</a>
+    <a href="mining.html" class="active">MINING</a>
 
   </div>
 
-  <!-- 🧱 コンテンツ -->
-  <div class="content">
+  <!-- メイン -->
+  <main class="content">
 
     <h1 class="title">
       採掘場情報
     </h1>
 
-    <!-- ⛏ 第一区画 -->
     <div class="card">
 
-      <h2>
-        SECTOR-01
-      </h2>
+      <h2>現在の採掘場</h2>
 
       <p>
-        高純度鉱石を採掘可能。<br>
-        初心者向け区域。
+        現在公開されている採掘場の情報を掲載予定。
+      </p>
+
+      <p>
+        ・鉱石の種類<br>
+        ・出現座標<br>
+        ・更新時間<br>
+        ・レア鉱石情報
       </p>
 
     </div>
 
-    <!-- ⛏ 第二区画 -->
     <div class="card">
 
-      <h2>
-        SECTOR-02
-      </h2>
+      <h2>レア鉱石</h2>
 
       <p>
-        深層鉱脈を確認。<br>
-        崩落危険区域あり。
+        特殊鉱石の出現情報をここに追加できます。
       </p>
 
     </div>
 
-    <!-- ⛏ 危険区域 -->
-    <div class="card">
-
-      <h2>
-        DANGER AREA
-      </h2>
-
-      <p>
-        深層部にて異常エネルギー反応を検出。<br>
-        許可なき侵入は禁止されています。
-      </p>
-
-    </div>
-
-  </div>
+  </main>
 
   <script src="script.js"></script>
 
 </body>
-
 </html>
