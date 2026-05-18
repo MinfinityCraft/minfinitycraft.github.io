@@ -1,44 +1,113 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>クラフトレシピ | Minfinity craft</title>
+
+  <title>採掘場情報 | Minfinity craft</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
+<body class="mining-page">
+
+  <!-- 粒子 -->
   <div id="particles"></div>
 
- <div class="sidebar">
-  <div class="logo">Minfinity</div>
+  <!-- サイドバー -->
+  <div class="sidebar">
+    <div class="logo">Minfinity</div>
 
-  <a href="about.html">サーバー説明</a>
-  <a href="rules.html">サーバールール</a>
-  <a href="permissions.html">権限者一覧</a>
-  <a href="recipes.html">クラフトレシピ</a>
-   <a href="mining.html">採掘場情報</a>
-</div>
+    <a href="about.html">サーバー説明</a>
+    <a href="rules.html">サーバールール</a>
+    <a href="permissions.html">権限者一覧</a>
+    <a href="recipes.html">クラフトレシピ</a>
+    <a href="mining.html" class="active">採掘場情報</a>
+  </div>
 
+  <!-- ハンバーガー -->
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 
+  <!-- メイン -->
   <main class="content">
 
-    <h1 class="title">RECIPES</h1>
+    <h1 class="title">MINING</h1>
 
-    <section class="card">
-      <h2>検索方法</h2>
+    <!-- 説明カード -->
+    <section class="card mining-top-card">
+      <h2>採掘場について</h2>
       <p>
-        ・検索バーに調べたい名前を入れる<br>
-        ・検索ボタンを押すと検索ができる
+        採掘場では様々なブロックを採掘できます。<br>
+        採掘場ごとに生成ブロックやドロップアイテムが異なります。<br><br>
+        詳細データを開くことで、確率を確認できます。
       </p>
+    </section>
+
+    <!-- =========================
+         採掘場①
+    ========================== -->
+    <section class="mine-card">
+
+      <h2 class="mine-name">通常採掘場</h2>
+
+      <img src="assets/images/mine1.jpg" alt="通常採掘場" class="mine-image">
+
+      <div class="mine-drops">
+        <span class="drop-item">石炭</span>
+        <span class="drop-item">鉄</span>
+        <span class="drop-item">銅</span>
+      </div>
+
+      <!-- 木のピッケル -->
+      <details class="tool-box">
+
+        <summary>🪵 木のピッケル</summary>
+
+        <div class="tool-info">
+          <p>⚡ 性能：採掘速度 1.0 / 耐久 100</p>
+
+          <details>
+            <summary>📦 レシピ</summary>
+            <div class="drop-data">
+              ・木材 × 3<br>
+              ・棒 × 2
+            </div>
+          </details>
+
+        </div>
+
+      </details>
+
+      <!-- 石のピッケル -->
+      <details class="tool-box">
+
+        <summary>🪨 石のピッケル</summary>
+
+        <div class="tool-info">
+          <p>⚡ 性能：採掘速度 1.2 / 耐久 250</p>
+
+          <details>
+            <summary>📦 レシピ</summary>
+            <div class="drop-data">
+              ・丸石 × 3<br>
+              ・棒 × 2
+            </div>
+          </details>
+
+        </div>
+
+      </details>
+
     </section>
 
   </main>
 
-  <script src="assets/js/script.js"></script>
+  <!-- フェード -->
   <div class="screen-fade"></div>
+
+  <script src="assets/js/script.js"></script>
+
 </body>
 </html>
