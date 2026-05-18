@@ -895,3 +895,24 @@ body::before {
   }
 
 }
+
+/* 小タイトル */
+.mine-subtitle {
+
+  margin-top: 24px;
+  margin-bottom: 12px;
+
+  font-size: 18px;
+
+  color: #7dd3fc;
+
+  text-align: left;
+
+  text-shadow:
+    0 0 8px rgba(125,211,252,0.5);
+}
+
+.mine-subtitle:first-child {
+
+  margin-top: 0;
+}
