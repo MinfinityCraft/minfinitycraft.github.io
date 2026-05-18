@@ -916,4 +916,118 @@ details[open] summary {
     font-size: 13px;
   }
 
+   /* =========================
+   📦 レシピ専用UI
+========================= */
+
+/* 検索ボックス */
+#searchBox {
+  width: min(420px, 90%);
+  margin-top: 16px;
+  padding: 12px 14px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(125,211,252,0.2);
+
+  background: rgba(0,0,0,0.25);
+  color: #7dd3fc;
+
+  outline: none;
+
+  box-shadow: 0 0 10px rgba(125,211,252,0.1);
+}
+
+#searchBox::placeholder {
+  color: rgba(125,211,252,0.5);
+}
+
+/* =========================
+   📂 レシピカード
+========================= */
+.recipe-section {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+
+  border: 1px solid rgba(125,211,252,0.12);
+
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 18px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   📁 大カテゴリ（ピッケル/素材）
+========================= */
+.recipe-section > details > summary {
+  font-size: 18px;
+  padding: 14px;
+  color: #7dd3fc;
+}
+
+/* =========================
+   📌 中タイトル（採掘場名）
+========================= */
+.recipe-section h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  color: #ffd700;
+  text-shadow: 0 0 8px #ffcc00;
+}
+
+/* =========================
+   📂 個別レシピアコーディオン
+========================= */
+.recipe-section details {
+  margin: 10px 0;
+  border-radius: 10px;
+
+  border: 1px solid rgba(125,211,252,0.15);
+
+  background: rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+/* クリック部分 */
+.recipe-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+
+  color: #9fffd9;
+  font-weight: bold;
+
+  transition: 0.2s ease;
+}
+
+/* hover */
+.recipe-section summary:hover {
+  background: rgba(125,211,252,0.08);
+  color: #ffd700;
+}
+
+/* 中身 */
+.drop-data {
+  padding: 14px 16px;
+  line-height: 1.8;
+
+  color: #dffcff;
+}
+
+/* 性能タイトル */
+.drop-data h3 {
+  margin: 10px 0;
+  font-size: 16px;
+
+  color: #7dd3fc;
+}
+
+/* =========================
+   🔍 アニメ補助
+========================= */
+.recipe-section details[open] summary {
+  border-bottom: 1px solid rgba(125,211,252,0.15);
+}
 }
