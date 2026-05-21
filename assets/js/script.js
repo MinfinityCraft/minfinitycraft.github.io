@@ -100,25 +100,46 @@ if (newsBox) {
     });
 }
 
+```javascript id="0o5uyc"
 /* =========================
    🌌 ページ遷移フェード
 ========================= */
-const page = document.querySelector(".page");
+
+const content = document.querySelector(".content");
 const fade = document.querySelector(".screen-fade");
 
 document.querySelectorAll("a").forEach(link => {
+
   link.addEventListener("click", e => {
+
     const href = link.getAttribute("href");
 
-    if (href && !href.startsWith("#") && !href.startsWith("http")) {
+    // 無効リンク防止
+    if (
+      href &&
+      !href.startsWith("#") &&
+      !href.startsWith("http") &&
+      !href.startsWith("javascript")
+    ) {
+
       e.preventDefault();
 
-      if (page) page.classList.add("fade-out");
-      if (fade) fade.classList.add("active");
+      if (content) {
+        content.classList.add("fade-out");
+      }
+
+      if (fade) {
+        fade.classList.add("active");
+      }
 
       setTimeout(() => {
         window.location.href = href;
-      }, 280);
+      }, 250);
+
     }
+
   });
+
 });
+```
+
