@@ -1,3 +1,4 @@
+
 /* =========================
    🌌 全体設定
 ========================= */
@@ -5,13 +6,15 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
+
   font-family: Arial, sans-serif;
   color: white;
 
   background:
     radial-gradient(circle at top, rgba(30,120,140,0.35), transparent 45%),
     radial-gradient(circle at bottom right, rgba(20,180,160,0.18), transparent 40%),
-    linear-gradient(160deg,
+    linear-gradient(
+      160deg,
       #020304 0%,
       #061312 20%,
       #0a2423 45%,
@@ -23,24 +26,38 @@ body {
 }
 
 /* =========================
-   🌌 背景グリッド
+   🌌 ページ別背景
 ========================= */
-
 .mining-page {
-
   background:
-
     radial-gradient(
       circle at top,
       rgba(0,255,170,0.12),
       transparent 40%
     ),
-
     linear-gradient(
       160deg,
       #020304 0%,
       #041d18 100%
     );
+}
+
+.rules-page {
+  background:
+    radial-gradient(circle at top, rgba(255,180,0,0.15), transparent 40%),
+    linear-gradient(160deg, #020304 0%, #1f1700 100%);
+}
+
+.about-page {
+  background:
+    radial-gradient(circle at top, rgba(80,180,255,0.15), transparent 40%),
+    linear-gradient(160deg, #020304 0%, #071d2d 100%);
+}
+
+.staff-page {
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 40%),
+    linear-gradient(160deg, #020304 0%, #162024 100%);
 }
 
 /* =========================
@@ -52,9 +69,10 @@ body {
   top: 0;
 
   width: 220px;
-  height: 100vh;
+  min-height: 100vh;
 
   padding: 20px;
+
   display: flex;
   flex-direction: column;
 
@@ -76,7 +94,6 @@ body {
   z-index: 999;
 
   overflow: hidden;
-  will-change: transform;
 
   animation: sidebarFloat 6s ease-in-out infinite;
 }
@@ -84,9 +101,11 @@ body {
 /* スキャンライン */
 .sidebar::before {
   content: "";
+
   position: absolute;
   top: 0;
   left: -100%;
+
   width: 100%;
   height: 1px;
 
@@ -101,23 +120,37 @@ body {
 }
 
 @keyframes sidebarScan {
-  to { left: 100%; }
+  to {
+    left: 100%;
+  }
 }
 
 @keyframes sidebarFloat {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* =========================
    🌌 ロゴ
 ========================= */
 .logo {
-  font-size: 18px;
-  color: #7dd3fc;
-  text-shadow: 0 0 10px #7dd3fc;
   margin-bottom: 20px;
+
+  font-size: 18px;
+
+  color: #7dd3fc;
+
+  text-shadow:
+    0 0 10px #7dd3fc;
 }
 
 /* =========================
@@ -125,18 +158,26 @@ body {
 ========================= */
 .sidebar a {
   position: relative;
+
   display: inline-block;
+
   margin: 10px 0;
 
   color: #7dd3fc;
+
   text-decoration: none;
 
-  transition: 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease,
+    text-shadow 0.25s ease;
 }
 
 .sidebar a:hover {
   transform: scale(1.08);
+
   color: #ffd700;
+
   text-shadow:
     0 0 6px #ffd700,
     0 0 12px #ff9900;
@@ -144,6 +185,7 @@ body {
 
 .sidebar a::after {
   content: "";
+
   position: absolute;
   left: 0;
   bottom: -4px;
@@ -151,7 +193,11 @@ body {
   width: 100%;
   height: 2px;
 
-  background: linear-gradient(90deg, #ffd700, #ff8800);
+  background: linear-gradient(
+    90deg,
+    #ffd700,
+    #ff8800
+  );
 
   transform: scaleX(0);
   transform-origin: left;
@@ -165,8 +211,12 @@ body {
 
 .sidebar a.active {
   color: #ffd700;
+
   font-weight: bold;
-  text-shadow: 0 0 6px #ffd700, 0 0 12px #ff9900;
+
+  text-shadow:
+    0 0 6px #ffd700,
+    0 0 12px #ff9900;
 }
 
 .sidebar a.active::after {
@@ -174,7 +224,7 @@ body {
 }
 
 /* =========================
-   🧱 コンテンツ（フェード対象）
+   🧱 コンテンツ
 ========================= */
 .content {
   position: relative;
@@ -182,73 +232,69 @@ body {
 
   margin-left: 240px;
   padding: 40px;
+
   text-align: center;
 
-  transition: opacity 0.28s ease, transform 0.28s ease;
-}
-
-.content.fade-out {
-  opacity: 0;
-  transform: translateY(8px);
-}
-
-.content {
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
 
   animation:
     contentFadeIn 0.45s ease;
 }
 
+.content.fade-out {
+  opacity: 0;
+
+  transform: translateY(8px);
+}
+
 @keyframes contentFadeIn {
-
   from {
-
     opacity: 0;
 
-    transform:
-      translateY(8px);
+    transform: translateY(8px);
   }
 
   to {
-
     opacity: 1;
 
-    transform:
-      translateY(0);
+    transform: translateY(0);
   }
-
 }
 
 /* =========================
    🎮 タイトル
 ========================= */
 .title {
-
   position: relative;
 
-  font-family: 'Press Start 2P', cursive;
+  width: 100%;
 
+  margin-bottom: 80px;
+
+  text-align: center;
+
+  font-family: 'Press Start 2P', cursive;
   font-size: clamp(26px, 6vw, 52px);
 
   color: #7dd3fc;
-   
-   text-align: center;
-
-  width: 100%;
 
   text-shadow:
     0 0 8px #7dd3fc,
     0 0 16px #7dd3fc;
 
-  margin-bottom: 80px;
-
   animation:
     titleFloat 5s ease-in-out infinite;
 }
+
 .title::after {
   content: "";
+
   position: absolute;
   top: -20px;
   left: 50%;
+
   width: 180px;
   height: 180px;
 
@@ -260,51 +306,45 @@ body {
   );
 
   filter: blur(20px);
+
   z-index: -1;
 }
 
 @keyframes titleFloat {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* =========================
-   📄 ページ背景
-========================= */
-.rules-page {
-  background:
-    radial-gradient(circle at top, rgba(255,180,0,0.15), transparent 40%),
-    linear-gradient(160deg, #020304 0%, #1f1700 100%);
-}
-
-.about-page {
-  background:
-    radial-gradient(circle at top, rgba(80,180,255,0.15), transparent 40%),
-    linear-gradient(160deg, #020304 0%, #071d2d 100%);
-}
-
-.staff-page {
-  background:
-    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 40%),
-    linear-gradient(160deg, #020304 0%, #162024 100%);
-}
-
-/* =========================
-   🪟 カード
+   🪟 通常カード
 ========================= */
 .card {
   max-width: 600px;
+
   margin: 20px auto;
   padding: 20px;
 
   border-radius: 12px;
-  background: rgba(255,255,255,0.05);
 
-  border: 1px solid rgba(125,211,252,0.12);
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(125,211,252,0.12);
 
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 12px rgba(125,211,252,0.2);
+
+  box-shadow:
+    0 0 12px rgba(125,211,252,0.2);
 }
 
 /* =========================
@@ -318,6 +358,7 @@ body {
   left: 15px;
 
   font-size: 30px;
+
   color: #7dd3fc;
 
   cursor: pointer;
@@ -325,238 +366,19 @@ body {
   z-index: 1000;
 }
 
-.hamburger.hide {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* =========================
-   ⏳ ローディング
-========================= */
-#loading {
-  position: fixed;
-  inset: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: linear-gradient(135deg,#000,#0b2f2a);
-
-  z-index: 9999;
-}
-
-.loader-box {
-
-  text-align: center;
-}
-
-#loading.fade-out {
-  opacity: 0;
-  filter: blur(8px);
-
-  transition: opacity 0.9s ease, filter 0.9s ease;
-}
-
-.bar {
-
-  width: 220px;
-  height: 6px;
-
-  margin: 0 auto;
-
-  overflow: hidden;
-
-  border-radius: 999px;
-
-  background:
-    rgba(255,255,255,0.08);
-
-  box-shadow:
-    inset 0 0 6px rgba(0,0,0,0.5);
-}
-.progress {
-
-  width: 100%;
-  height: 100%;
-
-  transform-origin: left;
-
-  transform: scaleX(0);
-
-  background:
-    linear-gradient(
-      90deg,
-      #ffd700,
-      #ff8800
-    );
-
-  animation:
-    loadBar 1.6s ease forwards;
-}
-
-@keyframes loadBar {
-
-  to {
-    transform: scaleX(1);
-  }
-
-}
-
-/* =========================
-   🎮 ホーム
-========================= */
-.home-inner {
-  opacity: 0;
-  transform: translateY(20px);
-
-  transition: opacity 1.2s ease, transform 1.2s ease;
-}
-
-.home-inner.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =========================
-   📰 NEWS
-========================= */
-.news-box {
-
-  width: min(520px, 92vw);
-
-  margin: 0 auto 60px auto;
-
-  padding: 24px;
-
-  text-align: left;
-
-  background:
-    rgba(255,255,255,0.04);
-
-  border:
-    1px solid rgba(125,211,252,0.15);
-
-  border-radius: 14px;
-
-  backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 0 20px rgba(0,0,0,0.35);
-}
-.news-box h2 {
-  text-align: center;
-  color: #ffd700;
-
-  text-shadow: 0 0 8px #ffd700, 0 0 18px #ff9900;
-}
-
-#news p {
-  margin: 10px 0;
-  color: #d8f3ff;
-
-  line-height: 1.7;
-
-  animation: newsFade 0.5s ease;
-}
-
-@keyframes newsFade {
-  from {
-    opacity: 0;
-    transform: translateX(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* =========================
-   🎮 メニュー
-========================= */
-.menu-list {
-  display: grid;
-  grid-template-columns: repeat(2, 240px);
-  gap: 22px;
-  justify-content: center;
-}
-
-.menu-btn {
-
-  width: min(240px, 78vw);
-
-  min-height: 52px;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  padding-left: 20px;
-
-  box-sizing: border-box;
-
-  color: #7dd3fc;
-
-  text-decoration: none;
-
-  font-size: clamp(16px, 3vw, 22px);
-
-  letter-spacing: 1px;
-
-  transition:
-    transform 0.25s ease,
-    color 0.25s ease,
-    text-shadow 0.25s ease;
-
-  text-shadow:
-    0 0 6px #7dd3fc;
-}
-
-/* > */
-.menu-btn::before {
-
-  content: ">";
-
-  opacity: 0;
-
-  margin-right: 8px;
-
-  transform: translateX(-4px);
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
-/* 表示 */
-.menu-btn:hover::before {
-
-  opacity: 1;
-
-  transform: translateX(0);
-}
-
-/* ホバー */
-.menu-btn:hover {
-
-  transform: scale(1.05);
-
-  color: #ffd700;
-
-  text-shadow:
-    0 0 6px #ffd700,
-    0 0 12px #ff9900;
-}
 /* =========================
    🌌 粒子
 ========================= */
 #particles {
   position: fixed;
   inset: 0;
+
   z-index: 1;
+
   pointer-events: none;
 
   opacity: 0;
+
   transition: opacity 1s ease;
 }
 
@@ -566,26 +388,35 @@ body {
 
 .particle {
   position: absolute;
+
   width: 4px;
   height: 4px;
 
   border-radius: 50%;
+
   background: rgba(125,211,252,0.8);
-  box-shadow: 0 0 6px #7dd3fc;
 
-  animation: floatParticle linear infinite;
-}
+  box-shadow:
+    0 0 6px #7dd3fc;
 
-.particle {
-  will-change:
-    transform,
-    opacity;
+  animation:
+    floatParticle linear infinite;
 }
 
 @keyframes floatParticle {
-  from { transform: translateY(0); opacity: 0; }
-  20% { opacity: 1; }
-  to { transform: translateY(-100vh); opacity: 0; }
+  from {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
 }
 
 /* =========================
@@ -594,10 +425,13 @@ body {
 .screen-fade {
   position: fixed;
   inset: 0;
+
   background: rgba(0,0,0,0);
+
   pointer-events: none;
 
   z-index: 99999;
+
   transition: background 0.28s ease;
 }
 
@@ -606,81 +440,12 @@ body {
 }
 
 /* =========================
-   📱 スマホ
+   ⛏ 採掘場カード
 ========================= */
-@media (max-width: 768px) {
-
-  .sidebar {
-
-    left: 0;
-
-    transform: translateX(-260px);
-
-    transition: transform 0.3s ease;
-  }
-
-  .sidebar.active {
-
-    transform: translateX(0);
-  }
-
-  .content {
-
-    margin-left: 0;
-
-    padding: 20px;
-  }
-
-  .hamburger {
-
-    display: block;
-  }
-
-  .menu-list {
-
-    grid-template-columns:
-      repeat(2, minmax(120px, 1fr));
-
-    gap: 14px;
-  }
-
-  .menu-btn {
-
-    width: 100%;
-
-    min-height: 46px;
-
-    font-size: 15px;
-  }
-
-  .news-box {
-
-    width: 92%;
-  }
-
-  .title {
-
-    margin-top: 60px;
-  }
-
-}
-
-/* =========================
-   ⛏ 採掘場ページ
-========================= */
-
-.mining-top-card {
-
-  margin-bottom: 50px;
-}
-
-/* 採掘カード */
 .mine-card {
-
   width: min(760px, 92vw);
 
   margin: 0 auto 40px auto;
-
   padding: 24px;
 
   border-radius: 18px;
@@ -695,28 +460,9 @@ body {
 
   box-shadow:
     0 0 18px rgba(0,0,0,0.35);
-
-  transition: none;
 }
 
-/* 画像 */
-.mine-image {
-
-  width: 100%;
-
-  border-radius: 14px;
-
-  margin-bottom: 20px;
-
-  object-fit: cover;
-
-  border:
-    1px solid rgba(255,255,255,0.08);
-}
-
-/* 採掘場タイトル */
 .mine-name {
-
   margin-bottom: 16px;
 
   font-size: 28px;
@@ -730,103 +476,100 @@ body {
     0 0 18px rgba(0,255,170,0.25);
 }
 
-/* ドロップ一覧 */
-.mine-drops {
+/* =========================
+   📚 レシピエリアタイトル
+========================= */
+.recipe-area-title {
+  margin-top: 50px;
+  margin-bottom: 24px;
 
-  display: flex;
+  text-align: center;
 
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  justify-content: center;
-
-  margin-bottom: 20px;
-}
-
-/* ドロップアイテム */
-.drop-item {
-
-  padding:
-    8px 14px;
-
-  border-radius: 999px;
-
-  background:
-    rgba(0,255,170,0.08);
-
-  border:
-    1px solid rgba(0,255,170,0.2);
+  font-size: 34px;
 
   color: #9fffd9;
 
-  font-size: 14px;
-
-  box-shadow:
-    0 0 10px rgba(0,255,170,0.08);
+  text-shadow:
+    0 0 10px rgba(0,255,170,0.45),
+    0 0 22px rgba(0,255,170,0.18);
 }
 
-/* 説明 */
-.mine-description {
+/* =========================
+   📦 レシピカード
+========================= */
+.recipe-card {
+  max-width: 760px;
+
+  margin: 20px auto;
+  padding: 22px;
+
+  border-radius: 16px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(125,211,252,0.14);
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 16px rgba(0,0,0,0.28);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 0 22px rgba(125,211,252,0.18);
+}
+
+.recipe-name {
+  margin-bottom: 14px;
+
+  font-size: 22px;
+
+  color: #ffd700;
+
+  text-shadow:
+    0 0 6px #ffcc00;
+}
+
+.recipe-spec {
+  margin-bottom: 18px;
 
   line-height: 1.8;
 
   color: #dffcff;
-
-  margin-bottom: 24px;
-}
-
-/* 小タイトル */
-.mine-subtitle {
-
-  margin-top: 24px;
-  margin-bottom: 12px;
-
-  font-size: 18px;
-
-  color: #7dd3fc;
-
-  text-align: left;
-
-  text-shadow:
-    0 0 8px rgba(125,211,252,0.5);
-}
-
-.mine-subtitle:first-child {
-
-  margin-top: 0;
 }
 
 /* =========================
-   ⛏ 採掘場アコーディオン
+   📂 レシピアコーディオン
 ========================= */
-
-details {
-
-  margin-top: 18px;
-
-  border:
-    1px solid rgba(125,211,252,0.15);
+.recipe-detail {
+  margin-top: 16px;
 
   border-radius: 12px;
 
   overflow: hidden;
 
+  border:
+    1px solid rgba(125,211,252,0.15);
+
   background:
     rgba(255,255,255,0.03);
-
-  backdrop-filter: blur(8px);
 }
 
-summary {
-
+.recipe-detail summary {
   list-style: none;
 
   cursor: pointer;
 
-  padding: 16px 20px;
-
-  font-size: 18px;
+  padding: 14px 18px;
 
   color: #7dd3fc;
 
@@ -837,189 +580,74 @@ summary {
     color 0.25s ease;
 }
 
-/* ▼ 消す */
-summary::-webkit-details-marker {
-
+.recipe-detail summary::-webkit-details-marker {
   display: none;
 }
 
-/* ホバー */
-summary:hover {
-
+.recipe-detail summary:hover {
   background:
     rgba(125,211,252,0.08);
 
   color: #ffd700;
 }
 
-/* 開いた時 */
-details[open] summary {
-
+.recipe-detail[open] summary {
   border-bottom:
     1px solid rgba(125,211,252,0.15);
 }
 
-/* 中身 */
-.drop-data {
-
-  padding: 20px;
+.recipe-materials {
+  padding: 18px;
 
   text-align: left;
 
   line-height: 1.9;
-}
 
-/* 小タイトル */
-.drop-data h3 {
-
-  color: #ffd700;
-
-  margin-top: 18px;
-
-  margin-bottom: 10px;
-
-  font-size: 18px;
-
-  text-shadow:
-    0 0 6px #ffcc00;
+  color: #dffcff;
 }
 
 /* =========================
    📱 スマホ
 ========================= */
-
 @media (max-width: 768px) {
 
-  .mine-card {
+  .sidebar {
+    transform: translateX(-260px);
 
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+
+    padding: 20px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .title {
+    margin-top: 60px;
+
+    font-size: 32px;
+  }
+
+  .mine-card,
+  .recipe-card {
     padding: 18px;
   }
 
-  .mine-name {
-
-    font-size: 22px;
+  .recipe-name {
+    font-size: 18px;
   }
 
-  .drop-item {
-
-    font-size: 13px;
+  .recipe-area-title {
+    font-size: 26px;
   }
 }
-   
-   /* =========================
-   📦 レシピ専用UI
-========================= */
 
-/* 検索ボックス */
-#searchBox {
-  width: min(420px, 90%);
-  margin-top: 16px;
-  padding: 12px 14px;
-
-  border-radius: 10px;
-  border: 1px solid rgba(125,211,252,0.2);
-
-  background: rgba(0,0,0,0.25);
-  color: #7dd3fc;
-
-  outline: none;
-
-  box-shadow: 0 0 10px rgba(125,211,252,0.1);
-}
-
-#searchBox::placeholder {
-  color: rgba(125,211,252,0.5);
-}
-
-/* =========================
-   📂 レシピカード
-========================= */
-.recipe-section {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-
-  border-radius: 14px;
-  background: rgba(255,255,255,0.04);
-
-  border: 1px solid rgba(125,211,252,0.12);
-
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 18px rgba(0,0,0,0.3);
-}
-
-/* =========================
-   📁 大カテゴリ（ピッケル/素材）
-========================= */
-.recipe-section > details > summary {
-  font-size: 18px;
-  padding: 14px;
-  color: #7dd3fc;
-}
-
-/* =========================
-   📌 中タイトル（採掘場名）
-========================= */
-.recipe-section h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-
-  color: #ffd700;
-  text-shadow: 0 0 8px #ffcc00;
-}
-
-/* =========================
-   📂 個別レシピアコーディオン
-========================= */
-.recipe-section details {
-  margin: 10px 0;
-  border-radius: 10px;
-
-  border: 1px solid rgba(125,211,252,0.15);
-
-  background: rgba(0,0,0,0.15);
-  overflow: hidden;
-}
-
-/* クリック部分 */
-.recipe-section summary {
-  cursor: pointer;
-  padding: 12px 14px;
-
-  color: #9fffd9;
-  font-weight: bold;
-
-  transition: 0.2s ease;
-}
-
-/* hover */
-.recipe-section summary:hover {
-  background: rgba(125,211,252,0.08);
-  color: #ffd700;
-}
-
-/* 中身 */
-.drop-data {
-  padding: 14px 16px;
-  line-height: 1.8;
-
-  color: #dffcff;
-}
-
-/* 性能タイトル */
-.drop-data h3 {
-  margin: 10px 0;
-  font-size: 16px;
-
-  color: #7dd3fc;
-}
-
-/* =========================
-   🔍 アニメ補助
-========================= */
-.recipe-section details[open] summary {
-  border-bottom: 1px solid rgba(125,211,252,0.15);
-}
-}
-
-css id="29cbrv"
