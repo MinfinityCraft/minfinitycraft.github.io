@@ -1,73 +1,47 @@
-const fileMap = {
-  pickaxe: "assets/data/pickaxe.json",
-  material: "assets/data/material.json"
-};
+const container =
+  document.getElementById("recipeContainer");
 
-const filePath = fileMap[recipeCategory];
-
-fetch(filePath)
+fetch(`assets/data/${recipeCategory}.json`)
   .then(response => response.json())
+
   .then(data => {
 
-    const container =
-      document.getElementById("recipeContainer");
+    data.forEach(recipe => {
 
-    data.forEach(area => {
+      const card = document.createElement("div");
+      card.className = "recipe-card";
 
-      // 採掘場タイトル
-      const areaTitle =
-        document.createElement("h2");
+      card.innerHTML = `
+        <h3 class="recipe-name">
+          ${recipe.name}
+        </h3>
 
-      areaTitle.className =
-        "recipe-area-title";
+        <div class="recipe-spec">
+          ${recipe.spec.join("<br>")}
+        </div>
 
-      areaTitle.textContent =
-        area.area;
+        <details class="recipe-detail">
 
-      container.appendChild(areaTitle);
+          <summary>
+            レシピ
+          </summary>
 
-      // レシピ一覧
-      area.recipes.forEach(recipe => {
+          <div class="recipe-materials">
+            ${recipe.materials.join("<br>")}
+          </div>
 
-        const card =
-          document.createElement("div");
+        </details>
+      `;
 
-        card.className =
-          "recipe-card";
-
-        card.innerHTML = `
-          <h3 class="recipe-name">
-            ${recipe.name}
-          </h3>
-
-          <details class="recipe-detail">
-
-            <summary>
-              レシピ
-            </summary>
-
-            <div class="recipe-materials">
-
-              ${recipe.materials.join("<br>")}
-
-            </div>
-
-          </details>
-        `;
-
-        container.appendChild(card);
-
-      });
+      container.appendChild(card);
 
     });
 
   })
 
   .catch(error => {
-
     console.error(
       "JSON読み込み失敗:",
       error
     );
-
   });
