@@ -55,76 +55,7 @@
     </h1>
 
  
-<!-- 第一採掘場 -->
-<h2 class="recipe-area-title">
-  第一採掘場
-</h2>
-
-<div class="recipe-content">
-
-
-    <!-- 木製ピッケル -->
-    <div class="recipe-card">
-
-      <h3 class="recipe-name">
-        [Ⅰ] 木製ピッケル
-      </h3>
-
-      <p class="recipe-spec">
-        性能<br>
-        耐久値：100
-      </p>
-
-      <!-- レシピ -->
-      <details class="recipe-detail">
-
-        <summary>
-          レシピ
-        </summary>
-
-        <div class="recipe-materials">
-
-          ・木材 ×3<br>
-          ・棒 ×2
-
-        </div>
-
-      </details>
-
-    </div>
-
-    <!-- 鉄ピッケル -->
-    <div class="recipe-card">
-
-      <h3 class="recipe-name">
-        [Ⅱ] 鉄ピッケル
-      </h3>
-
-      <p class="recipe-spec">
-        採掘速度：★★★☆☆<br>
-        耐久値：300
-      </p>
-
-      <details class="recipe-detail">
-
-        <summary>
-          レシピ
-        </summary>
-
-        <div class="recipe-materials">
-
-          ・鉄 ×3<br>
-          ・棒 ×2
-
-        </div>
-
-      </details>
-
-    </div>
-
-  </div>
-
-</details>
+<div id="recipeContainer"></div>
 
 
 
@@ -133,6 +64,11 @@
   <script src="assets/js/script.js"></script>
 
   <div class="screen-fade"></div>
+  <script>
+  const recipeCategory = "pickaxe";
+</script>
+
+<script src="js/recipes.js"></script>
 
 </body>
 </html>
