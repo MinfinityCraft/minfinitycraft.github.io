@@ -1,33 +1,73 @@
-const recipeMap = {
-  pickaxe: "pickaxe.json",
-  material: "material.json"
+const fileMap = {
+  pickaxe: "assets/data/pickaxe.json",
+  material: "assets/data/material.json"
 };
 
-const container = document.getElementById("recipeContainer");
+const filePath = fileMap[recipeCategory];
 
-fetch(recipeMap[recipeCategory])
-  .then(res => res.json())
+fetch(filePath)
+  .then(response => response.json())
   .then(data => {
-    const list = data[recipeCategory];
 
-    list.forEach(item => {
-      const card = document.createElement("div");
-      card.className = "recipe-card";
+    const container =
+      document.getElementById("recipeContainer");
 
-      card.innerHTML = `
-        <h3 class="recipe-name">${item.name}</h3>
+    data.forEach(area => {
 
-        <details class="recipe-detail">
-          <summary>レシピ</summary>
-          <div class="recipe-materials">
-            ${item.materials.map(m => `<div>${m}</div>`).join("")}
-          </div>
-        </details>
-      `;
+      // 採掘場タイトル
+      const areaTitle =
+        document.createElement("h2");
 
-      container.appendChild(card);
+      areaTitle.className =
+        "recipe-area-title";
+
+      areaTitle.textContent =
+        area.area;
+
+      container.appendChild(areaTitle);
+
+      // レシピ一覧
+      area.recipes.forEach(recipe => {
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "recipe-card";
+
+        card.innerHTML = `
+          <h3 class="recipe-name">
+            ${recipe.name}
+          </h3>
+
+          <details class="recipe-detail">
+
+            <summary>
+              レシピ
+            </summary>
+
+            <div class="recipe-materials">
+
+              ${recipe.materials.join("<br>")}
+
+            </div>
+
+          </details>
+        `;
+
+        container.appendChild(card);
+
+      });
+
     });
+
   })
-  .catch(err => {
-    console.error("JSON読み込み失敗:", err);
+
+  .catch(error => {
+
+    console.error(
+      "JSON読み込み失敗:",
+      error
+    );
+
   });
