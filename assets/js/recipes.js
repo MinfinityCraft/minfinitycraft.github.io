@@ -1,69 +1,33 @@
-fetch("data/recipes.json")
-  .then(response => response.json())
+const recipeMap = {
+  pickaxe: "pickaxe.json",
+  material: "material.json"
+};
 
-  .then(recipes => {
+const container = document.getElementById("recipeContainer");
 
-    const container =
-      document.getElementById("recipeContainer");
+fetch(recipeMap[recipeCategory])
+  .then(res => res.json())
+  .then(data => {
+    const list = data[recipeCategory];
 
-    recipes
+    list.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "recipe-card";
 
-      .filter(recipe =>
-        recipe.category === recipeCategory
-      )
+      card.innerHTML = `
+        <h3 class="recipe-name">${item.name}</h3>
 
-      .forEach(recipe => {
-
-        const card =
-          document.createElement("div");
-
-        card.className = "recipe-card";
-
-        // 性能
-        const specHTML =
-          recipe.spec
-            .map(spec =>
-              `<li>${spec}</li>`
-            )
-            .join("");
-
-        // 素材
-        const materialsHTML =
-          recipe.materials
-            .map(material =>
-              `<li>${material}</li>`
-            )
-            .join("");
-
-        card.innerHTML = `
-          <div class="recipe-name">
-            ${recipe.name}
+        <details class="recipe-detail">
+          <summary>レシピ</summary>
+          <div class="recipe-materials">
+            ${item.materials.map(m => `<div>${m}</div>`).join("")}
           </div>
+        </details>
+      `;
 
-          <div class="recipe-spec">
-
-            <p>
-              <strong>採掘場:</strong>
-              ${recipe.mine}
-            </p>
-
-            <h3>性能</h3>
-
-            <ul>
-              ${specHTML}
-            </ul>
-
-            <h3>必要素材</h3>
-
-            <ul>
-              ${materialsHTML}
-            </ul>
-
-          </div>
-        `;
-
-        container.appendChild(card);
-
-      });
-
+      container.appendChild(card);
+    });
+  })
+  .catch(err => {
+    console.error("JSON読み込み失敗:", err);
   });
