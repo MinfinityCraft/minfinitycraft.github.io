@@ -1,15 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>素材レシピ | Minfinity craft</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <title>
+    素材レシピ | Minfinity craft
+  </title>
+
+  <!-- フォント -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
 </head>
 
 <body class="recipes-page">
@@ -36,7 +48,10 @@
       権限者一覧
     </a>
 
-    <a href="recipes.html" class="active">
+    <a
+      href="recipes.html"
+      class="active"
+    >
       クラフトレシピ
     </a>
 
@@ -46,10 +61,11 @@
 
   </div>
 
-
-
   <!-- ハンバーガー -->
-  <div class="hamburger" onclick="toggleMenu()">
+  <div
+    class="hamburger"
+    onclick="toggleMenu()"
+  >
     ☰
   </div>
 
@@ -60,79 +76,24 @@
       MATERIAL
     </h1>
 
-
-<!-- 第一採掘場 -->
-<h2 class="recipe-area-title">
-  第一採掘場
-</h2>
-
-<div class="recipe-content">
-
-
-
-        <!-- 鉄インゴット -->
-        <div class="recipe-card">
-
-          <h3 class="recipe-name">
-            [A] 鉄インゴット
-          </h3>
-
-          <!-- レシピ -->
-          <details class="recipe-detail">
-
-            <summary>
-              レシピ
-            </summary>
-
-            <div class="recipe-materials">
-
-              ・鉄鉱石 ×3<br>
-              ・石炭 ×1
-
-            </div>
-
-          </details>
-
-        </div>
-
-        <!-- 銅インゴット -->
-        <div class="recipe-card">
-
-          <h3 class="recipe-name">
-            [B] 銅インゴット
-          </h3>
-
-          <!-- レシピ -->
-          <details class="recipe-detail">
-
-            <summary>
-              レシピ
-            </summary>
-
-            <div class="recipe-materials">
-
-              ・銅鉱石 ×3<br>
-              ・石炭 ×1
-
-            </div>
-
-          </details>
-
-        </div>
-
-      </div>
-
-    </details>
+    <!-- レシピ表示エリア -->
+    <div id="recipeContainer"></div>
 
   </main>
 
   <!-- フェード -->
   <div class="screen-fade"></div>
 
-  <!-- JS -->
+  <!-- レシピカテゴリ -->
+  <script>
+    const recipeCategory = "material";
+  </script>
+
+  <!-- JSONレシピ -->
+  <script src="assets/js/recipes.js"></script>
+
+  <!-- 共通JS -->
   <script src="assets/js/script.js"></script>
 
 </body>
 </html>
-
-
