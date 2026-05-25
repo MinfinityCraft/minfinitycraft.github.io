@@ -1,40 +1,33 @@
 [
   {
-    "area": "第一採掘場",
+    "name": "鉄インゴット",
 
-    "recipes": [
-      {
-        "name": "[A] 鉄インゴット",
+    "category": "material",
 
-        "materials": [
-          "鉄鉱石 ×3",
-          "石炭 ×1"
-        ]
-      },
+    "mine": "鉄鉱山",
 
-      {
-        "name": "[B] 銅インゴット",
+    "spec": [
+      "精錬素材"
+    ],
 
-        "materials": [
-          "銅鉱石 ×3",
-          "石炭 ×1"
-        ]
-      }
+    "materials": [
+      "鉄鉱石 ×2"
     ]
   },
 
   {
-    "area": "第二採掘場",
+    "name": "銅インゴット",
 
-    "recipes": [
-      {
-        "name": "[A] 銀インゴット",
+    "category": "material",
 
-        "materials": [
-          "銀鉱石 ×3",
-          "石炭 ×2"
-        ]
-      }
+    "mine": "初心者採掘場",
+
+    "spec": [
+      "精錬素材"
+    ],
+
+    "materials": [
+      "銅鉱石 ×2"
     ]
   }
 ]
