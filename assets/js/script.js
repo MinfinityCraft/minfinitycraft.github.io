@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loading.classList.add("fade-out");
 
       setTimeout(() => {
-        loading.remove();
+        loading.style.display = "none";
         if (home) home.classList.add("show");
       }, 900);
     }
