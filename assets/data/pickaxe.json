@@ -11,12 +11,23 @@
       "採掘速度: 1.2"
     ],
 
+    "grid": [
+      "copper_ingot",
+      "copper_ingot",
+      "copper_ingot",
+
+      "",
+      "stick",
+      "",
+
+      "",
+      "stick",
+      ""
+    ],
+
     "materials": [
       "銅インゴット ×3",
       "木材 ×2"
     ]
-  },
-
-
-  
+  }
 ]
