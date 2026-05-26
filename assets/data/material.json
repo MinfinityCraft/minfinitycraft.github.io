@@ -4,14 +4,21 @@
 
     "category": "material",
 
-    "mine": "鉄鉱山",
+    "mine": "第一採掘場",
 
     "spec": [
       "精錬素材"
     ],
 
     "materials": [
-      "鉄鉱石 ×2"
+      "鉄鉱石 ×3",
+      "石炭 ×1"
+    ],
+
+    "grid": [
+      "iron_ore", "iron_ore", "iron_ore",
+      null,       "coal",     null,
+      null,       null,       null
     ]
   },
 
@@ -20,14 +27,21 @@
 
     "category": "material",
 
-    "mine": "初心者採掘場",
+    "mine": "第一採掘場",
 
     "spec": [
       "精錬素材"
     ],
 
     "materials": [
-      "銅鉱石 ×2"
+      "銅鉱石 ×3",
+      "石炭 ×1"
+    ],
+
+    "grid": [
+      "copper_ore", "copper_ore", "copper_ore",
+      null,         "coal",       null,
+      null,         null,         null
     ]
   }
 ]
