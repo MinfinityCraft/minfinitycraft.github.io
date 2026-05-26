@@ -1,68 +1,110 @@
-const gridHTML = recipe.grid.map(item => {
+fetch(`assets/data/${recipeCategory}.json`)
+  .then(response => response.json())
+  .then(data => {
 
-  if (!item) {
+    const container =
+      document.getElementById("recipeContainer");
 
-    return `
-      <div class="recipe-slot"></div>
-    `;
-  }
+    // 採掘場ごとにまとめる
+    const grouped = {};
 
-  return `
-    <div class="recipe-slot">
+    data.forEach(recipe => {
 
-      <img
-        src="assets/images/items/${item}.png"
-        alt="${item}"
-      >
+      if (!grouped[recipe.mine]) {
+        grouped[recipe.mine] = [];
+      }
 
-    </div>
-  `;
+      grouped[recipe.mine].push(recipe);
 
-}).join("");
+    });
 
-const materialHTML = recipe.materials.map(material => {
+    // HTML生成
+    for (const mine in grouped) {
 
-  return `<div>${material}</div>`;
+      const areaTitle = document.createElement("h2");
 
-}).join("");
+      areaTitle.className = "recipe-area-title";
 
-return `
+      areaTitle.textContent = mine;
 
-<div class="recipe-card">
+      container.appendChild(areaTitle);
 
-  <h3 class="recipe-name">
-    ${recipe.name}
-  </h3>
+      grouped[mine].forEach(recipe => {
 
-  <div class="recipe-spec">
+        // グリッド生成
+        const gridHTML = recipe.grid.map(item => {
 
-    ${recipe.spec.join("<br>")}
+          if (!item) {
+            return `<div class="craft-slot"></div>`;
+          }
 
-  </div>
+          return `
+            <div class="craft-slot">
+              <img
+                src="assets/images/items/${item}.png"
+                alt="${item}"
+              >
+            </div>
+          `;
 
-  <details class="recipe-detail">
+        }).join("");
 
-    <summary>
-      レシピを見る
-    </summary>
+        // テキスト版素材
+        const materialsHTML = recipe.materials
+          .map(mat => `<div>${mat}</div>`)
+          .join("");
 
-    <div class="recipe-craft-area">
+        container.innerHTML += `
 
-      <div class="recipe-grid">
+          <div class="recipe-card">
 
-        ${gridHTML}
+            <h3 class="recipe-name">
+              ${recipe.name}
+            </h3>
 
-      </div>
+            <div class="recipe-spec">
+              ${recipe.spec.join("<br>")}
+            </div>
 
-      <div class="recipe-text">
+            <details class="recipe-detail">
 
-        ${materialHTML}
+              <summary>
+                レシピを見る
+              </summary>
 
-      </div>
+              <div class="recipe-materials">
 
-    </div>
+                <!-- 作業台 -->
+                <div class="craft-wrapper">
 
-  </details>
+                  <div class="craft-grid">
+                    ${gridHTML}
+                  </div>
 
-</div>
-`;
+                  <!-- 文字版 -->
+                  <div class="craft-text">
+                    ${materialsHTML}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </details>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+  })
+
+  .catch(error => {
+    console.error(
+      "JSON読み込み失敗:",
+      error
+    );
+  });
