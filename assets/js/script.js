@@ -89,18 +89,43 @@ document.addEventListener("DOMContentLoaded", () => {
 const newsBox = document.getElementById("news");
 
 if (newsBox) {
+
   fetch("assets/data/news.json")
-    .then(res => res.json())
+
+    .then(res => {
+
+      if (!res.ok) {
+        throw new Error("news.json 読み込み失敗");
+      }
+
+      return res.json();
+
+    })
+
     .then(data => {
+
       data.forEach(item => {
+
         const p = document.createElement("p");
-        p.textContent = "・" + item.text;
+
+        p.textContent = item.text;
+
         newsBox.appendChild(p);
+
       });
+
+    })
+
+    .catch(err => {
+
+      console.error(err);
+
+      newsBox.innerHTML =
+        "<p>NEWSの読み込みに失敗しました</p>";
+
     });
+
 }
-
-
 /* =========================
    🌌 ページ遷移フェード
 ========================= */
