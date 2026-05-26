@@ -62,7 +62,7 @@ if (particles) {
 /* =========================
    ⏳ ローディング
 ========================= */
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const loading = document.getElementById("loading");
   const particles = document.getElementById("particles");
   const home = document.querySelector(".home-inner");
