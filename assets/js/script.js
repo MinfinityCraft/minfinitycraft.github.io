@@ -90,6 +90,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1600);
 });
 */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const loading =
+    document.getElementById("loading");
+
+  const particles =
+    document.getElementById("particles");
+
+  const home =
+    document.querySelector(".home-inner");
+
+  if (particles) {
+    particles.classList.add("show");
+  }
+
+  if (home) {
+    home.classList.add("show");
+  }
+
+  if (loading) {
+
+    setTimeout(() => {
+
+      loading.style.opacity = "0";
+
+      setTimeout(() => {
+
+        loading.style.display = "none";
+
+      }, 400);
+
+    }, 1200);
+
+  }
+
+});
 /* =========================
    📰 NEWS
 ========================= */
