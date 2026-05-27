@@ -1169,9 +1169,11 @@ details[open] summary {
 
   .sidebar.active {
 
-    transform: translateX(0) !important;
+  transform: translateX(0) !important;
 
-  }
+  background: red !important;
+
+}
 
 }
 
