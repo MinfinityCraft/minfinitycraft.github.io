@@ -70,6 +70,7 @@ if (particles) {
    ⏳ ローディング
 ========================= */
 
+loading.style.display = "none";
 const loading = document.getElementById("loading");
 const particlesEl = document.getElementById("particles");
 const home = document.querySelector(".home-inner");
