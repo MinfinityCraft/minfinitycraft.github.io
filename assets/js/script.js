@@ -1,42 +1,27 @@
 
-function toggleMenu() {
-
-  const sidebar =
-    document.querySelector(".sidebar");
-
-  const hamburger =
-    document.querySelector(".hamburger");
-
-  sidebar.classList.toggle("active");
-
-  // 開いてる時だけ ☰ → ✕
-  if (sidebar.classList.contains("active")) {
-
-    hamburger.textContent = "✕";
-
-  } else {
-
-    hamburger.textContent = "☰";
-
-  }
-
-}
-
 document.addEventListener("DOMContentLoaded", () => {
 
   const hamburger =
     document.querySelector(".hamburger");
 
-  if (hamburger) {
+  const sidebar =
+    document.querySelector(".sidebar");
 
-    hamburger.addEventListener("click", () => {
-      toggleMenu();
-    });
+  if (!hamburger || !sidebar) return;
 
-  }
+  hamburger.addEventListener("click", () => {
+
+    sidebar.classList.toggle("active");
+
+    if (sidebar.classList.contains("active")) {
+      hamburger.textContent = "✕";
+    } else {
+      hamburger.textContent = "☰";
+    }
+
+  });
 
 });
-
 /* =========================
    📄 現在ページ
 ========================= */
