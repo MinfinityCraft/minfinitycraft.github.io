@@ -6,9 +6,14 @@ function toggleMenu() {
   const hamburger =
     document.querySelector(".hamburger");
 
-  sidebar.classList.toggle("active");
+  if (sidebar) {
+    sidebar.classList.toggle("active");
+  }
 
-  hamburger.classList.toggle("hide");
+  if (hamburger) {
+    hamburger.classList.toggle("hide");
+  }
+
 }
 /* =========================
    📄 現在ページ
