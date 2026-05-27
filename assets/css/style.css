@@ -367,11 +367,6 @@ body {
   z-index: 1000;
 }
 
-.hamburger.hide {
-  opacity: 0;
-
-  pointer-events: none;
-}
 
 /* =========================
    ⏳ ローディング
