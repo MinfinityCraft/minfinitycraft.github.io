@@ -384,6 +384,8 @@ body {
   justify-content: center;
   align-items: center;
 
+   transition: opacity 0.9s ease;
+
   background: linear-gradient(
     135deg,
     #000,
@@ -398,9 +400,14 @@ body {
 }
 
 #loading.fade-out {
+
   opacity: 0;
 
   filter: blur(8px);
+
+  visibility: hidden;
+
+  pointer-events: none;
 
   transition:
     opacity 0.9s ease,
