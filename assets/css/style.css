@@ -1154,6 +1154,27 @@ details[open] summary {
   }
 }
 
+@media (max-width: 768px) {
+
+  .sidebar {
+
+    left: 0;
+
+    transform: translateX(-260px);
+
+    transition: transform 0.3s ease;
+
+    animation: none !important;
+  }
+
+  .sidebar.active {
+
+    transform: translateX(0) !important;
+
+  }
+
+}
+
 /* =========================
    🛠 作業台UI
 ========================= */
