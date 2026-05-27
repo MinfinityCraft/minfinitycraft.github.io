@@ -1078,20 +1078,9 @@ details[open] summary {
 @media (max-width: 768px) {
 
   .sidebar {
-
     animation: none;
-
-  }
-
-}
-
-@media (max-width: 768px) {
-
-  .sidebar {
     left: 0;
-
     transform: translateX(-260px);
-
     transition: transform 0.3s ease;
   }
 
@@ -1101,7 +1090,6 @@ details[open] summary {
 
   .content {
     margin-left: 0;
-
     padding: 20px;
   }
 
@@ -1110,17 +1098,13 @@ details[open] summary {
   }
 
   .menu-list {
-    grid-template-columns:
-      repeat(2, minmax(120px, 1fr));
-
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
     gap: 14px;
   }
 
   .menu-btn {
     width: 100%;
-
     min-height: 46px;
-
     font-size: 15px;
   }
 
@@ -1153,30 +1137,6 @@ details[open] summary {
     font-size: 26px;
   }
 }
-
-@media (max-width: 768px) {
-
-  .sidebar {
-
-    left: 0;
-
-    transform: translateX(-260px);
-
-    transition: transform 0.3s ease;
-
-    animation: none !important;
-  }
-
-  .sidebar.active {
-
-  transform: translateX(0) !important;
-
-  background: red !important;
-
-}
-
-}
-
 /* =========================
    🛠 作業台UI
 ========================= */
