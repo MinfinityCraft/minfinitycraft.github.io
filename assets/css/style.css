@@ -1078,6 +1078,16 @@ details[open] summary {
 @media (max-width: 768px) {
 
   .sidebar {
+
+    animation: none;
+
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .sidebar {
     left: 0;
 
     transform: translateX(-260px);
