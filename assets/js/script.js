@@ -7,12 +7,17 @@ function toggleMenu() {
   const hamburger =
     document.querySelector(".hamburger");
 
-  if (sidebar) {
-    sidebar.classList.toggle("active");
-  }
+  sidebar.classList.toggle("active");
 
-  if (hamburger) {
-    hamburger.classList.toggle("hide");
+  // 開いてる時だけ ☰ → ✕
+  if (sidebar.classList.contains("active")) {
+
+    hamburger.textContent = "✕";
+
+  } else {
+
+    hamburger.textContent = "☰";
+
   }
 
 }
