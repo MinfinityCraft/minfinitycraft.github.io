@@ -1,5 +1,5 @@
 
-function toggleMenu() {
+/*function toggleMenu() {
 
   const sidebar =
     document.querySelector(".sidebar");
@@ -20,7 +20,14 @@ function toggleMenu() {
 
   }
 
+}*/
+
+function toggleMenu() {
+
+  alert("動いた！");
+
 }
+
 /* =========================
    📄 現在ページ
 ========================= */
