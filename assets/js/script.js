@@ -22,19 +22,20 @@ function toggleMenu() {
 
 }
 
-const hamburger =
-  document.querySelector(".hamburger");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (hamburger) {
+  const hamburger =
+    document.querySelector(".hamburger");
 
-  hamburger.addEventListener("click", () => {
+  if (hamburger) {
 
-    toggleMenu();
+    hamburger.addEventListener("click", () => {
+      toggleMenu();
+    });
 
-  });
+  }
 
-}
-
+});
 
 /* =========================
    📄 現在ページ
