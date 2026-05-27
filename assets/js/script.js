@@ -1,3 +1,5 @@
+alert("script読み込み成功");
+
 function toggleMenu() {
 
   const sidebar =
