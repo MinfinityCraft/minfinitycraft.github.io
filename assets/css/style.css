@@ -465,6 +465,12 @@ body {
     transform 1.2s ease;
 }
 
+.home {
+
+  padding-top: 80px;
+
+}
+
 .home-inner.show {
   opacity: 1;
 
