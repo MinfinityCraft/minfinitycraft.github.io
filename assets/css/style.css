@@ -1240,3 +1240,36 @@ details[open] summary {
   pointer-events: auto;
 }
 
+
+/* =========================
+   📱 スマホタイトル調整
+========================= */
+@media (max-width: 768px) {
+
+  .title {
+
+    text-shadow:
+      0 0 4px #7dd3fc;
+
+  }
+
+  .title::after {
+
+    opacity: 0.35;
+
+    filter: blur(12px);
+
+  }
+
+}
+
+/* =========================
+   ☰ ハンバーガー非表示
+========================= */
+.hamburger.hide {
+
+  opacity: 0;
+
+  pointer-events: none;
+
+}
