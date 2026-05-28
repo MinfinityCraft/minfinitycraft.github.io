@@ -30,43 +30,29 @@ function initSidebar() {
 
   if (!hamburger || !sidebar || !overlay) return;
 
-  // 開く
-  hamburger.addEventListener("click", () => {
+ // 開く
+hamburger.addEventListener("click", () => {
 
-    sidebar.classList.add("active");
+  sidebar.classList.add("active");
 
-    overlay.classList.add("active");
+  overlay.classList.add("active");
 
-  });
+  hamburger.classList.add("hide");
 
-  // 外タップで閉じる
-  overlay.addEventListener("click", () => {
+});
 
-    sidebar.classList.remove("active");
+// 外タップで閉じる
+overlay.addEventListener("click", () => {
 
-    overlay.classList.remove("active");
+  sidebar.classList.remove("active");
 
-  });
+  overlay.classList.remove("active");
 
-}
+  hamburger.classList.remove("hide");
 
-function setActiveLink() {
+});
 
-  const links =
-    document.querySelectorAll(".sidebar a");
-
-  const current =
-    window.location.pathname.split("/").pop();
-
-  links.forEach(link => {
-
-    if (link.getAttribute("href") === current) {
-
-      link.classList.add("active");
-
-    }
-
-  });
+ 
 
 }
 
