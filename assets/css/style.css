@@ -664,7 +664,7 @@ body {
 /* =========================
    🎬 フェード
 ========================= */
-.screen-fade {
+/*.screen-fade {
   position: fixed;
   inset: 0;
 
