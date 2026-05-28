@@ -1,5 +1,23 @@
 
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================
+   📱 共通サイドバー
+========================= */
+
+fetch("assets/components/sidebar.html")
+
+  .then(res => res.text())
+
+  .then(data => {
+
+    document.getElementById("sidebar-container").innerHTML = data;
+
+    initSidebar();
+
+    setActiveLink();
+
+  });
+
+function initSidebar() {
 
   const hamburger =
     document.querySelector(".hamburger");
@@ -7,21 +25,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar =
     document.querySelector(".sidebar");
 
-  if (!hamburger || !sidebar) return;
+  const overlay =
+    document.querySelector(".sidebar-overlay");
 
+  if (!hamburger || !sidebar || !overlay) return;
+
+  // 開く
   hamburger.addEventListener("click", () => {
 
-    sidebar.classList.toggle("active");
+    sidebar.classList.add("active");
 
-    if (sidebar.classList.contains("active")) {
-      hamburger.textContent = "✕";
-    } else {
-      hamburger.textContent = "☰";
+    overlay.classList.add("active");
+
+  });
+
+  // 外タップで閉じる
+  overlay.addEventListener("click", () => {
+
+    sidebar.classList.remove("active");
+
+    overlay.classList.remove("active");
+
+  });
+
+}
+
+function setActiveLink() {
+
+  const links =
+    document.querySelectorAll(".sidebar a");
+
+  const current =
+    window.location.pathname.split("/").pop();
+
+  links.forEach(link => {
+
+    if (link.getAttribute("href") === current) {
+
+      link.classList.add("active");
+
     }
 
   });
 
-});
+}
+
 /* =========================
    📄 現在ページ
 ========================= */
