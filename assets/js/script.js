@@ -71,31 +71,6 @@ if (particles) {
   }
 }
 
-/* =========================
-   ⏳ ローディング
-========================= */
-/*
-document.addEventListener("DOMContentLoaded", () => {
-  const loading = document.getElementById("loading");
-  const particles = document.getElementById("particles");
-  const home = document.querySelector(".home-inner");
-
-  setTimeout(() => {
-    if (particles) particles.classList.add("show");
-  }, 700);
-
-  setTimeout(() => {
-    if (loading) {
-      loading.classList.add("fade-out");
-
-      setTimeout(() => {
-        loading.style.display = "none";
-        if (home) home.classList.add("show");
-      }, 900);
-    }
-  }, 1600);
-});
-*/
 
 document.addEventListener("DOMContentLoaded", () => {
 
