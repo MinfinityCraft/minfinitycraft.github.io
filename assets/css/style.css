@@ -359,7 +359,7 @@ body {
   font-size: 30px;
   color: #7dd3fc;
   cursor: pointer;
-  z-index: 99999;
+  z-index: 100000;
 }
 /* =========================
    ⏳ ローディング
