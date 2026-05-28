@@ -356,10 +356,15 @@ body {
   position: fixed;
   top: 15px;
   left: 15px;
+
   font-size: 30px;
   color: #7dd3fc;
+
   cursor: pointer;
-  z-index: 100000;
+
+  z-index: 1000000;
+
+  pointer-events: auto;
 }
 /* =========================
    ⏳ ローディング
