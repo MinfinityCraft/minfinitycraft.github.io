@@ -353,21 +353,14 @@ body {
 ========================= */
 .hamburger {
   display: none;
-
   position: fixed;
   top: 15px;
   left: 15px;
-
   font-size: 30px;
-
   color: #7dd3fc;
-
   cursor: pointer;
-
-  z-index: 1000;
+  z-index: 99999;
 }
-
-
 /* =========================
    ⏳ ローディング
 ========================= */
@@ -1088,6 +1081,10 @@ details[open] summary {
     transform: translateX(0);
   }
 
+   .sidebar {
+  z-index: 1000;
+}
+   
   .content {
     margin-left: 0;
     padding: 20px;
