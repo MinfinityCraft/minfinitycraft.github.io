@@ -1212,3 +1212,31 @@ details[open] summary {
 
   min-width: 180px;
 }
+
+
+/* =========================
+   🌑 サイドバー背景
+========================= */
+.sidebar-overlay {
+
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.45);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.3s ease;
+
+  z-index: 998;
+}
+
+.sidebar-overlay.active {
+
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
