@@ -70,17 +70,6 @@ function setActiveLink() {
 
 }
 
-/* =========================
-   📄 現在ページ
-========================= */
-const links = document.querySelectorAll(".sidebar a");
-const current = window.location.pathname.split("/").pop();
-
-links.forEach(link => {
-  if (link.getAttribute("href") === current) {
-    link.classList.add("active");
-  }
-});
 
 /* =========================
    🌌 粒子生成
@@ -206,40 +195,39 @@ if (newsBox) {
 const content = document.querySelector(".content");
 const fade = document.querySelector(".screen-fade");
 
-document.querySelectorAll("a").forEach(link => {
+setTimeout(() => {
 
-  link.addEventListener("click", e => {
+  document.querySelectorAll("a").forEach(link => {
 
-    const href = link.getAttribute("href");
+    link.addEventListener("click", e => {
 
-    // 無効リンク防止
-    if (
-      href &&
-      !href.startsWith("#") &&
-      !href.startsWith("http") &&
-      !href.startsWith("javascript")
-    ) {
+      const href = link.getAttribute("href");
 
-      e.preventDefault();
+      if (
+        href &&
+        !href.startsWith("#") &&
+        !href.startsWith("http") &&
+        !href.startsWith("javascript")
+      ) {
 
-      if (content) {
-        content.classList.add("fade-out");
+        e.preventDefault();
+
+        if (content) {
+          content.classList.add("fade-out");
+        }
+
+        if (fade) {
+          fade.classList.add("active");
+        }
+
+        setTimeout(() => {
+          window.location.href = href;
+        }, 250);
+
       }
 
-      if (fade) {
-        fade.classList.add("active");
-      }
-
-      setTimeout(() => {
-        window.location.href = href;
-      }, 250);
-
-    }
+    });
 
   });
 
-});
-
-
-
-
+}, 100);
