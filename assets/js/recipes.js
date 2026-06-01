@@ -1,147 +1,137 @@
-fetch(`assets/data/${recipeCategory}.json`)
-  .then(response => response.json())
-  .then(data => {
-
-    const container =
-      document.getElementById("recipeContainer");
-
-    // 採掘場ごとにまとめる
-    const grouped = {};
-
-    data.forEach(recipe => {
-
-      if (!grouped[recipe.mine]) {
-        grouped[recipe.mine] = [];
-      }
-
-      grouped[recipe.mine].push(recipe);
-
-    });
-
-    // HTML生成
-    for (const mine in grouped) {
-
-      const areaTitle = document.createElement("h2");
-
-      areaTitle.className = "recipe-area-title";
-
-      areaTitle.textContent = mine;
-
-      container.appendChild(areaTitle);
-
-      grouped[mine].forEach(recipe => {
-
-        // グリッド生成
-        const gridHTML = recipe.grid.map(item => {
-
-          if (!item) {
-            return `<div class="craft-slot"></div>`;
-          }
-
-          return `
-            <div class="craft-slot">
-              <img
-                src="assets/images/items/${item}.png"
-                alt="${item}"
-              >
-            </div>
-          `;
-
-        }).join("");
-
-        // テキスト版素材
-        const materialsHTML = recipe.materials
-          .map(mat => `<div>${mat}</div>`)
-          .join("");
-
-        container.innerHTML += `
-
-          <div class="recipe-card">
-
-            <h3 class="recipe-name">
-              ${recipe.name}
-            </h3>
-
-            <div class="recipe-spec">
-              ${recipe.spec.join("<br>")}
-            </div>
-
-            <details class="recipe-detail">
-
-              <summary>
-                レシピを見る
-              </summary>
-
-              <div class="recipe-materials">
-
-                <!-- 作業台 -->
-                <div class="craft-wrapper">
-
-                  <div class="craft-grid">
-                    ${gridHTML}
-                  </div>
-
-                  <!-- 文字版 -->
-                  <div class="craft-text">
-                    ${materialsHTML}
-                  </div>
-
-                </div>
-
-              </div>
-
-            </details>
-
-          </div>
-
-        `;
-
-      });
-
-    }
-
-  })
-
-  .catch(error => {
-    console.error(
-      "JSON読み込み失敗:",
-      error
-    );
-  });
-
-const searchBox = document.getElementById("searchBox");
-const recipeContainer = document.getElementById("recipeContainer");
-
-// 全レシピ保持用
+/* =========================
+   📦 データ保持
+========================= */
 let allRecipes = [];
 
-// レシピ読み込み後にこれを呼ぶ想定
-function renderRecipes(recipes) {
-  recipeContainer.innerHTML = "";
+/* =========================
+   📥 レシピ読み込み
+========================= */
+fetch(`assets/data/${recipeCategory}.json`)
+  .then(res => {
+    if (!res.ok) throw new Error("JSON読み込み失敗");
+    return res.json();
+  })
+  .then(data => {
 
-  recipes.forEach(recipe => {
-    const div = document.createElement("div");
-    div.className = "recipe-card";
+    allRecipes = data;
 
-    div.innerHTML = `
-      <div class="recipe-name">${recipe.name}</div>
-      <div class="recipe-spec">${recipe.spec || ""}</div>
-    `;
+    renderRecipes(allRecipes);
 
-    recipeContainer.appendChild(div);
+  })
+  .catch(err => {
+    console.error(err);
   });
+
+
+/* =========================
+   🎨 描画関数（唯一）
+========================= */
+function renderRecipes(data) {
+
+  const container = document.getElementById("recipeContainer");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const grouped = {};
+
+  data.forEach(recipe => {
+    if (!grouped[recipe.mine]) {
+      grouped[recipe.mine] = [];
+    }
+    grouped[recipe.mine].push(recipe);
+  });
+
+  for (const mine in grouped) {
+
+    const title = document.createElement("h2");
+    title.className = "recipe-area-title";
+    title.textContent = mine;
+    container.appendChild(title);
+
+    grouped[mine].forEach(recipe => {
+
+      const gridHTML = (recipe.grid || []).map(item => {
+
+        if (!item) {
+          return `<div class="craft-slot"></div>`;
+        }
+
+        return `
+          <div class="craft-slot">
+            <img src="assets/images/items/${item}.png" alt="${item}">
+          </div>
+        `;
+
+      }).join("");
+
+      const materialsHTML = (recipe.materials || [])
+        .map(m => `<div>${m}</div>`)
+        .join("");
+
+      const card = document.createElement("div");
+      card.className = "recipe-card";
+
+      card.innerHTML = `
+        <h3 class="recipe-name">${recipe.name || ""}</h3>
+
+        <div class="recipe-spec">
+          ${Array.isArray(recipe.spec)
+            ? recipe.spec.join("<br>")
+            : recipe.spec || ""}
+        </div>
+
+        <details class="recipe-detail">
+          <summary>レシピを見る</summary>
+
+          <div class="recipe-materials">
+            <div class="craft-wrapper">
+
+              <div class="craft-grid">
+                ${gridHTML}
+              </div>
+
+              <div class="craft-text">
+                ${materialsHTML}
+              </div>
+
+            </div>
+          </div>
+
+        </details>
+      `;
+
+      container.appendChild(card);
+    });
+  }
 }
 
-// 検索処理
+
+/* =========================
+   🔍 検索機能
+========================= */
+const searchBox = document.getElementById("searchBox");
+
 if (searchBox) {
+
   searchBox.addEventListener("input", (e) => {
 
     const keyword = e.target.value.toLowerCase();
 
     const filtered = allRecipes.filter(r => {
+
+      const name = (r.name || "").toLowerCase();
+
+      const spec = Array.isArray(r.spec)
+        ? r.spec.join(" ")
+        : (r.spec || "");
+
+      const materials = (r.materials || []).join(" ");
+
       return (
-        r.name.toLowerCase().includes(keyword) ||
-        (r.spec && r.spec.toLowerCase().includes(keyword))
+        name.includes(keyword) ||
+        spec.toLowerCase().includes(keyword) ||
+        materials.toLowerCase().includes(keyword)
       );
     });
 
