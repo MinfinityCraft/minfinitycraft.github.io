@@ -899,7 +899,47 @@ details[open] summary {
 
   position: relative;
   z-index: 10;
+  display: block;
+  width: min(520px, 90%);
+  margin: 10px auto 40px auto;
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(125,211,252,0.35);
+
+  background: rgba(0,0,0,0.35);
+
+  color: #7dd3fc;
+
+  outline: none;
+
+  font-size: 16px;
+
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 0 12px rgba(125,211,252,0.25),
+    inset 0 0 8px rgba(0,0,0,0.5);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border 0.2s ease;
 }
+
+/* フォーカス時（かなり重要） */
+#searchBox:focus {
+  border: 1px solid #7dd3fc;
+
+  box-shadow:
+    0 0 18px rgba(125,211,252,0.45),
+    inset 0 0 8px rgba(0,0,0,0.5);
+
+  transform: scale(1.02);
+}
+
 /* レシピセクション */
 .recipe-section {
   max-width: 800px;
