@@ -108,3 +108,43 @@ fetch(`assets/data/${recipeCategory}.json`)
       error
     );
   });
+
+const searchBox = document.getElementById("searchBox");
+const recipeContainer = document.getElementById("recipeContainer");
+
+// 全レシピ保持用
+let allRecipes = [];
+
+// レシピ読み込み後にこれを呼ぶ想定
+function renderRecipes(recipes) {
+  recipeContainer.innerHTML = "";
+
+  recipes.forEach(recipe => {
+    const div = document.createElement("div");
+    div.className = "recipe-card";
+
+    div.innerHTML = `
+      <div class="recipe-name">${recipe.name}</div>
+      <div class="recipe-spec">${recipe.spec || ""}</div>
+    `;
+
+    recipeContainer.appendChild(div);
+  });
+}
+
+// 検索処理
+if (searchBox) {
+  searchBox.addEventListener("input", (e) => {
+
+    const keyword = e.target.value.toLowerCase();
+
+    const filtered = allRecipes.filter(r => {
+      return (
+        r.name.toLowerCase().includes(keyword) ||
+        (r.spec && r.spec.toLowerCase().includes(keyword))
+      );
+    });
+
+    renderRecipes(filtered);
+  });
+}
