@@ -30,13 +30,13 @@ function initSidebar() {
 
   if (!hamburger || !sidebar || !overlay) return;
 
- // 開く
+// 開く
 hamburger.addEventListener("click", () => {
 
   sidebar.classList.add("active");
-
   overlay.classList.add("active");
 
+  // 👇追加
   hamburger.classList.add("hide");
 
 });
@@ -45,13 +45,12 @@ hamburger.addEventListener("click", () => {
 overlay.addEventListener("click", () => {
 
   sidebar.classList.remove("active");
-
   overlay.classList.remove("active");
 
+  // 👇追加
   hamburger.classList.remove("hide");
 
 });
-
  
 
 }
