@@ -1070,6 +1070,32 @@ details[open] summary {
     0 0 22px rgba(0,255,170,0.18);
 }
 
+#searchBox {
+  display: block;
+
+  width: min(420px, 85vw);
+
+  margin: 20px auto 40px auto;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  border: 1px solid rgba(125,211,252,0.2);
+
+  background: rgba(0,0,0,0.25);
+
+  color: #7dd3fc;
+
+  outline: none;
+
+  box-shadow: 0 0 10px rgba(125,211,252,0.1);
+
+  position: relative;
+
+  z-index: 10; /* ハンバーガーと被っても負けない */
+}
+
 /* =========================
    📱 スマホ
 ========================= */
@@ -1138,6 +1164,13 @@ details[open] summary {
   .recipe-area-title {
     font-size: 26px;
   }
+   
+  #searchBox {
+    margin-top: 12px;
+    margin-bottom: 28px;
+    width: min(92vw, 420px);
+  }
+
 }
 /* =========================
    🛠 作業台UI
