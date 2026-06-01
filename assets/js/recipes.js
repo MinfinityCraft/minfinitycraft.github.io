@@ -1,49 +1,20 @@
-const searchBox = document.getElementById("searchBox");
-const container = document.getElementById("recipeContainer");
-const infoBox = document.getElementById("searchResultInfo");
-
+/* =========================
+   📦 データ保持
+========================= */
 let allRecipes = [];
 
-/* =========================
-   📥 データ取得
-========================= */
-fetch(`assets/data/${recipeCategory}.json`)
-  .then(res => res.json())
-  .then(data => {
-    allRecipes = data;
-    renderRecipes(allRecipes);
-  })
-  .catch(err => {
-    console.error("JSON読み込み失敗:", err);
-  });
+const container = document.getElementById("recipeContainer");
+const searchBox = document.getElementById("searchBox");
 
 /* =========================
-   🎨 ハイライト関数
+   🔍 レンダリング（完全統一）
 ========================= */
-function highlight(text, keyword) {
-  if (!keyword) return text;
-  const reg = new RegExp(`(${keyword})`, "gi");
-  return text.replace(reg, `<span style="color:#ffd700;text-shadow:0 0 8px #ffcc00;">$1</span>`);
-}
+function renderRecipes(data) {
+  if (!container) return;
 
-/* =========================
-   🧱 レンダリング
-========================= */
-function renderRecipes(data, keyword = "") {
   container.innerHTML = "";
 
-  if (data.length === 0) {
-    container.innerHTML = `
-      <div class="no-result">
-        該当するレシピが見つかりませんでした
-      </div>
-    `;
-    infoBox.textContent = "";
-    return;
-  }
-
-  infoBox.textContent = `${data.length}件見つかりました`;
-
+  // 採掘場ごとにグループ化
   const grouped = {};
 
   data.forEach(recipe => {
@@ -53,7 +24,9 @@ function renderRecipes(data, keyword = "") {
     grouped[recipe.mine].push(recipe);
   });
 
+  // 描画
   for (const mine in grouped) {
+
     const title = document.createElement("h2");
     title.className = "recipe-area-title";
     title.textContent = mine;
@@ -61,8 +34,11 @@ function renderRecipes(data, keyword = "") {
 
     grouped[mine].forEach(recipe => {
 
-      const gridHTML = recipe.grid.map(item => {
-        if (!item) return `<div class="craft-slot"></div>`;
+      const gridHTML = (recipe.grid || []).map(item => {
+
+        if (!item) {
+          return `<div class="craft-slot"></div>`;
+        }
 
         return `
           <div class="craft-slot">
@@ -71,29 +47,31 @@ function renderRecipes(data, keyword = "") {
         `;
       }).join("");
 
-      const materialsHTML = recipe.materials
+      const materialsHTML = (recipe.materials || [])
         .map(mat => `<div>${mat}</div>`)
         .join("");
 
-      const name = highlight(recipe.name, keyword);
+      const specHTML = Array.isArray(recipe.spec)
+        ? recipe.spec.join("<br>")
+        : (recipe.spec || "");
 
       const card = document.createElement("div");
       card.className = "recipe-card";
 
       card.innerHTML = `
-        <h3 class="recipe-name">${name}</h3>
+        <h3 class="recipe-name">${recipe.name}</h3>
 
         <div class="recipe-spec">
-          ${Array.isArray(recipe.spec)
-            ? recipe.spec.map(s => highlight(s, keyword)).join("<br>")
-            : highlight(recipe.spec || "", keyword)}
+          ${specHTML}
         </div>
 
         <details class="recipe-detail">
           <summary>レシピを見る</summary>
 
           <div class="recipe-materials">
+
             <div class="craft-wrapper">
+
               <div class="craft-grid">
                 ${gridHTML}
               </div>
@@ -101,7 +79,9 @@ function renderRecipes(data, keyword = "") {
               <div class="craft-text">
                 ${materialsHTML}
               </div>
+
             </div>
+
           </div>
         </details>
       `;
@@ -112,22 +92,42 @@ function renderRecipes(data, keyword = "") {
 }
 
 /* =========================
-   🔍 検索処理（リアルタイム）
+   📥 JSON読み込み
+========================= */
+fetch(`assets/data/${recipeCategory}.json`)
+  .then(res => res.json())
+  .then(data => {
+
+    allRecipes = data;
+
+    renderRecipes(allRecipes);
+
+  })
+  .catch(err => {
+    console.error("JSON読み込み失敗:", err);
+  });
+
+/* =========================
+   🔍 検索機能
 ========================= */
 if (searchBox) {
+
   searchBox.addEventListener("input", (e) => {
 
-    const keyword = e.target.value.trim().toLowerCase();
+    const keyword = e.target.value.toLowerCase();
 
     const filtered = allRecipes.filter(r => {
 
-      const nameMatch = r.name?.toLowerCase().includes(keyword);
+      const nameMatch =
+        r.name?.toLowerCase().includes(keyword);
 
-      const specText = Array.isArray(r.spec)
-        ? r.spec.join(" ")
-        : (r.spec || "");
+      const specText =
+        Array.isArray(r.spec)
+          ? r.spec.join(" ")
+          : (r.spec || "");
 
-      const materialText = (r.materials || []).join(" ");
+      const materialText =
+        (r.materials || []).join(" ");
 
       return (
         nameMatch ||
@@ -136,6 +136,6 @@ if (searchBox) {
       );
     });
 
-    renderRecipes(filtered, keyword);
+    renderRecipes(filtered);
   });
 }
