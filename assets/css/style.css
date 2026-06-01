@@ -883,30 +883,23 @@ details[open] summary {
 
 /* 検索ボックス */
 #searchBox {
-  width: min(420px, 90%);
-
-  margin-top: 16px;
-
+  display: block;
+  width: min(420px, 85vw);
+  margin: 20px auto 40px auto;
   padding: 12px 14px;
 
   border-radius: 10px;
-
   border: 1px solid rgba(125,211,252,0.2);
 
   background: rgba(0,0,0,0.25);
-
   color: #7dd3fc;
-
   outline: none;
 
-  box-shadow:
-    0 0 10px rgba(125,211,252,0.1);
-}
+  box-shadow: 0 0 10px rgba(125,211,252,0.1);
 
-#searchBox::placeholder {
-  color: rgba(125,211,252,0.5);
+  position: relative;
+  z-index: 10;
 }
-
 /* レシピセクション */
 .recipe-section {
   max-width: 800px;
