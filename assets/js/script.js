@@ -15,6 +15,19 @@ fetch("assets/components/sidebar.html")
     setActiveLink();
   });
 
+function setActiveLink() {
+
+  const links = document.querySelectorAll(".sidebar a");
+  const current = window.location.pathname.split("/").pop();
+
+  links.forEach(link => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("active");
+    }
+  });
+
+}
+
 /* =========================
    🧭 サイドバー制御
 ========================= */
