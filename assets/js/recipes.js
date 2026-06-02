@@ -3,70 +3,120 @@
 ========================= */
 let allRecipes = [];
 
-const container = document.getElementById("recipeContainer");
-const searchBox = document.getElementById("searchBox");
+const container =
+  document.getElementById("recipeContainer");
+
+const searchBox =
+  document.getElementById("searchBox");
+
+const resultInfo =
+  document.getElementById("searchResultInfo");
+
 
 /* =========================
-   🔍 レンダリング（完全統一）
+   🔍 レンダリング
 ========================= */
 function renderRecipes(data) {
+
   if (!container) return;
 
   container.innerHTML = "";
+
+  // 0件
+  if (data.length === 0) {
+
+    container.innerHTML = `
+      <div class="recipe-card">
+        <h3>該当するレシピが見つかりません</h3>
+      </div>
+    `;
+
+    return;
+  }
 
   // 採掘場ごとにグループ化
   const grouped = {};
 
   data.forEach(recipe => {
+
     if (!grouped[recipe.mine]) {
       grouped[recipe.mine] = [];
     }
+
     grouped[recipe.mine].push(recipe);
+
   });
 
   // 描画
   for (const mine in grouped) {
 
-    const title = document.createElement("h2");
-    title.className = "recipe-area-title";
-    title.textContent = mine;
+    const title =
+      document.createElement("h2");
+
+    title.className =
+      "recipe-area-title";
+
+    title.textContent =
+      mine;
+
     container.appendChild(title);
 
     grouped[mine].forEach(recipe => {
 
-      const gridHTML = (recipe.grid || []).map(item => {
+      const gridHTML =
+        (recipe.grid || [])
+          .map(item => {
 
-        if (!item) {
-          return `<div class="craft-slot"></div>`;
-        }
+            if (!item) {
+              return `
+                <div class="craft-slot"></div>
+              `;
+            }
 
-        return `
-          <div class="craft-slot">
-            <img src="assets/images/items/${item}.png" alt="${item}">
-          </div>
-        `;
-      }).join("");
+            return `
+              <div class="craft-slot">
+                <img
+                  src="assets/images/items/${item}.png"
+                  alt="${item}"
+                >
+              </div>
+            `;
 
-      const materialsHTML = (recipe.materials || [])
-        .map(mat => `<div>${mat}</div>`)
-        .join("");
+          })
+          .join("");
 
-      const specHTML = Array.isArray(recipe.spec)
-        ? recipe.spec.join("<br>")
-        : (recipe.spec || "");
+      const materialsHTML =
+        (recipe.materials || [])
+          .map(mat =>
+            `<div>${mat}</div>`
+          )
+          .join("");
 
-      const card = document.createElement("div");
-      card.className = "recipe-card";
+      const specHTML =
+        Array.isArray(recipe.spec)
+          ? recipe.spec.join("<br>")
+          : (recipe.spec || "");
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "recipe-card";
 
       card.innerHTML = `
-        <h3 class="recipe-name">${recipe.name}</h3>
+        <h3 class="recipe-name">
+          ${recipe.name}
+        </h3>
 
         <div class="recipe-spec">
           ${specHTML}
         </div>
 
         <details class="recipe-detail">
-          <summary>レシピを見る</summary>
+
+          <summary>
+            レシピを見る
+          </summary>
 
           <div class="recipe-materials">
 
@@ -83,65 +133,25 @@ function renderRecipes(data) {
             </div>
 
           </div>
+
         </details>
       `;
 
       container.appendChild(card);
+
     });
+
   }
+
 }
 
-/* =========================
-   📥 JSON読み込み
-========================= */
-fetch(`assets/data/${recipeCategory}.json`)
-  .then(res => res.json())
-  .then(data => {
-
-  console.log("JSON読込成功", data);
-
-  allRecipes = data;
-
-  renderRecipes(allRecipes);
-
-})
-  .catch(err => {
-    console.error("JSON読み込み失敗:", err);
-  });
 
 /* =========================
-   🔍 検索機能
+   📊 件数表示
 ========================= */
-if (searchBox) {
+function updateResultInfo(keyword, count) {
 
-  searchBox.addEventListener("input", (e) => {
-
-    const keyword = e.target.value.toLowerCase();
-
-    const filtered = allRecipes.filter(r => {
-
-      const nameMatch =
-        r.name?.toLowerCase().includes(keyword);
-
-      const specText =
-        Array.isArray(r.spec)
-          ? r.spec.join(" ")
-          : (r.spec || "");
-
-      const materialText =
-        (r.materials || []).join(" ");
-
-      return (
-        nameMatch ||
-        specText.toLowerCase().includes(keyword) ||
-        materialText.toLowerCase().includes(keyword)
-      );
-    });
-
-   const resultInfo =
-  document.getElementById("searchResultInfo");
-
-if (resultInfo) {
+  if (!resultInfo) return;
 
   if (keyword === "") {
 
@@ -151,12 +161,100 @@ if (resultInfo) {
   } else {
 
     resultInfo.textContent =
-      `「${keyword}」 : ${filtered.length} 件`;
+      `「${keyword}」 の検索結果 : ${count} 件`;
 
   }
 
 }
 
-    renderRecipes(filtered);
+
+/* =========================
+   📥 JSON読み込み
+========================= */
+fetch(`assets/data/${recipeCategory}.json`)
+  .then(res => res.json())
+
+  .then(data => {
+
+    console.log(
+      "JSON読込成功",
+      data
+    );
+
+    allRecipes = data;
+
+    renderRecipes(allRecipes);
+
+    updateResultInfo(
+      "",
+      allRecipes.length
+    );
+
+  })
+
+  .catch(err => {
+
+    console.error(
+      "JSON読み込み失敗:",
+      err
+    );
+
   });
+
+
+/* =========================
+   🔍 検索
+========================= */
+if (searchBox) {
+
+  searchBox.addEventListener(
+    "input",
+    (e) => {
+
+      const keyword =
+        e.target.value
+          .toLowerCase()
+          .trim();
+
+      const filtered =
+        allRecipes.filter(r => {
+
+          const nameText =
+            r.name || "";
+
+          const specText =
+            Array.isArray(r.spec)
+              ? r.spec.join(" ")
+              : (r.spec || "");
+
+          const materialText =
+            (r.materials || [])
+              .join(" ");
+
+          return (
+            nameText
+              .toLowerCase()
+              .includes(keyword) ||
+
+            specText
+              .toLowerCase()
+              .includes(keyword) ||
+
+            materialText
+              .toLowerCase()
+              .includes(keyword)
+          );
+
+        });
+
+      updateResultInfo(
+        keyword,
+        filtered.length
+      );
+
+      renderRecipes(filtered);
+
+    }
+  );
+
 }
