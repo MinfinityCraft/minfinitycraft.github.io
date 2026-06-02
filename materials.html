@@ -11,56 +11,60 @@
     素材レシピ | Minfinity craft
   </title>
 
-  <!-- フォント -->
   <link
     href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-    rel="stylesheet"
-  >
+    rel="stylesheet">
 
-  <!-- CSS -->
-<link rel="stylesheet" href="assets/css/style.css?v=5">
-  
+  <link rel="stylesheet" href="assets/css/style.css?v=6">
+
 </head>
 
 <body class="recipes-page">
 
-  <!-- 粒子 -->
   <div id="particles"></div>
 
-   <!-- 共通html -->
+  <div id="sidebar-container"></div>
 
-<div id="sidebar-container"></div>
-
-
-  <!-- メイン -->
   <main class="content">
 
     <h1 class="title">
       MATERIAL
     </h1>
 
-      <input id="searchBox" type="text" placeholder="レシピを検索..." />
+    <!-- 検索 -->
+    <input
+      id="searchBox"
+      type="text"
+      placeholder="レシピを検索..."
+    >
+
+    <!-- 採掘場フィルター -->
+    <select id="mineFilter">
+
+      <option value="all">
+        全ての採掘場
+      </option>
+
+    </select>
+
+    <!-- 件数表示 -->
     <div id="searchResultInfo"></div>
 
-
-    <!-- レシピ表示エリア -->
+    <!-- レシピ -->
     <div id="recipeContainer"></div>
 
   </main>
 
-  <!-- フェード -->
   <div class="screen-fade"></div>
 
-<!-- レシピカテゴリ -->
-<script>
-  const recipeCategory = "material";
-</script>
+  <script>
+    const recipeCategory = "material";
+  </script>
 
-<script src="assets/js/recipes.js"></script>>
+  <script src="assets/js/recipes.js?v=3"></script>
 
-
-  <!-- 共通JS -->
- <script defer src="assets/js/script.js?v=1000"></script>
+  <script defer src="assets/js/script.js?v=1000"></script>
 
 </body>
+
 </html>
