@@ -947,6 +947,21 @@ details[open] summary {
   opacity: 0.8;
 }
 
+#searchResultInfo {
+
+  margin-bottom: 24px;
+
+  color: #9fffd9;
+
+  font-size: 14px;
+
+  text-align: center;
+
+  text-shadow:
+    0 0 6px rgba(0,255,170,0.4);
+
+}
+
 .no-result {
   text-align: center;
   margin: 40px 0;
