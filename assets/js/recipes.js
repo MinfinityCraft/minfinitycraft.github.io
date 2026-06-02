@@ -138,6 +138,25 @@ if (searchBox) {
       );
     });
 
+   const resultInfo =
+  document.getElementById("searchResultInfo");
+
+if (resultInfo) {
+
+  if (keyword === "") {
+
+    resultInfo.textContent =
+      `全 ${allRecipes.length} 件`;
+
+  } else {
+
+    resultInfo.textContent =
+      `「${keyword}」 : ${filtered.length} 件`;
+
+  }
+
+}
+
     renderRecipes(filtered);
   });
 }
