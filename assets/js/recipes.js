@@ -98,11 +98,13 @@ fetch(`assets/data/${recipeCategory}.json`)
   .then(res => res.json())
   .then(data => {
 
-    allRecipes = data;
+  console.log("JSON読込成功", data);
 
-    renderRecipes(allRecipes);
+  allRecipes = data;
 
-  })
+  renderRecipes(allRecipes);
+
+})
   .catch(err => {
     console.error("JSON読み込み失敗:", err);
   });
