@@ -12,6 +12,9 @@ const searchBox =
 const resultInfo =
   document.getElementById("searchResultInfo");
 
+const mineFilter =
+  document.getElementById("mineFilter");
+
 
 /* =========================
    🔍 レンダリング
@@ -153,7 +156,10 @@ function updateResultInfo(keyword, count) {
 
   if (!resultInfo) return;
 
-  if (keyword === "") {
+  if (
+    keyword === "" &&
+    (!mineFilter || mineFilter.value === "")
+  ) {
 
     resultInfo.textContent =
       `全 ${allRecipes.length} 件`;
@@ -161,9 +167,84 @@ function updateResultInfo(keyword, count) {
   } else {
 
     resultInfo.textContent =
-      `「${keyword}」 の検索結果 : ${count} 件`;
+      `${count} 件ヒット`;
 
   }
+
+}
+
+
+/* =========================
+   🔍 検索 + フィルター
+========================= */
+function applyFilters() {
+
+  const keyword =
+    searchBox
+      ? searchBox.value
+          .toLowerCase()
+          .trim()
+      : "";
+
+  const selectedMine =
+    mineFilter
+      ? mineFilter.value
+      : "";
+
+  const filtered =
+    allRecipes.filter(r => {
+
+      const nameText =
+        r.name || "";
+
+      const specText =
+        Array.isArray(r.spec)
+          ? r.spec.join(" ")
+          : (r.spec || "");
+
+      const materialText =
+        (r.materials || [])
+          .join(" ");
+
+      const keywordMatch =
+
+        nameText
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        specText
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        materialText
+          .toLowerCase()
+          .includes(keyword);
+
+      const mineMatch =
+
+        selectedMine === ""
+
+        ||
+
+        r.mine === selectedMine;
+
+      return (
+        keywordMatch &&
+        mineMatch
+      );
+
+    });
+
+  renderRecipes(filtered);
+
+  updateResultInfo(
+    keyword,
+    filtered.length
+  );
 
 }
 
@@ -182,6 +263,36 @@ fetch(`assets/data/${recipeCategory}.json`)
     );
 
     allRecipes = data;
+
+    // 採掘場一覧生成
+    if (mineFilter) {
+
+      const mines = [
+        ...new Set(
+          allRecipes.map(
+            r => r.mine
+          )
+        )
+      ];
+
+      mines.forEach(mine => {
+
+        const option =
+          document.createElement("option");
+
+        option.value =
+          mine;
+
+        option.textContent =
+          mine;
+
+        mineFilter.appendChild(
+          option
+        );
+
+      });
+
+    }
 
     renderRecipes(allRecipes);
 
@@ -203,58 +314,26 @@ fetch(`assets/data/${recipeCategory}.json`)
 
 
 /* =========================
-   🔍 検索
+   🔍 検索イベント
 ========================= */
 if (searchBox) {
 
   searchBox.addEventListener(
     "input",
-    (e) => {
+    applyFilters
+  );
 
-      const keyword =
-        e.target.value
-          .toLowerCase()
-          .trim();
+}
 
-      const filtered =
-        allRecipes.filter(r => {
 
-          const nameText =
-            r.name || "";
+/* =========================
+   🏷 フィルターイベント
+========================= */
+if (mineFilter) {
 
-          const specText =
-            Array.isArray(r.spec)
-              ? r.spec.join(" ")
-              : (r.spec || "");
-
-          const materialText =
-            (r.materials || [])
-              .join(" ");
-
-          return (
-            nameText
-              .toLowerCase()
-              .includes(keyword) ||
-
-            specText
-              .toLowerCase()
-              .includes(keyword) ||
-
-            materialText
-              .toLowerCase()
-              .includes(keyword)
-          );
-
-        });
-
-      updateResultInfo(
-        keyword,
-        filtered.length
-      );
-
-      renderRecipes(filtered);
-
-    }
+  mineFilter.addEventListener(
+    "change",
+    applyFilters
   );
 
 }
