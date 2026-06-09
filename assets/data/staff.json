@@ -1,18 +1,85 @@
 {
-  "総司令": [
-    {
-      "name": "テスト",
-      "gameTag": "test",
-      "discord": "test",
-      "job": "test",
-      "joined": "test",
-      "favorites": [
-        "test"
-      ],
-      "hobbies": [
-        "test"
-      ],
-      "message": "test"
-    }
-  ]
+"総司令": [
+{
+"name": "未設定",
+"gameTag": "-",
+"discord": "-",
+"job": "サーバー全体の管理",
+"joined": "-",
+"favorites": [
+"-"
+],
+"hobbies": [
+"-"
+],
+"message": "-"
+}
+],
+
+"最高指導者": [
+{
+"name": "未設定",
+"gameTag": "-",
+"discord": "-",
+"job": "運営統括",
+"joined": "-",
+"favorites": [
+"-"
+],
+"hobbies": [
+"-"
+],
+"message": "-"
+}
+],
+
+"本部": [
+{
+"name": "未設定",
+"gameTag": "-",
+"discord": "-",
+"job": "本部メンバー",
+"joined": "-",
+"favorites": [
+"-"
+],
+"hobbies": [
+"-"
+],
+"message": "-"
+},
+
+  
+{
+  "name": "未設定",
+  "gameTag": "-",
+  "discord": "-",
+  "job": "本部メンバー",
+  "joined": "-",
+  "favorites": [
+    "-"
+  ],
+  "hobbies": [
+    "-"
+  ],
+  "message": "-"
+},
+
+{
+  "name": "未設定",
+  "gameTag": "-",
+  "discord": "-",
+  "job": "本部メンバー",
+  "joined": "-",
+  "favorites": [
+    "-"
+  ],
+  "hobbies": [
+    "-"
+  ],
+  "message": "-"
+}
+
+
+]
 }
