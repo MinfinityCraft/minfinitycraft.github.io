@@ -1449,3 +1449,15 @@ details[open] {
   box-shadow:
     0 0 14px rgba(255,215,0,0.15);
 }
+
+.staff-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 16px;
+
+  margin-top: 15px;
+}
