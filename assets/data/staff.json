@@ -1,26 +1,112 @@
 {
   "総司令": [
     {
-      "name": "未設定",
-      "description": "Minfinity創設者。サーバー全体の管理を担当。"
+      "name": "柚子みかん",
+      "gameTag": "YuzuMikan",
+      "discord": "yuzumikan",
+      "job": "サーバー管理・開発",
+      "joined": "2025/01/01",
+
+      "favorites": [
+        "建築",
+        "システム開発"
+      ],
+
+      "hobbies": [
+        "ゲーム制作",
+        "勉強"
+      ],
+
+      "message": "みんなで楽しいサーバーを作っていきましょう！"
     }
   ],
-
   
+
   "最高指導者": [
     {
       "name": "未設定",
-      "description": "現在募集していません。"
+      "gameTag": "-",
+      "discord": "-",
+      "job": "-",
+      "joined": "-",
+
+      "favorites": [
+        "-"
+      ],
+
+      "hobbies": [
+        "-"
+      ],
+
+      "message": "-"
     }
   ],
-
   
+
   "本部": [
     {
       "name": "未設定",
-      "description": "本部メンバー"
+      "gameTag": "-",
+      "discord": "-",
+      "job": "-",
+      "joined": "-",
+
+      "favorites": [
+        "-"
+      ],
+
+      "hobbies": [
+        "-"
+      ],
+
+      "message": "-"
+    },
+
+    
+    {
+      "name": "未設定",
+      "gameTag": "-",
+      "discord": "-",
+      "job": "-",
+      "joined": "-",
+
+      "favorites": [
+        "-"
+      ],
+
+      "hobbies": [
+        "-"
+      ],
+
+      "message": "-"
+    },
+
+    
+    {
+      "name": "未設定",
+      "gameTag": "-",
+      "discord": "-",
+      "job": "-",
+      "joined": "-",
+
+      "favorites": [
+        "-"
+      ],
+
+      "hobbies": [
+        "-"
+      ],
+
+      "message": "-"
     }
-  ],
+
+
+
+
+  ]
+
+
+
 
 
 
