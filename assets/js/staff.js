@@ -1,49 +1,105 @@
 async function loadStaff() {
 
-  const response = await fetch(
-    "assets/data/staff.json"
+try {
+
+```
+const response = await fetch(
+  "assets/data/staff.json"
+);
+
+if (!response.ok) {
+  throw new Error(
+    `JSONの読み込みに失敗しました (${response.status})`
   );
+}
 
-  const data = await response.json();
+const data = await response.json();
 
-  const container =
-    document.getElementById("staffContainer");
+const container =
+  document.getElementById("staffContainer");
 
-  container.innerHTML = "";
+container.innerHTML = "";
 
-  for (const [groupName, members] of Object.entries(data)) {
+for (const [groupName, members] of Object.entries(data)) {
 
-    const section =
-      document.createElement("section");
+  const section =
+    document.createElement("section");
 
-    section.className = "card";
+  section.className = "card";
 
-    section.innerHTML = `
-      <h2>${groupName}</h2>
-      <div class="staff-grid"></div>
+  section.innerHTML = `
+    <h2>${groupName}</h2>
+    <div class="staff-grid"></div>
+  `;
+
+  const grid =
+    section.querySelector(".staff-grid");
+
+  members.forEach(member => {
+
+    const details =
+      document.createElement("details");
+
+    details.innerHTML = `
+      <summary>${member.name}</summary>
+
+      <div class="drop-data">
+
+        <strong>ゲームタグ</strong> ： ${member.gameTag}<br>
+        <strong>Discord</strong> ： ${member.discord}<br>
+        <strong>仕事内容</strong> ： ${member.job}<br>
+        <strong>就任</strong> ： ${member.joined}<br><br>
+
+        <strong>好きな○○</strong>
+        <ul>
+          ${(member.favorites || [])
+            .map(item => `<li>${item}</li>`)
+            .join("")}
+        </ul>
+
+        <strong>趣味</strong>
+        <ul>
+          ${(member.hobbies || [])
+            .map(item => `<li>${item}</li>`)
+            .join("")}
+        </ul>
+
+        <strong>ひとこと</strong>
+        <ul>
+          <li>${member.message || ""}</li>
+        </ul>
+
+      </div>
     `;
 
-    const grid =
-      section.querySelector(".staff-grid");
+    grid.appendChild(details);
 
-    members.forEach(member => {
+  });
 
-      const details =
-        document.createElement("details");
+  container.appendChild(section);
 
-      details.innerHTML = `
-        <summary>${member.name}</summary>
+}
+```
 
-        <div class="drop-data">
-          ${member.description}
-        </div>
-      `;
+} catch (error) {
 
-      grid.appendChild(details);
-    });
+```
+console.error(error);
 
-    container.appendChild(section);
-  }
+const container =
+  document.getElementById("staffContainer");
+
+container.innerHTML = `
+  <section class="card">
+    <h2>エラー</h2>
+    <p>
+      スタッフデータの読み込みに失敗しました。
+    </p>
+  </section>
+`;
+```
+
+}
 }
 
 loadStaff();
