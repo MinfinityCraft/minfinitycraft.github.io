@@ -45,11 +45,27 @@ for (const [groupName, members] of Object.entries(data)) {
 
       <div class="drop-data">
 
-        <strong>ゲームタグ</strong> ： ${member.gameTag}<br>
-        <strong>Discord</strong> ： ${member.discord}<br>
-        <strong>仕事内容</strong> ： ${member.job}<br>
-        <strong>就任</strong> ： ${member.joined}<br><br>
+      <div class="profile-row">
+  <span class="profile-label">ゲームタグ</span>
+  <span class="profile-value">${member.gameTag}</span>
+</div>
 
+<div class="profile-row">
+  <span class="profile-label">Discord</span>
+  <span class="profile-value">${member.discord}</span>
+</div>
+
+<div class="profile-row">
+  <span class="profile-label">仕事内容</span>
+  <span class="profile-value">${member.job}</span>
+</div>
+
+<div class="profile-row">
+  <span class="profile-label">就任</span>
+  <span class="profile-value">${member.joined}</span>
+</div>
+
+<br>
         <strong>好きな○○</strong>
         <ul>
           ${(member.favorites || [])
