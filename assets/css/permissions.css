@@ -1,1 +1,109 @@
 
+/* =========================
+   👑 STAFFページ専用
+========================= */
+
+.staff-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(220px, 1fr)
+  );
+
+  gap: 16px;
+
+  margin-top: 16px;
+}
+
+/* STAFF見出し */
+
+.card h2 {
+
+  margin-top: 0;
+
+  color: #ffd700;
+
+  text-shadow:
+    0 0 8px rgba(255,215,0,0.5);
+}
+
+/* 本部カードのdetails調整 */
+
+.staff-grid details {
+
+  margin-top: 0;
+}
+
+/* アコーディオン開閉アニメーション */
+
+details {
+
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+details[open] {
+
+  border-color: rgba(255,215,0,0.35);
+
+  box-shadow:
+    0 0 14px rgba(255,215,0,0.15);
+}
+
+.staff-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 16px;
+
+  margin-top: 15px;
+}
+
+/* =========================
+   👤 スタッフプロフィール
+========================= */
+
+.profile-row {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  margin-bottom: 8px;
+
+}
+
+.profile-label {
+
+  width: 120px;
+
+  flex-shrink: 0;
+
+  color: #7dd3fc;
+
+  font-weight: bold;
+
+}
+
+.profile-label::after {
+
+  content: "：";
+
+}
+
+.profile-value {
+
+  flex: 1;
+
+  color: #dffcff;
+
+  word-break: break-word;
+
+}
+
