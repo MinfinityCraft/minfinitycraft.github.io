@@ -6,59 +6,35 @@
   <title>ルール | Minfinity craft</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="assets/css/style.css?v=5">
+
+  <link rel="stylesheet" href="assets/css/style.css?v=5">
+  <link rel="stylesheet" href="assets/css/rules.css?v=1">
 </head>
 
-<body class="recipes-page">
+<body class="rules-page">
+
+  <!-- 背景粒子 -->
   <div id="particles"></div>
 
-   <!-- 共通html -->
+  <!-- 共通サイドバー -->
+  <div id="sidebar-container"></div>
 
-<div id="sidebar-container"></div>
-
-
-  <!-- メイン -->
   <main class="content">
 
     <h1 class="title">RULES</h1>
 
-    <section class="card">
-     <h2>サーバールール</h2>
-
-<p>
-minfinity craftでは全ての人が楽しめるよう、以下のルールを制定します。<br>
-<strong>内容に対する質問</strong>、<strong>権限者が違反している</strong>場合は最高権限者までお願いします。
-</p>
-
-<h2>レベル１｜BAN</h2>
-<p class="level1">
-サーバーを荒らす行為<br>
-上記を助長する、協力する行為<br>
-サーバーの転覆を図る行為<br>
-チートを使用する行為<br>
-バグ等を不正利用する行為
-</p>
-
-<h2>レベル２｜KICK</h2>
-<p class="level2">
-新規を荒らす行為<br>
-いじめなどを助長する行為<br>
-他人の個人情報漏洩<br>
-メンバーの評価を下げる行為<br>
-なりすまし行為
-</p>
-
-<h2>レベル３｜厳重注意</h2>
-<p class="level3">
-他者を不快にさせる行為<br>
-不当なやり取りを含む行為<br>
-他者を貶める行為
-</p>
-    </section>
+    <!-- rules.js が自動生成 -->
+    <div id="rulesContainer"></div>
 
   </main>
 
-<script defer src="assets/js/script.js?v=1000"></script>
+  <!-- 共通JS -->
+  <script defer src="assets/js/script.js?v=1000"></script>
+
+  <!-- ルール生成JS -->
+  <script defer src="assets/js/rules.js"></script>
+
   <div class="screen-fade"></div>
+
 </body>
 </html>
