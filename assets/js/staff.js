@@ -47,21 +47,25 @@ for (const [groupName, members] of Object.entries(data)) {
 
       <div class="profile-row">
   <span class="profile-label">ゲームタグ</span>
+  <span class="profile-separator">：</span>
   <span class="profile-value">${member.gameTag}</span>
 </div>
 
 <div class="profile-row">
   <span class="profile-label">Discord</span>
+  <span class="profile-separator">：</span>
   <span class="profile-value">${member.discord}</span>
 </div>
 
 <div class="profile-row">
   <span class="profile-label">仕事内容</span>
+  <span class="profile-separator">：</span>
   <span class="profile-value">${member.job}</span>
 </div>
 
 <div class="profile-row">
   <span class="profile-label">就任</span>
+  <span class="profile-separator">：</span>
   <span class="profile-value">${member.joined}</span>
 </div>
 
