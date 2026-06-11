@@ -89,17 +89,22 @@ console.error(error);
 const container =
   document.getElementById("staffContainer");
 
-container.innerHTML = `
-  <section class="card">
-    <h2>エラー</h2>
-    <p>
-      スタッフデータの読み込みに失敗しました。
-    </p>
-  </section>
-`;
+if (container) {
+
+  container.innerHTML = `
+    <section class="card">
+      <h2>エラー</h2>
+      <p>
+        スタッフデータの読み込みに失敗しました。
+      </p>
+    </section>
+  `;
+
+}
 ```
 
 }
+
 }
 
 loadStaff();
