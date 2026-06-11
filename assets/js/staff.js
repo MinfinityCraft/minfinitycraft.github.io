@@ -2,7 +2,7 @@ async function loadStaff() {
 
 try {
 
-```
+
 const response = await fetch(
   "assets/data/staff.json"
 );
@@ -79,11 +79,11 @@ for (const [groupName, members] of Object.entries(data)) {
   container.appendChild(section);
 
 }
-```
+
 
 } catch (error) {
 
-```
+
 console.error(error);
 
 const container =
@@ -101,7 +101,7 @@ if (container) {
   `;
 
 }
-```
+
 
 }
 
