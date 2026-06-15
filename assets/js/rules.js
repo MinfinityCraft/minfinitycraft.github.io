@@ -1,4 +1,4 @@
-alert("rules.js あいあいあ");
+
 console.log("START");
 
 async function loadRules() {
