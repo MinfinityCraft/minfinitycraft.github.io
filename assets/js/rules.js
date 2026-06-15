@@ -1,3 +1,4 @@
+alert("rules.js 動いた");
 console.log("START");
 
 async function loadRules() {
